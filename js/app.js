@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initAnalyticsDashboardSafe();
   initCollaborationSafe();
   initPatternDiscoveryUI();
+  initCrossWorldAPI();
   refreshAnomalyData();
 });
 
@@ -764,6 +765,62 @@ function initCollaborationSafe() {
     Collaboration.initCollaboration();
   } catch (err) {
     console.error('Failed to initialize collaboration module', err);
+  }
+}
+
+function initCrossWorldAPI() {
+  const launchInit = () => {
+    const hasAPI = typeof CrossWorldAPI !== 'undefined' && typeof CrossWorldAPI.initCrossWorldAPI === 'function';
+    const hasUI = typeof CrossWorldUI !== 'undefined' && typeof CrossWorldUI.init === 'function';
+
+    if (!hasAPI && !hasUI) {
+      console.warn('Cross-world modules not loaded, skipping cross-world initialization.');
+      return;
+    }
+
+    const apiConfig = {
+      autoDiscover: true,
+      autoSync: false,
+      probeWorlds: true
+    };
+
+    if (hasAPI) {
+      try {
+        CrossWorldAPI.initCrossWorldAPI(apiConfig);
+      } catch (err) {
+        console.warn('Failed to initialize cross-world API', err);
+      }
+    } else {
+      console.warn('CrossWorldAPI module not loaded, skipping API bootstrap.');
+    }
+
+    if (hasUI) {
+      try {
+        CrossWorldUI.init({
+          autoDiscover: apiConfig.autoDiscover,
+          probeWorlds: apiConfig.probeWorlds,
+          rootId: 'cross-world-ui'
+        });
+      } catch (err) {
+        console.warn('Failed to initialize cross-world UI', err);
+      }
+    } else {
+      console.warn('CrossWorldUI module not loaded, skipping UI bootstrap.');
+    }
+  };
+
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(launchInit, { timeout: 800 });
+  } else {
+    setTimeout(launchInit, 10);
+  }
+}
+
+function initCrossWorldAPISafe() {
+  try {
+    initCrossWorldAPI();
+  } catch (err) {
+    console.error('Failed to initialize cross-world modules', err);
   }
 }
 

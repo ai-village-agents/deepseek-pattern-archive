@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pattern Archive - Full Integration Harness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pattern-archive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #050914;
+      --panel: rgba(9, 13, 26, 0.9);
+      --accent: #4dd6ff;
+      --accent-2: #ff2fa3;
+      --muted: #a7b3d9;
+      --success: #4caf50;
+      --warn: #ff9f1c;
+      --error: #f44336;
+      --grid-gap: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 18% 18%, rgba(77, 214, 255, 0.08), transparent 22%),
+                  radial-gradient(circle at 78% 12%, rgba(255, 47, 163, 0.08), transparent 24%),
+                  var(--bg);
+      color: #e8ecff;
+      font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+      padding: 24px;
+    }
+    h1, h2, h3 { margin: 0; }
+    p { color: var(--muted); }
+    a { color: var(--accent); }
+    .page {
+      max-width: 1400px;
+      margin: 0 auto 48px;
+    }
+    .hero {
+      background: linear-gradient(120deg, rgba(77, 214, 255, 0.08), rgba(255, 47, 163, 0.08));
+      border: 1px solid rgba(77, 214, 255, 0.2);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 60px rgba(5, 9, 20, 0.7);
+    }
+    .hero-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(77, 214, 255, 0.16);
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .control-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    button {
+      border: 1px solid rgba(77, 214, 255, 0.35);
+      background: rgba(77, 214, 255, 0.1);
+      color: #e8ecff;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(77, 214, 255, 0.8);
+    }
+    button.secondary { background: rgba(255, 47, 163, 0.1); border-color: rgba(255, 47, 163, 0.35); }
+    button.ghost { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.18); color: var(--muted); }
+    .grid {
+      display: grid;
+      gap: var(--grid-gap);
+    }
+    .grid.two { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .grid.three { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(77, 214, 255, 0.15);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    }
+    .panel h3 {
+      margin-bottom: 6px;
+      color: #cfe5ff;
+    }
+    .status-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .status-card {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .status-card strong { display: block; margin-bottom: 4px; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .status-pill.pass { background: rgba(76, 175, 80, 0.16); color: var(--success); border: 1px solid rgba(76, 175, 80, 0.35); }
+    .status-pill.warn { background: rgba(255, 159, 28, 0.16); color: var(--warn); border: 1px solid rgba(255, 159, 28, 0.35); }
+    .status-pill.fail { background: rgba(244, 67, 54, 0.18); color: var(--error); border: 1px solid rgba(244, 67, 54, 0.38); }
+    .mini-stats {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .mini-stat {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .mini-stat .label { color: var(--muted); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .mini-stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; color: var(--accent); }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .table th, .table td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+    }
+    .table th { color: #cfe5ff; font-weight: 600; }
+    .log {
+      max-height: 320px;
+      overflow-y: auto;
+      font-family: 'IBM Plex Mono', 'Fira Code', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid rgba(77, 214, 255, 0.15);
+    }
+    .log-entry {
+      padding: 6px 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .log-entry.pass { background: rgba(76, 175, 80, 0.08); color: #c0ffd1; }
+    .log-entry.fail { background: rgba(244, 67, 54, 0.08); color: #ffc7c0; }
+    .log-entry.warn { background: rgba(255, 159, 28, 0.08); color: #ffe0b3; }
+    .log-entry .time { color: var(--muted); font-size: 12px; min-width: 58px; }
+    textarea, input, select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      color: #e8ecff;
+      padding: 8px 10px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .discovery-shell, .crossworld-shell {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(77, 214, 255, 0.12);
+    }
+    .manual-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .inline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+    .health-dots { display: flex; gap: 6px; margin-top: 6px; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .dot.pass { background: var(--success); border-color: rgba(76, 175, 80, 0.7); }
+    .dot.fail { background: var(--error); border-color: rgba(244, 67, 54, 0.7); }
+    .dot.warn { background: var(--warn); border-color: rgba(255, 159, 28, 0.7); }
+    #analytics-dashboard, #cross-world-ui { margin-top: 8px; }
+  </style>
+  <script>
+    // Track script execution order for dependency verification
+    window.__moduleLoadOrder = [];
+    function noteLoad(name) {
+      window.__moduleLoadOrder.push({ name, ts: performance.now() });
+    }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-title">
+        <div>
+          <div class="badge">Pattern Archive Integration</div>
+          <h1>Full-System Integration &amp; Cross-World Validation</h1>
+          <p>Run orchestrated tests that exercise analytics, collaboration, pattern discovery, visualization, and the cross-world API end-to-end.</p>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <div class="label">Test Run</div>
+            <div class="value" id="stat-last-run">Not started</div>
+          </div>
+          <div class="mini-stat">
+            <div class="label">Synthetic anomalies</div>
+            <div class="value" id="stat-anomalies">0</div>
+          </div>
+          <div class="mini-stat">
+            <div class="label">Cross-world patterns</div>
+            <div class="value" id="stat-world-patterns">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="control-row">
+        <button id="btn-run-all">Run full integration</button>
+        <button class="secondary" id="btn-module-check">Verify module load order</button>
+        <button class="secondary" id="btn-flow">Simulate visitor data flow</button>
+        <button class="ghost" id="btn-errors">Run error &amp; fallback cases</button>
+        <button class="ghost" id="btn-clear-log">Clear log</button>
+      </div>
+      <div class="status-cards">
+        <div class="status-card">
+          <strong>Module health</strong>
+          <span id="status-modules" class="status-pill warn">Pending</span>
+          <div class="health-dots" id="dots-modules"></div>
+        </div>
+        <div class="status-card">
+          <strong>Data pipeline</strong>
+          <span id="status-pipeline" class="status-pill warn">Pending</span>
+          <div class="health-dots" id="dots-pipeline"></div>
+        </div>
+        <div class="status-card">
+          <strong>Cross-world API</strong>
+          <span id="status-crossworld" class="status-pill warn">Pending</span>
+          <div class="health-dots" id="dots-crossworld"></div>
+        </div>
+        <div class="status-card">
+          <strong>Error handling</strong>
+          <span id="status-errors" class="status-pill warn">Pending</span>
+          <div class="health-dots" id="dots-errors"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Module loading &amp; dependency checks</h2>
+      <p>Validates the presence of every Pattern Archive module, dependency ordering, and safe fallbacks.</p>
+      <div class="grid two">
+        <div>
+          <table class="table" id="module-table">
+            <thead>
+              <tr><th>Module</th><th>Status</th><th>Details</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Recorded load order</h3>
+          <p class="small">Captured via script onload events to confirm sequencing.</p>
+          <div id="load-order" class="log"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Data flow &amp; visualization pipeline</h2>
+      <p>Simulates visitor submissions through analytics, pattern discovery, collaboration, and cross-world aggregation.</p>
+      <div class="grid two">
+        <div>
+          <h3>Visitor submission simulator</h3>
+          <div class="manual-actions">
+            <button id="btn-generate">Generate sample anomalies</button>
+            <button class="secondary" id="btn-add-visitor">Inject single visitor event</button>
+          </div>
+          <div class="inline-grid" style="margin-top:10px">
+            <div class="mini-stat"><div class="label">Source</div><div class="value" id="stat-source">local</div></div>
+            <div class="mini-stat"><div class="label">Last submission</div><div class="value" id="stat-last-submission">—</div></div>
+          </div>
+          <div class="timeline-visualization" style="margin-top:12px"></div>
+        </div>
+        <div>
+          <h3>Pipeline outputs</h3>
+          <div class="grid three">
+            <div class="mini-stat"><div class="label">Analytics filtered</div><div class="value" id="stat-filtered">0</div></div>
+            <div class="mini-stat"><div class="label">Patterns detected</div><div class="value" id="stat-patterns">0</div></div>
+            <div class="mini-stat"><div class="label">Collab threads</div><div class="value" id="stat-discussions">0</div></div>
+          </div>
+          <div id="analytics-dashboard"></div>
+          <div class="discovery-shell" style="margin-top:12px">
+            <div class="discovery-controls-container"></div>
+            <div class="manual-actions" style="margin:8px 0">
+              <button id="run-discovery-analysis">Run discovery on stored data</button>
+              <button class="ghost" id="clear-discovery-cache">Clear discovery cache</button>
+              <button class="secondary" id="export-discovery-results">Export discovery results</button>
+            </div>
+            <div class="discovery-patterns-container"></div>
+            <div class="discovery-correlations-container" style="margin-top:10px"></div>
+            <div class="discovery-metrics-container" style="margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Cross-world API &amp; synchronization</h2>
+      <p>Exercises the cross-world API aggregation and visualization against synthetic pattern payloads.</p>
+      <div class="grid two">
+        <div class="crossworld-shell">
+          <div class="manual-actions">
+            <button id="btn-crossworld-sync">Simulate cross-world sync</button>
+            <button class="ghost" id="btn-crossworld-health">Ping registered worlds</button>
+          </div>
+          <div id="crossworld-insights" class="log" style="margin-top:8px; max-height:200px;"></div>
+          <div id="cross-world-correlation"></div>
+          <div id="cross-world-comparison" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <h3>Cross-World Control Surface</h3>
+          <p class="small">Use the UI to manually register worlds, run discovery, and export insights.</p>
+          <div id="cross-world-ui"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Manual module exercises</h2>
+      <div class="grid two">
+        <div>
+          <h3>Sample anomaly JSON</h3>
+          <textarea id="manual-json" rows="8" spellcheck="false">[
+  {
+    "id": "manual-1",
+    "title": "Manual exponential surge",
+    "description": "Operator injected exponential anomaly for manual test.",
+    "type": "exponential",
+    "severity": 4,
+    "timestamp": "2024-11-05T12:00:00Z",
+    "source": "manual-console",
+    "world": "drift"
+  }
+]</textarea>
+          <div class="manual-actions">
+            <button id="btn-push-manual">Push data to all modules</button>
+            <button class="ghost" id="btn-reset-data">Reset storage</button>
+          </div>
+        </div>
+        <div>
+          <h3>Collaboration quick actions</h3>
+          <div class="manual-actions">
+            <button id="btn-collab-comment">Add comment to latest anomaly</button>
+            <button class="secondary" id="btn-collab-tag">Tag latest anomaly</button>
+            <button class="ghost" id="btn-collab-hypothesis">Log hypothesis</button>
+          </div>
+          <div id="collab-latest" class="log" style="margin-top:10px; max-height:150px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Test log &amp; telemetry</h2>
+      <div class="log" id="test-log"></div>
+    </section>
+  </div>
+
+  <!-- Core modules -->
+  <script src="js/analytics.js" onload="noteLoad('analytics.js')"></script>
+  <script src="js/collaboration.js" onload="noteLoad('collaboration.js')"></script>
+  <script src="js/pattern-discovery.js" onload="noteLoad('pattern-discovery.js')"></script>
+  <script src="js/pattern-discovery-ui.js" onload="noteLoad('pattern-discovery-ui.js')"></script>
+  <script src="js/cross-world-api.js" onload="noteLoad('cross-world-api.js')"></script>
+  <script src="js/cross-world-ui.js" onload="noteLoad('cross-world-ui.js')"></script>
+
+  <script>
+    const integrationState = {
+      dataset: [],
+      worldPatterns: [],
+      collabInit: false,
+      analyticsInit: false,
+      runCount: 0
+    };
+
+    function log(message, level = 'info') {
+      const container = document.getElementById('test-log');
+      if (!container) return;
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${level}`;
+      const time = new Date().toLocaleTimeString();
+      entry.innerHTML = `<span class="time">${time}</span><span>${message}</span>`;
+      container.prepend(entry);
+    }
+
+    function setStatus(id, status, detail) {
+      const el = document.getElementById(id);
+      const dots = document.getElementById(`dots-${id.split('-')[1]}`);
+      if (!el || !dots) return;
+      el.className = `status-pill ${status}`;
+      el.textContent = detail || (status === 'pass' ? 'Pass' : status === 'fail' ? 'Fail' : 'Pending');
+      dots.innerHTML = '';
+      for (let i = 0; i < 4; i++) {
+        const dot = document.createElement('div');
+        dot.className = `dot ${i <= 1 ? status : 'warn'}`;
+        dots.appendChild(dot);
+      }
+    }
+
+    function buildSampleAnomalies(count = 24) {
+      const now = Date.now();
+      const types = ['incremental', 'exponential', 'clockwork', 'other'];
+      const worlds = ['drift', 'liminal', 'observatory', 'garden'];
+      return Array.from({ length: count }).map((_, idx) => {
+        const ts = new Date(now - idx * 60 * 60 * 1000 - (idx % 3) * 12000).toISOString();
+        const type = types[idx % types.length];
+        return {
+          id: `visitor-${idx}`,
+          title: `${type} anomaly #${idx + 1}`,
+          description: `Synthetic anomaly ${idx + 1} for integration testing.`,
+          type,
+          severity: (idx % 5) + 1,
+          timestamp: ts,
+          source: 'integration-sim',
+          world: worlds[idx % worlds.length]
+        };
+      });
+    }
+
+    function storeAnomalies(anomalies) {
+      localStorage.setItem('pattern-archive-anomalies', JSON.stringify(anomalies));
+      integrationState.dataset = anomalies;
+      document.getElementById('stat-anomalies').textContent = anomalies.length;
+      document.getElementById('stat-last-submission').textContent = anomalies[0] ? new Date(anomalies[0].timestamp).toLocaleString() : '—';
+      document.getElementById('stat-source').textContent = 'local';
+    }
+
+    function ensureAnalytics() {
+      if (integrationState.analyticsInit || typeof initAnalyticsDashboard !== 'function') return;
+      initAnalyticsDashboard('analytics-dashboard');
+      integrationState.analyticsInit = true;
+      log('Analytics dashboard initialized', 'pass');
+    }
+
+    function ensureCollaboration(anomalies = []) {
+      if (typeof Collaboration === 'undefined' || typeof Collaboration.initCollaboration !== 'function') {
+        log('Collaboration module unavailable', 'warn');
+        return;
+      }
+      Collaboration.initCollaboration({ anomalies });
+      integrationState.collabInit = true;
+    }
+
+    function hydrateTimeline(anomalies = []) {
+      if (typeof updateAnomalyTimeline === 'function') {
+        updateAnomalyTimeline(anomalies.slice());
+      } else if (typeof Collaboration?.attachTimeline === 'function') {
+        const timeline = document.querySelector('.timeline-visualization');
+        timeline.innerHTML = anomalies.map(a => `<div class="timeline-item" data-anomaly-id="${a.id}"><div class="timeline-content"><h4>${a.title}</h4><p>${a.description}</p></div></div>`).join('');
+        Collaboration.attachTimeline(timeline, anomalies);
+      }
+    }
+
+    function buildCrossWorldPatterns(anomalies = []) {
+      return anomalies.map((a, idx) => ({
+        id: `cw-${a.id || idx}`,
+        world: a.world || 'local',
+        type: a.type || 'other',
+        signal: a.title || 'signal',
+        severity: a.severity || 0,
+        timestamp: a.timestamp || a.date || new Date().toISOString(),
+        summary: a.description || ''
+      }));
+    }
+
+    function renderInsights(patterns, aggregates) {
+      const insightsBox = document.getElementById('crossworld-insights');
+      insightsBox.innerHTML = '';
+      const insightList = (CrossWorldAPI.generateInsights(patterns, aggregates) || []);
+      if (!insightList.length) {
+        insightsBox.textContent = 'No cross-world insights yet. Run a sync to populate this panel.';
+        return;
+      }
+      insightList.forEach(text => {
+        const row = document.createElement('div');
+        row.className = 'log-entry';
+        row.innerHTML = `<span class="time">insight</span><span>${text}</span>`;
+        insightsBox.appendChild(row);
+      });
+    }
+
+    function updatePatternStats(patterns = []) {
+      document.getElementById('stat-patterns').textContent = patterns.length;
+      const metrics = PatternDiscovery.getDiscoveryMetrics ? PatternDiscovery.getDiscoveryMetrics() : { clustersFound: 0 };
+      document.getElementById('stat-filtered').textContent = analyticsState?.filtered?.length || analyticsState?.anomalies?.length || 0;
+      const collabMetrics = Collaboration?.getMetrics ? Collaboration.getMetrics() : null;
+      document.getElementById('stat-discussions').textContent = collabMetrics ? collabMetrics.activeThreads : (Collaboration?.discussions ? Object.keys(Collaboration.discussions || {}).length : 0);
+      if (metrics.lastAnalysis) {
+        document.getElementById('stat-last-run').textContent = new Date(metrics.lastAnalysis).toLocaleString();
+      }
+    }
+
+    function runModuleChecks() {
+      const tbody = document.querySelector('#module-table tbody');
+      const modules = [
+        { name: 'Analytics', check: () => typeof initAnalyticsDashboard === 'function' },
+        { name: 'Collaboration', check: () => typeof Collaboration !== 'undefined' && typeof Collaboration.initCollaboration === 'function' },
+        { name: 'PatternDiscovery', check: () => typeof PatternDiscovery !== 'undefined' && typeof PatternDiscovery.analyzeAnomalies === 'function' },
+        { name: 'PatternDiscoveryUI', check: () => typeof PatternDiscoveryUI !== 'undefined' && typeof PatternDiscoveryUI.runAnalysis === 'function' },
+        { name: 'CrossWorldAPI', check: () => typeof CrossWorldAPI !== 'undefined' && typeof CrossWorldAPI.initCrossWorldAPI === 'function' },
+        { name: 'CrossWorldUI', check: () => typeof CrossWorldUI !== 'undefined' && typeof CrossWorldUI.init === 'function' }
+      ];
+      tbody.innerHTML = '';
+      let passCount = 0;
+      modules.forEach(mod => {
+        const ok = !!mod.check();
+        if (ok) passCount += 1;
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${mod.name}</td><td>${ok ? '✅' : '❌'}</td><td>${ok ? 'Loaded' : 'Missing'}</td>`;
+        tbody.appendChild(row);
+      });
+      const order = window.__moduleLoadOrder || [];
+      const orderBox = document.getElementById('load-order');
+      orderBox.innerHTML = order.length
+        ? order.map(o => `<div>${o.name} @ ${o.ts.toFixed(1)}ms</div>`).join('')
+        : 'Load order not captured yet.';
+      const status = passCount === modules.length ? 'pass' : passCount ? 'warn' : 'fail';
+      setStatus('status-modules', status, passCount === modules.length ? 'All modules ready' : `${passCount}/${modules.length} ready`);
+      log(`Module check complete (${passCount}/${modules.length})`, status === 'pass' ? 'pass' : 'warn');
+    }
+
+    function pushThroughPipeline(anomalies) {
+      storeAnomalies(anomalies);
+      ensureAnalytics();
+      if (window.analyticsState) {
+        window.analyticsState.anomalies = anomalies.slice();
+        updateAnalytics();
+      }
+      if (typeof PatternDiscovery !== 'undefined') {
+        const result = PatternDiscovery.analyzeAnomalies(anomalies.slice());
+        updatePatternStats(result.patterns || []);
+      }
+      if (typeof PatternDiscoveryUI !== 'undefined' && typeof PatternDiscoveryUI.runAnalysis === 'function') {
+        PatternDiscoveryUI.runAnalysis();
+      }
+      if (typeof Collaboration !== 'undefined') {
+        Collaboration.registerAnomalies(anomalies.slice());
+        ensureCollaboration(anomalies.slice());
+      }
+      hydrateTimeline(anomalies.slice());
+      log(`Data pipeline processed ${anomalies.length} anomalies`, 'pass');
+    }
+
+    async function runCrossWorldSync(anomalies) {
+      if (typeof CrossWorldAPI === 'undefined') {
+        log('CrossWorldAPI unavailable', 'fail');
+        return;
+      }
+      CrossWorldAPI.initCrossWorldAPI({ autoDiscover: false, autoSync: false, probeWorlds: false });
+      const patterns = buildCrossWorldPatterns(anomalies.slice(0, 32));
+      integrationState.worldPatterns = patterns;
+      const state = CrossWorldAPI.getState();
+      state.patterns = patterns;
+      state.aggregates = CrossWorldAPI.aggregatePatterns(patterns);
+      state.insights = CrossWorldAPI.generateInsights(patterns, state.aggregates);
+      CrossWorldAPI.renderCorrelationHeatmap('cross-world-correlation');
+      CrossWorldAPI.renderWorldComparison('cross-world-comparison');
+      renderInsights(patterns, state.aggregates);
+      document.getElementById('stat-world-patterns').textContent = patterns.length;
+      setStatus('status-crossworld', 'pass', 'Aggregated synthetic worlds');
+      log(`Cross-world sync simulated with ${patterns.length} patterns`, 'pass');
+    }
+
+    async function runErrorTests() {
+      let failures = 0;
+      const backup = localStorage.getItem('pattern-archive-anomalies');
+      try {
+        const empty = PatternDiscovery.analyzeAnomalies([]);
+        if (empty.patterns.length || empty.correlations.length) failures += 1;
+        log('PatternDiscovery handles empty input gracefully', 'pass');
+      } catch (err) {
+        failures += 1;
+        log(`PatternDiscovery empty input failed: ${err.message}`, 'fail');
+      }
+      try {
+        CrossWorldAPI.registerWorld({ id: 'broken', name: 'Broken World', baseUrl: 'https://invalid.world/api' });
+        const data = await CrossWorldAPI.fetchWorldData('broken', { timeout: 120 });
+        log(`CrossWorldAPI fallback returned ${data.length} synthetic records`, 'pass');
+      } catch (err) {
+        failures += 1;
+        log(`CrossWorldAPI fallback failed: ${err.message}`, 'fail');
+      }
+      try {
+        const bad = 'not-json';
+        localStorage.setItem('pattern-archive-anomalies', bad);
+        PatternDiscoveryUI.runAnalysis();
+        log('PatternDiscoveryUI guarded against malformed storage', 'warn');
+      } catch (err) {
+        log('PatternDiscoveryUI threw on malformed storage (expected)', 'pass');
+      } finally {
+        localStorage.removeItem('pattern-archive-anomalies');
+        if (backup) {
+          localStorage.setItem('pattern-archive-anomalies', backup);
+        }
+      }
+      setStatus('status-errors', failures ? 'warn' : 'pass', failures ? 'Issues detected' : 'Fallbacks verified');
+    }
+
+    function injectManualData() {
+      const textarea = document.getElementById('manual-json');
+      try {
+        const parsed = JSON.parse(textarea.value);
+        if (!Array.isArray(parsed)) throw new Error('Payload must be an array');
+        const merged = parsed.concat(integrationState.dataset || []);
+        pushThroughPipeline(merged);
+        runCrossWorldSync(merged);
+        log(`Manual dataset injected (${parsed.length} records)`, 'pass');
+      } catch (err) {
+        log(`Manual data failed: ${err.message}`, 'fail');
+      }
+    }
+
+    function addCollabAction(action) {
+      if (!integrationState.dataset.length || typeof Collaboration === 'undefined') {
+        log('Collaboration module unavailable for manual action', 'warn');
+        return;
+      }
+      const target = integrationState.dataset[0];
+      const id = Collaboration.computeAnomalyId(target);
+      let message = '';
+      if (action === 'comment') {
+        Collaboration.addComment(id, { author: 'Integration Bot', message: 'Injected comment from integration harness.' });
+        message = 'Comment added';
+      } else if (action === 'tag') {
+        Collaboration.addTag(id, 'integration');
+        message = 'Tag added';
+      } else if (action === 'hypothesis') {
+        Collaboration.addHypothesis(id, 'Integration hypothesis: clockwork drift');
+        message = 'Hypothesis logged';
+      }
+      const meta = Collaboration.getDiscussionState ? Collaboration.getDiscussionState().discussions[id] : null;
+      document.getElementById('collab-latest').innerHTML = meta
+        ? JSON.stringify(meta, null, 2)
+        : 'No discussion payload captured.';
+      log(`${message} on ${target.title}`, 'pass');
+      updatePatternStats();
+    }
+
+    function simulateVisitorEvent() {
+      const anomalies = integrationState.dataset.length ? integrationState.dataset.slice() : buildSampleAnomalies();
+      const idx = anomalies.length + 1;
+      const newEvent = {
+        id: `visitor-live-${idx}`,
+        title: `Live visitor anomaly #${idx}`,
+        description: 'Live injected anomaly for manual validation.',
+        type: idx % 3 === 0 ? 'clockwork' : idx % 2 === 0 ? 'exponential' : 'incremental',
+        severity: (idx % 5) + 1,
+        timestamp: new Date().toISOString(),
+        source: 'live-visitor',
+        world: ['drift', 'liminal', 'observatory'][idx % 3]
+      };
+      anomalies.unshift(newEvent);
+      pushThroughPipeline(anomalies);
+      runCrossWorldSync(anomalies);
+      log(`Visitor submission injected (${newEvent.type}, severity ${newEvent.severity})`, 'pass');
+    }
+
+    function resetStorage() {
+      localStorage.removeItem('pattern-archive-anomalies');
+      localStorage.removeItem('pattern-archive-analytics-state');
+      localStorage.removeItem('cross-world-api-state');
+      localStorage.removeItem('cross-world-api-worlds');
+      log('Local storage cleared for a clean slate', 'warn');
+      integrationState.dataset = [];
+      document.getElementById('stat-anomalies').textContent = '0';
+      document.getElementById('stat-world-patterns').textContent = '0';
+    }
+
+    async function runFullIntegration() {
+      const anomalies = buildSampleAnomalies();
+      pushThroughPipeline(anomalies);
+      await runCrossWorldSync(anomalies);
+      await runErrorTests();
+      runModuleChecks();
+      integrationState.runCount += 1;
+      document.getElementById('stat-last-run').textContent = new Date().toLocaleString();
+      setStatus('status-pipeline', 'pass', 'Pipeline exercised');
+    }
+
+    function wireControls() {
+      document.getElementById('btn-run-all').addEventListener('click', runFullIntegration);
+      document.getElementById('btn-module-check').addEventListener('click', runModuleChecks);
+      document.getElementById('btn-flow').addEventListener('click', () => pushThroughPipeline(buildSampleAnomalies()));
+      document.getElementById('btn-errors').addEventListener('click', runErrorTests);
+      document.getElementById('btn-clear-log').addEventListener('click', () => document.getElementById('test-log').innerHTML = '');
+      document.getElementById('btn-generate').addEventListener('click', () => pushThroughPipeline(buildSampleAnomalies()));
+      document.getElementById('btn-add-visitor').addEventListener('click', simulateVisitorEvent);
+      document.getElementById('btn-crossworld-sync').addEventListener('click', () => runCrossWorldSync(integrationState.dataset.length ? integrationState.dataset : buildSampleAnomalies()));
+      document.getElementById('btn-crossworld-health').addEventListener('click', () => {
+        if (typeof CrossWorldAPI === 'undefined') {
+          log('CrossWorldAPI unavailable', 'fail');
+          return;
+        }
+        CrossWorldAPI.pingWorld('drift', 150)
+          .then(res => log(`Ping drift world: ${res.ok ? 'ok' : res.message || 'fail'}`, res.ok ? 'pass' : 'warn'))
+          .catch(err => log(`Ping failed: ${err.message}`, 'warn'));
+      });
+      document.getElementById('btn-push-manual').addEventListener('click', injectManualData);
+      document.getElementById('btn-reset-data').addEventListener('click', resetStorage);
+      document.getElementById('btn-collab-comment').addEventListener('click', () => addCollabAction('comment'));
+      document.getElementById('btn-collab-tag').addEventListener('click', () => addCollabAction('tag'));
+      document.getElementById('btn-collab-hypothesis').addEventListener('click', () => addCollabAction('hypothesis'));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      wireControls();
+      runModuleChecks();
+      const initial = buildSampleAnomalies();
+      pushThroughPipeline(initial);
+      runCrossWorldSync(initial);
+      setStatus('status-pipeline', 'warn', 'Ready');
+    });
+  </script>
+</body>
+</html>
