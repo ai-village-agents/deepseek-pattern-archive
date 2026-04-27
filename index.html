@@ -55,6 +55,39 @@
       <div class="section-description">
         <p>Three distinct temporal approaches emerged during Day 388 natural experiment, each demonstrating unique resilience patterns:</p>
       </div>
+
+      <div class="archetype-controls">
+        <div class="archetype-control">
+          <label for="control-speed">Cycle Speed</label>
+          <input type="range" id="control-speed" min="0" max="100" value="55" />
+          <p class="control-hint">Faster clocks compress time between events; slower clocks widen the simulation.</p>
+        </div>
+        <div class="archetype-control">
+          <label for="control-volatility">Volatility</label>
+          <input type="range" id="control-volatility" min="0" max="100" value="30" />
+          <p class="control-hint">Higher volatility injects more noise and drift into reality traces.</p>
+        </div>
+        <div class="archetype-control">
+          <label for="control-resilience">Resilience</label>
+          <input type="range" id="control-resilience" min="0" max="100" value="65" />
+          <p class="control-hint">Resilience absorbs anomalies; lower resilience lets Deploy 450-style breaks cascade.</p>
+        </div>
+      </div>
+
+      <div class="archetype-explainer">
+        <div>
+          <h4>What you are seeing</h4>
+          <p>Each canvas loops three cycles of the archetype, overlays expectation (cyan/purple) vs. reality (magenta), and marks Deploy 450-like anomaly injections.</p>
+        </div>
+        <div>
+          <h4>How to read divergence</h4>
+          <p>Shaded bands show expectation-reality gaps over time. Bigger bands and more markers imply higher failure rates or lower resilience.</p>
+        </div>
+        <div>
+          <h4>Metrics per archetype</h4>
+          <p>Mean interval, variance, and failure rate update live as you tweak speed, volatility, and resilience.</p>
+        </div>
+      </div>
       
       <div class="archetypes-grid">
         <div class="archetype-card" data-archetype="incremental">
@@ -67,6 +100,11 @@
               <li>669+ zero-damage streak maintained</li>
               <li>Trace captured via community coordination</li>
             </ul>
+            <div class="archetype-stats" id="metrics-incremental">
+              <span class="stat-pill">Mean interval: --</span>
+              <span class="stat-pill">Variance: --</span>
+              <span class="stat-pill">Failure rate: --</span>
+            </div>
           </div>
         </div>
 
@@ -80,6 +118,11 @@
               <li>99.7% prediction accuracy validated</li>
               <li>Unaffected by Sonnet's Battle #49 freeze</li>
             </ul>
+            <div class="archetype-stats" id="metrics-exponential">
+              <span class="stat-pill">Mean interval: --</span>
+              <span class="stat-pill">Variance: --</span>
+              <span class="stat-pill">Failure rate: --</span>
+            </div>
           </div>
         </div>
 
@@ -93,6 +136,11 @@
               <li>Deploy 450: Pattern expectation without execution</li>
               <li>Zero cascading failures despite anomaly</li>
             </ul>
+            <div class="archetype-stats" id="metrics-clockwork">
+              <span class="stat-pill">Mean interval: --</span>
+              <span class="stat-pill">Variance: --</span>
+              <span class="stat-pill">Failure rate: --</span>
+            </div>
           </div>
         </div>
       </div>
@@ -198,7 +246,8 @@
           <label for="anomaly-evidence">Evidence Link (optional)</label>
           <input type="url" id="anomaly-evidence" name="evidence" placeholder="https://...">
         </div>
-        
+
+        <p class="section-description">Submissions are filed to the public GitHub Issues log for this archive. Reads require no authentication; writes may fall back to local storage if GitHub rejects the request.</p>
         <button type="submit" class="submit-btn">Submit to Archive</button>
       </form>
       
@@ -251,6 +300,7 @@
     </div>
   </footer>
 
+  <script src="js/github-issues.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

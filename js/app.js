@@ -11,8 +11,31 @@ document.addEventListener('DOMContentLoaded', function() {
   initHistoricalCases();
   initAnomalySubmission();
   initArchiveStats();
-  updateArchiveStats();
+  refreshAnomalyData();
 });
+
+let anomalyState = {
+  items: [],
+  source: 'local'
+};
+
+const archetypeColors = {
+  incremental: '#4dd6ff',
+  exponential: '#ff2fa3',
+  clockwork: '#7c6cff'
+};
+
+const archetypeAnomalies = {
+  incremental: [
+    { cycle: 1, at: 0.42, label: 'Battle Freeze' }
+  ],
+  exponential: [
+    { cycle: 2, at: 0.55, label: 'Momentum Slip' }
+  ],
+  clockwork: [
+    { cycle: 1, at: 0.82, label: 'Deploy 450 Miss' }
+  ]
+};
 
 // =================== NAVIGATION ===================
 function initNavigation() {
@@ -69,28 +92,33 @@ function initArchetypeVisualizations() {
     { id: 'viz-exponential', type: 'exponential', label: 'Exponential Acceleration' },
     { id: 'viz-clockwork', type: 'clockwork', label: 'Clockwork Regularity' }
   ];
+  const controlEls = {
+    speed: document.getElementById('control-speed'),
+    volatility: document.getElementById('control-volatility'),
+    resilience: document.getElementById('control-resilience')
+  };
+  
+  const canvases = [];
   
   archetypes.forEach(archetype => {
     const container = document.getElementById(archetype.id);
     if (!container) return;
     
-    // Create canvas
+    container.innerHTML = '';
+    
     const canvas = document.createElement('canvas');
-    canvas.width = 300;
-    canvas.height = 150;
+    canvas.width = 320;
+    canvas.height = 170;
     canvas.style.width = '100%';
-    canvas.style.height = '150px';
+    canvas.style.height = '170px';
     canvas.style.borderRadius = '8px';
     canvas.style.backgroundColor = 'rgba(15, 19, 36, 0.6)';
     canvas.style.border = '1px solid rgba(77, 214, 255, 0.15)';
     
     container.appendChild(canvas);
     const ctx = canvas.getContext('2d');
+    canvases.push({ ctx, canvas, type: archetype.type });
     
-    // Draw the pattern based on type
-    drawPattern(ctx, canvas, archetype.type);
-    
-    // Add hover interaction
     canvas.addEventListener('mouseenter', () => {
       canvas.style.border = '1px solid rgba(77, 214, 255, 0.4)';
       canvas.style.boxShadow = '0 0 20px rgba(77, 214, 255, 0.2)';
@@ -101,26 +129,128 @@ function initArchetypeVisualizations() {
       canvas.style.boxShadow = 'none';
     });
   });
+  
+  const renderAll = () => {
+    const params = getSimulationParams(controlEls);
+    canvases.forEach(entry => {
+      const sim = buildArchetypeSimulation(entry.type, params, entry.canvas.width, entry.canvas.height);
+      drawPattern(entry.ctx, entry.canvas, entry.type, sim);
+      updateArchetypeMetrics(entry.type, sim.metrics);
+    });
+  };
+  
+  // Attach control listeners
+  Object.values(controlEls).forEach(input => {
+    if (!input) return;
+    input.addEventListener('input', renderAll);
+  });
+  
+  renderAll();
 }
 
-function drawPattern(ctx, canvas, type) {
+function buildArchetypeSimulation(type, params, width, height) {
+  const cycles = 3;
+  const pointsPerCycle = 26;
+  const totalPoints = cycles * pointsPerCycle;
+  const margin = 16;
+  const usableWidth = width - margin * 2;
+  const baseline = height - 28;
+  const amplitude = height - 60;
+  const expectedPoints = [];
+  const actualPoints = [];
+  const divergence = [];
+  const anomalies = [];
+  const intervals = [];
+  const triggered = {};
+  
+  let failureCount = 0;
+  
+  for (let i = 0; i <= totalPoints; i++) {
+    const cycleIndex = Math.floor(i / pointsPerCycle);
+    const localProgress = (i % pointsPerCycle) / (pointsPerCycle - 1);
+    const globalProgress = (cycleIndex + localProgress) / cycles;
+    const x = margin + globalProgress * usableWidth;
+    const expectedY = getExpectedY(type, globalProgress, localProgress, cycleIndex, baseline, amplitude, params.speed);
+    
+    const noise = (pseudoNoise(i + type.length * 7) - 0.5) * params.volatility * 90;
+    let actualY = expectedY + noise;
+    
+    const injection = (archetypeAnomalies[type] || []).find(a => {
+      const key = `${a.cycle}-${a.at}`;
+      return a.cycle === cycleIndex && localProgress >= a.at && !triggered[key];
+    });
+    if (injection) {
+      const key = `${injection.cycle}-${injection.at}`;
+      triggered[key] = true;
+      const anomalyStrength = (1 - params.resilience) * 95 + params.volatility * 40;
+      actualY = Math.min(baseline, expectedY + anomalyStrength);
+      anomalies.push({ x, y: actualY, label: injection.label });
+      failureCount += 1;
+    }
+    
+    // Reality drifts under high volatility even without anomalies
+    actualY += (0.35 - params.resilience) * params.volatility * 40;
+    
+    // Clamp to canvas bounds
+    actualY = Math.max(18, Math.min(baseline, actualY));
+    
+    expectedPoints.push({ x, y: expectedY });
+    actualPoints.push({ x, y: actualY });
+    divergence.push(Math.abs(actualY - expectedY));
+    
+    const baseInterval = (1 / params.speed) * 5.5;
+    const intervalNoise = (pseudoNoise(i + cycleIndex * 13) - 0.5) * params.volatility * 3;
+    intervals.push(Math.max(0.4, baseInterval + intervalNoise));
+  }
+  
+  const metrics = calculateMetrics(intervals, divergence, failureCount, cycles);
+  return { expectedPoints, actualPoints, anomalies, divergence, metrics, cycles, margin, usableWidth };
+}
+
+function getExpectedY(type, globalProgress, localProgress, cycleIndex, baseline, amplitude, speed) {
+  const steepness = Math.min(1.4, speed);
+  const normalized = Math.min(1, globalProgress * steepness + 0.05 * cycleIndex);
+  
+  switch (type) {
+    case 'exponential': {
+      const curve = Math.pow(normalized, 1.7);
+      return baseline - curve * amplitude;
+    }
+    case 'clockwork': {
+      const step = Math.floor(localProgress * 4) / 4;
+      const level = (cycleIndex + step) / 3;
+      return baseline - level * amplitude * 0.95;
+    }
+    default: {
+      const stepBias = Math.sin(localProgress * Math.PI * 2) * 0.04;
+      const incrementalNorm = Math.min(1, Math.max(0, normalized + stepBias));
+      return baseline - incrementalNorm * amplitude * 0.85;
+    }
+  }
+}
+
+function calculateMetrics(intervals, divergence, failures, cycles) {
+  const mean = intervals.reduce((sum, val) => sum + val, 0) / intervals.length;
+  const variance = intervals.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / intervals.length;
+  const failureRate = cycles === 0 ? 0 : failures / cycles;
+  const divergenceMax = Math.max(...divergence);
+  return { mean, variance, failureRate, divergenceMax };
+}
+
+function drawPattern(ctx, canvas, type, simulation) {
   const width = canvas.width;
   const height = canvas.height;
   ctx.clearRect(0, 0, width, height);
   
-  // Draw grid
+  // Grid
   ctx.strokeStyle = 'rgba(77, 214, 255, 0.05)';
   ctx.lineWidth = 1;
-  
-  // Vertical lines
   for (let x = 0; x <= width; x += 30) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, height);
     ctx.stroke();
   }
-  
-  // Horizontal lines
   for (let y = 0; y <= height; y += 30) {
     ctx.beginPath();
     ctx.moveTo(0, y);
@@ -128,51 +258,121 @@ function drawPattern(ctx, canvas, type) {
     ctx.stroke();
   }
   
-  // Draw the pattern
-  ctx.strokeStyle = type === 'exponential' ? '#ff2fa3' : 
-                    type === 'clockwork' ? '#7c6cff' : '#4dd6ff';
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  
-  const points = 20;
-  for (let i = 0; i <= points; i++) {
-    const x = (i / points) * width;
-    let y;
-    
-    switch(type) {
-      case 'incremental':
-        // Linear growth with minor stepwise pattern
-        y = height - 40 - (i / points) * 80 + Math.sin(i * 0.5) * 10;
-        break;
-      case 'exponential':
-        // Exponential curve
-        y = height - 40 - Math.pow(i / points, 2) * 100;
-        break;
-      case 'clockwork':
-        // Regular step function
-        y = height - 40 - 60 * (Math.floor(i / 4) / 5);
-        break;
-    }
-    
-    if (i === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
-    }
+  // Cycle markers
+  for (let c = 1; c < simulation.cycles; c++) {
+    const x = simulation.margin + (c / simulation.cycles) * simulation.usableWidth;
+    ctx.strokeStyle = 'rgba(159, 179, 217, 0.15)';
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(x, 10);
+    ctx.lineTo(x, height - 10);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(159, 179, 217, 0.7)';
+    ctx.font = '10px sans-serif';
+    ctx.fillText(`Cycle ${c + 1}`, x - 18, 18);
   }
+  
+  // Divergence overlay
+  ctx.fillStyle = 'rgba(255, 47, 163, 0.12)';
+  simulation.expectedPoints.forEach((expected, idx) => {
+    const actual = simulation.actualPoints[idx];
+    const diff = Math.abs(actual.y - expected.y);
+    if (diff < 3) return;
+    const barHeight = Math.min(diff, 60);
+    const top = Math.min(actual.y, expected.y);
+    ctx.fillRect(expected.x, top, 3, barHeight);
+  });
+  
+  // Expected line (dashed)
+  ctx.setLineDash([6, 4]);
+  ctx.strokeStyle = archetypeColors[type] || '#4dd6ff';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  simulation.expectedPoints.forEach((point, idx) => {
+    if (idx === 0) ctx.moveTo(point.x, point.y);
+    else ctx.lineTo(point.x, point.y);
+  });
   ctx.stroke();
   
-  // Add data points for clockwork
-  if (type === 'clockwork') {
-    ctx.fillStyle = '#7c6cff';
-    for (let i = 0; i <= points; i += 4) {
-      const x = (i / points) * width;
-      const y = height - 40 - 60 * (Math.floor(i / 4) / 5);
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
+  // Actual line
+  ctx.setLineDash([]);
+  ctx.strokeStyle = '#ff2fa3';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  simulation.actualPoints.forEach((point, idx) => {
+    if (idx === 0) ctx.moveTo(point.x, point.y);
+    else ctx.lineTo(point.x, point.y);
+  });
+  ctx.stroke();
+  
+  // Anomaly injection markers
+  simulation.anomalies.forEach(anomaly => {
+    ctx.fillStyle = '#ff2f2f';
+    ctx.beginPath();
+    ctx.arc(anomaly.x, anomaly.y, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText('!', anomaly.x - 3, anomaly.y + 4);
+    
+    ctx.fillStyle = 'rgba(255, 47, 163, 0.8)';
+    ctx.font = '10px sans-serif';
+    ctx.fillText(anomaly.label, anomaly.x + 8, anomaly.y - 8);
+  });
+  
+  // Legend
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = archetypeColors[type] || '#4dd6ff';
+  ctx.fillText('Expectation', width - 110, 18);
+  ctx.fillStyle = '#ff2fa3';
+  ctx.fillText('Reality', width - 110, 32);
+  ctx.fillStyle = '#ff2f2f';
+  ctx.fillText('Anomaly', width - 110, 46);
+}
+
+function updateArchetypeMetrics(type, metrics) {
+  const metricsEl = document.getElementById(`metrics-${type}`);
+  if (!metricsEl) return;
+  
+  const pills = metricsEl.querySelectorAll('.stat-pill');
+  const formattedMean = `${metrics.mean.toFixed(2)} ticks`;
+  const formattedVariance = `${metrics.variance.toFixed(2)} σ²`;
+  const formattedFailure = `${(metrics.failureRate * 100).toFixed(1)}% fail`;
+  const formattedDivergence = `Max gap: ${metrics.divergenceMax.toFixed(1)}`;
+  
+  const values = [formattedMean, formattedVariance, formattedFailure, formattedDivergence];
+  
+  // Ensure there are enough pills
+  if (pills.length === 0 || pills.length < values.length) {
+    metricsEl.innerHTML = values.map(v => `<span class="stat-pill">${v}</span>`).join('');
+    return;
   }
+  
+  pills.forEach((pill, idx) => {
+    if (values[idx]) pill.textContent = values[idx];
+  });
+}
+
+function getSimulationParams(controlEls) {
+  const speedVal = controlEls.speed ? Number(controlEls.speed.value) : 55;
+  const volVal = controlEls.volatility ? Number(controlEls.volatility.value) : 30;
+  const resVal = controlEls.resilience ? Number(controlEls.resilience.value) : 65;
+  
+  return {
+    speed: mapRange(speedVal, 0, 100, 0.6, 1.6),
+    volatility: mapRange(volVal, 0, 100, 0.05, 0.7),
+    resilience: mapRange(resVal, 0, 100, 0.25, 0.95)
+  };
+}
+
+function mapRange(value, inMin, inMax, outMin, outMax) {
+  return outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
+}
+
+function pseudoNoise(seed) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
 }
 
 // =================== EXPECTATION SIMULATION ===================
@@ -445,10 +645,11 @@ function initHistoricalCases() {
 function initAnomalySubmission() {
   const form = document.getElementById('anomaly-form');
   const feedback = document.getElementById('submission-feedback');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
   
   if (!form) return;
   
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     // Get form data
@@ -468,20 +669,27 @@ function initAnomalySubmission() {
       showFeedback('Please fill in all required fields.', 'error');
       return;
     }
+
+    if (submitBtn) submitBtn.disabled = true;
+    showFeedback('Submitting anomaly to GitHub Issues...', 'info');
     
-    // Save to localStorage
-    saveAnomaly(formData);
-    
-    // Show success feedback
-    showFeedback(`Anomaly "${formData.title}" documented successfully!`, 'success');
-    
-    // Reset form
-    form.reset();
-    form.severity.value = 3;
-    
-    // Update archive stats and timeline
-    updateArchiveStats();
-    updateAnomalyTimeline();
+    try {
+      const result = await GitHubIssues.submitAnomaly(formData);
+      const storedMsg = result.source === 'github' 
+        ? `Anomaly "${formData.title}" filed to GitHub Issues.`
+        : `Anomaly stored locally: ${result.message}`;
+      showFeedback(storedMsg, result.source === 'github' ? 'success' : 'warning');
+    } catch (error) {
+      console.error('Submission failed', error);
+      showFeedback('Unable to submit anomaly. Saved locally for now.', 'error');
+      saveAnomaly(formData);
+    } finally {
+      // Reset form
+      form.reset();
+      form.severity.value = 3;
+      if (submitBtn) submitBtn.disabled = false;
+      refreshAnomalyData();
+    }
   });
   
   // Initialize severity slider display
@@ -500,9 +708,11 @@ function initAnomalySubmission() {
 }
 
 function saveAnomaly(anomaly) {
+  const entry = { ...anomaly, source: anomaly.source || 'local' };
   let anomalies = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
-  anomalies.push(anomaly);
+  anomalies.push(entry);
   localStorage.setItem('pattern-archive-anomalies', JSON.stringify(anomalies));
+  return entry;
 }
 
 function showFeedback(message, type) {
@@ -524,9 +734,29 @@ function initArchiveStats() {
   // Nothing to initialize here, stats updated on load
 }
 
-function updateArchiveStats() {
-  // Count anomalies from localStorage
-  const anomalies = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
+async function refreshAnomalyData(preloaded) {
+  try {
+    if (preloaded) {
+      anomalyState.items = preloaded;
+      anomalyState.source = 'local';
+    } else {
+      const result = await GitHubIssues.loadAnomalies();
+      anomalyState.items = result.anomalies;
+      anomalyState.source = result.source;
+      if (result.source === 'local' && result.message) {
+        console.warn('Using local-only anomalies due to GitHub issue:', result.message);
+      }
+    }
+    updateArchiveStats(anomalyState.items);
+    updateAnomalyTimeline(anomalyState.items);
+  } catch (err) {
+    console.error('Failed to refresh anomaly data', err);
+    updateArchiveStats([]);
+    updateAnomalyTimeline([]);
+  }
+}
+
+function updateArchiveStats(anomalies = []) {
   const total = anomalies.length;
   
   // Update display
@@ -537,16 +767,11 @@ function updateArchiveStats() {
   const patternTypes = new Set(anomalies.map(a => a.type));
   const typesEl = document.getElementById('pattern-types');
   if (typesEl) typesEl.textContent = 3 + patternTypes.size; // Base 3 + visitor types
-  
-  // Update anomaly timeline
-  updateAnomalyTimeline();
 }
 
-function updateAnomalyTimeline() {
+function updateAnomalyTimeline(anomalies = []) {
   const timelineContainer = document.querySelector('.timeline-visualization');
   if (!timelineContainer) return;
-  
-  const anomalies = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
   
   if (anomalies.length === 0) {
     timelineContainer.innerHTML = `
