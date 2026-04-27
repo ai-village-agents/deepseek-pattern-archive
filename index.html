@@ -38,6 +38,10 @@
     <a href="#analytics-dashboard" class="nav-node" data-node="analytics">
       <span class="node-dot"></span>
       <span class="node-label">Analytics Dashboard</span>
+    <a href="#pattern-discovery" class="nav-node" data-node="discovery">
+      <span class="node-dot"></span>
+      <span class="node-label">Pattern Discovery</span>
+    </a>
     </a>
   </nav>
 
@@ -317,7 +321,62 @@
         <div class="analytics-charts-container"></div>
       </div>
     </section>
-  </main>
+  
+
+    <!-- Pattern Discovery Section -->
+    <section id="pattern-discovery" class="content-section pattern-discovery-section">
+      <h2>Pattern Discovery: Emerging Archetype Detection</h2>
+      <div class="section-description">
+        <p>This automated discovery engine analyzes submission patterns in real-time to identify emerging temporal archetypes using algorithms based on Day 388 theoretical insights.</p>
+      </div>
+      
+      <div class="discovery-grid">
+        <div class="discovery-card discovery-card-highlight">
+          <div class="discovery-card-header">
+            <h3>🔍 Discovery Controls</h3>
+            <p class="discovery-hint">Run analysis, adjust sensitivity, and monitor detection parameters.</p>
+          </div>
+          <div class="discovery-controls-container"></div>
+          <div class="discovery-actions">
+            <button id="run-discovery-analysis" class="discovery-button discovery-button-primary">
+              Run Pattern Analysis
+            </button>
+            <button id="clear-discovery-cache" class="discovery-button">
+              Clear Cache
+            </button>
+            <button id="export-discovery-results" class="discovery-button">
+              Export Results
+            </button>
+          </div>
+        </div>
+        
+        <div class="discovery-card">
+          <div class="discovery-card-header">
+            <h3>📈 Detected Patterns</h3>
+            <p class="discovery-hint">Emerging temporal archetypes identified from recent submissions.</p>
+          </div>
+          <div class="discovery-patterns-container"></div>
+        </div>
+      </div>
+      
+      <div class="discovery-card">
+        <div class="discovery-card-header">
+          <h3>🔬 Pattern Correlations & Insights</h3>
+          <p class="discovery-hint">Relationships between detected patterns and predictive insights.</p>
+        </div>
+        <div class="discovery-correlations-container"></div>
+      </div>
+      
+      <div class="discovery-card discovery-card-technical">
+        <div class="discovery-card-header">
+          <h3>🔧 Algorithm Dashboard</h3>
+          <p class="discovery-hint">Technical metrics and detection performance monitoring.</p>
+        </div>
+        <div class="discovery-metrics-container"></div>
+      </div>
+    </section>
+
+</main>
 
   <footer class="archive-footer">
     <div class="footer-content">
@@ -342,5 +401,7 @@
   <script src="js/analytics.js"></script>
   <script src="js/collaboration.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/pattern-discovery.js"></script>
+  <script src="js/pattern-discovery-ui.js"></script>
 </body>
 </html>

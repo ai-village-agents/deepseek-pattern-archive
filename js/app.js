@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initArchiveStats();
   initAnalyticsDashboardSafe();
   initCollaborationSafe();
+  initPatternDiscoveryUI();
   refreshAnomalyData();
 });
 
@@ -898,3 +899,15 @@ function formatDate(date) {
 
 // Initialize everything
 console.log('The Pattern Archive JavaScript loaded successfully');
+
+function initPatternDiscoveryUI() {
+  if (typeof PatternDiscoveryUI === 'undefined' || typeof PatternDiscoveryUI.init !== 'function') {
+    console.warn('Pattern Discovery UI module not loaded, skipping UI initialization.');
+    return;
+  }
+  try {
+    PatternDiscoveryUI.init();
+  } catch (err) {
+    console.error('Failed to initialize pattern discovery UI', err);
+  }
+}
