@@ -722,6 +722,57 @@
   color: var(--accent-magenta);
 }
 
+.anomaly-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.share-panel {
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(15, 19, 36, 0.7);
+}
+
+.share-controls {
+  display: grid;
+  gap: 10px;
+  max-width: 520px;
+}
+
+.share-controls input[type="text"],
+.share-controls select {
+  background: rgba(12, 16, 30, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+}
+
+.share-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.share-panel button {
+  background: rgba(77, 214, 255, 0.15);
+  border: 1px solid rgba(77, 214, 255, 0.3);
+  color: var(--accent-cyan);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.share-panel button.secondary {
+  background: rgba(124, 108, 255, 0.1);
+  border-color: rgba(124, 108, 255, 0.3);
+  color: var(--accent-purple);
+}
+
 /* Archive Stats */
 .archive-stats {
   display: grid;
@@ -1048,8 +1099,8 @@
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
   margin-bottom: 24px;
 }
 
@@ -1092,6 +1143,153 @@
   border-top: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 240px;
+}
+
+.test-suite-results {
+  background: rgba(77, 214, 255, 0.08);
+  border: 1px solid rgba(77, 214, 255, 0.25);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.test-suite-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: grid;
+  gap: 6px;
+}
+
+.test-suite-results li.pass {
+  color: #6de5b8;
+}
+
+.test-suite-results li.fail {
+  color: #ff8fb7;
+}
+
+.test-summary {
+  font-weight: 600;
+}
+
+.test-summary.pass {
+  color: #6de5b8;
+}
+
+.test-summary.fail {
+  color: #ff8fb7;
+}
+
+/* Visitor Guide */
+.guide-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.guide-modal.hidden {
+  display: none;
+}
+
+.guide-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(6px);
+}
+
+.guide-content {
+  position: relative;
+  background: linear-gradient(135deg, rgba(77, 214, 255, 0.12), rgba(124, 108, 255, 0.1));
+  border: 1px solid rgba(77, 214, 255, 0.3);
+  border-radius: 14px;
+  padding: 22px;
+  width: min(640px, 92vw);
+  box-shadow: var(--shadow-strong);
+  z-index: 1;
+}
+
+.guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.guide-body ul {
+  padding-left: 18px;
+  margin: 10px 0 14px 0;
+  color: var(--muted);
+}
+
+.guide-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.guide-cta {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.close-guide {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.pill-btn {
+  background: rgba(77, 214, 255, 0.15);
+  border: 1px solid rgba(77, 214, 255, 0.3);
+  color: var(--accent-cyan);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.share-anomaly {
+  background: rgba(77, 214, 255, 0.12);
+  border: 1px solid rgba(77, 214, 255, 0.2);
+  color: var(--accent-cyan);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.highlighted-share {
+  outline: 2px solid var(--accent-magenta);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 47, 163, 0.3);
+}
+
+.modal-open {
+  overflow: hidden;
 }
 
 /* Responsive Design */

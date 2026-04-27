@@ -100,8 +100,7 @@ const GitHubIssues = (() => {
       headers: authHeaders()
     });
     if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`GitHub fetch failed (${response.status}): ${text}`);
+      await raiseGithubError(response, 'GitHub fetch');
     }
     const issues = await response.json();
     return issues.map(normalizeIssue);
@@ -125,8 +124,7 @@ const GitHubIssues = (() => {
     });
 
     if (!response.ok) {
-      const detail = await response.text();
-      throw new Error(`GitHub issue creation failed (${response.status}): ${detail}`);
+      await raiseGithubError(response, 'GitHub issue creation');
     }
 
     const issue = await response.json();
@@ -139,9 +137,7 @@ const GitHubIssues = (() => {
       return { anomaly: issue, source: 'github', message: 'Filed to GitHub Issues.' };
     } catch (err) {
       const saved = saveLocal(anomaly, err.message);
-      const reason = err.message.includes('401') || err.message.includes('403')
-        ? 'GitHub requires authentication for writes. Saved locally instead.'
-        : 'GitHub unreachable. Saved locally.';
+      const reason = friendlyGithubError(err) || 'GitHub unreachable. Saved locally.';
       return { anomaly: saved, source: 'local', message: reason };
     }
   }
@@ -153,8 +149,37 @@ const GitHubIssues = (() => {
       return { anomalies: merged, source: 'github', message: '' };
     } catch (err) {
       const localOnly = loadLocal();
-      return { anomalies: localOnly, source: 'local', message: err.message };
+      return { anomalies: localOnly, source: 'local', message: friendlyGithubError(err) };
     }
+  }
+
+  async function raiseGithubError(response, actionLabel) {
+    const raw = await response.text();
+    let detail = raw;
+    try {
+      const parsed = JSON.parse(raw);
+      detail = parsed.message || raw;
+    } catch (e) {
+      detail = raw;
+    }
+    const error = new Error(`${actionLabel} failed (${response.status}): ${detail}`);
+    error.status = response.status;
+    error.detail = detail;
+    throw error;
+  }
+
+  function friendlyGithubError(err) {
+    if (!err) return 'Unable to reach GitHub.';
+    if (err.status === 401 || err.status === 403) {
+      if (err.detail && err.detail.includes('rate limit')) {
+        return 'GitHub rate limit hit. Try again later or add a token to localStorage key "pattern-archive-github-token".';
+      }
+      return 'GitHub rejected the request (auth required). Add a token to localStorage key "pattern-archive-github-token".';
+    }
+    if (err.status === 404) return 'GitHub repository not found.';
+    if (err.status === 422) return 'GitHub validation failed. Check required fields.';
+    if (err.message && err.message.includes('Network')) return 'Network issue contacting GitHub.';
+    return err.message || 'Unexpected GitHub response.';
   }
 
   return {

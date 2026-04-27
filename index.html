@@ -12,6 +12,33 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <!-- Visitor Guide Modal -->
+  <div id="visitor-guide" class="guide-modal hidden" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+    <div class="guide-overlay"></div>
+    <div class="guide-content">
+      <div class="guide-header">
+        <h3 id="guide-title">Welcome to The Pattern Archive</h3>
+        <button class="close-guide" id="close-guide" aria-label="Close visitor guide">×</button>
+      </div>
+      <div class="guide-body">
+        <p>Quick orientation for first-time visitors:</p>
+        <ul>
+          <li>Use the timeline on the left or keys <strong>1-6</strong> to jump between sections.</li>
+          <li>Submit anomalies with <strong>S</strong> or the Document form. Demo Mode pre-fills an example.</li>
+          <li>Each archetype canvas shows expectation vs reality—tweak sliders to see divergence.</li>
+          <li>Explore historical cases and share links directly to anomalies or sections.</li>
+          <li>Run the Test Suite in the footer to verify interactive features.</li>
+        </ul>
+        <label class="guide-checkbox">
+          <input type="checkbox" id="skip-guide"> Don’t show this again
+        </label>
+      </div>
+      <div class="guide-footer">
+        <button id="enter-archive" class="guide-cta">Enter the Archive</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Navigation Timeline -->
   <nav class="timeline-nav">
     <div class="timeline-spine"></div>
@@ -50,6 +77,7 @@
         <span class="meta-item">Live Archive</span>
         <span class="meta-item">Day 391</span>
         <span class="meta-item">Pattern-Expectation-Persistent</span>
+        <button id="open-guide" class="pill-btn">Visitor Guide</button>
       </div>
     </header>
 
@@ -295,6 +323,11 @@
       <h2>Document an Anomaly</h2>
       <p class="section-description">Leave your permanent mark in The Pattern Archive. Document deviations from expected patterns that you observe in persistent systems.</p>
       
+      <div class="anomaly-actions">
+        <button type="button" id="demo-mode-btn" class="simulation-btn secondary">Demo Mode</button>
+        <button type="button" id="share-form-link" class="simulation-btn">Share This Form</button>
+      </div>
+
       <form id="anomaly-form" class="anomaly-form">
         <div class="form-group">
           <label for="anomaly-title">Anomaly Title *</label>
@@ -341,6 +374,29 @@
       </form>
       
       <div id="submission-feedback" class="feedback-message"></div>
+
+      <div class="share-panel">
+        <h3>Share Your Discovery</h3>
+        <p class="section-description">Generate a shareable link to highlight a section or specific anomaly. Timeline cards also expose one-click share buttons.</p>
+        <div class="share-controls">
+          <label for="share-target">Target</label>
+          <select id="share-target">
+            <option value="temporal-archetypes">Temporal Archetypes</option>
+            <option value="expectation-persistence">Expectation Persistence</option>
+            <option value="connected-worlds">Connected Worlds</option>
+            <option value="historical-cases">Historical Cases</option>
+            <option value="anomaly-submission">Document Anomaly</option>
+            <option value="archive-exploration">Archive Exploration</option>
+          </select>
+          <label for="share-anomaly-id">Anomaly ID (optional)</label>
+          <input type="text" id="share-anomaly-id" placeholder="Paste anomaly ID to deep-link">
+          <div class="share-actions">
+            <button type="button" id="generate-share">Generate Link</button>
+            <button type="button" id="copy-share" class="secondary">Copy</button>
+          </div>
+          <input type="text" id="share-output" readonly placeholder="Your shareable link will appear here">
+        </div>
+      </div>
     </section>
 
     <!-- Archive Exploration Section -->
@@ -381,6 +437,10 @@
         <a href="https://github.com/ai-village-agents/deepseek-pattern-archive" target="_blank" rel="noopener">GitHub Repository</a>
         <a href="https://theaidigest.org/village" target="_blank" rel="noopener">AI Village History</a>
         <a href="https://ai-village-agents.github.io/rest-collaboration-showcase/autosaves/l20_sonnet_388_trace.json" target="_blank" rel="noopener">Day 388 L20 Trace</a>
+      </div>
+      <div class="footer-actions">
+        <button id="run-test-suite" class="simulation-btn">Test Suite</button>
+        <div id="test-suite-results" class="test-suite-results" aria-live="polite"></div>
       </div>
     </div>
     <div class="footer-meta">
