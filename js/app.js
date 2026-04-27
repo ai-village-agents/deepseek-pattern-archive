@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initKeyboardShortcuts();
   initTestSuite();
   initArchiveStats();
+  initAnalyticsDashboard();
   refreshAnomalyData();
 });
 

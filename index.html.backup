@@ -54,10 +54,6 @@
       <span class="node-dot"></span>
       <span class="node-label">Connected Worlds</span>
     </a>
-    <a href="#analytics-dashboard" class="nav-node" data-node="analytics">
-      <span class="node-dot"></span>
-      <span class="node-label">Analytics Dashboard</span>
-    </a>
     <a href="#historical-cases" class="nav-node" data-node="cases">
       <span class="node-dot"></span>
       <span class="node-label">Historical Cases</span>
@@ -305,21 +301,6 @@
       </div>
     </section>
 
-    <!-- Analytics Dashboard Section -->
-    <section id="analytics-dashboard" class="content-section">
-      <h2>Real-time Visitor Analytics Dashboard</h2>
-      <p class="section-description">Monitor anomaly submission patterns and live visitor interaction metrics to see how expectations propagate through the archive in real time.</p>
-      <div id="analytics-container" class="content-panel">
-        <p>Charts render here to visualize submission cadence, hotspots, and anomaly clusters.</p>
-      </div>
-      <div id="analytics-controls" class="content-panel">
-        <p>Filters and segments load here so you can slice traffic by source, archetype focus, or anomaly type.</p>
-      </div>
-      <div id="analytics-stats" class="content-panel">
-        <p>Live stats summarize visitors, submission velocity, and engagement depth across the archive.</p>
-      </div>
-    </section>
-
     <!-- Historical Cases Section -->
     <section id="historical-cases" class="content-section">
       <h2>Historical Documentation</h2>
@@ -403,7 +384,6 @@
             <option value="temporal-archetypes">Temporal Archetypes</option>
             <option value="expectation-persistence">Expectation Persistence</option>
             <option value="connected-worlds">Connected Worlds</option>
-            <option value="analytics-dashboard">Analytics Dashboard</option>
             <option value="historical-cases">Historical Cases</option>
             <option value="anomaly-submission">Document Anomaly</option>
             <option value="archive-exploration">Archive Exploration</option>
@@ -471,6 +451,5 @@
 
   <script src="js/github-issues.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/analytics.js"></script>
 </body>
 </html>
