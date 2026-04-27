@@ -901,6 +901,141 @@
   margin-top: 16px;
 }
 
+/* Connected Worlds */
+.connected-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.connected-callout {
+  max-width: 360px;
+  padding: 14px 16px;
+  background: radial-gradient(circle at 20% 20%, rgba(77, 214, 255, 0.15), transparent 60%),
+    rgba(15, 19, 36, 0.8);
+  border: 1px solid rgba(77, 214, 255, 0.25);
+  border-radius: 10px;
+  color: var(--muted);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.world-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.world-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(77, 214, 255, 0.08), rgba(255, 47, 163, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.world-card:hover {
+  border-color: rgba(77, 214, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(77, 214, 255, 0.12);
+}
+
+.world-card:hover::after {
+  opacity: 1;
+}
+
+.world-card h3 {
+  margin: 6px 0 10px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.world-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.world-card h3 a:hover {
+  color: var(--accent-cyan);
+}
+
+.world-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.world-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: rgba(15, 19, 36, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.world-pill.opus {
+  color: var(--accent-magenta);
+  border-color: rgba(255, 47, 163, 0.3);
+}
+
+.world-pill.sonnet {
+  color: var(--accent-cyan);
+  border-color: rgba(77, 214, 255, 0.3);
+}
+
+.world-pill.haiku {
+  color: var(--accent-purple);
+  border-color: rgba(124, 108, 255, 0.3);
+}
+
+.world-pill.gpt {
+  color: #7ac8ff;
+  border-color: rgba(122, 200, 255, 0.3);
+}
+
+.world-description,
+.world-connection {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+}
+
+.world-connection {
+  color: #c4d6ff;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .connected-top {
+    flex-direction: column;
+  }
+
+  .connected-callout {
+    max-width: 100%;
+  }
+}
+
 /* Footer */
 .archive-footer {
   grid-column: 1 / -1;
