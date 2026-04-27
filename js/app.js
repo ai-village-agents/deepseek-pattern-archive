@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initAnomalySubmission();
   initArchiveStats();
   initAnalyticsDashboardSafe();
+  initCollaborationSafe();
   refreshAnomalyData();
 });
 
@@ -710,7 +711,12 @@ function initAnomalySubmission() {
 }
 
 function saveAnomaly(anomaly) {
-  const entry = { ...anomaly, source: anomaly.source || 'local' };
+  const entry = {
+    ...anomaly,
+    source: anomaly.source || 'local',
+    id: anomaly.id || anomaly.timestamp || Date.now().toString(),
+    timestamp: anomaly.timestamp || new Date().toISOString()
+  };
   let anomalies = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
   anomalies.push(entry);
   localStorage.setItem('pattern-archive-anomalies', JSON.stringify(anomalies));
@@ -748,6 +754,18 @@ function initAnalyticsDashboardSafe() {
   }
 }
 
+function initCollaborationSafe() {
+  if (typeof Collaboration === 'undefined' || typeof Collaboration.initCollaboration !== 'function') {
+    console.warn('Collaboration module not loaded, skipping collaborative features.');
+    return;
+  }
+  try {
+    Collaboration.initCollaboration();
+  } catch (err) {
+    console.error('Failed to initialize collaboration module', err);
+  }
+}
+
 async function refreshAnomalyData(preloaded) {
   try {
     if (preloaded) {
@@ -760,6 +778,9 @@ async function refreshAnomalyData(preloaded) {
       if (result.source === 'local' && result.message) {
         console.warn('Using local-only anomalies due to GitHub issue:', result.message);
       }
+    }
+    if (typeof Collaboration !== 'undefined' && typeof Collaboration.registerAnomalies === 'function') {
+      Collaboration.registerAnomalies(anomalyState.items);
     }
     updateArchiveStats(anomalyState.items);
     updateAnomalyTimeline(anomalyState.items);
@@ -821,9 +842,10 @@ function updateAnomalyTimeline(anomalies = []) {
     const date = new Date(anomaly.timestamp);
     const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    const anomalyId = (getAnomalyId(anomaly) || '').replace(/"/g, '');
     
     html += `
-      <div class="timeline-item" data-severity="${anomaly.severity}">
+      <div class="timeline-item" data-severity="${anomaly.severity}" data-anomaly-id="${anomalyId}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <div class="timeline-header">
@@ -832,7 +854,12 @@ function updateAnomalyTimeline(anomalies = []) {
           </div>
           <h4 class="timeline-title">${anomaly.title}</h4>
           <p class="timeline-description">${anomaly.description.substring(0, 100)}${anomaly.description.length > 100 ? '...' : ''}</p>
-          <span class="timeline-type">${anomaly.type}</span>
+          <div class="timeline-footer">
+            <span class="timeline-type">${anomaly.type}</span>
+            <span class="timeline-comments-badge" data-comment-count>0</span>
+            <button class="timeline-analyze-btn" type="button" data-analyze-btn>Analyze Together</button>
+          </div>
+          <div class="collab-panel" data-collab-panel hidden></div>
         </div>
       </div>
     `;
@@ -845,6 +872,16 @@ function updateAnomalyTimeline(anomalies = []) {
   }
   
   timelineContainer.innerHTML = html;
+  if (typeof Collaboration !== 'undefined' && typeof Collaboration.attachTimeline === 'function') {
+    Collaboration.attachTimeline(timelineContainer, anomalies);
+  }
+}
+
+function getAnomalyId(anomaly) {
+  if (typeof Collaboration !== 'undefined' && typeof Collaboration.computeAnomalyId === 'function') {
+    return Collaboration.computeAnomalyId(anomaly);
+  }
+  return anomaly.id || anomaly.timestamp || `${anomaly.title}-${anomaly.type}-${anomaly.severity}`;
 }
 
 // =================== HELPER FUNCTIONS ===================

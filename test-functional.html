@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pattern Archive - Functional Test</title>
+    <style>
+        body { font-family: 'IBM Plex Mono', monospace; background: #070a12; color: #ddd; padding: 20px; }
+        .test { margin: 20px 0; padding: 15px; border-left: 3px solid #4dd6ff; background: rgba(77, 214, 255, 0.05); }
+        .pass { border-left-color: #4caf50; }
+        .fail { border-left-color: #f44336; }
+        button { background: #7c6cff; color: white; border: none; padding: 8px 16px; margin: 5px; cursor: pointer; }
+        button:hover { background: #6a5eff; }
+        #output { margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>The Pattern Archive - Functional Test</h1>
+    <h2>Analytics & Collaboration Module Verification</h2>
+    
+    <div class="test">
+        <h3>Test 1: Analytics Module Availability</h3>
+        <button onclick="testAnalytics()">Test Analytics.js</button>
+        <span id="test1-result"></span>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Collaboration Module Availability</h3>
+        <button onclick="testCollaboration()">Test Collaboration.js</button>
+        <span id="test2-result"></span>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Create Sample Data & Test Integration</h3>
+        <button onclick="createSampleData()">Create Sample Anomalies</button>
+        <button onclick="testChartCreation()">Test Chart Rendering</button>
+        <button onclick="testCollaborationFeatures()">Test Collaboration Features</button>
+        <div id="test3-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 4: Analytics Dashboard Integration</h3>
+        <button onclick="testAnalyticsDashboard()">Test Dashboard Rendering</button>
+        <button onclick="testFilterControls()">Test Filter Controls</button>
+        <div id="test4-result"></div>
+    </div>
+    
+    <div id="output"></div>
+    
+    <script src="js/analytics.js"></script>
+    <script src="js/collaboration.js"></script>
+    
+    <script>
+        function log(msg) {
+            const output = document.getElementById('output');
+            const p = document.createElement('p');
+            p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            output.appendChild(p);
+        }
+        
+        function markTest(testId, passed, message) {
+            const elem = document.getElementById(testId);
+            elem.textContent = message;
+            elem.parentElement.className = passed ? 'test pass' : 'test fail';
+            log(`${passed ? '✅' : '❌'} ${message}`);
+        }
+        
+        function testAnalytics() {
+            try {
+                const hasAnalytics = typeof updateAnalytics === 'function';
+                const hasAnalyticsState = typeof window.analyticsState !== 'undefined';
+                markTest('test1-result', hasAnalytics && hasAnalyticsState, 
+                    `Analytics: ${hasAnalytics ? 'updateAnalytics() ✓' : 'updateAnalytics() ✗'} | ` +
+                    `State: ${hasAnalyticsState ? 'analyticsState ✓' : 'analyticsState ✗'}`);
+            } catch (err) {
+                markTest('test1-result', false, 'Analytics test failed: ' + err.message);
+            }
+        }
+        
+        function testCollaboration() {
+            try {
+                const hasCollaboration = typeof Collaboration !== 'undefined';
+                const hasInit = hasCollaboration && typeof Collaboration.initCollaboration === 'function';
+                const hasAddComment = hasCollaboration && typeof Collaboration.addComment === 'function';
+                markTest('test2-result', hasCollaboration && hasInit, 
+                    `Collaboration: ${hasCollaboration ? 'Collaboration ✓' : 'Collaboration ✗'} | ` +
+                    `Init: ${hasInit ? 'initCollaboration() ✓' : 'initCollaboration() ✗'}`);
+                
+                if (hasCollaboration) {
+                    Collaboration.initCollaboration();
+                    log('Collaboration module initialized successfully');
+                }
+            } catch (err) {
+                markTest('test2-result', false, 'Collaboration test failed: ' + err.message);
+            }
+        }
+        
+        function createSampleData() {
+            // Clear existing test data
+            localStorage.removeItem('pattern-archive-anomalies');
+            localStorage.removeItem('pattern-archive-comments');
+            localStorage.removeItem('pattern-archive-analytics-state');
+            
+            // Create sample anomalies
+            const anomalies = [];
+            const now = new Date();
+            
+            // Generate sample data
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(now);
+                date.setDate(date.getDate() - (29 - i)); // Spread over 30 days
+                
+                const patterns = ['incremental', 'exponential', 'clockwork', 'other'];
+                const pattern = patterns[i % patterns.length];
+                const severity = (i % 5) + 1;
+                
+                anomalies.push({
+                    id: `test-anom-${i}`,
+                    title: `Test Anomaly #${i + 1}: ${pattern} pattern detected`,
+                    description: `This is a test anomaly demonstrating ${pattern} behavior with severity ${severity}/5.`,
+                    type: pattern,
+                    severity: severity,
+                    timestamp: date.toISOString(),
+                    date: date.toISOString(),
+                    source: 'test'
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('pattern-archive-anomalies', JSON.stringify(anomalies));
+            
+            // Create sample collaboration data
+            const discussions = {};
+            anomalies.slice(0, 8).forEach((anomaly, idx) => {
+                discussions[anomaly.id] = {
+                    anomalyId: anomaly.id,
+                    title: anomaly.title,
+                    comments: [
+                        {
+                            id: `c-${Date.now()}-${idx}`,
+                            author: 'Researcher Alpha',
+                            message: `Initial analysis suggests this is a classic ${anomaly.type} pattern.`,
+                            parentId: null,
+                            createdAt: anomaly.timestamp
+                        },
+                        {
+                            id: `c-${Date.now()}-${idx}-1`,
+                            author: 'Investigator Beta',
+                            message: `I've observed similar patterns in other contexts. Severity ${anomaly.severity} seems accurate.`,
+                            parentId: null,
+                            createdAt: new Date(new Date(anomaly.timestamp).getTime() + 3600000).toISOString()
+                        }
+                    ],
+                    tags: [
+                        { id: `t-${Date.now()}-${idx}`, label: 'test-data', author: 'System', createdAt: anomaly.timestamp },
+                        { id: `t-${Date.now()}-${idx}-1`, label: anomaly.type, author: 'Auto-tagger', createdAt: anomaly.timestamp },
+                        { id: `t-${Date.now()}-${idx}-2`, label: `severity-${anomaly.severity}`, author: 'Auto-tagger', createdAt: anomaly.timestamp }
+                    ],
+                    hypotheses: idx % 3 === 0 ? [{
+                        id: `h-${Date.now()}-${idx}`,
+                        text: `This anomaly may indicate a shift toward more ${anomaly.type} patterns in the ecosystem.`,
+                        author: 'Hypothesis Generator',
+                        createdAt: new Date(new Date(anomaly.timestamp).getTime() + 7200000).toISOString()
+                    }] : [],
+                    createdAt: anomaly.timestamp,
+                    updatedAt: new Date(new Date(anomaly.timestamp).getTime() + 7200000).toISOString()
+                };
+            });
+            
+            localStorage.setItem('pattern-archive-comments', JSON.stringify(discussions));
+            
+            log(`Created ${anomalies.length} sample anomalies and ${Object.keys(discussions).length} discussions`);
+            
+            // Test that analytics can read this data
+            if (typeof updateAnalytics === 'function') {
+                setTimeout(() => {
+                    updateAnalytics();
+                    log('Analytics dashboard updated with sample data');
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>

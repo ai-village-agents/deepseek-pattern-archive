@@ -176,6 +176,15 @@
       { label: 'Streak (days with submissions)', value: engagement.streak }
     ];
 
+    const collabMetrics = getCollabMetrics();
+    if (collabMetrics) {
+      stats.push(
+        { label: 'Active discussions', value: collabMetrics.activeThreads },
+        { label: 'Collab comments', value: collabMetrics.totalComments },
+        { label: 'Hypotheses logged', value: collabMetrics.totalHypotheses }
+      );
+    }
+
     stats.forEach(stat => {
       const tile = document.createElement('div');
       tile.style.padding = '12px';
@@ -190,6 +199,7 @@
     });
 
     container.appendChild(card);
+    renderRecentDiscussions(container);
   }
 
   function updateAnalytics() {
@@ -543,6 +553,65 @@
         }
       }
     };
+  }
+
+  function getCollabMetrics() {
+    if (typeof Collaboration === 'undefined' || typeof Collaboration.getMetrics !== 'function') return null;
+    try {
+      return Collaboration.getMetrics();
+    } catch (err) {
+      console.warn('Unable to read collaboration metrics', err);
+      return null;
+    }
+  }
+
+  function renderRecentDiscussions(container) {
+    if (!container) return;
+    if (typeof Collaboration === 'undefined' || typeof Collaboration.getRecentDiscussions !== 'function') return;
+    const feed = Collaboration.getRecentDiscussions(4) || [];
+    const card = createCard('Recent Discussions');
+    card.style.marginTop = '10px';
+
+    if (!feed.length) {
+      const empty = document.createElement('div');
+      empty.style.color = '#b7c1f8';
+      empty.style.fontSize = '12px';
+      empty.textContent = 'No discussion threads yet. Start collaborating from the timeline.';
+      card.appendChild(empty);
+      container.appendChild(card);
+      return;
+    }
+
+    feed.forEach(entry => {
+      const row = document.createElement('div');
+      row.style.padding = '8px 0';
+      row.style.borderBottom = '1px solid rgba(124,108,255,0.15)';
+      row.innerHTML = `
+        <div style="color:${THEME.cyan};font-weight:600;">${escapeHtml(entry.anomaly?.title || 'Anomaly')}</div>
+        <div style="color:#e8ecff;margin:4px 0;">${escapeHtml(entry.message)}</div>
+        <div style="color:#b7c1f8;font-size:12px;">${escapeHtml(entry.author || 'Investigator')} · ${formatCollabDate(entry.createdAt)}</div>
+      `;
+      card.appendChild(row);
+    });
+
+    container.appendChild(card);
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function formatCollabDate(date) {
+    if (!date) return '';
+    return new Date(date).toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   }
 
   function computeVelocity(anomalies) {
