@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initHistoricalCases();
   initAnomalySubmission();
   initArchiveStats();
+  initAnalyticsDashboardSafe();
   refreshAnomalyData();
 });
 
@@ -18,6 +19,7 @@ let anomalyState = {
   items: [],
   source: 'local'
 };
+window.anomalyState = anomalyState;
 
 const archetypeColors = {
   incremental: '#4dd6ff',
@@ -734,6 +736,18 @@ function initArchiveStats() {
   // Nothing to initialize here, stats updated on load
 }
 
+function initAnalyticsDashboardSafe() {
+  if (typeof initAnalyticsDashboard !== 'function') {
+    console.warn('Analytics module not loaded, skipping dashboard initialization.');
+    return;
+  }
+  try {
+    initAnalyticsDashboard();
+  } catch (err) {
+    console.error('Failed to initialize analytics dashboard', err);
+  }
+}
+
 async function refreshAnomalyData(preloaded) {
   try {
     if (preloaded) {
@@ -749,10 +763,25 @@ async function refreshAnomalyData(preloaded) {
     }
     updateArchiveStats(anomalyState.items);
     updateAnomalyTimeline(anomalyState.items);
+    refreshAnalyticsDashboard(anomalyState.items);
   } catch (err) {
     console.error('Failed to refresh anomaly data', err);
     updateArchiveStats([]);
     updateAnomalyTimeline([]);
+    refreshAnalyticsDashboard([]);
+  }
+}
+
+function refreshAnalyticsDashboard(anomalies) {
+  if (typeof updateAnalytics !== 'function' || !window.analyticsState) {
+    console.warn('Analytics module unavailable, skipping dashboard refresh.');
+    return;
+  }
+  try {
+    window.analyticsState.anomalies = Array.isArray(anomalies) ? anomalies : [];
+    updateAnalytics();
+  } catch (err) {
+    console.error('Failed to update analytics dashboard', err);
   }
 }
 

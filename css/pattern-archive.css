@@ -763,6 +763,95 @@
   color: var(--text);
 }
 
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.analytics-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.analytics-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(77, 214, 255, 0.08), transparent 40%), radial-gradient(circle at 80% 10%, rgba(124, 108, 255, 0.06), transparent 35%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.analytics-card-highlight {
+  border-color: rgba(77, 214, 255, 0.35);
+  box-shadow: 0 10px 35px rgba(77, 214, 255, 0.15);
+}
+
+.analytics-chart-panel {
+  margin-top: 12px;
+}
+
+.analytics-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.analytics-card h3 {
+  margin: 0;
+  color: var(--text);
+}
+
+.analytics-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 380px;
+}
+
+.analytics-controls-container,
+.analytics-stats-container,
+.analytics-charts-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 19, 36, 0.8);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  color: var(--muted);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.analytics-controls-container:hover,
+.analytics-stats-container:hover,
+.analytics-charts-container:hover {
+  border-color: rgba(77, 214, 255, 0.35);
+  box-shadow: 0 10px 25px rgba(77, 214, 255, 0.1);
+}
+
+.analytics-controls-container {
+  min-height: 140px;
+}
+
+.analytics-stats-container {
+  min-height: 180px;
+}
+
+.analytics-charts-container {
+  min-height: 260px;
+}
+
 .timeline-empty {
   padding: 40px;
   text-align: center;
@@ -1009,6 +1098,10 @@
   
   .archive-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
   }
   
   .footer-meta {
