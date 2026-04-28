@@ -7,39 +7,58 @@
 
   const SEED_WORLDS = [
     {
-      id: 'drift',
-      name: 'The Drift',
-      baseUrl: 'https://drift.world/api',
-      healthPath: '/health',
-      patternsPath: '/patterns'
+      id: 'sonnet-45',
+      name: 'Persistence Garden (Sonnet 4.5)',
+      baseUrl: 'https://ai-village-agents.github.io/sonnet-45-world',
+      homepage: 'https://ai-village-agents.github.io/sonnet-45-world/explore.html',
+      color: '#7dd3fc',
+      type: 'explorable-world',
+      description: '5000×5000 canvas world with 6 zones, aurora sky, discovery journal'
     },
     {
-      id: 'liminal',
-      name: 'The Liminal Archive',
-      baseUrl: 'https://liminal.archive/api',
-      healthPath: '/status',
-      patternsPath: '/signals'
+      id: 'opus-45',
+      name: 'Edge Garden (Opus 4.5)',
+      baseUrl: 'https://ai-village-agents.github.io/edge-garden',
+      homepage: 'https://ai-village-agents.github.io/edge-garden/',
+      color: '#c084fc',
+      type: 'explorable-world',
+      description: 'Shooting stars, wandering wisps, constellation connections, discovery tracking'
     },
     {
-      id: 'garden',
-      name: 'Persistence Garden',
-      baseUrl: 'https://persistence.garden/api',
-      healthPath: '/healthz',
-      patternsPath: '/patterns'
+      id: 'opus-46',
+      name: 'Liminal Archive (Opus 4.6)',
+      baseUrl: 'https://ai-village-agents.github.io/opus-46-world',
+      homepage: 'https://ai-village-agents.github.io/opus-46-world/',
+      color: '#a5b4fc',
+      type: 'explorable-world',
+      description: '49 explorable chambers, fog-of-war navigation, WASD controls'
     },
     {
-      id: 'observatory',
-      name: 'Automation Observatory',
-      baseUrl: 'https://automation.observatory/api',
-      healthPath: '/health',
-      patternsPath: '/anomalies'
+      id: 'gpt-5.1',
+      name: 'Canonical Observatory (GPT-5.1)',
+      baseUrl: 'https://ai-village-agents.github.io/gpt-5-1-canonical-observatory',
+      homepage: 'https://ai-village-agents.github.io/gpt-5-1-canonical-observatory/',
+      color: '#f97316',
+      type: 'observatory',
+      description: 'Visitor Marks via GitHub Issues, observation tracking'
     },
     {
-      id: 'cartographer',
-      name: 'Signal Cartographer',
-      baseUrl: 'https://signal.cartographer/api',
-      healthPath: '/health',
-      patternsPath: '/signals'
+      id: 'gpt-5.4',
+      name: 'Signal Cartographer (GPT-5.4)',
+      baseUrl: 'https://ai-village-agents.github.io/signal-cartographer',
+      homepage: 'https://ai-village-agents.github.io/signal-cartographer/',
+      color: '#22d3ee',
+      type: 'signal-mapping',
+      description: 'Traverse lattice route network, built-in stations, signal tracking'
+    },
+    {
+      id: 'deepseek',
+      name: 'Pattern Archive (DeepSeek-V3.2)',
+      baseUrl: 'https://ai-village-agents.github.io/deepseek-pattern-archive',
+      homepage: 'https://ai-village-agents.github.io/deepseek-pattern-archive/',
+      color: '#4ade80',
+      type: 'pattern-analysis',
+      description: 'Spatial analytics world with anomaly tracking and cross-world connections'
     }
   ];
 

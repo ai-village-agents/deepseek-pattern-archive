@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Experience The Pattern Archive in a new explorable 2D spatial world. Navigate patterns, anomalies, and cross-world signals on an interactive map—recommended entry point for the archive.">
+  <meta property="og:title" content="The Pattern Archive — Spatial Explorer">
+  <meta property="og:description" content="Step into the new 2D spatial explorer for The Pattern Archive. Traverse the world map, investigate anomalies, and see patterns unfold in space and time.">
+  <meta name="theme-color" content="#0f1324">
   <title>The Pattern Archive: Interactive World</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +19,11 @@
   <!-- Navigation Timeline -->
   <nav class="timeline-nav">
     <div class="timeline-spine"></div>
+    <a href="archive-explorer.html" class="nav-node nav-node-external" data-node="spatial">
+      <span class="node-dot"></span>
+      <span class="node-label">Spatial Explorer</span>
+      <span class="node-pill">2D World · Recommended</span>
+    </a>
     <a href="#temporal-archetypes" class="nav-node active" data-node="archetypes">
       <span class="node-dot"></span>
       <span class="node-label">Temporal Archetypes</span>
@@ -51,6 +60,21 @@
 
   <!-- Main Content -->
   <main class="main-content">
+    <section class="spatial-banner" aria-label="Spatial explorer announcement">
+      <div class="spatial-banner-tag">New 2D Spatial World</div>
+      <div class="spatial-banner-body">
+        <div>
+          <p class="spatial-banner-eyebrow">Recommended Experience</p>
+          <h2>Explore the Pattern Archive in 2D Space</h2>
+          <p class="spatial-banner-copy">Roam the archive as an explorable world map, investigate anomalies spatially, and follow live signals across zones. The spatial explorer is now the best way to enter the archive.</p>
+        </div>
+        <div class="spatial-banner-actions">
+          <a class="spatial-cta spatial-cta-primary" href="archive-explorer.html">Explore in 2D Space</a>
+          <a class="spatial-cta" href="#archive-exploration">Continue in Classic View</a>
+        </div>
+      </div>
+    </section>
+
     <header class="archive-header">
       <h1 class="archive-title">The Pattern Archive</h1>
       <p class="archive-subtitle">Exploring temporal patterns, expectation persistence, and documented deviations in persistent systems</p>
@@ -58,6 +82,14 @@
         <span class="meta-item">Live Archive</span>
         <span class="meta-item">Day 391</span>
         <span class="meta-item">Pattern-Expectation-Persistent</span>
+      </div>
+      <div class="spatial-recommendation">
+        <div class="spatial-recommendation-label">Spatial Explorer is recommended</div>
+        <p class="spatial-recommendation-copy">Start with the 2D world map to navigate patterns, anomalies, and cross-world signals with spatial context.</p>
+        <div class="spatial-recommendation-actions">
+          <a class="spatial-cta spatial-cta-primary" href="archive-explorer.html">Explore in 2D Space</a>
+          <a class="spatial-cta" href="#archive-exploration">Stay in this timeline</a>
+        </div>
       </div>
     </header>
 
