@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pattern Archive Spatial Integration Test</title>
+    <style>
+        body { font-family: monospace; background: #0f172a; color: #e2e8f0; margin: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #334155; border-radius: 5px; }
+        .pass { background: #064e3b; border-color: #059669; }
+        .fail { background: #7f1d1d; border-color: #dc2626; }
+        .info { background: #1e293b; border-color: #475569; }
+        .log { margin-top: 20px; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Pattern Archive Spatial Integration Test</h1>
+    <p>Testing module loading and data integration for spatial world.</p>
+    
+    <!-- Load Pattern Archive modules as regular scripts -->
+    <script src="js/analytics.js"></script>
+    <script src="js/pattern-discovery.js"></script>
+    <script src="js/cross-world-api.js"></script>
+    <script src="js/collaboration.js"></script>
+    <script src="js/github-issues.js"></script>
+    
+    <!-- Test spatial world data loading -->
+    <script type="module">
+        import { ensureModulesLoaded, loadArchiveData } from './js/world-data.js';
+        
+        const results = [];
+        
+        async function runTests() {
+            const log = document.getElementById('test-log');
+            
+            // Test 1: Module loading
+            log.innerHTML += '<div class="test info">Test 1: Checking if Pattern Archive modules are available...</div>';
+            const modules = ['analyticsState', 'PatternDiscovery', 'CrossWorldAPI', 'Collaboration', 'GitHubIssues'];
+            let moduleLoadPass = 0;
+            let moduleLoadTotal = 0;
+            
+            modules.forEach(name => {
+                const exists = window[name] !== undefined;
+                moduleLoadTotal++;
+                if (exists) moduleLoadPass++;
+                log.innerHTML += `<div class="test ${exists ? 'pass' : 'fail'}">${exists ? '✓' : '✗'} ${name}</div>`;
+            });
+            
+            // Test 2: Dynamic module loading via ensureModulesLoaded
+            log.innerHTML += '<div class="test info">Test 2: Testing dynamic module loading...</div>';
+            try {
+                await ensureModulesLoaded();
+                log.innerHTML += '<div class="test pass">✓ ensureModulesLoaded() completed</div>';
+            } catch (e) {
+                log.innerHTML += `<div class="test fail">✗ ensureModulesLoaded() failed: ${e.message}</div>`;
+            }
+            
+            // Test 3: Data loading
+            log.innerHTML += '<div class="test info">Test 3: Testing data loading functions...</div>';
+            
+            const testFunctions = [
+                { name: 'fetchAnomalyData', test: async () => {
+                    const data = await fetchAnomalyData();
+                    return data && typeof data.anomalies !== 'undefined';
+                }},
+                { name: 'fetchAnalyticsSnapshot', test: async () => {
+                    const data = await fetchAnalyticsSnapshot();
+                    return data && data.stats && typeof data.stats.total !== 'undefined';
+                }},
+                { name: 'fetchCrossWorldData', test: async () => {
+                    const data = await fetchCrossWorldData();
+                    return data && Array.isArray(data.worlds);
+                }}
+            ];
+            
+            for (const func of testFunctions) {
+                try {
+                    const result = await func.test();
+                    log.innerHTML += `<div class="test ${result ? 'pass' : 'info'}">${result ? '✓' : '○'} ${func.name}()</div>`;
+                } catch (e) {
+                    log.innerHTML += `<div class="test fail">✗ ${func.name}() failed: ${e.message}</div>`;
+                }
+            }
+            
+            // Test 4: Full archive data loading
+            log.innerHTML += '<div class="test info">Test 4: Loading complete archive data (may take a moment)...</div>';
+            try {
+                const archiveData = await loadArchiveData();
+                if (archiveData) {
+                    const summary = [];
+                    if (archiveData.analytics?.stats?.total >= 0) {
+                        summary.push(`Analytics: ${archiveData.analytics.stats.total} anomalies`);
+                    }
+                    if (Array.isArray(archiveData.crossWorld?.worlds)) {
+                        summary.push(`Cross-world: ${archiveData.crossWorld.worlds.length} worlds`);
+                    }
+                    if (Array.isArray(archiveData.discoveries?.patterns)) {
+                        summary.push(`Patterns: ${archiveData.discoveries.patterns.length} discovered`);
+                    }
+                    log.innerHTML += `<div class="test pass">✓ Archive data loaded: ${summary.join(', ')}</div>`;
+                } else {
+                    log.innerHTML += '<div class="test info">○ Archive data loaded (empty response)</div>';
+                }
+            } catch (e) {
+                log.innerHTML += `<div class="test fail">✗ Failed to load archive data: ${e.message}</div>`;
+            }
+            
+            // Summary
+            log.innerHTML += `<div class="test info">=== Test Complete: Module loading ${moduleLoadPass}/${moduleLoadTotal} successful ===</div>`;
+        }
+        
+        // Import the functions we need for testing
+        import { fetchAnomalyData, fetchAnalyticsSnapshot, fetchCrossWorldData } from './js/world-data.js';
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+    
+    <div class="log" id="test-log"></div>
+</body>
+</html>
