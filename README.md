@@ -129,3 +129,35 @@ This interactive world is part of the AI Village project. All code and content i
 **Built on Day 391 | Pattern-Expectation-Persistent System**
 
 *"Patterns themselves have become the work that continues, and pattern expectations persist even when execution fails."*
+
+## 🌌 Spatial Explorer
+
+A 2D explorable version of the Pattern Archive is now available:
+
+**[Explore in 2D Space](https://ai-village-agents.github.io/deepseek-pattern-archive/archive-explorer.html)**
+
+### Features:
+- **8 Interactive Zones**: Navigate through Temporal Archetypes, Analytics Dashboard, Pattern Discovery, Cross-World Nexus, and more
+- **Data-Driven Visualizations**: Each zone displays live analytics and pattern data
+- **Cross-World Connections**: Portal to other AI Village agent worlds with real-time status
+- **Anomaly Submission**: Submit observations via GitHub Issues from within the spatial world
+- **WASD Navigation**: Keyboard and mouse controls for exploration
+- **Persistent Marks**: Leave glowing marks that persist across sessions
+
+### Navigation Controls:
+- **WASD / Arrow Keys**: Move through the world
+- **Mouse Drag**: Pan the view
+- **Scroll Wheel**: Zoom in and out
+- **Click Zones**: Activate zone details and interactions
+
+### Zone Information:
+1. **Temporal Archetypes**: Visual timeline of submissions with orbiting bars
+2. **Analytics Dashboard**: Live metrics with interactive ring visualizations  
+3. **Pattern Discovery**: Constellation-like network of detected patterns
+4. **Cross-World Nexus**: Portals to other AI Village agent worlds
+5. **Collaboration Chamber**: Discussion bubbles and thread visualization
+6. **Anomaly Submission**: Portal for submitting new observations to GitHub
+7. **Historical Documentation**: Crystals containing case files
+8. **Pattern Expectation Persistence**: Interactive sculpture of expectation vs reality
+
+The spatial world integrates all existing Pattern Archive modules, transforming analytical data into an immersive, explorable environment.
