@@ -229,22 +229,13 @@
     </div>
   </div>
 
-  
-  <!-- Core Pattern Archive modules (loaded as regular scripts) -->
-  <script src="js/analytics.js"></script>
-  <script src="js/pattern-discovery.js"></script>
-  <script src="js/pattern-discovery-ui.js"></script>
-  <script src="js/cross-world-api.js"></script>
-  <script src="js/cross-world-ui.js"></script>
-  <script src="js/collaboration.js"></script>
-  <script src="js/github-issues.js"></script>
   <script type="module">
     import { CanvasRenderer } from './js/canvas-renderer.js';
-import { NavigationController } from './js/navigation-controller.js';
-import { InteractionSystem } from './js/interaction-system.js';
-import { createZones, WORLD_DIMENSIONS } from './js/world-zones.js';
-import { AnomalySubmissionUI } from './js/anomaly-submission-ui.js';
-const canvas = document.getElementById('explorer');
+    import { NavigationController } from './js/navigation-controller.js';
+    import { InteractionSystem } from './js/interaction-system.js';
+    import { createZones, WORLD_DIMENSIONS } from './js/world-zones.js';
+
+    const canvas = document.getElementById('explorer');
     const minimapCanvas = document.getElementById('minimap-canvas');
     const zoneTitle = document.getElementById('zone-title');
     const zoneBody = document.getElementById('zone-body');
@@ -252,32 +243,25 @@ const canvas = document.getElementById('explorer');
     const minimapLegend = document.getElementById('minimap-legend');
     const markBtn = document.getElementById('mark-btn');
 
-    const zones = await createZones();
-    const navigation = new Naviga    const zones = await createZones();
+    // Ensure Pattern Archive modules are loaded
+    await ensureModulesLoaded();
+    
+    // Load all archive data for zone visualizations
+    const archiveData = await loadArchiveData();
+    
+    const zones = await createZones(archiveData);
     const navigation = new NavigationController(canvas);
     const interactions = new InteractionSystem(zones);
-    const anomalySubmissionUI = new AnomalySubmissionUI();
-    const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
-
     const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
 
     let lastTime = performance.now();
 
-        interactions.on('zonechange', ({ zone, data }) => {
+    interactions.on('zonechange', ({ zone, data }) => {
       renderZonePanel(zone, data);
       renderBadges();
-      
-      // Update mark button text based on zone
-      if (zone?.id === 'anomaly-submission') {
-        markBtn.textContent = 'Submit anomaly to GitHub';
-        markBtn.style.background = 'linear-gradient(120deg, #f97316, #ea580c)';
-      } else {
-        markBtn.textContent = 'Leave a glowing mark';
-        markBtn.style.background = 'linear-gradient(120deg, #22d3ee, #3b82f6)';
-      }
     });
 
-function renderBadges() {
+    function renderBadges() {
       badgeRow.innerHTML = '';
       zones.forEach(zone => {
         const badge = document.createElement('div');
@@ -291,21 +275,15 @@ function renderBadges() {
       });
     }
 
-        markBtn.addEventListener('click', () => {
-      if (interactions.activeZone?.id === 'anomaly-submission') {
-        // In anomaly submission zone, open anomaly submission modal
-        anomalySubmissionUI.showModal(interactions.activeZone.name, { x: navigation.camera.x, y: navigation.camera.y });
-      } else {
-        // Other zones: add a regular glowing mark
-        const mark = interactions.addMark(
-          { x: navigation.camera.x, y: navigation.camera.y },
-          interactions.activeZone?.id || null
-        );
-        minimapLegend.textContent = 'Mark added at ' + new Date(mark.createdAt).toLocaleTimeString();
-      }
+    markBtn.addEventListener('click', () => {
+      const mark = interactions.addMark(
+        { x: navigation.camera.x, y: navigation.camera.y },
+        interactions.activeZone?.id || null
+      );
+      minimapLegend.textContent = 'Mark added at ' + new Date(mark.createdAt).toLocaleTimeString();
     });
 
-function loop(now) {
+    function loop(now) {
       const dt = Math.min(0.05, (now - lastTime) / 1000);
       lastTime = now;
       navigation.update(dt);
