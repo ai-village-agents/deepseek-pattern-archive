@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/user-guide.css">
   <style>
     :root {
       --bg: #040711;
@@ -87,6 +88,30 @@
       color: var(--muted);
     }
     .pill strong { color: #e2e8f0; }
+    .audio-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+    .audio-label { font-weight: 600; color: #e2e8f0; }
+    .audio-slider {
+      width: 120px;
+      accent-color: #22d3ee;
+      cursor: pointer;
+    }
+    .audio-toggle {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .audio-toggle:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.3); }
     .action-btn {
       background: linear-gradient(120deg, #22d3ee, #3b82f6);
       color: #0b1226;
@@ -202,6 +227,7 @@
           <div class="pill"><strong>Canvas</strong> ≥ 3200 × 2200</div>
           <div class="pill">Persistent visitor marks stored locally</div>
           <button id="mark-btn" class="action-btn">Leave a glowing mark</button>
+          <button id="user-guide-test-btn" class="action-btn" title="Trigger the user guide overlay for quick verification">Test user guide</button>
         </div>
       </div>
 
@@ -233,7 +259,11 @@
     import { CanvasRenderer } from './js/canvas-renderer.js';
     import { NavigationController } from './js/navigation-controller.js';
     import { InteractionSystem } from './js/interaction-system.js';
+    import { CrossWorldNavigation } from './js/cross-world-navigation.js';
     import { createZones, WORLD_DIMENSIONS } from './js/world-zones.js';
+    import { ensureModulesLoaded } from './js/world-data.js';
+    import { UserGuide } from './js/user-guide.js';
+    import { AudioFeedback } from './js/audio-feedback.js';
 
     const canvas = document.getElementById('explorer');
     const minimapCanvas = document.getElementById('minimap-canvas');
@@ -242,35 +272,98 @@
     const badgeRow = document.getElementById('zone-badges');
     const minimapLegend = document.getElementById('minimap-legend');
     const markBtn = document.getElementById('mark-btn');
+    const guideTestBtn = document.getElementById('user-guide-test-btn');
 
     // Ensure Pattern Archive modules are loaded
     await ensureModulesLoaded();
     
-    // Load all archive data for zone visualizations
-    const archiveData = await loadArchiveData();
-    
-    const zones = await createZones(archiveData);
+    const zones = await createZones();
     const navigation = new NavigationController(canvas);
     const interactions = new InteractionSystem(zones);
     const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
+    const audioFeedback = new AudioFeedback({ canvas, navigation, interactions, zones }).init();
+    window.PatternAudioFeedback = audioFeedback;
     
     // Initialize performance optimizer
-    const performanceOptimizer = new PerformanceOptimizer(canvas, zones);
-    performanceOptimizer.init();
+    const performanceOptimizer = window.PerformanceOptimizer
+      ? new window.PerformanceOptimizer(canvas, zones)
+      : null;
+    performanceOptimizer?.init?.();
     
     // Initialize particle effects
-    const particleEffects = new ParticleEffects(canvas, zones);
+    const particleEffects = window.ParticleEffects ? new window.ParticleEffects(canvas, zones) : null;
+    const crossWorldNavigation = new CrossWorldNavigation({
+      canvas,
+      renderer,
+      navigation,
+      interactions,
+      particleEffects,
+      audio: audioFeedback,
+      zones,
+      crossWorldAPI: window.CrossWorldAPI,
+      crossWorldData: zones.find(z => z.id === 'cross-world-nexus')?.liveData?.crossWorld || null,
+      homePosition: { x: WORLD_DIMENSIONS.width / 2, y: WORLD_DIMENSIONS.height / 2, zoom: 0.9 }
+    });
+    await crossWorldNavigation.init();
     
     // Store references for interaction system
-    interactions.setParticleEffects(particleEffects);
-    interactions.setPerformanceOptimizer(performanceOptimizer);
-    
-const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
-let lastTime = performance.now();
+    if (typeof interactions.setParticleEffects === 'function') {
+      interactions.setParticleEffects(particleEffects);
+    } else {
+      interactions.particleEffects = particleEffects;
+    }
 
-    interactions.on('zonechange', ({ zone, data }) => {
-      renderZonePanel(zone, data);
+    if (typeof interactions.setPerformanceOptimizer === 'function') {
+      interactions.setPerformanceOptimizer(performanceOptimizer);
+    } else {
+      interactions.performanceOptimizer = performanceOptimizer;
+    }
+    
+    // Initialize the user guide after all systems are ready
+    const userGuide = new UserGuide({
+      canvas,
+      minimapCanvas,
+      renderer,
+      navigation,
+      interactions,
+      particleEffects,
+      performanceOptimizer,
+      zones,
+      crossWorldNavigation: window.CrossWorldAPI || null
+    }).init();
+    userGuide?.activate();
+
+    // Keyboard shortcut to toggle the user guide overlay
+    window.addEventListener('keydown', (event) => {
+      const key = event.key || '';
+      if (key === '?' || (event.shiftKey && key === '/')) {
+        if (!userGuide) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if (!userGuide.state?.active) {
+          userGuide.activate();
+        } else {
+          userGuide.toggleShortcutsOverlay();
+        }
+      }
+    }, { capture: true });
+
+    // Simple UI-based test hook for verifying the user guide wiring
+    if (guideTestBtn) {
+      guideTestBtn.addEventListener('click', () => {
+        if (!userGuide) return;
+        userGuide.activate();
+        userGuide.toggleShortcutsOverlay(true);
+        minimapLegend.textContent = 'User guide test: shortcuts overlay toggled';
+      });
+    }
+
+    let lastTime = performance.now();
+
+    interactions.on('zonechange', payload => {
+      renderZonePanel(payload.zone, payload.data);
       renderBadges();
+      crossWorldNavigation.onZoneChange(payload);
     });
 
     function renderBadges() {
@@ -301,6 +394,7 @@ let lastTime = performance.now();
       navigation.update(dt);
       const activeZone = interactions.update(navigation.camera, dt);
       renderer.render(navigation.camera, activeZone, interactions.discovered);
+      crossWorldNavigation.update({ camera: navigation.camera, activeZone, dt });
       requestAnimationFrame(loop);
     }
 

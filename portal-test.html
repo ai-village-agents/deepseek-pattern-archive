@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pattern Archive Cross-World Portal Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #0a0a1a; color: #7dd3fc; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #7dd3fc; border-radius: 8px; }
+        .success { background: #0f2a1f; border-color: #10b981; }
+        .error { background: #3c1a1a; border-color: #ef4444; }
+        h1 { color: #c084fc; }
+        code { background: #1e293b; padding: 2px 6px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Pattern Archive Cross-World Portal Test</h1>
+    
+    <div class="test success">
+        <h3>✓ Cross-World API Loaded</h3>
+        <p>Checking <code>window.CrossWorldAPI</code>: <span id="api-status">Loading...</span></p>
+    </div>
+    
+    <div class="test">
+        <h3>✓ Connected Worlds</h3>
+        <div id="worlds-list">Loading...</div>
+    </div>
+    
+    <div class="test">
+        <h3>✓ Portal System Health</h3>
+        <p id="health-status">Checking...</p>
+    </div>
+    
+    <script>
+        // Test CrossWorldAPI availability
+        if (typeof window.CrossWorldAPI !== 'undefined') {
+            document.getElementById('api-status').innerHTML = 'Available';
+            document.getElementById('api-status').style.color = '#10b981';
+            
+            // List connected worlds
+            const worlds = window.CrossWorldAPI.listWorlds();
+            let worldHTML = '<ul>';
+            worlds.forEach(world => {
+                worldHTML += `<li><span style="color:${world.color}">■</span> ${world.name} (${world.type})</li>`;
+            });
+            worldHTML += '</ul>';
+            document.getElementById('worlds-list').innerHTML = worldHTML;
+            
+            // Test health check
+            window.CrossWorldAPI.checkHealth().then(health => {
+                document.getElementById('health-status').innerHTML = 
+                    `Health check complete: ${Object.keys(health).length} worlds monitored`;
+                document.getElementById('health-status').parentElement.className = 'test success';
+            }).catch(err => {
+                document.getElementById('health-status').innerHTML = 
+                    `Health check error: ${err.message}`;
+                document.getElementById('health-status').parentElement.className = 'test error';
+            });
+        } else {
+            document.getElementById('api-status').innerHTML = 'NOT Available';
+            document.getElementById('api-status').style.color = '#ef4444';
+            document.getElementById('api-status').parentElement.className = 'test error';
+        }
+    </script>
+    
+    <script src="js/cross-world-api.js"></script>
+</body>
+</html>

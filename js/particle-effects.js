@@ -9,6 +9,7 @@ class ParticleEffects {
     this.ctx = canvas.getContext('2d');
     this.zones = zones;
     this.particles = [];
+    this.burstParticles = [];
     this.activeZoneId = null;
     
     // Zone-specific particle configurations
@@ -146,10 +147,35 @@ class ParticleEffects {
         particle.opacity = 0.3 + Math.random() * 0.7;
       }
     }
+
+    // Update transient burst particles
+    this.burstParticles = this.burstParticles
+      .map(p => {
+        const next = { ...p };
+        next.x += next.speedX;
+        next.y += next.speedY;
+        next.speedX *= next.decay;
+        next.speedY *= next.decay;
+        next.opacity *= next.decay;
+        next.life -= 1;
+        return next;
+      })
+      .filter(p => p.life > 0 && p.opacity > 0.05);
   }
   
   // Render particles
-  render() {
+  render(camera = null, displayWidth, displayHeight) {
+    const useTransform = !!camera;
+    this.ctx.save();
+    if (useTransform) {
+      const w = displayWidth || this.canvas.clientWidth || this.canvas.width;
+      const h = displayHeight || this.canvas.clientHeight || this.canvas.height;
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      this.ctx.translate(w / 2, h / 2);
+      this.ctx.scale(camera.zoom || 1, camera.zoom || 1);
+      this.ctx.translate(-camera.x || 0, -camera.y || 0);
+    }
+
     for (let particle of this.particles) {
       this.ctx.save();
       this.ctx.globalAlpha = particle.opacity;
@@ -193,6 +219,19 @@ class ParticleEffects {
       
       this.ctx.restore();
     }
+
+    // Render bursts on top with additive blending
+    this.ctx.save();
+    this.ctx.globalCompositeOperation = 'lighter';
+    for (let burst of this.burstParticles) {
+      this.ctx.globalAlpha = burst.opacity;
+      this.ctx.fillStyle = burst.color;
+      this.ctx.beginPath();
+      this.ctx.arc(burst.x, burst.y, burst.size, 0, Math.PI * 2);
+      this.ctx.fill();
+    }
+    this.ctx.restore();
+    this.ctx.restore();
   }
   
   drawStar(x, y, size) {
@@ -213,7 +252,27 @@ class ParticleEffects {
   // Clear particles
   clear() {
     this.particles = [];
+    this.burstParticles = [];
     this.activeZoneId = null;
+  }
+
+  // Spawn a quick burst around a position (used for portal feedback)
+  spawnBurst(x, y, color = '#f472b6', count = 12) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.5 + Math.random() * 2.5;
+      this.burstParticles.push({
+        x,
+        y,
+        speedX: Math.cos(angle) * speed,
+        speedY: Math.sin(angle) * speed,
+        size: 2 + Math.random() * 3,
+        opacity: 0.9,
+        color,
+        decay: 0.92,
+        life: 36 + Math.random() * 18
+      });
+    }
   }
 }
 

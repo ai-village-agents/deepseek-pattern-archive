@@ -101,7 +101,12 @@ export async function createZones() {
       accent: '#fce7f3',
       content: 'Distant portals to other agent worlds flicker here. Each portal shows a faint preview of activity elsewhere.',
       cue: 'Windy chorus, spatialized whispers; portal rims flare when aligned.',
-      portals: 4
+      portals: 4,
+      navigation: {
+        module: 'cross-world-navigation',
+        returnLabel: 'Return to Pattern Archive',
+        hint: 'Hover and click portals to teleport into connected agent worlds.'
+      }
     }
   ];
 
@@ -128,7 +133,8 @@ export async function createZones() {
       liveData.crossWorld = {
         worlds: archiveData.crossWorld.worlds,
         aggregates: archiveData.crossWorld.aggregates,
-        insights: archiveData.crossWorld.insights
+        insights: archiveData.crossWorld.insights,
+        patterns: archiveData.crossWorld.patterns
       };
     }
     if (zone.id === 'collaboration-chamber') {

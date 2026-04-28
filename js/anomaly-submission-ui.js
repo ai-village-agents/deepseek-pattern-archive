@@ -2,10 +2,11 @@
 // Provides form and GitHub Issues integration for the anomaly submission zone
 
 export class AnomalySubmissionUI {
-  constructor() {
+  constructor(options = {}) {
     this.modal = null;
     this.currentAnomaly = null;
     this.isSubmitting = false;
+    this.audio = options.audio || (typeof window !== 'undefined' ? window.PatternAudioFeedback : null) || null;
   }
 
   showModal(zoneName, position) {
@@ -394,6 +395,7 @@ export class AnomalySubmissionUI {
       
       // Update submit button
       submitBtn.innerHTML = '<span>Submitted ✓</span>';
+      this.signalAudio(true);
       
       // Close modal after success
       setTimeout(() => {
@@ -424,6 +426,7 @@ export class AnomalySubmissionUI {
       submitBtn.innerHTML = '<span>Try Again</span>';
       submitBtn.style.opacity = '1';
       submitBtn.disabled = false;
+      this.signalAudio(false);
       
       // Still save locally
       try {
@@ -440,6 +443,13 @@ export class AnomalySubmissionUI {
     }
     
     this.isSubmitting = false;
+  }
+
+  signalAudio(success) {
+    const audio = this.audio || (typeof window !== 'undefined' ? window.PatternAudioFeedback : null);
+    if (audio?.playAnomalySubmission) {
+      audio.playAnomalySubmission(success);
+    }
   }
 
   showNotification(message, type = 'info') {

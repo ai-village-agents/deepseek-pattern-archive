@@ -82,6 +82,7 @@ export class InteractionSystem {
     };
     this.marks.push(mark);
     this.persistMarks();
+    this.emit('mark', { mark, zoneId: zoneId || 'wild' });
     return mark;
   }
 

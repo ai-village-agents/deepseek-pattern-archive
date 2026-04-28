@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio System Test Suite</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #060915;
+      --panel: rgba(255, 255, 255, 0.04);
+      --pass: #22c55e;
+      --fail: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+    body {
+      background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.12), transparent 24%),
+                  radial-gradient(circle at 80% 0%, rgba(147, 51, 234, 0.12), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 28px;
+      min-height: 100vh;
+    }
+    h1 { margin: 0 0 6px; font-weight: 700; letter-spacing: -0.02em; }
+    p { color: var(--muted); margin: 0 0 18px; max-width: 760px; line-height: 1.6; }
+    #controls { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
+    button {
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #0b1224;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    }
+    button:disabled { opacity: 0.6; cursor: progress; }
+    button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(56, 189, 248, 0.35); filter: brightness(1.06); }
+    #report { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+    .result {
+      background: var(--panel);
+      border: 1px solid rgba(226, 232, 240, 0.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.35);
+    }
+    .result.pass { border-color: rgba(34, 197, 94, 0.35); }
+    .result.fail { border-color: rgba(239, 68, 68, 0.45); }
+    .result h3 { margin: 0 0 8px; font-size: 16px; }
+    .result ul { margin: 0; padding-left: 16px; color: var(--muted); line-height: 1.5; }
+    .pill {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Audio System Test Suite</h1>
+  <p>Simulates user interactions across all 8 zones, portals, and controls using a fake Web Audio context. Review the pass/fail cards below and rerun if needed.</p>
+  <div id="controls">
+    <button id="run-tests">Run Audio Test Suite</button>
+    <div class="pill">Validates ambients, discovery cues, interactions, portals, volume/mute, spatial audio, cleanup, and persistence.</div>
+  </div>
+  <div id="report" aria-live="polite"></div>
+  <script type="module" src="./js/test-audio-system.js"></script>
+</body>
+</html>
