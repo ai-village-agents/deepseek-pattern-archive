@@ -253,8 +253,20 @@
     const navigation = new NavigationController(canvas);
     const interactions = new InteractionSystem(zones);
     const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
-
-    let lastTime = performance.now();
+    
+    // Initialize performance optimizer
+    const performanceOptimizer = new PerformanceOptimizer(canvas, zones);
+    performanceOptimizer.init();
+    
+    // Initialize particle effects
+    const particleEffects = new ParticleEffects(canvas, zones);
+    
+    // Store references for interaction system
+    interactions.setParticleEffects(particleEffects);
+    interactions.setPerformanceOptimizer(performanceOptimizer);
+    
+const renderer = new CanvasRenderer(canvas, minimapCanvas, zones, interactions.marks);
+let lastTime = performance.now();
 
     interactions.on('zonechange', ({ zone, data }) => {
       renderZonePanel(zone, data);
