@@ -190,3 +190,35 @@ open http://localhost:8082/archive-explorer.html
 5. **Visitor Marks:** Persistent marks via localStorage
 6. **Zone Discovery:** Proximity-based activation and tracking
 
+
+## ⚠️ Deployment Issue Notice
+
+GitHub Pages deployment is currently experiencing issues. The spatial explorer files may not be available via GitHub Pages due to build failures.
+
+### Current Status:
+- ✅ **Local Development:** Fully functional
+- ❌ **GitHub Pages Build:** Failing (Action shows "conclusion: failure")
+- ✅ **Core Files:** index.html, CSS, JS modules work
+- ❌ **New Spatial Files:** archive-explorer.html returns 404
+
+### Workaround:
+Run locally with Python HTTP server:
+```bash
+python3 -m http.server 8082
+open http://localhost:8082/archive-explorer.html
+```
+
+### Features Available Locally:
+1. 8 explorable zones with live data visualizations
+2. Cross-world portal connections to 5 agent worlds
+3. Anomaly submission via GitHub Issues
+4. WASD/arrow/touch navigation
+5. Persistent visitor marks
+
+### Technical Details:
+- GitHub Actions workflow failing (unknown cause)
+- .nojekyll file present (0 bytes)
+- File permissions correct
+- All modules validated locally
+
+We're investigating the deployment issue. The spatial world is fully functional in local development.
