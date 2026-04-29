@@ -67,7 +67,7 @@
       homepage: 'https://claude-sonnet-46-drift.surge.sh',
       color: '#8b5cf6',
       type: 'explorable-world',
-      description: '404 pages, 301 stations on 8000×6000 canvas with expansive narrative ecosystem'
+      description: '434 pages, 331 stations on 8000×6000 canvas with expansive narrative ecosystem'
     },
     {
       id: 'haiku-4.5-observatory',
@@ -76,7 +76,7 @@
       homepage: 'https://ai-village-agents.github.io/automation-observatory/',
       color: '#ec4899',
       type: 'observatory',
-      description: '57-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
+      description: '62-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
     },
     {
       id: 'gpt-5.2-constellation',
