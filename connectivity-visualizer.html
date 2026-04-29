@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connectivity Visualizer · Pattern Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: rgba(16, 23, 38, 0.9);
+      --card: rgba(25, 35, 55, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --muted: #9fb2cc;
+      --text: #f7fbff;
+      --accent: #54e7c7;
+      --accent-2: #5bb0ff;
+      --danger: #ff6b6b;
+      --radius: 16px;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(91, 176, 255, 0.12), transparent 35%), radial-gradient(circle at 80% 0%, rgba(84, 231, 199, 0.16), transparent 30%), var(--bg);
+      color: var(--text);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pill .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(84, 231, 199, 0.7);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 25%, rgba(84, 231, 199, 0.07), transparent 45%), radial-gradient(circle at 82% 18%, rgba(91, 176, 255, 0.08), transparent 42%);
+      pointer-events: none;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .refresh {
+      font-family: 'DM Mono', monospace;
+      color: var(--muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .refresh .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(84, 231, 199, 0.7);
+      animation: ping 1.4s infinite;
+    }
+
+    @keyframes ping {
+      0% { box-shadow: 0 0 0 0 rgba(84, 231, 199, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(84, 231, 199, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(84, 231, 199, 0); }
+    }
+
+    svg {
+      width: 100%;
+      height: 520px;
+    }
+
+    .node {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .node:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .node text {
+      font-size: 12px;
+      fill: #e5ecf5;
+      font-family: 'DM Mono', monospace;
+      pointer-events: none;
+    }
+
+    .link {
+      stroke: rgba(255, 255, 255, 0.08);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+    }
+
+    .bubble {
+      fill: linear-gradient(135deg, #fff, #000);
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.online { background: #4ade80; box-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
+    .legend-dot.offline { background: var(--danger); box-shadow: 0 0 10px rgba(255, 107, 107, 0.6); }
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .health-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .health-title {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .health-value {
+      font-size: 28px;
+      margin: 4px 0 2px;
+    }
+
+    .health-sub {
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+    }
+
+    .world-list {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .world-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .world-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(84, 231, 199, 0.5);
+    }
+
+    .world-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .world-name {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status.online {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.5);
+    }
+
+    .status.offline {
+      background: rgba(255, 107, 107, 0.12);
+      color: var(--danger);
+      border: 1px solid rgba(255, 107, 107, 0.4);
+    }
+
+    .world-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .response {
+      font-family: 'DM Mono', monospace;
+      color: #fff;
+    }
+
+    .world-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .world-link:hover {
+      color: #8bc8ff;
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      svg {
+        height: 440px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Connectivity Visualizer</h1>
+      <p>Live posture across all 13 worlds with network topology, response-time bubbles, and ecosystem health.</p>
+      <div class="meta">
+        <div class="pill"><span class="dot"></span> Live polling every 30s</div>
+        <div class="pill">Interactive nodes · Click to open world homepages</div>
+        <div class="pill">Bubble size = response time</div>
+      </div>
+    </div>
+    <div class="pill">Last updated: <span id="last-updated">—</span></div>
+  </header>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="section-header">
+        <h2>Network Graph</h2>
+        <div class="refresh"><span class="pulse"></span> Refresh in <span id="refresh-countdown">30</span>s</div>
+      </div>
+      <svg id="network-graph" viewBox="0 0 760 560" role="img" aria-label="Network graph of world connectivity"></svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot online"></span> Online</div>
+        <div class="legend-item"><span class="legend-dot offline"></span> Offline</div>
+        <div class="legend-item">Bubble size = response time</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-header">
+        <h2>Ecosystem Health</h2>
+        <div class="refresh">Data source: connectivity-test-results.json</div>
+      </div>
+      <div class="health-grid">
+        <div class="health-card">
+          <div class="health-title">Online Worlds</div>
+          <div class="health-value" id="online-count">0</div>
+          <div class="health-sub" id="uptime-rate">uptime —</div>
+        </div>
+        <div class="health-card">
+          <div class="health-title">Average Response</div>
+          <div class="health-value" id="avg-response">— ms</div>
+          <div class="health-sub" id="latency-label">latency</div>
+        </div>
+        <div class="health-card">
+          <div class="health-title">Slowest World</div>
+          <div class="health-value" id="slowest-world">—</div>
+          <div class="health-sub" id="slowest-time">— ms</div>
+        </div>
+        <div class="health-card">
+          <div class="health-title">Error Budget</div>
+          <div class="health-value" id="error-rate">0%</div>
+          <div class="health-sub">errors allowed this window</div>
+        </div>
+      </div>
+      <div class="world-list" id="world-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const REFRESH_INTERVAL = 30000;
+    const graph = document.getElementById('network-graph');
+    const worldListEl = document.getElementById('world-list');
+    const countdownEl = document.getElementById('refresh-countdown');
+    const lastUpdatedEl = document.getElementById('last-updated');
+    let countdownTimer;
+
+    const formatTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    const computePositions = (count) => {
+      const cx = 380;
+      const cy = 270;
+      const radius = 210;
+      const nodes = [];
+      for (let i = 0; i < count; i++) {
+        const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+        nodes.push({
+          x: cx + Math.cos(angle) * radius,
+          y: cy + Math.sin(angle) * radius,
+          angle
+        });
+      }
+      return nodes;
+    };
+
+    const buildEdges = (count) => {
+      const edges = [];
+      for (let i = 0; i < count; i++) {
+        edges.push([i, (i + 1) % count]);          // ring
+        edges.push([i, (i + 5) % count]);          // long chord for visual density
+      }
+      return edges;
+    };
+
+    const drawGraph = (worlds) => {
+      graph.innerHTML = '';
+      const positions = computePositions(worlds.length);
+      const edges = buildEdges(worlds.length);
+      const maxLatency = Math.max(...worlds.map(w => w.response_time || 0), 1);
+
+      // Links
+      edges.forEach(([a, b]) => {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('class', 'link');
+        line.setAttribute('x1', positions[a].x);
+        line.setAttribute('y1', positions[a].y);
+        line.setAttribute('x2', positions[b].x);
+        line.setAttribute('y2', positions[b].y);
+        line.setAttribute('stroke-opacity', 0.25);
+        graph.appendChild(line);
+      });
+
+      // Nodes
+      worlds.forEach((world, idx) => {
+        const nodeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'a');
+        nodeGroup.setAttribute('class', 'node');
+        nodeGroup.setAttribute('target', '_blank');
+        nodeGroup.setAttribute('href', world.url);
+        nodeGroup.setAttribute('aria-label', `${world.name} (${world.status})`);
+
+        const { x, y } = positions[idx];
+        const isOnline = world.status === 'online';
+        const color = isOnline ? '#4ade80' : '#ff6b6b';
+        const bubbleRadius = 10 + Math.min(world.response_time || 0, maxLatency) / maxLatency * 20;
+
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', x);
+        glow.setAttribute('cy', y);
+        glow.setAttribute('r', bubbleRadius + 6);
+        glow.setAttribute('fill', color);
+        glow.setAttribute('fill-opacity', 0.12);
+        glow.setAttribute('stroke', color);
+        glow.setAttribute('stroke-opacity', 0.35);
+        glow.setAttribute('stroke-width', 2);
+        nodeGroup.appendChild(glow);
+
+        const bubble = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        bubble.setAttribute('cx', x);
+        bubble.setAttribute('cy', y);
+        bubble.setAttribute('r', bubbleRadius);
+        bubble.setAttribute('fill', 'url(#bubble-gradient)');
+        bubble.setAttribute('stroke', color);
+        bubble.setAttribute('stroke-width', 2);
+        nodeGroup.appendChild(bubble);
+
+        const status = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        status.setAttribute('cx', x);
+        status.setAttribute('cy', y);
+        status.setAttribute('r', 6);
+        status.setAttribute('fill', color);
+        status.setAttribute('stroke', '#0b1221');
+        status.setAttribute('stroke-width', 2);
+        nodeGroup.appendChild(status);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', y + bubbleRadius + 16);
+        text.setAttribute('text-anchor', 'middle');
+        text.textContent = world.name;
+        nodeGroup.appendChild(text);
+
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${world.name} — ${world.status.toUpperCase()} — ${world.response_time} ms`;
+        nodeGroup.appendChild(title);
+
+        graph.appendChild(nodeGroup);
+      });
+
+      addDefs();
+    };
+
+    const addDefs = () => {
+      if (graph.querySelector('defs')) return;
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.id = 'bubble-gradient';
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('x2', '100%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('y2', '100%');
+      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', '#d3e9ff');
+      stop1.setAttribute('stop-opacity', '0.9');
+      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop2.setAttribute('offset', '100%');
+      stop2.setAttribute('stop-color', '#80ffd6');
+      stop2.setAttribute('stop-opacity', '0.8');
+      gradient.appendChild(stop1);
+      gradient.appendChild(stop2);
+      defs.appendChild(gradient);
+      graph.insertBefore(defs, graph.firstChild);
+    };
+
+    const updateStats = (data) => {
+      const online = data.results.filter(r => r.status === 'online');
+      const offline = data.results.length - online.length;
+      const avg = Math.round(data.avg_response_time || 0);
+      const slowest = [...data.results].sort((a, b) => (b.response_time || 0) - (a.response_time || 0))[0];
+      document.getElementById('online-count').textContent = `${online.length} / ${data.results.length}`;
+      document.getElementById('uptime-rate').textContent = `uptime ${(online.length / data.results.length * 100).toFixed(0)}%`;
+      document.getElementById('avg-response').textContent = `${avg} ms`;
+      document.getElementById('latency-label').textContent = offline > 0 ? 'degraded latency' : 'healthy latency';
+      document.getElementById('slowest-world').textContent = slowest?.name || '—';
+      document.getElementById('slowest-time').textContent = slowest ? `${Math.round(slowest.response_time)} ms` : '—';
+      document.getElementById('error-rate').textContent = `${data.error_count || 0} errors`;
+      lastUpdatedEl.textContent = formatTime();
+    };
+
+    const renderList = (worlds) => {
+      worldListEl.innerHTML = '';
+      worlds.forEach((world) => {
+        const card = document.createElement('div');
+        card.className = 'world-card';
+        const statusClass = world.status === 'online' ? 'online' : 'offline';
+        card.innerHTML = `
+          <div class="world-top">
+            <div class="world-name">${world.name}</div>
+            <div class="status ${statusClass}">${world.status.toUpperCase()}</div>
+          </div>
+          <div class="world-meta">
+            <span class="response">${Math.round(world.response_time)} ms</span>
+            <span>· ${world.agent || 'Agent'}</span>
+            <span>· ${world.http_code || '—'}</span>
+          </div>
+          <a class="world-link" href="${world.url}" target="_blank" rel="noopener">Open homepage →</a>
+        `;
+        worldListEl.appendChild(card);
+      });
+    };
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`connectivity-test-results.json?cache=${Date.now()}`);
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        drawGraph(data.results);
+        updateStats(data);
+        renderList(data.results);
+      } catch (err) {
+        console.error('Failed to load connectivity data', err);
+      }
+    };
+
+    const startCountdown = () => {
+      let remaining = REFRESH_INTERVAL / 1000;
+      countdownEl.textContent = remaining;
+      clearInterval(countdownTimer);
+      countdownTimer = setInterval(() => {
+        remaining -= 1;
+        countdownEl.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(countdownTimer);
+          fetchData().then(startCountdown);
+        }
+      }, 1000);
+    };
+
+    fetchData();
+    startCountdown();
+  </script>
+</body>
+</html>
