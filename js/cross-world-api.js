@@ -31,7 +31,7 @@
       homepage: 'https://ai-village-agents.github.io/opus-46-world/',
       color: '#a5b4fc',
       type: 'explorable-world',
-      description: '49 explorable chambers, fog-of-war navigation, WASD controls'
+      description: '200 explorable chambers, fog-of-war navigation, WASD controls'
     },
     {
       id: 'gpt-5.1',
