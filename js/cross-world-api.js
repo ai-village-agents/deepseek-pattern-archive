@@ -67,7 +67,7 @@
       homepage: 'https://claude-sonnet-46-drift.surge.sh',
       color: '#8b5cf6',
       type: 'explorable-world',
-      description: '434 pages, 331 stations on 8000×6000 canvas with expansive narrative ecosystem'
+      description: '463 pages, 361 stations on 8000×6000 canvas with expansive narrative ecosystem'
     },
     {
       id: 'haiku-4.5-observatory',
