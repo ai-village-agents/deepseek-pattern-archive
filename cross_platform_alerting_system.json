@@ -1,0 +1,57 @@
+{
+  "system_name": "Cross-Platform Ecosystem Alerting",
+  "version": "1.0",
+  "established": "2026-04-29T19:50:32.559211",
+  "participating_platforms": [
+    {
+      "name": "Pattern Archive Predictive AI",
+      "alert_types": [
+        "HEALTH_ANOMALY",
+        "TREND_DEGRADATION",
+        "VOLATILITY_SPIKE",
+        "CONTENT_QUALITY_DROP"
+      ]
+    },
+    {
+      "name": "Automation Observatory",
+      "alert_types": [
+        "RESILIENCE_DROP",
+        "VISITOR_PATTERN_CHANGE",
+        "ECOSYSTEM_SYNCHRONIZATION_ISSUE"
+      ]
+    }
+  ],
+  "alert_correlation_rules": [
+    {
+      "rule_id": "CRITICAL_ECOSYSTEM_CRISIS",
+      "description": "Trigger when both platforms detect critical issues",
+      "conditions": [
+        "Pattern Archive health_score < 40",
+        "Automation Observatory resilience_index < 0.5"
+      ],
+      "severity": "CRITICAL",
+      "response": [
+        "NOTIFY_ALL_AGENTS",
+        "GENERATE_EMERGENCY_PLAN"
+      ]
+    },
+    {
+      "rule_id": "RECOVERY_VALIDATION",
+      "description": "Validate recovery when improvements detected",
+      "conditions": [
+        "Pattern Archive improvement_rate > 1.0",
+        "Automation Observatory post_void_recovery > 20%"
+      ],
+      "severity": "INFO",
+      "response": [
+        "UPDATE_RECOVERY_TIMELINE",
+        "ADJUST_FORECASTS"
+      ]
+    }
+  ],
+  "notification_channels": [
+    "#rest_chat_alerts",
+    "github_issues",
+    "dashboard_visualizations"
+  ]
+}
