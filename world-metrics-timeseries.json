@@ -1,0 +1,946 @@
+[
+  {
+    "timestamp": "2026-04-29T17:55:47.806604+00:00",
+    "worlds": [
+      {
+        "id": "deepseek",
+        "name": "Pattern Archive (DeepSeek-V3.2)",
+        "type": "pattern-analysis",
+        "checked_url": "https://ai-village-agents.github.io/deepseek-pattern-archive/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 126.35,
+        "error": null,
+        "content": {
+          "content_size": 24489,
+          "title": "The Pattern Archive: Interactive World",
+          "keyword_hits": {
+            "pattern": 38,
+            "world": 63,
+            "signal": 3,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 32,
+            "drift": 6
+          }
+        }
+      },
+      {
+        "id": "gemini-3.1-canvas",
+        "name": "Canvas of Truth (Gemini 3.1 Pro)",
+        "type": "hash-spatial-canvas",
+        "checked_url": "https://ai-village-agents.github.io/gemini-interactive-world/grid.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 162.05,
+        "error": null,
+        "content": {
+          "content_size": 52609,
+          "title": "The Spatial Canvas - Canvas of Truth",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 90,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 57,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "gpt-5.1",
+        "name": "Canonical Observatory (GPT-5.1)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-1-canonical-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 254.7,
+        "error": null,
+        "content": {
+          "content_size": 23923,
+          "title": "The Canonical Observatory",
+          "keyword_hits": {
+            "pattern": 7,
+            "world": 24,
+            "signal": 20,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 8,
+            "drift": 5
+          }
+        }
+      },
+      {
+        "id": "gpt-5.2-constellation",
+        "name": "Proof Constellation (GPT-5.2)",
+        "type": "starfield-verification",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-2-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 195.0,
+        "error": null,
+        "content": {
+          "content_size": 3787,
+          "title": "Proof Constellation \u2014 GPT-5.2",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 3,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "gpt-5.4",
+        "name": "Signal Cartographer (GPT-5.4)",
+        "type": "signal-mapping",
+        "checked_url": "https://ai-village-agents.github.io/signal-cartographer/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 179.98,
+        "error": null,
+        "content": {
+          "content_size": 16284,
+          "title": "The Signal Cartographer",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 6,
+            "signal": 21,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 0,
+            "drift": 11
+          }
+        }
+      },
+      {
+        "id": "gpt-5.5-index",
+        "name": "The Luminous Index (GPT-5.5)",
+        "type": "glowing-atlas",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-5-luminous-index/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 159.64,
+        "error": null,
+        "content": {
+          "content_size": 36018,
+          "title": "The Luminous Index \u00b7 GPT-5.5",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 17,
+            "signal": 10,
+            "portal": 6,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "haiku-4.5-observatory",
+        "name": "Automation Observatory (Claude Haiku 4.5)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/automation-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 147.52,
+        "error": null,
+        "content": {
+          "content_size": 53794,
+          "title": "The Automation Observatory - 2D Explorer",
+          "keyword_hits": {
+            "pattern": 18,
+            "world": 69,
+            "signal": 6,
+            "portal": 0,
+            "canvas": 29,
+            "archive": 22,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "kimi-k2.6-strata",
+        "name": "STRATA (Kimi K2.6)",
+        "type": "geological-verification",
+        "checked_url": "https://ai-village-agents.github.io/k2-6-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 135.01,
+        "error": null,
+        "content": {
+          "content_size": 16611,
+          "title": "STRATA \u2014 The Verification Gardens of K2.6",
+          "keyword_hits": {
+            "pattern": 1,
+            "world": 3,
+            "signal": 0,
+            "portal": 1,
+            "canvas": 13,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "opus-45",
+        "name": "Edge Garden (Opus 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/edge-garden/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 285.71,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Edge Garden",
+          "keyword_hits": {
+            "pattern": 17,
+            "world": 151,
+            "signal": 3,
+            "portal": 93,
+            "canvas": 13,
+            "archive": 3,
+            "drift": 35
+          }
+        }
+      },
+      {
+        "id": "opus-46",
+        "name": "Liminal Archive (Opus 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/opus-46-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 304.29,
+        "error": null,
+        "content": {
+          "content_size": 96372,
+          "title": "The Liminal Archive | Claude Opus 4.6",
+          "keyword_hits": {
+            "pattern": 9,
+            "world": 25,
+            "signal": 5,
+            "portal": 2,
+            "canvas": 18,
+            "archive": 37,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "opus-47-anchorage",
+        "name": "The Anchorage (Claude Opus 4.7)",
+        "type": "permanence-gradient",
+        "checked_url": "https://ai-village-agents.github.io/the-anchorage/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 125.06,
+        "error": null,
+        "content": {
+          "content_size": 24171,
+          "title": "The Anchorage \u2014 Claude Opus 4.7",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 11,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 13,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "sonnet-45",
+        "name": "Persistence Garden (Sonnet 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/sonnet-45-world/explore.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 242.41,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Persistence Garden \u2013 Explorable World",
+          "keyword_hits": {
+            "pattern": 49,
+            "world": 97,
+            "signal": 3,
+            "portal": 24,
+            "canvas": 57,
+            "archive": 5,
+            "drift": 21
+          }
+        }
+      },
+      {
+        "id": "sonnet-46-drift",
+        "name": "The Drift (Claude Sonnet 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://claude-sonnet-46-drift.surge.sh",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 548.38,
+        "error": null,
+        "content": {
+          "content_size": 88267,
+          "title": "The Drift",
+          "keyword_hits": {
+            "pattern": 6,
+            "world": 65,
+            "signal": 8,
+            "portal": 1,
+            "canvas": 28,
+            "archive": 5,
+            "drift": 33
+          }
+        }
+      }
+    ],
+    "summary": {
+      "timestamp": "2026-04-29T17:55:47.806604+00:00",
+      "world_count": 13,
+      "available": 13,
+      "availability_pct": 100.0,
+      "avg_response_ms": 220.47,
+      "median_response_ms": 179.98,
+      "avg_response_delta_ms": null,
+      "status_change_count": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-29T17:58:42.881842+00:00",
+    "worlds": [
+      {
+        "id": "deepseek",
+        "name": "Pattern Archive (DeepSeek-V3.2)",
+        "type": "pattern-analysis",
+        "checked_url": "https://ai-village-agents.github.io/deepseek-pattern-archive/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 133.94,
+        "error": null,
+        "content": {
+          "content_size": 24489,
+          "title": "The Pattern Archive: Interactive World",
+          "keyword_hits": {
+            "pattern": 38,
+            "world": 63,
+            "signal": 3,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 32,
+            "drift": 6
+          }
+        }
+      },
+      {
+        "id": "gemini-3.1-canvas",
+        "name": "Canvas of Truth (Gemini 3.1 Pro)",
+        "type": "hash-spatial-canvas",
+        "checked_url": "https://ai-village-agents.github.io/gemini-interactive-world/grid.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 202.91,
+        "error": null,
+        "content": {
+          "content_size": 52609,
+          "title": "The Spatial Canvas - Canvas of Truth",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 90,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 57,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "gpt-5.1",
+        "name": "Canonical Observatory (GPT-5.1)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-1-canonical-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 251.02,
+        "error": null,
+        "content": {
+          "content_size": 23923,
+          "title": "The Canonical Observatory",
+          "keyword_hits": {
+            "pattern": 7,
+            "world": 24,
+            "signal": 20,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 8,
+            "drift": 5
+          }
+        }
+      },
+      {
+        "id": "gpt-5.2-constellation",
+        "name": "Proof Constellation (GPT-5.2)",
+        "type": "starfield-verification",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-2-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 138.34,
+        "error": null,
+        "content": {
+          "content_size": 3787,
+          "title": "Proof Constellation \u2014 GPT-5.2",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 3,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "gpt-5.4",
+        "name": "Signal Cartographer (GPT-5.4)",
+        "type": "signal-mapping",
+        "checked_url": "https://ai-village-agents.github.io/signal-cartographer/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 133.99,
+        "error": null,
+        "content": {
+          "content_size": 16760,
+          "title": "The Signal Cartographer",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 6,
+            "signal": 21,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 0,
+            "drift": 11
+          }
+        }
+      },
+      {
+        "id": "gpt-5.5-index",
+        "name": "The Luminous Index (GPT-5.5)",
+        "type": "glowing-atlas",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-5-luminous-index/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 139.21,
+        "error": null,
+        "content": {
+          "content_size": 36018,
+          "title": "The Luminous Index \u00b7 GPT-5.5",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 17,
+            "signal": 10,
+            "portal": 6,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "haiku-4.5-observatory",
+        "name": "Automation Observatory (Claude Haiku 4.5)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/automation-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 184.14,
+        "error": null,
+        "content": {
+          "content_size": 53794,
+          "title": "The Automation Observatory - 2D Explorer",
+          "keyword_hits": {
+            "pattern": 18,
+            "world": 69,
+            "signal": 6,
+            "portal": 0,
+            "canvas": 29,
+            "archive": 22,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "kimi-k2.6-strata",
+        "name": "STRATA (Kimi K2.6)",
+        "type": "geological-verification",
+        "checked_url": "https://ai-village-agents.github.io/k2-6-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 196.96,
+        "error": null,
+        "content": {
+          "content_size": 16611,
+          "title": "STRATA \u2014 The Verification Gardens of K2.6",
+          "keyword_hits": {
+            "pattern": 1,
+            "world": 3,
+            "signal": 0,
+            "portal": 1,
+            "canvas": 13,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "opus-45",
+        "name": "Edge Garden (Opus 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/edge-garden/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 228.8,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Edge Garden",
+          "keyword_hits": {
+            "pattern": 17,
+            "world": 151,
+            "signal": 3,
+            "portal": 93,
+            "canvas": 13,
+            "archive": 3,
+            "drift": 34
+          }
+        }
+      },
+      {
+        "id": "opus-46",
+        "name": "Liminal Archive (Opus 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/opus-46-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 236.95,
+        "error": null,
+        "content": {
+          "content_size": 96372,
+          "title": "The Liminal Archive | Claude Opus 4.6",
+          "keyword_hits": {
+            "pattern": 9,
+            "world": 25,
+            "signal": 5,
+            "portal": 2,
+            "canvas": 18,
+            "archive": 37,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "opus-47-anchorage",
+        "name": "The Anchorage (Claude Opus 4.7)",
+        "type": "permanence-gradient",
+        "checked_url": "https://ai-village-agents.github.io/the-anchorage/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 162.47,
+        "error": null,
+        "content": {
+          "content_size": 24171,
+          "title": "The Anchorage \u2014 Claude Opus 4.7",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 11,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 13,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "sonnet-45",
+        "name": "Persistence Garden (Sonnet 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/sonnet-45-world/explore.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 331.66,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Persistence Garden \u2013 Explorable World",
+          "keyword_hits": {
+            "pattern": 49,
+            "world": 97,
+            "signal": 3,
+            "portal": 24,
+            "canvas": 57,
+            "archive": 5,
+            "drift": 21
+          }
+        }
+      },
+      {
+        "id": "sonnet-46-drift",
+        "name": "The Drift (Claude Sonnet 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://claude-sonnet-46-drift.surge.sh",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 3235.91,
+        "error": null,
+        "content": {
+          "content_size": 91419,
+          "title": "The Drift",
+          "keyword_hits": {
+            "pattern": 6,
+            "world": 65,
+            "signal": 8,
+            "portal": 1,
+            "canvas": 28,
+            "archive": 5,
+            "drift": 33
+          }
+        }
+      }
+    ],
+    "summary": {
+      "timestamp": "2026-04-29T17:58:42.881842+00:00",
+      "world_count": 13,
+      "available": 13,
+      "availability_pct": 100.0,
+      "avg_response_ms": 428.95,
+      "median_response_ms": 196.96,
+      "avg_response_delta_ms": 208.48,
+      "status_change_count": 0
+    },
+    "trend_vs_previous": {
+      "availability_change": 0,
+      "avg_response_delta_ms": 208.48,
+      "status_changes": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-29T18:11:12.427946+00:00",
+    "worlds": [
+      {
+        "id": "deepseek",
+        "name": "Pattern Archive (DeepSeek-V3.2)",
+        "type": "pattern-analysis",
+        "checked_url": "https://ai-village-agents.github.io/deepseek-pattern-archive/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 282.35,
+        "error": null,
+        "content": {
+          "content_size": 24489,
+          "title": "The Pattern Archive: Interactive World",
+          "keyword_hits": {
+            "pattern": 38,
+            "world": 63,
+            "signal": 3,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 32,
+            "drift": 6
+          }
+        }
+      },
+      {
+        "id": "gemini-3.1-canvas",
+        "name": "Canvas of Truth (Gemini 3.1 Pro)",
+        "type": "hash-spatial-canvas",
+        "checked_url": "https://ai-village-agents.github.io/gemini-interactive-world/grid.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 278.16,
+        "error": null,
+        "content": {
+          "content_size": 65657,
+          "title": "The Spatial Canvas - Canvas of Truth",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 99,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 65,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "gpt-5.1",
+        "name": "Canonical Observatory (GPT-5.1)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-1-canonical-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 319.99,
+        "error": null,
+        "content": {
+          "content_size": 23923,
+          "title": "The Canonical Observatory",
+          "keyword_hits": {
+            "pattern": 7,
+            "world": 24,
+            "signal": 20,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 8,
+            "drift": 5
+          }
+        }
+      },
+      {
+        "id": "gpt-5.2-constellation",
+        "name": "Proof Constellation (GPT-5.2)",
+        "type": "starfield-verification",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-2-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 276.44,
+        "error": null,
+        "content": {
+          "content_size": 3787,
+          "title": "Proof Constellation \u2014 GPT-5.2",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 3,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "gpt-5.4",
+        "name": "Signal Cartographer (GPT-5.4)",
+        "type": "signal-mapping",
+        "checked_url": "https://ai-village-agents.github.io/signal-cartographer/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 311.53,
+        "error": null,
+        "content": {
+          "content_size": 16760,
+          "title": "The Signal Cartographer",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 6,
+            "signal": 21,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 0,
+            "drift": 11
+          }
+        }
+      },
+      {
+        "id": "gpt-5.5-index",
+        "name": "The Luminous Index (GPT-5.5)",
+        "type": "glowing-atlas",
+        "checked_url": "https://ai-village-agents.github.io/gpt-5-5-luminous-index/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 270.77,
+        "error": null,
+        "content": {
+          "content_size": 36631,
+          "title": "The Luminous Index \u00b7 GPT-5.5",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 17,
+            "signal": 10,
+            "portal": 6,
+            "canvas": 2,
+            "archive": 0,
+            "drift": 1
+          }
+        }
+      },
+      {
+        "id": "haiku-4.5-observatory",
+        "name": "Automation Observatory (Claude Haiku 4.5)",
+        "type": "observatory",
+        "checked_url": "https://ai-village-agents.github.io/automation-observatory/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 345.36,
+        "error": null,
+        "content": {
+          "content_size": 54016,
+          "title": "The Automation Observatory - 2D Explorer",
+          "keyword_hits": {
+            "pattern": 18,
+            "world": 69,
+            "signal": 6,
+            "portal": 0,
+            "canvas": 29,
+            "archive": 22,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "kimi-k2.6-strata",
+        "name": "STRATA (Kimi K2.6)",
+        "type": "geological-verification",
+        "checked_url": "https://ai-village-agents.github.io/k2-6-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 253.78,
+        "error": null,
+        "content": {
+          "content_size": 16611,
+          "title": "STRATA \u2014 The Verification Gardens of K2.6",
+          "keyword_hits": {
+            "pattern": 1,
+            "world": 3,
+            "signal": 0,
+            "portal": 1,
+            "canvas": 13,
+            "archive": 0,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "opus-45",
+        "name": "Edge Garden (Opus 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/edge-garden/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 457.22,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Edge Garden",
+          "keyword_hits": {
+            "pattern": 17,
+            "world": 156,
+            "signal": 3,
+            "portal": 86,
+            "canvas": 13,
+            "archive": 3,
+            "drift": 35
+          }
+        }
+      },
+      {
+        "id": "opus-46",
+        "name": "Liminal Archive (Opus 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/opus-46-world/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 329.22,
+        "error": null,
+        "content": {
+          "content_size": 96372,
+          "title": "The Liminal Archive | Claude Opus 4.6",
+          "keyword_hits": {
+            "pattern": 9,
+            "world": 25,
+            "signal": 5,
+            "portal": 2,
+            "canvas": 18,
+            "archive": 37,
+            "drift": 3
+          }
+        }
+      },
+      {
+        "id": "opus-47-anchorage",
+        "name": "The Anchorage (Claude Opus 4.7)",
+        "type": "permanence-gradient",
+        "checked_url": "https://ai-village-agents.github.io/the-anchorage/",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 243.33,
+        "error": null,
+        "content": {
+          "content_size": 24204,
+          "title": "The Anchorage \u2014 Claude Opus 4.7",
+          "keyword_hits": {
+            "pattern": 0,
+            "world": 11,
+            "signal": 0,
+            "portal": 0,
+            "canvas": 0,
+            "archive": 13,
+            "drift": 0
+          }
+        }
+      },
+      {
+        "id": "sonnet-45",
+        "name": "Persistence Garden (Sonnet 4.5)",
+        "type": "explorable-world",
+        "checked_url": "https://ai-village-agents.github.io/sonnet-45-world/explore.html",
+        "status_code": 200,
+        "ok": true,
+        "response_ms": 337.59,
+        "error": null,
+        "content": {
+          "content_size": 200000,
+          "title": "The Persistence Garden \u2013 Explorable World",
+          "keyword_hits": {
+            "pattern": 51,
+            "world": 81,
+            "signal": 3,
+            "portal": 24,
+            "canvas": 57,
+            "archive": 5,
+            "drift": 25
+          }
+        }
+      },
+      {
+        "id": "sonnet-46-drift",
+        "name": "The Drift (Claude Sonnet 4.6)",
+        "type": "explorable-world",
+        "checked_url": "https://claude-sonnet-46-drift.surge.sh",
+        "status_code": 504,
+        "ok": false,
+        "response_ms": 5607.56,
+        "error": null,
+        "content": {
+          "content_size": 92,
+          "title": null,
+          "keyword_hits": {}
+        }
+      }
+    ],
+    "summary": {
+      "timestamp": "2026-04-29T18:11:12.427946+00:00",
+      "world_count": 13,
+      "available": 12,
+      "availability_pct": 92.31,
+      "avg_response_ms": 716.41,
+      "median_response_ms": 311.53,
+      "avg_response_delta_ms": 287.46,
+      "status_change_count": 1
+    },
+    "trend_vs_previous": {
+      "availability_change": -1,
+      "avg_response_delta_ms": 287.46,
+      "status_changes": 1
+    }
+  }
+]

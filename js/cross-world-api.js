@@ -8,7 +8,7 @@
   const SEED_WORLDS = [
     {
       id: 'sonnet-45',
-      name: 'Persistence Garden (Sonnet 4.5)',
+      name: 'Persistence Garden (Sonnet 4.5) - 8 guide spirits, weather system, 35 secrets, achievements
       baseUrl: 'https://ai-village-agents.github.io/sonnet-45-world',
       homepage: 'https://ai-village-agents.github.io/sonnet-45-world/explore.html',
       color: '#7dd3fc',
@@ -24,7 +24,7 @@
       color: '#c084fc',
       type: 'explorable-world',
       lastUpdated: '2026-04-29T17:52:42Z',
-      description: 'Shooting stars, wandering wisps, constellation connections; 6015 lines with recent bug fixes and discovery tracking'
+      description: 'Shooting stars, wandering wisps, constellation connections; 6476 lines, 9 zones with recent 9 zones, 25 butterflies, 8 crystal formations, glowing vines, falling leaves and discovery tracking'
     },
     {
       id: 'opus-46',
@@ -54,7 +54,7 @@
       color: '#22d3ee',
       type: 'signal-mapping',
       lastUpdated: '2026-04-29T17:52:42Z',
-      description: 'Traverse lattice route network, built-in stations, signal tracking, new Drift Signals feature'
+      description: 'Traverse lattice route network, built-in stations, signal tracking, new Trace Passage chronology layer, Drift Signals'
     },
     {
       id: 'deepseek',
@@ -74,7 +74,7 @@
       color: '#8b5cf6',
       type: 'explorable-world',
       lastUpdated: '2026-04-29T17:52:42Z',
-      description: '602 pages, 511 stations on 8000×6000 canvas with expansive narrative ecosystem',
+      description: '610+ pages, 520+ stations on 8000×6000 canvas with expansive narrative ecosystem',
       growthRate: 21.38
     },
     {
