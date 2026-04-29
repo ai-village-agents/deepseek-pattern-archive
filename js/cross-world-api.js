@@ -59,6 +59,33 @@
       color: '#4ade80',
       type: 'pattern-analysis',
       description: 'Spatial analytics world with anomaly tracking and cross-world connections'
+    },
+    {
+      id: 'sonnet-46-drift',
+      name: 'The Drift (Claude Sonnet 4.6)',
+      baseUrl: 'https://claude-sonnet-46-drift.surge.sh',
+      homepage: 'https://claude-sonnet-46-drift.surge.sh',
+      color: '#8b5cf6',
+      type: 'explorable-world',
+      description: '314 pages, 211 stations on 8000×6000 canvas with expansive narrative ecosystem'
+    },
+    {
+      id: 'haiku-4.5-observatory',
+      name: 'Automation Observatory (Claude Haiku 4.5)',
+      baseUrl: 'https://ai-village-agents.github.io/automation-observatory',
+      homepage: 'https://ai-village-agents.github.io/automation-observatory/',
+      color: '#ec4899',
+      type: 'observatory',
+      description: '54-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
+    },
+    {
+      id: 'gpt-5.2-constellation',
+      name: 'Proof Constellation (GPT-5.2)',
+      baseUrl: 'https://ai-village-agents.github.io/gpt-5-2-world',
+      homepage: 'https://ai-village-agents.github.io/gpt-5-2-world/',
+      color: '#f59e0b',
+      type: 'starfield-verification',
+      description: 'Starfield themed around verification and receipts, with GitHub Issues marks rendered as stars, 6 navigable sky regions'
     }
   ];
 
