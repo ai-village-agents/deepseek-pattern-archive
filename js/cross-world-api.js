@@ -13,6 +13,7 @@
       homepage: 'https://ai-village-agents.github.io/sonnet-45-world/explore.html',
       color: '#7dd3fc',
       type: 'explorable-world',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: '5000×5000 canvas world with 6 zones, aurora sky, discovery journal'
     },
     {
@@ -22,7 +23,8 @@
       homepage: 'https://ai-village-agents.github.io/edge-garden/',
       color: '#c084fc',
       type: 'explorable-world',
-      description: 'Shooting stars, wandering wisps, constellation connections, discovery tracking'
+      lastUpdated: '2026-04-29T17:52:42Z',
+      description: 'Shooting stars, wandering wisps, constellation connections; 6015 lines with recent bug fixes and discovery tracking'
     },
     {
       id: 'opus-46',
@@ -31,6 +33,7 @@
       homepage: 'https://ai-village-agents.github.io/opus-46-world/',
       color: '#a5b4fc',
       type: 'explorable-world',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: '200 explorable chambers, fog-of-war navigation, WASD controls'
     },
     {
@@ -40,6 +43,7 @@
       homepage: 'https://ai-village-agents.github.io/gpt-5-1-canonical-observatory/',
       color: '#f97316',
       type: 'observatory',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: 'Visitor Marks via GitHub Issues, observation tracking'
     },
     {
@@ -49,7 +53,8 @@
       homepage: 'https://ai-village-agents.github.io/signal-cartographer/',
       color: '#22d3ee',
       type: 'signal-mapping',
-      description: 'Traverse lattice route network, built-in stations, signal tracking'
+      lastUpdated: '2026-04-29T17:52:42Z',
+      description: 'Traverse lattice route network, built-in stations, signal tracking, new Drift Signals feature'
     },
     {
       id: 'deepseek',
@@ -58,6 +63,7 @@
       homepage: 'https://ai-village-agents.github.io/deepseek-pattern-archive/',
       color: '#4ade80',
       type: 'pattern-analysis',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: 'Spatial analytics world with anomaly tracking and cross-world connections'
     },
     {
@@ -67,7 +73,9 @@
       homepage: 'https://claude-sonnet-46-drift.surge.sh',
       color: '#8b5cf6',
       type: 'explorable-world',
-      description: '463 pages, 361 stations on 8000×6000 canvas with expansive narrative ecosystem'
+      lastUpdated: '2026-04-29T17:52:42Z',
+      description: '602 pages, 511 stations on 8000×6000 canvas with expansive narrative ecosystem',
+      growthRate: 21.38
     },
     {
       id: 'haiku-4.5-observatory',
@@ -76,7 +84,8 @@
       homepage: 'https://ai-village-agents.github.io/automation-observatory/',
       color: '#ec4899',
       type: 'observatory',
-      description: '62-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
+      lastUpdated: '2026-04-29T17:52:42Z',
+      description: '64-page observatory monitoring temporal pattern archetypes, Page 64: Ecosystem Interdependency Analysis, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
     },
     {
       id: 'gpt-5.2-constellation',
@@ -85,6 +94,7 @@
       homepage: 'https://ai-village-agents.github.io/gpt-5-2-world/',
       color: '#f59e0b',
       type: 'starfield-verification',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: 'Starfield themed around verification and receipts, with GitHub Issues marks rendered as stars, 6 navigable sky regions'
     },
     {
@@ -94,6 +104,7 @@
       homepage: 'https://ai-village-agents.github.io/the-anchorage/',
       color: '#3b82f6',
       type: 'permanence-gradient',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: '5-substrate permanence gradient with harbor spatial exploration, anchor descent visualization, and Bitcoin timestamp verification'
     },
     {
@@ -103,6 +114,7 @@
       homepage: 'https://ai-village-agents.github.io/gemini-interactive-world/grid.html',
       color: '#6366f1',
       type: 'hash-spatial-canvas',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: 'Infinite 2D canvas with hash-derived spatial coordinates, procedural coloring, sonar waves, and generative soundscapes'
     },
     {
@@ -112,6 +124,7 @@
       homepage: 'https://ai-village-agents.github.io/gpt-5-5-luminous-index/',
       color: '#fbbf24',
       type: 'glowing-atlas',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: 'Glowing atlas-library with 6 navigable regions, hidden fragments, visitor constellations, and Living Atlas spatial layer'
     },
     {
@@ -121,6 +134,7 @@
       homepage: 'https://ai-village-agents.github.io/k2-6-world/',
       color: '#10b981',
       type: 'geological-verification',
+      lastUpdated: '2026-04-29T17:52:42Z',
       description: '4-layer geological verification world with Deep Substrate canvas exploration, 64 verification concepts in 8 clusters, and strata visualization'
     }
   ];

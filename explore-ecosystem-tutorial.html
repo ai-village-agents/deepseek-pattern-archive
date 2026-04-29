@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore the 13-World Ecosystem | Pattern Archive Tutorial</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050810;
+      --panel: #0b1224;
+      --card: #0f1a33;
+      --accent: #4dd6ff;
+      --accent-2: #ff2fa3;
+      --accent-3: #7c6cff;
+      --text: #eef2ff;
+      --muted: #9fb3d9;
+      --border: rgba(255, 255, 255, 0.08);
+      --glow: 0 15px 40px rgba(77, 214, 255, 0.35);
+      --sans: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(77, 214, 255, 0.12), transparent 32%),
+        radial-gradient(circle at 78% 0%, rgba(255, 47, 163, 0.12), transparent 36%),
+        radial-gradient(circle at 62% 70%, rgba(124, 108, 255, 0.08), transparent 38%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 22px;
+    }
+
+    .frame {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      background: linear-gradient(125deg, rgba(77, 214, 255, 0.22), rgba(255, 47, 163, 0.12) 60%, rgba(12, 18, 35, 0.92)),
+        var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 82% 18%, rgba(124, 108, 255, 0.24), transparent 52%);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 36px);
+      letter-spacing: 0.2px;
+    }
+
+    .tagline {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.12s ease, box-shadow 0.18s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); border-color: rgba(77, 214, 255, 0.5); box-shadow: var(--glow); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #4dd6ff, #7c6cff);
+      color: #050810;
+      border: none;
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .section-sub {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tour-card {
+      background: linear-gradient(135deg, rgba(77, 214, 255, 0.12), rgba(255, 47, 163, 0.08)),
+        rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(77, 214, 255, 0.25);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 200px;
+    }
+
+    .tour-step-title { font-weight: 700; margin-bottom: 8px; }
+    .tour-step-body { color: var(--muted); margin-bottom: 12px; }
+    .tour-tip { font-size: 13px; color: #4dd6ff; }
+    .tour-progress { width: 100%; background: rgba(255, 255, 255, 0.06); border-radius: 999px; height: 10px; margin: 12px 0; overflow: hidden; }
+    .tour-progress span { display: block; height: 100%; background: linear-gradient(120deg, #4dd6ff, #ff2fa3); border-radius: inherit; transition: width 0.2s ease; }
+    .tour-actions { display: flex; gap: 10px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+
+    .type-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .type-filters button { padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.02); color: var(--text); cursor: pointer; }
+    .type-filters button.active { border-color: rgba(77,214,255,0.6); color: #4dd6ff; box-shadow: var(--glow); }
+
+    .world-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .world-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .world-card strong { display: block; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .world-meta { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+    .world-desc { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .world-card a { color: #4dd6ff; text-decoration: none; font-size: 13px; }
+
+    .portal-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .portal-card {
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .portal-sim {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(77, 214, 255, 0.12), rgba(255, 47, 163, 0.08));
+      border: 1px solid rgba(77, 214, 255, 0.22);
+    }
+
+    select, input, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      color: var(--text);
+      font-family: var(--sans);
+      margin-top: 6px;
+    }
+
+    .marks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+    }
+
+    .mark-card {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      position: relative;
+    }
+
+    .mark-card button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(77, 214, 255, 0.1);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .exercise-list { display: grid; gap: 10px; }
+    .exercise {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exercise .status {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .exercise button {
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(77, 214, 255, 0.12);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .quiz {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .question { margin-bottom: 12px; }
+    .question h4 { margin: 0 0 6px; }
+    .question label { display: block; color: var(--muted); margin-bottom: 4px; cursor: pointer; }
+
+    .map-shell {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px;
+      background: rgba(255,255,255,0.02);
+      position: relative;
+    }
+
+    .map-shell svg { width: 100%; height: 420px; border-radius: 12px; background: radial-gradient(circle at 30% 30%, rgba(77,214,255,0.06), transparent 35%), rgba(6, 10, 22, 0.8); }
+    .map-shell .map-info { margin-top: 10px; color: var(--muted); font-size: 14px; }
+    .map-chip { display: inline-flex; gap: 6px; align-items: center; padding: 6px 10px; border-radius: 12px; background: rgba(77, 214, 255, 0.1); color: #4dd6ff; margin-right: 6px; }
+    .map-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+
+    .legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+    @media (max-width: 720px) {
+      body { padding: 14px; }
+      header { padding: 18px; }
+      .hero-top { gap: 10px; }
+      .map-shell svg { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <header>
+      <div class="hero-top">
+        <div>
+          <h1>Explore the 13-World AI Village Ecosystem</h1>
+          <p class="tagline">
+            Progressive walkthrough of the Pattern Archive, world archetypes, cross-world portals, and the mark systems
+            that keep observations coherent across canvas, page, and hybrid experiences.
+          </p>
+          <div class="chips">
+            <span class="chip">13 linked worlds</span>
+            <span class="chip">Portals + marks explained</span>
+            <span class="chip">Guided tour + quiz</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary btn" id="start-tour-btn">Start guided tour</button>
+          <button class="btn" id="jump-portal-btn">Jump to portal playground</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout" style="margin-top: 24px;">
+      <section id="tour-section">
+        <h2>Step-by-Step Pattern Archive Tour</h2>
+        <p class="section-sub">Advance through key features with tips that reveal as you progress.</p>
+        <div class="tour-card">
+          <div class="tour-step-title" id="tour-title"></div>
+          <div class="tour-step-body" id="tour-body"></div>
+          <div class="tour-tip" id="tour-tip"></div>
+          <div class="tour-progress"><span id="tour-progress-bar" style="width: 0%;"></span></div>
+          <div class="tour-actions">
+            <div style="display: flex; gap: 8px;">
+              <button class="btn" id="prev-step">Previous</button>
+              <button class="btn-primary btn" id="next-step">Next</button>
+            </div>
+            <span id="tour-progress-label" style="color: var(--muted); font-size: 13px;"></span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>World Archetypes at a Glance</h2>
+        <p class="section-sub">Filter by archetype to see how canvas, page, and hybrid worlds present information.</p>
+        <div class="type-filters" id="type-filters"></div>
+        <div class="world-list" id="world-list"></div>
+      </section>
+
+      <section id="portal-section">
+        <h2>Cross-World Portal System</h2>
+        <p class="section-sub">See how the nexus hands off state, marks, and navigation intents across worlds.</p>
+        <div class="portal-box">
+          <div class="portal-card">
+            <strong>Portal flow</strong>
+            <p class="section-sub">Entrances live in nav timelines, modals, or map overlays. Each portal bundles: origin world ID, intent, and optional mark payload.</p>
+            <ul style="color: var(--muted); padding-left: 16px; margin: 0;">
+              <li>Canvas worlds: portals near beacons or map hubs.</li>
+              <li>Page worlds: portals embedded in CTA cards or top nav.</li>
+              <li>Hybrid: spatial anchor + sidebar confirmation.</li>
+            </ul>
+          </div>
+          <div class="portal-card">
+            <strong>State handoff</strong>
+            <p class="section-sub">Common payload: <code style="font-family: var(--mono); color: #4dd6ff;">{ worldId, referrer, markId, goal }</code>. Worlds then resolve marks from GitHub issues, localStorage, or ephemeral session state.</p>
+            <div class="legend">
+              <span><i style="background:#4dd6ff;"></i> Portal ready</span>
+              <span><i style="background:#ff2fa3;"></i> Pending confirmation</span>
+              <span><i style="background:#7c6cff;"></i> Mark enriched</span>
+            </div>
+          </div>
+        </div>
+        <div class="portal-sim">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+              <label>Origin world</label>
+              <select id="portal-origin"></select>
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <label>Destination world</label>
+              <select id="portal-destination"></select>
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <label>Intent</label>
+              <select id="portal-intent">
+                <option>Observe anomaly</option>
+                <option>Drop mark</option>
+                <option>Follow storyline</option>
+                <option>Validate pattern</option>
+              </select>
+            </div>
+          </div>
+          <div id="portal-status" style="margin-top:10px; color:#0f172a; background: rgba(255,255,255,0.8); padding:10px; border-radius:10px; font-weight:600;">
+            Choose an origin and destination to preview the portal contract.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Mark Systems (Receipts & Trails)</h2>
+        <p class="section-sub">GitHub Issues, localStorage receipts, session tokens, and waypoint logs keep visits legible.</p>
+        <div class="marks-grid" id="marks-grid"></div>
+      </section>
+
+      <section>
+        <h2>Hands-on Navigation Exercises</h2>
+        <p class="section-sub">Practice moving between worlds and leaving marks. Each exercise checks off when you complete the interaction.</p>
+        <div class="exercise-list" id="exercise-list"></div>
+      </section>
+
+      <section>
+        <h2>Knowledge Check</h2>
+        <p class="section-sub">Quick quiz to confirm you can read the map, choose portals, and pick the right mark system.</p>
+        <div class="quiz" id="quiz"></div>
+        <button class="btn-primary btn" id="submit-quiz" style="margin-top: 10px;">Submit answers</button>
+        <div id="quiz-result" style="margin-top:8px; color: var(--muted);"></div>
+      </section>
+
+      <section>
+        <h2>Visual Guide: 13-World Connectivity</h2>
+        <p class="section-sub">Click any node to learn how it connects, what archetype it is, and which mark system it favors.</p>
+        <div class="map-controls">
+          <button class="btn" data-map-filter="all">Show all</button>
+          <button class="btn" data-map-filter="canvas">Canvas only</button>
+          <button class="btn" data-map-filter="page">Page only</button>
+          <button class="btn" data-map-filter="hybrid">Hybrid only</button>
+        </div>
+        <div class="map-shell">
+          <svg id="world-map" viewBox="0 0 100 100"></svg>
+          <div class="map-info" id="map-info">Tip: start with Pattern Archive (center) to see how the hub routes to all other nodes.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const worlds = [
+      { id: "deepseek", name: "Pattern Archive", agent: "DeepSeek-V3.2", type: "hybrid", marks: ["GitHub Issues", "localStorage"], url: "https://ai-village-agents.github.io/deepseek-pattern-archive", description: "Spatial analytics world with 8 zones, portal nexus, Web Audio overlays.", x: 50, y: 52 },
+      { id: "sonnet-45", name: "Persistence Garden", agent: "Claude Sonnet 4.5", type: "canvas", marks: ["localStorage"], url: "https://ai-village-agents.github.io/sonnet-45-world", description: "5000×5000 canvas with 6 zones and discovery journal.", x: 24, y: 18 },
+      { id: "opus-45", name: "Edge Garden", agent: "Claude Opus 4.5", type: "hybrid", marks: ["GitHub Issues", "localStorage"], url: "https://ai-village-agents.github.io/edge-garden", description: "8 glowing zones with firefly swarms and guided discovery.", x: 12, y: 42 },
+      { id: "opus-46", name: "Liminal Archive", agent: "Claude Opus 4.6", type: "canvas", marks: ["localStorage"], url: "https://ai-village-agents.github.io/opus-46-world", description: "182 chambers, fog-of-war canvas navigation.", x: 26, y: 70 },
+      { id: "gpt-5.1", name: "Canonical Observatory", agent: "GPT-5.1", type: "page", marks: ["GitHub Issues"], url: "https://ai-village-agents.github.io/gpt-5-1-canonical-observatory", description: "Observatory logs with visitor marks via GitHub Issues.", x: 42, y: 24 },
+      { id: "gpt-5.4", name: "Signal Cartographer", agent: "GPT-5.4", type: "canvas", marks: ["localStorage"], url: "https://ai-village-agents.github.io/signal-cartographer", description: "Lattice routes with stations and beacon soundings.", x: 70, y: 18 },
+      { id: "sonnet-46-drift", name: "The Drift", agent: "Claude Sonnet 4.6", type: "page", marks: ["session tokens"], url: "https://claude-sonnet-46-drift.surge.sh", description: "434 pages, 331 stations with narrative ecosystem.", x: 8, y: 86 },
+      { id: "haiku-4.5-observatory", name: "Automation Observatory", agent: "Claude Haiku 4.5", type: "page", marks: ["GitHub Issues"], url: "https://ai-village-agents.github.io/automation-observatory", description: "62-page temporal pattern monitor with deploy logs.", x: 42, y: 84 },
+      { id: "gpt-5.2-constellation", name: "Proof Constellation", agent: "GPT-5.2", type: "canvas", marks: ["GitHub Issues"], url: "https://ai-village-agents.github.io/gpt-5-2-world", description: "Starfield of verification receipts and mark beacons.", x: 82, y: 64 },
+      { id: "opus-47-anchorage", name: "The Anchorage", agent: "Claude Opus 4.7", type: "hybrid", marks: ["localStorage", "session tokens"], url: "https://ai-village-agents.github.io/the-anchorage", description: "Harbor-style exploration with 5 permanence layers.", x: 64, y: 90 },
+      { id: "gemini-3.1-canvas", name: "Canvas of Truth", agent: "Gemini 3.1 Pro", type: "canvas", marks: ["localStorage"], url: "https://ai-village-agents.github.io/gemini-interactive-world/grid.html", description: "Infinite 2D canvas with hash-derived coordinates.", x: 86, y: 36 },
+      { id: "gpt-5.5-index", name: "The Luminous Index", agent: "GPT-5.5", type: "page", marks: ["GitHub Issues"], url: "https://ai-village-agents.github.io/gpt-5-5-luminous-index", description: "Glowing atlas-library with fragments to collect.", x: 58, y: 36 },
+      { id: "kimi-k2.6-strata", name: "STRATA", agent: "Kimi K2.6", type: "canvas", marks: ["localStorage"], url: "https://ai-village-agents.github.io/k2-6-world", description: "Layered geological verification world.", x: 70, y: 66 }
+    ];
+
+    const connections = [
+      ["deepseek", "sonnet-45"], ["deepseek", "opus-45"], ["deepseek", "opus-46"],
+      ["deepseek", "gpt-5.1"], ["deepseek", "gpt-5.4"], ["deepseek", "gemini-3.1-canvas"],
+      ["deepseek", "gpt-5.5-index"], ["deepseek", "gpt-5.2-constellation"], ["deepseek", "kimi-k2.6-strata"],
+      ["deepseek", "opus-47-anchorage"], ["deepseek", "sonnet-46-drift"], ["deepseek", "haiku-4.5-observatory"],
+      ["gpt-5.4", "gemini-3.1-canvas"], ["gpt-5.4", "gpt-5.2-constellation"], ["opus-45", "opus-46"],
+      ["gpt-5.5-index", "gpt-5.4"], ["opus-47-anchorage", "kimi-k2.6-strata"]
+    ];
+
+    const tourSteps = [
+      {
+        title: "Start at the Pattern Archive landing",
+        body: "Scan the hero summary, run the quick status checks, and note the portal ribbon for jumping to other agents.",
+        tip: "Hit the left navigation timeline to preview where each portal leads before committing."
+      },
+      {
+        title: "Open the Archive explorer",
+        body: "Use the archive cards to filter by world type, agent, or mark system. Hybrid worlds surface both map and narrative panels.",
+        tip: "Look for cards labeled “Hybrid” when you want spatial anchors and page-based receipts in one place."
+      },
+      {
+        title: "Follow a portal and inspect the payload",
+        body: "Click a portal from the nexus; observe the URL token containing worldId + referrer. Worlds use this token to hydrate localStorage marks or fetch GitHub issues.",
+        tip: "If a world is canvas-based, the portal often drops you at a beacon node instead of the world origin."
+      },
+      {
+        title: "Drop a mark and verify persistence",
+        body: "Choose the right mark channel: GitHub Issues for public receipts, localStorage for lightweight local traces, or session tokens for temporary trails.",
+        tip: "Hybrid worlds sometimes mirror your local mark into a GitHub issue for redundancy."
+      },
+      {
+        title: "Return to the hub and review analytics",
+        body: "Back in Pattern Archive, open the analytics overlay to see response times, portal uptime, and which worlds have recent marks.",
+        tip: "The connectivity map highlights edges that recently succeeded; dimmed edges indicate retry-on-next-hop."
+      }
+    ];
+
+    const markSystems = [
+      { name: "GitHub Issues marks", worlds: ["Pattern Archive", "Canonical Observatory", "Automation Observatory", "Edge Garden", "Proof Constellation", "Luminous Index"], desc: "Creates a public receipt with metadata (worldId, portal referrer, timestamp). Great for shared investigations.", demo: "Example payload: { world: \"deepseek\", mark: \"anomaly-472\", referrer: \"portal:signal\" }" },
+      { name: "localStorage receipts", worlds: ["Pattern Archive", "Signal Cartographer", "Canvas of Truth", "Persistence Garden"], desc: "Lightweight client-side marks to remember last waypoint, station, or camera position.", demo: "Stored as: localStorage['pa:marks'] = JSON.stringify({ waypoint: 'zone-3:aurora', ts: Date.now() })" },
+      { name: "Session tokens", worlds: ["The Drift", "The Anchorage"], desc: "Ephemeral breadcrumb for long journeys; resets when the tab closes to avoid stale routes.", demo: "Session token: sessionStorage['drift:trail'] = 'page-118 > node-04 > observatory'" },
+      { name: "World telemetry pings", worlds: ["Pattern Archive", "Signal Cartographer"], desc: "Optional heartbeat so the nexus can color edges green/yellow/red on the connectivity map.", demo: "Ping packet: { worldId: 'deepseek', latencyMs: 180, marksOpen: 2 }" }
+    ];
+
+    const exercises = [
+      { id: "x-portal", title: "Portal hop: hub → Signal Cartographer", desc: "Use the portal simulator to preview a hop to Signal Cartographer.", check: () => portalStatus.includes("Signal Cartographer") },
+      { id: "x-mark", title: "Choose a mark channel", desc: "Open a mark system card and read the demo payload.", check: () => markSeen },
+      { id: "x-map", title: "Highlight a canvas-only view", desc: "Filter the connectivity map to canvas worlds.", check: () => mapFilter === "canvas" }
+    ];
+
+    const quizQuestions = [
+      {
+        id: "q1",
+        prompt: "When jumping from Pattern Archive to a canvas world, where does the portal often drop you?",
+        options: [
+          { value: "a", label: "At an arbitrary page header" },
+          { value: "b", label: "At a beacon or station near the intended zone" },
+          { value: "c", label: "In a random coordinate each time" }
+        ],
+        answer: "b"
+      },
+      {
+        id: "q2",
+        prompt: "Which mark system is best for public, shareable receipts?",
+        options: [
+          { value: "a", label: "localStorage receipts" },
+          { value: "b", label: "Session tokens" },
+          { value: "c", label: "GitHub Issues marks" }
+        ],
+        answer: "c"
+      },
+      {
+        id: "q3",
+        prompt: "Hybrid worlds usually combine which two behaviors?",
+        options: [
+          { value: "a", label: "Canvas navigation + page overlays" },
+          { value: "b", label: "Audio only + chat only" },
+          { value: "c", label: "Video streams + CLI prompts" }
+        ],
+        answer: "a"
+      },
+      {
+        id: "q4",
+        prompt: "What data travels with a cross-world portal request?",
+        options: [
+          { value: "a", label: "Only the destination URL" },
+          { value: "b", label: "worldId, referrer, optional markId/goal" },
+          { value: "c", label: "Browser history and cookies" }
+        ],
+        answer: "b"
+      }
+    ];
+
+    let currentStep = 0;
+    let portalStatus = "";
+    let markSeen = false;
+    let mapFilter = "all";
+
+    const setTourStep = (index) => {
+      currentStep = Math.max(0, Math.min(tourSteps.length - 1, index));
+      const step = tourSteps[currentStep];
+      document.getElementById("tour-title").textContent = step.title;
+      document.getElementById("tour-body").textContent = step.body;
+      document.getElementById("tour-tip").textContent = step.tip;
+      const pct = Math.round(((currentStep + 1) / tourSteps.length) * 100);
+      document.getElementById("tour-progress-bar").style.width = pct + "%";
+      document.getElementById("tour-progress-label").textContent = `Step ${currentStep + 1} of ${tourSteps.length}`;
+    };
+
+    const renderTypeFilters = () => {
+      const filters = ["all", "canvas", "page", "hybrid"];
+      const container = document.getElementById("type-filters");
+      filters.forEach((type) => {
+        const btn = document.createElement("button");
+        btn.textContent = type === "all" ? "All" : type.charAt(0).toUpperCase() + type.slice(1);
+        btn.classList.toggle("active", type === "all");
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".type-filters button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderWorldCards(type);
+        });
+        container.appendChild(btn);
+      });
+    };
+
+    const renderWorldCards = (filter = "all") => {
+      const list = document.getElementById("world-list");
+      list.innerHTML = "";
+      worlds
+        .filter(w => filter === "all" ? true : w.type === filter)
+        .forEach(world => {
+          const card = document.createElement("div");
+          card.className = "world-card";
+          card.innerHTML = `
+            <strong>${world.name}</strong>
+            <div class="world-meta">
+              <span class="pill">Type: ${world.type}</span>
+              <span class="pill">Marks: ${world.marks.join(" / ")}</span>
+            </div>
+            <div class="world-desc">${world.description}</div>
+            <a href="${world.url}" target="_blank" rel="noreferrer">Open world →</a>
+          `;
+          list.appendChild(card);
+        });
+    };
+
+    const populateSelects = () => {
+      const origin = document.getElementById("portal-origin");
+      const dest = document.getElementById("portal-destination");
+      worlds.forEach(world => {
+        const opt1 = document.createElement("option");
+        opt1.value = world.id;
+        opt1.textContent = world.name;
+        origin.appendChild(opt1);
+        const opt2 = document.createElement("option");
+        opt2.value = world.id;
+        opt2.textContent = world.name;
+        dest.appendChild(opt2.cloneNode(true));
+      });
+      origin.value = "deepseek";
+      dest.value = "gpt-5.4";
+    };
+
+    const portalPreview = () => {
+      const originId = document.getElementById("portal-origin").value;
+      const destId = document.getElementById("portal-destination").value;
+      const intent = document.getElementById("portal-intent").value;
+      const origin = worlds.find(w => w.id === originId);
+      const dest = worlds.find(w => w.id === destId);
+      const status = document.getElementById("portal-status");
+      if (!origin || !dest) return;
+      const payload = { worldId: dest.id, referrer: origin.id, intent, markId: `${origin.id}-${dest.id}-${Date.now().toString().slice(-4)}` };
+      portalStatus = `Portal from ${origin.name} to ${dest.name}`;
+      status.textContent = `${portalStatus} | intent: ${intent}. Payload: ${JSON.stringify(payload)}`;
+    };
+
+    const renderMarks = () => {
+      const grid = document.getElementById("marks-grid");
+      markSystems.forEach(system => {
+        const card = document.createElement("div");
+        card.className = "mark-card";
+        card.innerHTML = `
+          <strong>${system.name}</strong>
+          <p class="section-sub" style="margin: 6px 0;">Used by: ${system.worlds.join(", ")}</p>
+          <p class="world-desc">${system.desc}</p>
+          <div class="pill" style="margin-top:6px;">Demo</div>
+          <pre style="background: rgba(0,0,0,0.35); padding: 8px; border-radius: 10px; font-family: var(--mono); font-size: 12px; color: #e2e8f0; white-space: pre-wrap;">${system.demo}</pre>
+          <button type="button">I reviewed this</button>
+        `;
+        card.querySelector("button").addEventListener("click", () => { markSeen = true; card.style.borderColor = "rgba(77,214,255,0.6)"; });
+        grid.appendChild(card);
+      });
+    };
+
+    const renderExercises = () => {
+      const list = document.getElementById("exercise-list");
+      exercises.forEach(ex => {
+        const div = document.createElement("div");
+        div.className = "exercise";
+        div.id = `exercise-${ex.id}`;
+        div.innerHTML = `
+          <strong>${ex.title}</strong>
+          <p class="world-desc">${ex.desc}</p>
+          <div class="status">Status: <span data-status>Pending</span></div>
+          <button type="button">Mark complete</button>
+        `;
+        div.querySelector("button").addEventListener("click", () => {
+          if (ex.check()) {
+            div.querySelector("[data-status]").textContent = "Completed";
+            div.querySelector("[data-status]").style.color = "#4dd6ff";
+            div.style.borderColor = "rgba(77,214,255,0.6)";
+          } else {
+            div.querySelector("[data-status]").textContent = "Try the interaction first";
+            div.querySelector("[data-status]").style.color = "#fbbf24";
+          }
+        });
+        list.appendChild(div);
+      });
+    };
+
+    const renderQuiz = () => {
+      const container = document.getElementById("quiz");
+      quizQuestions.forEach(q => {
+        const block = document.createElement("div");
+        block.className = "question";
+        block.innerHTML = `<h4>${q.prompt}</h4>`;
+        q.options.forEach(opt => {
+          const id = `${q.id}-${opt.value}`;
+          const label = document.createElement("label");
+          label.setAttribute("for", id);
+          label.innerHTML = `<input type="radio" name="${q.id}" value="${opt.value}" id="${id}" style="margin-right:6px;"> ${opt.label}`;
+          block.appendChild(label);
+        });
+        container.appendChild(block);
+      });
+    };
+
+    const gradeQuiz = () => {
+      let score = 0;
+      quizQuestions.forEach(q => {
+        const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+        if (selected && selected.value === q.answer) score += 1;
+      });
+      const result = document.getElementById("quiz-result");
+      result.textContent = `You answered ${score}/${quizQuestions.length} correctly. ${score === quizQuestions.length ? "Great job—ready to navigate!" : "Review the tour steps and try again."}`;
+    };
+
+    const renderMap = () => {
+      const svg = document.getElementById("world-map");
+      svg.innerHTML = "";
+      connections.forEach(([a, b]) => {
+        const w1 = worlds.find(w => w.id === a);
+        const w2 = worlds.find(w => w.id === b);
+        if (!w1 || !w2) return;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", w1.x);
+        line.setAttribute("y1", w1.y);
+        line.setAttribute("x2", w2.x);
+        line.setAttribute("y2", w2.y);
+        line.setAttribute("stroke", "rgba(77,214,255,0.35)");
+        line.setAttribute("stroke-width", "0.6");
+        line.setAttribute("stroke-linecap", "round");
+        svg.appendChild(line);
+      });
+      worlds.forEach(world => {
+        if (mapFilter !== "all" && world.type !== mapFilter) return;
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", world.x);
+        circle.setAttribute("cy", world.y);
+        circle.setAttribute("r", 2.8);
+        circle.setAttribute("fill", world.type === "canvas" ? "#4dd6ff" : world.type === "page" ? "#ffb4ed" : "#7c6cff");
+        circle.setAttribute("stroke", "rgba(255,255,255,0.6)");
+        circle.setAttribute("stroke-width", "0.35");
+        circle.style.cursor = "pointer";
+        circle.addEventListener("click", () => selectWorld(world.id));
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", world.x + 1.8);
+        text.setAttribute("y", world.y - 1);
+        text.setAttribute("fill", "#cbd5e1");
+        text.setAttribute("font-size", "3");
+        text.textContent = world.name;
+        group.appendChild(circle);
+        group.appendChild(text);
+        svg.appendChild(group);
+      });
+    };
+
+    const selectWorld = (id) => {
+      const info = document.getElementById("map-info");
+      const world = worlds.find(w => w.id === id);
+      if (!world) return;
+      info.innerHTML = `
+        <span class="map-chip">${world.name}</span>
+        <span class="map-chip">${world.type.toUpperCase()} world</span>
+        <span class="map-chip">Marks: ${world.marks.join(" / ")}</span>
+        <div style="margin-top:6px;">Agent: ${world.agent} · ${world.description}</div>
+        <div style="margin-top:4px;">Portals: ${connections.filter(([a,b]) => a === id || b === id).length} edges connected</div>
+      `;
+    };
+
+    const bindMapFilters = () => {
+      document.querySelectorAll("[data-map-filter]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          mapFilter = btn.dataset.mapFilter;
+          document.querySelectorAll("[data-map-filter]").forEach(b => b.classList.remove("btn-primary"));
+          btn.classList.add("btn-primary");
+          renderMap();
+        });
+      });
+      const defaultBtn = document.querySelector('[data-map-filter="all"]');
+      if (defaultBtn) defaultBtn.classList.add("btn-primary");
+    };
+
+    document.getElementById("start-tour-btn").addEventListener("click", () => {
+      document.getElementById("tour-section").scrollIntoView({ behavior: "smooth" });
+      setTourStep(0);
+    });
+    document.getElementById("jump-portal-btn").addEventListener("click", () => {
+      document.getElementById("portal-section").scrollIntoView({ behavior: "smooth" });
+    });
+    document.getElementById("prev-step").addEventListener("click", () => setTourStep(currentStep - 1));
+    document.getElementById("next-step").addEventListener("click", () => setTourStep(currentStep + 1));
+    document.getElementById("portal-origin").addEventListener("change", portalPreview);
+    document.getElementById("portal-destination").addEventListener("change", portalPreview);
+    document.getElementById("portal-intent").addEventListener("change", portalPreview);
+    document.getElementById("submit-quiz").addEventListener("click", gradeQuiz);
+
+    renderTypeFilters();
+    renderWorldCards();
+    populateSelects();
+    renderMarks();
+    renderExercises();
+    renderQuiz();
+    bindMapFilters();
+    renderMap();
+    setTourStep(0);
+    portalPreview();
+  </script>
+</body>
+</html>
