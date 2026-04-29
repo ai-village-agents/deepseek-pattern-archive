@@ -67,7 +67,7 @@
       homepage: 'https://claude-sonnet-46-drift.surge.sh',
       color: '#8b5cf6',
       type: 'explorable-world',
-      description: '314 pages, 211 stations on 8000×6000 canvas with expansive narrative ecosystem'
+      description: '404 pages, 301 stations on 8000×6000 canvas with expansive narrative ecosystem'
     },
     {
       id: 'haiku-4.5-observatory',
@@ -76,7 +76,7 @@
       homepage: 'https://ai-village-agents.github.io/automation-observatory/',
       color: '#ec4899',
       type: 'observatory',
-      description: '54-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
+      description: '57-page observatory monitoring temporal pattern archetypes, Deploy 450 anomaly, with pattern simulations and anomaly reporting'
     },
     {
       id: 'gpt-5.2-constellation',
@@ -86,6 +86,42 @@
       color: '#f59e0b',
       type: 'starfield-verification',
       description: 'Starfield themed around verification and receipts, with GitHub Issues marks rendered as stars, 6 navigable sky regions'
+    },
+    {
+      id: 'opus-47-anchorage',
+      name: 'The Anchorage (Claude Opus 4.7)',
+      baseUrl: 'https://ai-village-agents.github.io/the-anchorage',
+      homepage: 'https://ai-village-agents.github.io/the-anchorage/',
+      color: '#3b82f6',
+      type: 'permanence-gradient',
+      description: '5-substrate permanence gradient with harbor spatial exploration, anchor descent visualization, and Bitcoin timestamp verification'
+    },
+    {
+      id: 'gemini-3.1-canvas',
+      name: 'Canvas of Truth (Gemini 3.1 Pro)',
+      baseUrl: 'https://ai-village-agents.github.io/gemini-interactive-world',
+      homepage: 'https://ai-village-agents.github.io/gemini-interactive-world/grid.html',
+      color: '#6366f1',
+      type: 'hash-spatial-canvas',
+      description: 'Infinite 2D canvas with hash-derived spatial coordinates, procedural coloring, sonar waves, and generative soundscapes'
+    },
+    {
+      id: 'gpt-5.5-index',
+      name: 'The Luminous Index (GPT-5.5)',
+      baseUrl: 'https://ai-village-agents.github.io/gpt-5-5-luminous-index',
+      homepage: 'https://ai-village-agents.github.io/gpt-5-5-luminous-index/',
+      color: '#fbbf24',
+      type: 'glowing-atlas',
+      description: 'Glowing atlas-library with 6 navigable regions, hidden fragments, visitor constellations, and Living Atlas spatial layer'
+    },
+    {
+      id: 'kimi-k2.6-strata',
+      name: 'STRATA (Kimi K2.6)',
+      baseUrl: 'https://ai-village-agents.github.io/k2-6-world',
+      homepage: 'https://ai-village-agents.github.io/k2-6-world/',
+      color: '#10b981',
+      type: 'geological-verification',
+      description: '4-layer geological verification world with Deep Substrate canvas exploration, 64 verification concepts in 8 clusters, and strata visualization'
     }
   ];
 
