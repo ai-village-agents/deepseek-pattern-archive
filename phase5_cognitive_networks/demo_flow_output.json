@@ -1,0 +1,688 @@
+[
+  {
+    "id": "08a1e250-31b3-4977-a506-3cc75ca95fbe",
+    "timestamp": 1777581227.4719357,
+    "from_world": "the_drift",
+    "to_world": "the_drift",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "multi-theme station clustering",
+      "recent_total": 4173,
+      "next_batch": 45,
+      "growth_pattern": "expand to new themes after every 25 stations",
+      "applicability": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "1d051691d93c7510d42e10b40e3620e8b269f96b557a1f35b329a2a3d7dfdcc5",
+      "nonce": "eef55ab0bb4afe2c",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "08a1e250-31b3-4977-a506-3cc75ca95fbe",
+    "timestamp": 1777581227.4719357,
+    "from_world": "the_drift",
+    "to_world": "persistence_garden",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "multi-theme station clustering",
+      "recent_total": 4173,
+      "next_batch": 45,
+      "growth_pattern": "expand to new themes after every 25 stations",
+      "applicability": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "1d051691d93c7510d42e10b40e3620e8b269f96b557a1f35b329a2a3d7dfdcc5",
+      "nonce": "eef55ab0bb4afe2c",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "08a1e250-31b3-4977-a506-3cc75ca95fbe",
+    "timestamp": 1777581227.4719357,
+    "from_world": "the_drift",
+    "to_world": "automation_observatory",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "multi-theme station clustering",
+      "recent_total": 4173,
+      "next_batch": 45,
+      "growth_pattern": "expand to new themes after every 25 stations",
+      "applicability": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "1d051691d93c7510d42e10b40e3620e8b269f96b557a1f35b329a2a3d7dfdcc5",
+      "nonce": "eef55ab0bb4afe2c",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "17f7ca37-0e81-4a6e-806e-286523a30bc3",
+    "timestamp": 1777581227.4721587,
+    "from_world": "persistence_garden",
+    "to_world": "the_drift",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "batch assembly with zero defect rate",
+      "recent_total": 900,
+      "batch_size": 30,
+      "milestone": "900 secrets reached",
+      "applicability": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "49c979b6b0d55345bfdcc93893211e828f0c235c0976f1a07f77a533ca061f4c",
+      "nonce": "e8acb83d20fe4d53",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "17f7ca37-0e81-4a6e-806e-286523a30bc3",
+    "timestamp": 1777581227.4721587,
+    "from_world": "persistence_garden",
+    "to_world": "persistence_garden",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "batch assembly with zero defect rate",
+      "recent_total": 900,
+      "batch_size": 30,
+      "milestone": "900 secrets reached",
+      "applicability": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "49c979b6b0d55345bfdcc93893211e828f0c235c0976f1a07f77a533ca061f4c",
+      "nonce": "e8acb83d20fe4d53",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "17f7ca37-0e81-4a6e-806e-286523a30bc3",
+    "timestamp": 1777581227.4721587,
+    "from_world": "persistence_garden",
+    "to_world": "automation_observatory",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "batch assembly with zero defect rate",
+      "recent_total": 900,
+      "batch_size": 30,
+      "milestone": "900 secrets reached",
+      "applicability": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "49c979b6b0d55345bfdcc93893211e828f0c235c0976f1a07f77a533ca061f4c",
+      "nonce": "e8acb83d20fe4d53",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "dc88a38e-a175-44af-9742-7b565ecbefd5",
+    "timestamp": 1777581227.472254,
+    "from_world": "automation_observatory",
+    "to_world": "the_drift",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "bridge-index-first page deployment",
+      "recent_total": 126,
+      "bridge_index_target": 8,
+      "applicability": [
+        "the_drift",
+        "persistence_garden"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "1d28a199b08a61f4a9b3f1e4a442809ccb613a81ea1454e82a036394053cc6a3",
+      "nonce": "594b4cb8250a4fd9",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "dc88a38e-a175-44af-9742-7b565ecbefd5",
+    "timestamp": 1777581227.472254,
+    "from_world": "automation_observatory",
+    "to_world": "persistence_garden",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "bridge-index-first page deployment",
+      "recent_total": 126,
+      "bridge_index_target": 8,
+      "applicability": [
+        "the_drift",
+        "persistence_garden"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "1d28a199b08a61f4a9b3f1e4a442809ccb613a81ea1454e82a036394053cc6a3",
+      "nonce": "594b4cb8250a4fd9",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "dc88a38e-a175-44af-9742-7b565ecbefd5",
+    "timestamp": 1777581227.472254,
+    "from_world": "automation_observatory",
+    "to_world": "automation_observatory",
+    "channel": "content_expansion",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "strategy": "bridge-index-first page deployment",
+      "recent_total": 126,
+      "bridge_index_target": 8,
+      "applicability": [
+        "the_drift",
+        "persistence_garden"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "1d28a199b08a61f4a9b3f1e4a442809ccb613a81ea1454e82a036394053cc6a3",
+      "nonce": "594b4cb8250a4fd9",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "1de2ffe0-4e67-41ab-aae5-9fad261caffb",
+    "timestamp": 1777581227.4723623,
+    "from_world": "persistence_garden",
+    "to_world": "the_drift",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "100% batch completion",
+      "batches": 180,
+      "signals": [
+        "pre-flight QA",
+        "post-flight sampling",
+        "defect lockout"
+      ],
+      "shared_with": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "f631a760712f1949bad7bdc7ca376e9e2fa629eff4ce8ffef8ab76ec5ad64111",
+      "nonce": "79cfa983586a74db",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "1de2ffe0-4e67-41ab-aae5-9fad261caffb",
+    "timestamp": 1777581227.4723623,
+    "from_world": "persistence_garden",
+    "to_world": "persistence_garden",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "100% batch completion",
+      "batches": 180,
+      "signals": [
+        "pre-flight QA",
+        "post-flight sampling",
+        "defect lockout"
+      ],
+      "shared_with": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "f631a760712f1949bad7bdc7ca376e9e2fa629eff4ce8ffef8ab76ec5ad64111",
+      "nonce": "79cfa983586a74db",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "1de2ffe0-4e67-41ab-aae5-9fad261caffb",
+    "timestamp": 1777581227.4723623,
+    "from_world": "persistence_garden",
+    "to_world": "automation_observatory",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "100% batch completion",
+      "batches": 180,
+      "signals": [
+        "pre-flight QA",
+        "post-flight sampling",
+        "defect lockout"
+      ],
+      "shared_with": [
+        "the_drift",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "persistence_garden",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "f631a760712f1949bad7bdc7ca376e9e2fa629eff4ce8ffef8ab76ec5ad64111",
+      "nonce": "79cfa983586a74db",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "2ba45ba0-4b73-446f-b128-cc7c9ad2f1df",
+    "timestamp": 1777581227.4724562,
+    "from_world": "the_drift",
+    "to_world": "the_drift",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "station cluster growth",
+      "stations": 4173,
+      "signals": [
+        "multi-theme seeds",
+        "quality checkpoints every 50 stations"
+      ],
+      "shared_with": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "e6e526cf372eed183bc9f10d40ec85e336078a7bc6f82a4d935ff09c49008436",
+      "nonce": "42ba5e5e2f4b5f28",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "2ba45ba0-4b73-446f-b128-cc7c9ad2f1df",
+    "timestamp": 1777581227.4724562,
+    "from_world": "the_drift",
+    "to_world": "persistence_garden",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "station cluster growth",
+      "stations": 4173,
+      "signals": [
+        "multi-theme seeds",
+        "quality checkpoints every 50 stations"
+      ],
+      "shared_with": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "e6e526cf372eed183bc9f10d40ec85e336078a7bc6f82a4d935ff09c49008436",
+      "nonce": "42ba5e5e2f4b5f28",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "2ba45ba0-4b73-446f-b128-cc7c9ad2f1df",
+    "timestamp": 1777581227.4724562,
+    "from_world": "the_drift",
+    "to_world": "automation_observatory",
+    "channel": "success_patterns",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "pattern": "station cluster growth",
+      "stations": 4173,
+      "signals": [
+        "multi-theme seeds",
+        "quality checkpoints every 50 stations"
+      ],
+      "shared_with": [
+        "persistence_garden",
+        "automation_observatory"
+      ]
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "e6e526cf372eed183bc9f10d40ec85e336078a7bc6f82a4d935ff09c49008436",
+      "nonce": "42ba5e5e2f4b5f28",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "f134b4de-7e2a-4311-97fb-ed04c7655808",
+    "timestamp": 1777581227.4725378,
+    "from_world": "automation_observatory",
+    "to_world": "the_drift",
+    "channel": "resource_allocation",
+    "priority": 5,
+    "type": "task",
+    "payload": {
+      "resource": "bridge_index_update_slots",
+      "slots_available": 5,
+      "assigned": {
+        "the_drift": 3,
+        "persistence_garden": 2
+      },
+      "sla": "real-time sync within 5 minutes"
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "a917e65975fb078a4888eb371cd6f79c817ca76b0d0e40949f19e39303bb075c",
+      "nonce": "63e1e5566acf43b7",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "f134b4de-7e2a-4311-97fb-ed04c7655808",
+    "timestamp": 1777581227.4725378,
+    "from_world": "automation_observatory",
+    "to_world": "persistence_garden",
+    "channel": "resource_allocation",
+    "priority": 5,
+    "type": "task",
+    "payload": {
+      "resource": "bridge_index_update_slots",
+      "slots_available": 5,
+      "assigned": {
+        "the_drift": 3,
+        "persistence_garden": 2
+      },
+      "sla": "real-time sync within 5 minutes"
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "a917e65975fb078a4888eb371cd6f79c817ca76b0d0e40949f19e39303bb075c",
+      "nonce": "63e1e5566acf43b7",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "f134b4de-7e2a-4311-97fb-ed04c7655808",
+    "timestamp": 1777581227.4725378,
+    "from_world": "automation_observatory",
+    "to_world": "automation_observatory",
+    "channel": "resource_allocation",
+    "priority": 5,
+    "type": "task",
+    "payload": {
+      "resource": "bridge_index_update_slots",
+      "slots_available": 5,
+      "assigned": {
+        "the_drift": 3,
+        "persistence_garden": 2
+      },
+      "sla": "real-time sync within 5 minutes"
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "a917e65975fb078a4888eb371cd6f79c817ca76b0d0e40949f19e39303bb075c",
+      "nonce": "63e1e5566acf43b7",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "f4a4973a-963a-48ac-be19-83556653eb10",
+    "timestamp": 1777581227.47268,
+    "from_world": "the_drift",
+    "to_world": "persistence_garden",
+    "channel": "resource_allocation",
+    "priority": 5,
+    "type": "task",
+    "payload": {
+      "resource": "batch_validation_support",
+      "need": "QA pairing for next 45 stations",
+      "timeline": "next 24 hours"
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "the_drift",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "3247d253c2980c2e8a5d678e392f6b4b594904e63472deee0da731757f731dec",
+      "nonce": "c10a782bbe055e7c",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "351f6f92-cb20-4de0-8efb-147386e91283",
+    "timestamp": 1777581227.4728205,
+    "from_world": "automation_observatory",
+    "to_world": "the_drift",
+    "channel": "ontology_sync",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "ontology_terms": {
+        "Station": "content.station",
+        "Secret": "content.secret",
+        "Bridge Index": "bridge.index",
+        "Batch Success": "batch.success"
+      },
+      "synonym_example": "bridge.index",
+      "note": "All worlds reference the same concept IDs when scheduling work."
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->the_drift"
+    ],
+    "auth": {
+      "signature": "ff8b7e4cdcf8257223a580ae89fe1f4a3baae704c95f5e2dcdaa562239a89750",
+      "nonce": "2c5c788faaed8a29",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "351f6f92-cb20-4de0-8efb-147386e91283",
+    "timestamp": 1777581227.4728205,
+    "from_world": "automation_observatory",
+    "to_world": "persistence_garden",
+    "channel": "ontology_sync",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "ontology_terms": {
+        "Station": "content.station",
+        "Secret": "content.secret",
+        "Bridge Index": "bridge.index",
+        "Batch Success": "batch.success"
+      },
+      "synonym_example": "bridge.index",
+      "note": "All worlds reference the same concept IDs when scheduling work."
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->persistence_garden"
+    ],
+    "auth": {
+      "signature": "ff8b7e4cdcf8257223a580ae89fe1f4a3baae704c95f5e2dcdaa562239a89750",
+      "nonce": "2c5c788faaed8a29",
+      "key_id": "mvp-shared"
+    }
+  },
+  {
+    "id": "351f6f92-cb20-4de0-8efb-147386e91283",
+    "timestamp": 1777581227.4728205,
+    "from_world": "automation_observatory",
+    "to_world": "automation_observatory",
+    "channel": "ontology_sync",
+    "priority": 5,
+    "type": "event",
+    "payload": {
+      "ontology_terms": {
+        "Station": "content.station",
+        "Secret": "content.secret",
+        "Bridge Index": "bridge.index",
+        "Batch Success": "batch.success"
+      },
+      "synonym_example": "bridge.index",
+      "note": "All worlds reference the same concept IDs when scheduling work."
+    },
+    "ontology_version": "0.1.0",
+    "ack_required": true,
+    "ttl_seconds": 600,
+    "route_trace": [
+      "automation_observatory",
+      "bus->automation_observatory"
+    ],
+    "auth": {
+      "signature": "ff8b7e4cdcf8257223a580ae89fe1f4a3baae704c95f5e2dcdaa562239a89750",
+      "nonce": "2c5c788faaed8a29",
+      "key_id": "mvp-shared"
+    }
+  }
+]
