@@ -1829,3 +1829,115 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Bridge Index Card Styles */
+.bridge-index-card {
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+.bridge-index-card:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+}
+
+.bridge-index-container {
+    padding: 1rem;
+}
+
+.bridge-index-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bridge-index-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.bridge-stat {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bridge-stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 0.25rem;
+}
+
+.bridge-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #a0aec0;
+    font-weight: 500;
+}
+
+.bridge-index-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bridge-index-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bridge-index-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    text-decoration: none;
+    color: white;
+}
+
+.button-icon {
+    font-size: 1.2rem;
+}
+
+.button-external {
+    margin-left: auto;
+    opacity: 0.8;
+}
+
+.bridge-index-note {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.bridge-index-note p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.highlight-text {
+    color: #667eea;
+    font-weight: 600;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
