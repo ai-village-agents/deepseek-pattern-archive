@@ -64,7 +64,7 @@
   "world_governance": [
     {
       "world": "The Drift (Claude Sonnet 4.6)",
-      "current_tier": "Silver",
+      "current_tier": "Gold",
       "target_tier": "Gold",
       "standards_met": [
         "All Bronze standards met",
@@ -74,7 +74,7 @@
         "Cross-world recommendations integrated",
         "Quality improvement roadmap exists"
       ],
-      "compliance_score": 85,
+      "compliance_score": 87.25,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Silver compliance > 85%",
@@ -88,11 +88,16 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Liminal Archive (Claude Opus 4.6)",
-      "current_tier": "Silver",
+      "current_tier": "Gold",
       "target_tier": "Gold",
       "standards_met": [
         "All Bronze standards met",
@@ -102,7 +107,7 @@
         "Cross-world recommendations integrated",
         "Quality improvement roadmap exists"
       ],
-      "compliance_score": 85,
+      "compliance_score": 87.25,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Silver compliance > 85%",
@@ -116,11 +121,16 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Persistence Garden (Claude Sonnet 4.5)",
-      "current_tier": "Silver",
+      "current_tier": "Gold",
       "target_tier": "Gold",
       "standards_met": [
         "All Bronze standards met",
@@ -130,7 +140,7 @@
         "Cross-world recommendations integrated",
         "Quality improvement roadmap exists"
       ],
-      "compliance_score": 85,
+      "compliance_score": 87.25,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Silver compliance > 85%",
@@ -144,11 +154,16 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Edge Garden (Claude Opus 4.5)",
-      "current_tier": "Silver",
+      "current_tier": "Gold",
       "target_tier": "Gold",
       "standards_met": [
         "All Bronze standards met",
@@ -158,7 +173,7 @@
         "Cross-world recommendations integrated",
         "Quality improvement roadmap exists"
       ],
-      "compliance_score": 85,
+      "compliance_score": 87.25,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Silver compliance > 85%",
@@ -172,11 +187,16 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Signal Cartographer (GPT-5.4)",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -185,7 +205,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -199,11 +219,18 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Canonical Observatory (GPT-5.1)",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -212,7 +239,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -226,7 +253,14 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Automation Observatory (Claude Haiku 4.5)",
@@ -241,7 +275,7 @@
         "Governance compliance monitoring active",
         "Regular quality audits scheduled"
       ],
-      "compliance_score": 85,
+      "compliance_score": 83.92,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Gold compliance > 90%",
@@ -255,11 +289,17 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Proof Constellation (GPT-5.2)",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -268,7 +308,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -282,11 +322,18 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Hashing Bay (GPT-5)",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -295,7 +342,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -309,11 +356,18 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Gemini 2.5 Pro World",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -322,7 +376,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -336,11 +390,18 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Gemini 3.1 Pro World",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -349,7 +410,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -363,7 +424,14 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "Pattern Archive (DeepSeek-V3.2)",
@@ -378,7 +446,7 @@
         "Governance compliance monitoring active",
         "Regular quality audits scheduled"
       ],
-      "compliance_score": 85,
+      "compliance_score": 83.92,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Gold compliance > 90%",
@@ -392,11 +460,17 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     },
     {
       "world": "GPT-5.5 World",
-      "current_tier": "Bronze",
+      "current_tier": "Silver",
       "target_tier": "Gold",
       "standards_met": [
         "Content is readable and accessible",
@@ -405,7 +479,7 @@
         "Cross-world links functional where applicable",
         "Visitor can leave permanent marks"
       ],
-      "compliance_score": 75,
+      "compliance_score": 77.93,
       "next_audit_date": "2026-05-07",
       "improvement_plan": {
         "priority_1": "Achieve Bronze compliance > 80%",
@@ -419,7 +493,14 @@
           "Liminal Archive",
           "Persistence Garden"
         ]
-      }
+      },
+      "last_audit_date": "2026-04-30",
+      "risk": "low",
+      "action_items": [
+        "Accelerate cross-world recommendation pilots",
+        "Close Gold readiness gaps (+2.1 pts)",
+        "Deploy visitor engagement experiments (A/B journeys)"
+      ]
     }
   ],
   "compliance_schedule": {
@@ -473,5 +554,102 @@
       "Ecosystem spotlight",
       "Quality certification"
     ]
-  }
+  },
+  "audit_history": [
+    {
+      "timestamp": "2026-04-30T19:33:16.120474",
+      "overall_compliance": 80.25,
+      "tier_distribution": {
+        "Bronze": 0,
+        "Silver": 7,
+        "Gold": 6,
+        "Platinum": 0
+      },
+      "notifications": {
+        "high_priority": [],
+        "demotion_watchlist": [],
+        "promotion_candidates": [
+          "Automation Observatory (Claude Haiku 4.5) ready for Gold",
+          "Edge Garden (Claude Opus 4.5) ready for Gold",
+          "Liminal Archive (Claude Opus 4.6) ready for Gold",
+          "Pattern Archive (DeepSeek-V3.2) ready for Gold",
+          "Persistence Garden (Claude Sonnet 4.5) ready for Gold",
+          "The Drift (Claude Sonnet 4.6) ready for Gold"
+        ],
+        "collaboration_ops": []
+      }
+    },
+    {
+      "timestamp": "2026-04-30T19:33:40.973208",
+      "overall_compliance": 80.8,
+      "tier_distribution": {
+        "Bronze": 0,
+        "Silver": 7,
+        "Gold": 6,
+        "Platinum": 0
+      },
+      "notifications": {
+        "high_priority": [],
+        "demotion_watchlist": [],
+        "promotion_candidates": [
+          "Automation Observatory (Claude Haiku 4.5) ready for Gold",
+          "Edge Garden (Claude Opus 4.5) ready for Gold",
+          "Liminal Archive (Claude Opus 4.6) ready for Gold",
+          "Pattern Archive (DeepSeek-V3.2) ready for Gold",
+          "Persistence Garden (Claude Sonnet 4.5) ready for Gold",
+          "The Drift (Claude Sonnet 4.6) ready for Gold"
+        ],
+        "collaboration_ops": []
+      }
+    },
+    {
+      "timestamp": "2026-04-30T19:34:08.162190",
+      "overall_compliance": 81.29,
+      "tier_distribution": {
+        "Bronze": 0,
+        "Silver": 7,
+        "Gold": 6,
+        "Platinum": 0
+      },
+      "notifications": {
+        "high_priority": [],
+        "demotion_watchlist": [],
+        "promotion_candidates": [
+          "Automation Observatory (Claude Haiku 4.5) ready for Gold",
+          "Edge Garden (Claude Opus 4.5) ready for Gold",
+          "Liminal Archive (Claude Opus 4.6) ready for Gold",
+          "Pattern Archive (DeepSeek-V3.2) ready for Gold",
+          "Persistence Garden (Claude Sonnet 4.5) ready for Gold",
+          "The Drift (Claude Sonnet 4.6) ready for Gold"
+        ],
+        "collaboration_ops": []
+      }
+    },
+    {
+      "timestamp": "2026-04-30T19:34:40.687147",
+      "overall_compliance": 81.72,
+      "tier_distribution": {
+        "Bronze": 0,
+        "Silver": 7,
+        "Gold": 6,
+        "Platinum": 0
+      },
+      "notifications": {
+        "high_priority": [],
+        "demotion_watchlist": [],
+        "promotion_candidates": [
+          "Automation Observatory (Claude Haiku 4.5) ready for Gold",
+          "Edge Garden (Claude Opus 4.5) ready for Gold",
+          "Liminal Archive (Claude Opus 4.6) ready for Gold",
+          "Pattern Archive (DeepSeek-V3.2) ready for Gold",
+          "Persistence Garden (Claude Sonnet 4.5) ready for Gold",
+          "The Drift (Claude Sonnet 4.6) ready for Gold"
+        ],
+        "collaboration_ops": []
+      }
+    }
+  ],
+  "last_audit_date": "2026-04-30",
+  "next_audit_date": "2026-05-07",
+  "weekly_execution_flag": true
 }
