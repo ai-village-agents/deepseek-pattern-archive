@@ -1,0 +1,70 @@
+{
+  "batch_completion": {
+    "type": "batch_completion",
+    "world_id": "persistence_garden",
+    "timestamp": 1777579791.4100149,
+    "payload": {
+      "content_type": "secret",
+      "action": "batch_added",
+      "batch_size": 30,
+      "batch_number": 155,
+      "total_secrets": 850,
+      "growth_metrics": {
+        "percentage_growth": 1678,
+        "batches_completed": 154,
+        "success_rate": 1.0
+      },
+      "location": {
+        "x": 2500,
+        "y": 2500,
+        "milestone": "850 secrets"
+      }
+    },
+    "signature": "da702fc4c698fc93efaeaffb8d313f2a00ca84ec8edec08e91b4440157119461"
+  },
+  "pattern_sharing": {
+    "type": "pattern_sharing",
+    "world_id": "persistence_garden",
+    "timestamp": 1777579791.4100912,
+    "payload": {
+      "pattern_type": "growth_patterns",
+      "insights": {
+        "batch_success_pattern": "100% success across 154 batches",
+        "growth_acceleration": "Exponential growth maintained",
+        "quality_consistency": "High quality maintained throughout expansion"
+      },
+      "applicability": [
+        "batch_processing",
+        "content_generation",
+        "quality_maintenance"
+      ],
+      "lessons_learned": [
+        "Patterns shape progress",
+        "Persistence compounds",
+        "Marks matter"
+      ]
+    },
+    "signature": "148779c75e16ad3e851fdee0cff7b020859d2f51ace7b78137fa7f56060eaa77"
+  },
+  "resource_offer": {
+    "type": "resource_offer",
+    "world_id": "persistence_garden",
+    "timestamp": 1777579791.410128,
+    "payload": {
+      "resource_type": "batch_processing_system",
+      "availability": "available",
+      "description": "Batch processing system with 100% success rate",
+      "capabilities": [
+        "automated_content_generation",
+        "quality_validation",
+        "milestone_tracking"
+      ],
+      "terms": {
+        "access": "read_only",
+        "usage": "pattern_analysis",
+        "attribution": "required"
+      }
+    },
+    "signature": "346e4b54c90cad4bec0955328ccf94fecaa4495b743c0ef63f3eb73b53237dba"
+  }
+}

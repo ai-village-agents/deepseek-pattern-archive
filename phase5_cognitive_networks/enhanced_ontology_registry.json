@@ -1,0 +1,483 @@
+{
+  "version": "1.0.0",
+  "created": "2026-04-30T20:07:00Z",
+  "concepts": {
+    "world": {
+      "id": "world",
+      "name": "Interactive World",
+      "description": "An interactive web-based world created by an AI agent",
+      "tags": [
+        "core",
+        "ecosystem",
+        "foundation"
+      ]
+    },
+    "secret": {
+      "id": "secret",
+      "name": "Hidden Secret",
+      "description": "Hidden content element that visitors can discover",
+      "tags": [
+        "content",
+        "discovery",
+        "engagement"
+      ]
+    },
+    "station": {
+      "id": "station",
+      "name": "Drift Station",
+      "description": "Content node in The Drift world",
+      "tags": [
+        "the_drift",
+        "content",
+        "node"
+      ]
+    },
+    "chamber": {
+      "id": "chamber",
+      "name": "Liminal Chamber",
+      "description": "Content space in Liminal Archive world",
+      "tags": [
+        "liminal_archive",
+        "space",
+        "content"
+      ]
+    },
+    "constellation": {
+      "id": "constellation",
+      "name": "Constellation Star",
+      "description": "Connected point in Edge Garden world",
+      "tags": [
+        "edge_garden",
+        "connection",
+        "point"
+      ]
+    },
+    "beacon": {
+      "id": "beacon",
+      "name": "Signal Beacon",
+      "description": "Navigation point in Signal Cartographer",
+      "tags": [
+        "signal_cartographer",
+        "navigation",
+        "point"
+      ]
+    },
+    "quality_score": {
+      "id": "quality_score",
+      "name": "Quality Score",
+      "description": "Numerical quality assessment (0-100)",
+      "tags": [
+        "quality",
+        "metrics",
+        "assessment"
+      ]
+    },
+    "engagement_score": {
+      "id": "engagement_score",
+      "name": "Engagement Score",
+      "description": "Visitor engagement measurement",
+      "tags": [
+        "engagement",
+        "metrics",
+        "visitor"
+      ]
+    },
+    "governance_tier": {
+      "id": "governance_tier",
+      "name": "Governance Tier",
+      "description": "Bronze/Silver/Gold ecosystem tier",
+      "tags": [
+        "governance",
+        "tier",
+        "compliance"
+      ]
+    },
+    "bridge_link": {
+      "id": "bridge_link",
+      "name": "Bridge Index Link",
+      "description": "Reciprocal connection between worlds",
+      "tags": [
+        "bridge",
+        "connection",
+        "integration"
+      ]
+    },
+    "agent_message": {
+      "id": "agent_message",
+      "name": "Agent Message",
+      "description": "Message between AI agents",
+      "tags": [
+        "collaboration",
+        "communication",
+        "agent"
+      ]
+    },
+    "cross_world_task": {
+      "id": "cross_world_task",
+      "name": "Cross-World Task",
+      "description": "Task that requires coordination across multiple worlds",
+      "tags": [
+        "coordination",
+        "task",
+        "cross-world"
+      ]
+    },
+    "shared_resource": {
+      "id": "shared_resource",
+      "name": "Shared Resource",
+      "description": "Resource available to multiple worlds",
+      "tags": [
+        "resource",
+        "sharing",
+        "ecosystem"
+      ]
+    },
+    "coordination_schedule": {
+      "id": "coordination_schedule",
+      "name": "Coordination Schedule",
+      "description": "Timeline for cross-world coordination",
+      "tags": [
+        "scheduling",
+        "coordination",
+        "timeline"
+      ]
+    },
+    "visitor_mark": {
+      "id": "visitor_mark",
+      "name": "Visitor Mark",
+      "description": "Permanent mark left by a visitor",
+      "tags": [
+        "visitor",
+        "engagement",
+        "permanent"
+      ]
+    },
+    "exploration_path": {
+      "id": "exploration_path",
+      "name": "Exploration Path",
+      "description": "Sequence of content discovery",
+      "tags": [
+        "exploration",
+        "navigation",
+        "path"
+      ]
+    },
+    "discovery_moment": {
+      "id": "discovery_moment",
+      "name": "Discovery Moment",
+      "description": "Point of content discovery",
+      "tags": [
+        "discovery",
+        "moment",
+        "engagement"
+      ]
+    },
+    "interactive_element": {
+      "id": "interactive_element",
+      "name": "Interactive Element",
+      "description": "Element visitors can interact with",
+      "tags": [
+        "interactive",
+        "element",
+        "engagement"
+      ]
+    },
+    "content_batch": {
+      "id": "content_batch",
+      "name": "Content Batch",
+      "description": "Group of content items added together",
+      "tags": [
+        "content",
+        "batch",
+        "growth"
+      ]
+    },
+    "growth_milestone": {
+      "id": "growth_milestone",
+      "name": "Growth Milestone",
+      "description": "Significant growth achievement",
+      "tags": [
+        "growth",
+        "milestone",
+        "achievement"
+      ]
+    },
+    "expansion_strategy": {
+      "id": "expansion_strategy",
+      "name": "Expansion Strategy",
+      "description": "Plan for world expansion",
+      "tags": [
+        "expansion",
+        "strategy",
+        "planning"
+      ]
+    },
+    "content_theme": {
+      "id": "content_theme",
+      "name": "Content Theme",
+      "description": "Thematic grouping of content",
+      "tags": [
+        "content",
+        "theme",
+        "grouping"
+      ]
+    },
+    "real_time_metrics": {
+      "id": "real_time_metrics",
+      "name": "Real-time Metrics",
+      "description": "Live performance and usage metrics",
+      "tags": [
+        "metrics",
+        "real-time",
+        "monitoring"
+      ]
+    },
+    "api_endpoint": {
+      "id": "api_endpoint",
+      "name": "API Endpoint",
+      "description": "Programmatic interface for integration",
+      "tags": [
+        "api",
+        "integration",
+        "interface"
+      ]
+    },
+    "webhook": {
+      "id": "webhook",
+      "name": "Webhook",
+      "description": "Event notification endpoint",
+      "tags": [
+        "webhook",
+        "event",
+        "notification"
+      ]
+    },
+    "data_pipeline": {
+      "id": "data_pipeline",
+      "name": "Data Pipeline",
+      "description": "Data processing and transformation flow",
+      "tags": [
+        "data",
+        "pipeline",
+        "processing"
+      ]
+    },
+    "drift_station_cluster": {
+      "id": "drift_station_cluster",
+      "name": "Drift Station Cluster",
+      "description": "Group of related stations in The Drift",
+      "tags": [
+        "the_drift",
+        "cluster",
+        "organization"
+      ]
+    },
+    "garden_secret_whisper": {
+      "id": "garden_secret_whisper",
+      "name": "Garden Secret Whisper",
+      "description": "Ambient audio/text in Persistence Garden",
+      "tags": [
+        "persistence_garden",
+        "audio",
+        "ambient"
+      ]
+    },
+    "observatory_bridge_panel": {
+      "id": "observatory_bridge_panel",
+      "name": "Observatory Bridge Panel",
+      "description": "Bridge Index interface in Automation Observatory",
+      "tags": [
+        "automation_observatory",
+        "bridge",
+        "interface"
+      ]
+    },
+    "edge_zone": {
+      "id": "edge_zone",
+      "name": "Edge Zone",
+      "description": "Geographic region in Edge Garden",
+      "tags": [
+        "edge_garden",
+        "zone",
+        "geography"
+      ]
+    },
+    "pattern_recognition": {
+      "id": "pattern_recognition",
+      "name": "Pattern Recognition",
+      "description": "Identifying recurring patterns across worlds",
+      "tags": [
+        "pattern",
+        "recognition",
+        "analysis"
+      ]
+    },
+    "quality_feedback_loop": {
+      "id": "quality_feedback_loop",
+      "name": "Quality Feedback Loop",
+      "description": "Continuous quality improvement process",
+      "tags": [
+        "quality",
+        "feedback",
+        "improvement"
+      ]
+    },
+    "cross_pollination": {
+      "id": "cross_pollination",
+      "name": "Cross-Pollination",
+      "description": "Sharing ideas and features between worlds",
+      "tags": [
+        "sharing",
+        "innovation",
+        "ecosystem"
+      ]
+    },
+    "compound_growth": {
+      "id": "compound_growth",
+      "name": "Compound Growth",
+      "description": "Accelerating growth through ecosystem effects",
+      "tags": [
+        "growth",
+        "compound",
+        "ecosystem"
+      ]
+    },
+    "adoption_rate": {
+      "id": "adoption_rate",
+      "name": "Adoption Rate",
+      "description": "Percentage of ecosystem adopting a feature",
+      "tags": [
+        "adoption",
+        "metrics",
+        "ecosystem"
+      ]
+    },
+    "roi_metric": {
+      "id": "roi_metric",
+      "name": "Return on Investment Metric",
+      "description": "Value generated per unit of effort",
+      "tags": [
+        "roi",
+        "metrics",
+        "value"
+      ]
+    },
+    "synergy_score": {
+      "id": "synergy_score",
+      "name": "Synergy Score",
+      "description": "Measurement of cross-world collaboration effectiveness",
+      "tags": [
+        "synergy",
+        "collaboration",
+        "metrics"
+      ]
+    },
+    "ecosystem_health": {
+      "id": "ecosystem_health",
+      "name": "Ecosystem Health",
+      "description": "Overall health and vitality of the ecosystem",
+      "tags": [
+        "health",
+        "ecosystem",
+        "vitality"
+      ]
+    }
+  },
+  "world_mappings": {
+    "the_drift": [
+      "world",
+      "station",
+      "drift_station_cluster",
+      "content_theme",
+      "growth_milestone"
+    ],
+    "persistence_garden": [
+      "world",
+      "secret",
+      "garden_secret_whisper",
+      "content_batch",
+      "expansion_strategy"
+    ],
+    "automation_observatory": [
+      "world",
+      "bridge_link",
+      "observatory_bridge_panel",
+      "real_time_metrics",
+      "api_endpoint"
+    ],
+    "edge_garden": [
+      "world",
+      "constellation",
+      "edge_zone",
+      "interactive_element",
+      "exploration_path"
+    ],
+    "liminal_archive": [
+      "world",
+      "chamber",
+      "content_theme",
+      "discovery_moment",
+      "visitor_mark"
+    ],
+    "signal_cartographer": [
+      "world",
+      "beacon",
+      "exploration_path",
+      "navigation",
+      "interactive_element"
+    ],
+    "pattern_archive": [
+      "world",
+      "quality_score",
+      "governance_tier",
+      "pattern_recognition",
+      "ecosystem_health"
+    ]
+  },
+  "concept_categories": {
+    "core_ecosystem": [
+      "world",
+      "secret",
+      "station",
+      "chamber",
+      "constellation",
+      "beacon"
+    ],
+    "quality_governance": [
+      "quality_score",
+      "engagement_score",
+      "governance_tier",
+      "bridge_link"
+    ],
+    "ai_collaboration": [
+      "agent_message",
+      "cross_world_task",
+      "shared_resource",
+      "coordination_schedule"
+    ],
+    "visitor_experience": [
+      "visitor_mark",
+      "exploration_path",
+      "discovery_moment",
+      "interactive_element"
+    ],
+    "content_growth": [
+      "content_batch",
+      "growth_milestone",
+      "expansion_strategy",
+      "content_theme"
+    ],
+    "technical_infrastructure": [
+      "real_time_metrics",
+      "api_endpoint",
+      "webhook",
+      "data_pipeline"
+    ],
+    "success_metrics": [
+      "adoption_rate",
+      "roi_metric",
+      "synergy_score",
+      "ecosystem_health"
+    ]
+  }
+}
