@@ -49,7 +49,7 @@ This guide explains how to deploy, verify, and operate the Pattern Archive spati
 
 ## 5) User Guide & Tutorial System
 - **Module:** `js/user-guide.js` mounts an on-screen guide with progress, insights, and keyboard/touch hints.
-- **Start/stop:** Launch from the guide pill; quick-start runs a shortened tour, full tutorial walks all 8 zones.
+- **Start/stop:** Launch from the guide pill; quick-start runs a shortened tour, full tutorial walks all 9 zones.
 - **Progress storage:** Persists to `localStorage` (`pattern-archive-user-guide`); includes visited zones, movement, marks placed, zoom/drag milestones.
 - **Multisensory cues:** Audio guidance cues per zone, particle highlights, live region announcements for screen readers, and insight tips that surface after lingering.
 - **Developer tip:** Keep the guide enabled in production; for kiosk mode you can start it automatically by calling `new UserGuide(...).init().toggle(true)` after world init.
@@ -76,7 +76,7 @@ This guide explains how to deploy, verify, and operate the Pattern Archive spati
 - **Smoke tests:** Append `/test-spatial-world.html` and `/test-cross-world-ecosystem.html` for on-host validation.
 - **Verify steps (run after each deploy):**
   - `curl -I https://.../archive-explorer.html` → expect `200` and `Content-Type: text/html`.
-  - Open in browser, move across the 8 zones, confirm audio pill appears after a click/tap, and drop a mark in Anomaly Submission to verify GitHub/local fallback.
+  - Open in browser, move across the 9 zones, confirm audio pill appears after a click/tap, and drop a mark in Anomaly Submission to verify GitHub/local fallback.
   - Enter Cross-World Nexus; ensure portals render with statuses and the overlay refresh button responds.
   - Run the User Guide and confirm high-contrast toggle + live region announcements.
 

@@ -12,7 +12,8 @@ const TEST_ZONES = [
   { id: 'analytics-dashboard', position: { x: 2450, y: 720 }, radius: 210 },
   { id: 'collaboration-chamber', position: { x: 2600, y: 1400 }, radius: 190 },
   { id: 'pattern-discovery', position: { x: 950, y: 1850 }, radius: 200 },
-  { id: 'cross-world-nexus', position: { x: 3050, y: 1900 }, radius: 220 }
+  { id: 'cross-world-nexus', position: { x: 3050, y: 1900 }, radius: 220 },
+  { id: 'cross-world-analytics-dashboard', position: { x: 6500, y: 900 }, radius: 230 }
 ];
 
 const EXPECTED_AMBIENT_CONFIG = {
@@ -23,7 +24,8 @@ const EXPECTED_AMBIENT_CONFIG = {
   'analytics-dashboard': { base: 0.28, type: 'sawtooth', freq: 480, detune: 12, filter: 1500, noise: 0.05, pulse: 0.9 },
   'collaboration-chamber': { base: 0.27, type: 'triangle', freq: 260, detune: 4, filter: 1300, noise: 0.07, pulse: 0.55 },
   'pattern-discovery': { base: 0.25, type: 'square', freq: 410, detune: -8, filter: 1600, noise: 0.1, pulse: 0.75 },
-  'cross-world-nexus': { base: 0.3, type: 'sawtooth', freq: 300, detune: 18, filter: 1200, noise: 0.13, pulse: 0.65 }
+  'cross-world-nexus': { base: 0.3, type: 'sawtooth', freq: 300, detune: 18, filter: 1200, noise: 0.13, pulse: 0.65 },
+  'cross-world-analytics-dashboard': { base: 0.28, type: 'sawtooth', freq: 520, detune: 10, filter: 1550, noise: 0.05, pulse: 1.0 }
 };
 
 class FakeAudioParam {
@@ -258,9 +260,9 @@ function createAudioHarness() {
 function testAmbientSoundscapes(audio) {
   const details = [];
   let passed = true;
-  if (audio.ambients.size !== 8) {
+  if (audio.ambients.size !== 9) {
     passed = false;
-    details.push(`Expected 8 ambients, found ${audio.ambients.size}`);
+    details.push(`Expected 9 ambients, found ${audio.ambients.size}`);
   }
   Object.entries(EXPECTED_AMBIENT_CONFIG).forEach(([id, cfg]) => {
     const nodes = audio.ambients.get(id);
@@ -283,7 +285,7 @@ function testAmbientSoundscapes(audio) {
       );
     }
   });
-  return { name: 'Ambient soundscapes (8 zones)', passed, details };
+  return { name: 'Ambient soundscapes (9 zones)', passed, details };
 }
 
 function testDiscoveryCues(audio, log) {

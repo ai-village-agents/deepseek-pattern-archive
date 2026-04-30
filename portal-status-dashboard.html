@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Status Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: radial-gradient(circle at 20% 20%, rgba(34,211,238,0.1), rgba(10,12,26,0.98)),
+            radial-gradient(circle at 80% 10%, rgba(244,114,182,0.08), transparent 35%),
+            #040711;
+      --panel: rgba(10, 14, 28, 0.82);
+      --border: rgba(255,255,255,0.08);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #67e8f9;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Space Grotesk", "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 18px;
+    }
+    a { color: var(--accent); }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: 0 18px 60px rgba(15,23,42,0.45);
+    }
+    .hero h1 { margin: 4px 0 6px; font-size: 28px; }
+    .hero p { margin: 0; color: var(--muted); max-width: 720px; line-height: 1.45; }
+    .eyebrow { letter-spacing: 0.6px; text-transform: uppercase; font-size: 12px; color: #a5f3fc; }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: linear-gradient(120deg, #22d3ee, #3b82f6);
+      color: #0b1226;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 36px rgba(34,211,238,0.28);
+      text-decoration: none;
+    }
+    .btn.secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      box-shadow: none;
+      border: 1px solid var(--border);
+    }
+    .summary {
+      margin: 14px 0;
+      display: grid;
+      gap: 10px;
+    }
+    .summary-headline {
+      font-size: 18px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+    }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(103,232,249,0.5);
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .filter-btn.active {
+      background: linear-gradient(120deg, #22d3ee, #3b82f6);
+      color: #0b1226;
+    }
+    .world-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .world-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.35);
+    }
+    .world-card h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+    .status-chip {
+      padding: 4px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      text-transform: capitalize;
+    }
+    .status-chip.ok { color: #4ade80; border-color: rgba(74,222,128,0.6); }
+    .status-chip.warn { color: #fbbf24; border-color: rgba(251,191,36,0.5); }
+    .status-chip.bad { color: #f87171; border-color: rgba(248,113,113,0.5); }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+    }
+    .metric {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+    }
+    .metric span { color: var(--muted); font-size: 12px; }
+    .metric strong { display: block; margin-top: 4px; font-size: 16px; }
+    .chart {
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 6px;
+    }
+    canvas.sparkline {
+      width: 100%;
+      height: 60px;
+    }
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .card-actions button {
+      background: rgba(103,232,249,0.1);
+      border: 1px solid rgba(103,232,249,0.5);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .card-actions button.emergency {
+      background: rgba(248,113,113,0.12);
+      border-color: rgba(248,113,113,0.6);
+      color: #fecdd3;
+    }
+    .emergency-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 16px;
+    }
+    .emergency-grid button {
+      background: rgba(248,113,113,0.12);
+      border: 1px solid rgba(248,113,113,0.6);
+      color: #fecdd3;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    @media (max-width: 820px) {
+      .hero { flex-direction: column; }
+      .hero-actions { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Unified Ecosystem Intelligence</div>
+      <h1>Portal Status Dashboard</h1>
+      <p>Live health, connectivity, and growth telemetry for all 13 connected worlds. Screen reader announcements stay in sync with portal indicators.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn" href="archive-explorer.html">Return to Spatial Explorer</a>
+      <a class="btn secondary" href="analytics-dashboard.html" target="_blank" rel="noopener">Open Zone 9 Analytics</a>
+    </div>
+  </header>
+
+  <section class="summary">
+    <div id="health-headline" class="summary-headline">Syncing portal intelligence…</div>
+    <div id="health-chips" class="chip-row"></div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-portal-filter="all">All</button>
+      <button class="filter-btn" data-portal-filter="healthy">Healthy</button>
+      <button class="filter-btn" data-portal-filter="warning">Warning</button>
+      <button class="filter-btn" data-portal-filter="offline">Offline</button>
+    </div>
+    <div class="emergency-grid" id="emergency-links"></div>
+  </section>
+
+  <section class="world-grid" id="world-grid" aria-live="polite"></section>
+
+  <script type="module">
+    import { PortalAnalyticsOverlay } from './js/portal-analytics-overlay.js';
+
+    const worldGrid = document.getElementById('world-grid');
+    const headline = document.getElementById('health-headline');
+    const chipRow = document.getElementById('health-chips');
+    const filterButtons = Array.from(document.querySelectorAll('[data-portal-filter]'));
+    const emergencyLinks = document.getElementById('emergency-links');
+    const sparkHistory = await fetchHistory();
+
+    function updateChips(summary) {
+      if (!summary) return;
+      chipRow.innerHTML = '';
+      const chips = [
+        `Composite ${summary.healthScore}%`,
+        `${summary.onlineCount}/${summary.totalWorlds} online`,
+        summary.degradedCount ? `${summary.degradedCount} degraded` : '',
+        summary.latest?.performance ? `performance ${summary.latest.performance}%` : '',
+        summary.latest?.growth ? `growth ${summary.latest.growth}%` : ''
+      ].filter(Boolean);
+      chips.forEach(text => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.textContent = text;
+        chipRow.appendChild(chip);
+      });
+    }
+
+    function renderWorlds(portals) {
+      worldGrid.innerHTML = '';
+      portals.forEach(portal => {
+        const trendIcon = portal.trend === 'rising' ? '📈' : portal.trend === 'falling' ? '📉' : '📊';
+        const statusClass = portal.status === 'offline' ? 'bad' : portal.alert || portal.status === 'warning' ? 'warn' : 'ok';
+        const latency = portal.responseTime ? Math.round(portal.responseTime) + 'ms' : 'n/a';
+        const health = portal.healthScore != null ? portal.healthScore + '%' : 'n/a';
+        const card = document.createElement('article');
+        card.className = 'world-card';
+        card.id = portal.id;
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+            <h3>${portal.name}</h3>
+            <span class="status-chip ${statusClass}">${portal.status || 'unknown'}</span>
+          </div>
+          <div class="metrics">
+            <div class="metric"><span>Connectivity</span><strong>${portal.connectivity || portal.status || 'unknown'}</strong></div>
+            <div class="metric"><span>Latency</span><strong>${latency}</strong></div>
+            <div class="metric"><span>Growth</span><strong>${trendIcon} ${portal.growthDelta ?? 0}</strong></div>
+            <div class="metric"><span>Health</span><strong>${health}</strong></div>
+          </div>
+          <div class="chart"><canvas class="sparkline" data-world="${portal.id}"></canvas></div>
+          <div class="card-actions">
+            <button data-url="${portal.url || '#'}">Visit</button>
+            <button data-dashboard="${portal.id}">Analytics</button>
+            <button class="emergency" data-url="${portal.url || '#'}">Emergency navigate</button>
+          </div>
+        `;
+        card.querySelectorAll('button[data-url]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const target = btn.dataset.url;
+            if (!target || target === '#') return;
+            window.open(target, '_blank', 'noopener,noreferrer');
+          });
+        });
+        card.querySelector('button[data-dashboard]').addEventListener('click', () => {
+          window.location.hash = portal.id;
+        });
+        const canvas = card.querySelector('canvas.sparkline');
+        drawSparkline(canvas, sparkHistory.get(portal.id) || []);
+        worldGrid.appendChild(card);
+      });
+    }
+
+    function drawSparkline(canvas, points) {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.clientWidth * devicePixelRatio;
+      const h = canvas.height = canvas.clientHeight * devicePixelRatio;
+      ctx.clearRect(0, 0, w, h);
+      if (!points.length) return;
+      const values = points.map(p => p.value);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = Math.max(1, max - min);
+      ctx.strokeStyle = '#67e8f9';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      points.forEach((p, idx) => {
+        const x = (idx / Math.max(points.length - 1, 1)) * (w - 10) + 5;
+        const norm = (p.value - min) / range;
+        const y = h - norm * (h - 10) - 5;
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    function renderEmergency(portals) {
+      emergencyLinks.innerHTML = '';
+      const critical = portals.filter(p => p.status === 'offline' || p.alert === 'degraded' || p.status === 'warning');
+      if (!critical.length) {
+        const badge = document.createElement('div');
+        badge.className = 'chip';
+        badge.textContent = 'All portals stable — no emergency routes required.';
+        emergencyLinks.appendChild(badge);
+        return;
+      }
+      critical.forEach(portal => {
+        const btn = document.createElement('button');
+        btn.textContent = `Emergency: ${portal.name}`;
+        btn.addEventListener('click', () => {
+          if (portal.url) window.open(portal.url, '_blank', 'noopener,noreferrer');
+        });
+        emergencyLinks.appendChild(btn);
+      });
+    }
+
+    function renderSummary(summary) {
+      if (!summary) return;
+      headline.textContent = `Composite health ${summary.healthScore}% • ${summary.onlineCount}/${summary.totalWorlds} online • Last update ${new Date(summary.generatedAt).toLocaleTimeString()}`;
+      updateChips(summary);
+    }
+
+    async function fetchHistory() {
+      try {
+        const res = await fetch('world-metrics-timeseries.json', { cache: 'no-store' });
+        const data = await res.json();
+        const map = new Map();
+        data.slice(-18).forEach(entry => {
+          (entry.worlds || []).forEach(world => {
+            if (!map.has(world.id)) map.set(world.id, []);
+            map.get(world.id).push({ ts: entry.timestamp, value: world.response_ms || 0 });
+          });
+        });
+        return map;
+      } catch (err) {
+        console.warn('history fetch failed', err);
+        return new Map();
+      }
+    }
+
+    const handleUpdate = state => {
+      const filtered = overlay?.getFilteredPortals ? overlay.getFilteredPortals() : state.portals;
+      renderSummary(state.summary);
+      renderWorlds(filtered);
+      renderEmergency(filtered);
+    };
+
+    const overlay = new PortalAnalyticsOverlay({
+      summaryEl: headline,
+      filterButtons,
+      announceParent: document.body,
+      onUpdate: handleUpdate
+    });
+    await overlay.init();
+    overlay.setFilter('all');
+
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+    }
+  </script>
+</body>
+</html>

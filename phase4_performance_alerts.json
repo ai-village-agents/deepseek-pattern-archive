@@ -1,0 +1,1213 @@
+{
+  "generated_at": "2026-04-30T00:07:43.533718",
+  "alerts": [
+    {
+      "timestamp": "2026-04-29T20:27:41.373437",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 5144ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:27:41.373451",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 100.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:27:41.373455",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 15.0"
+    },
+    {
+      "timestamp": "2026-04-29T20:28:36.513177",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 2692ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:28:36.513192",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 50.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:28:36.513199",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 17.5"
+    },
+    {
+      "timestamp": "2026-04-29T20:29:40.921909",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 3334ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:29:40.921921",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 33.3%"
+    },
+    {
+      "timestamp": "2026-04-29T20:29:40.921925",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 23.3"
+    },
+    {
+      "timestamp": "2026-04-29T20:30:36.590960",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 2564ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:30:36.590979",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 25.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:30:36.590985",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 26.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:31:41.446528",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 3065ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:31:41.446539",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 40.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:31:41.446543",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 21.0"
+    },
+    {
+      "timestamp": "2026-04-29T20:32:36.834229",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 2623ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:32:36.834246",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 33.3%"
+    },
+    {
+      "timestamp": "2026-04-29T20:32:36.834251",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 23.3"
+    },
+    {
+      "timestamp": "2026-04-29T20:33:36.682154",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 2285ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:33:36.682170",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 28.6%"
+    },
+    {
+      "timestamp": "2026-04-29T20:33:36.682175",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 25.0"
+    },
+    {
+      "timestamp": "2026-04-29T20:34:36.600115",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_LATENCY",
+      "detail": "Latency 2015ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:34:36.600129",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 25.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:34:36.600133",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 26.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:35:36.942388",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1841ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:35:36.942401",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 22.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:35:36.942405",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 31.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:36:36.638385",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1670ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:36:36.638399",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 20.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:36:36.638402",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 36.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:37:36.743257",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1536ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:37:36.743273",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 18.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:37:36.743278",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 40.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:38:41.687918",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1832ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:38:41.687936",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 25.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:38:41.687941",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 30.5"
+    },
+    {
+      "timestamp": "2026-04-29T20:39:36.818043",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1706ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:39:36.818054",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 23.1%"
+    },
+    {
+      "timestamp": "2026-04-29T20:39:36.818058",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 34.3"
+    },
+    {
+      "timestamp": "2026-04-29T20:40:36.741494",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1591ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:40:36.741509",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 21.4%"
+    },
+    {
+      "timestamp": "2026-04-29T20:40:36.741513",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 37.7"
+    },
+    {
+      "timestamp": "2026-04-29T20:41:36.728588",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1490ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:41:36.728606",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 20.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:41:36.728610",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 40.8"
+    },
+    {
+      "timestamp": "2026-04-29T20:42:36.818852",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1406ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:42:36.818868",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 18.8%"
+    },
+    {
+      "timestamp": "2026-04-29T20:42:36.818873",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 43.3"
+    },
+    {
+      "timestamp": "2026-04-29T20:43:36.897633",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1336ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:43:36.897647",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 17.6%"
+    },
+    {
+      "timestamp": "2026-04-29T20:43:36.897651",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 45.4"
+    },
+    {
+      "timestamp": "2026-04-29T20:44:42.113640",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1561ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:44:42.113661",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 22.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:44:42.113667",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 38.2"
+    },
+    {
+      "timestamp": "2026-04-29T20:45:36.925851",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1488ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:45:36.925901",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 21.1%"
+    },
+    {
+      "timestamp": "2026-04-29T20:45:36.925905",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 40.4"
+    },
+    {
+      "timestamp": "2026-04-29T20:46:41.862296",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1667ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:46:41.862312",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 25.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:46:41.862339",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 34.6"
+    },
+    {
+      "timestamp": "2026-04-29T20:47:37.088157",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1600ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:47:37.088171",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 23.8%"
+    },
+    {
+      "timestamp": "2026-04-29T20:47:37.088175",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 36.7"
+    },
+    {
+      "timestamp": "2026-04-29T20:48:37.006918",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1533ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:48:37.006937",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 22.7%"
+    },
+    {
+      "timestamp": "2026-04-29T20:48:37.006943",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 38.7"
+    },
+    {
+      "timestamp": "2026-04-29T20:49:37.192431",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1479ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:49:37.192448",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 21.7%"
+    },
+    {
+      "timestamp": "2026-04-29T20:49:37.192452",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 40.4"
+    },
+    {
+      "timestamp": "2026-04-29T20:50:37.172206",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1427ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:50:37.172259",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 20.8%"
+    },
+    {
+      "timestamp": "2026-04-29T20:50:37.172266",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 42.0"
+    },
+    {
+      "timestamp": "2026-04-29T20:51:37.047985",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1375ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:51:37.047998",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 20.0%"
+    },
+    {
+      "timestamp": "2026-04-29T20:51:37.048002",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 43.6"
+    },
+    {
+      "timestamp": "2026-04-29T20:52:37.119017",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1328ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:52:37.119030",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 19.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:52:37.119035",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 45.1"
+    },
+    {
+      "timestamp": "2026-04-29T20:53:37.209522",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1286ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:53:37.209560",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 18.5%"
+    },
+    {
+      "timestamp": "2026-04-29T20:53:37.209564",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 46.4"
+    },
+    {
+      "timestamp": "2026-04-29T20:54:37.193810",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1244ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:54:37.193828",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 17.9%"
+    },
+    {
+      "timestamp": "2026-04-29T20:54:37.193834",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 47.6"
+    },
+    {
+      "timestamp": "2026-04-29T20:55:37.525138",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1216ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:55:37.525183",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 17.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:55:37.525187",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 48.6"
+    },
+    {
+      "timestamp": "2026-04-29T20:56:37.240560",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1179ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:56:37.240577",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 16.7%"
+    },
+    {
+      "timestamp": "2026-04-29T20:56:37.240581",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRISIS_HEALTH",
+      "detail": "Health 49.7"
+    },
+    {
+      "timestamp": "2026-04-29T20:57:37.406585",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1149ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:57:37.406604",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 16.1%"
+    },
+    {
+      "timestamp": "2026-04-29T20:57:37.406610",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 50.6"
+    },
+    {
+      "timestamp": "2026-04-29T20:58:37.495163",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1122ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:58:37.495181",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 15.6%"
+    },
+    {
+      "timestamp": "2026-04-29T20:58:37.495186",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 51.5"
+    },
+    {
+      "timestamp": "2026-04-29T20:59:37.493123",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1095ms"
+    },
+    {
+      "timestamp": "2026-04-29T20:59:37.493137",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "CRITICAL_ERRORS",
+      "detail": "Error rate 15.2%"
+    },
+    {
+      "timestamp": "2026-04-29T20:59:37.493142",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 52.3"
+    },
+    {
+      "timestamp": "2026-04-29T21:00:37.567814",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1070ms"
+    },
+    {
+      "timestamp": "2026-04-29T21:00:37.567835",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 14.7%"
+    },
+    {
+      "timestamp": "2026-04-29T21:00:37.567841",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 53.1"
+    },
+    {
+      "timestamp": "2026-04-29T21:01:37.495600",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1044ms"
+    },
+    {
+      "timestamp": "2026-04-29T21:01:37.495621",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 14.3%"
+    },
+    {
+      "timestamp": "2026-04-29T21:01:37.495628",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 53.9"
+    },
+    {
+      "timestamp": "2026-04-29T21:02:37.497269",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "HIGH_LATENCY",
+      "detail": "Latency 1018ms"
+    },
+    {
+      "timestamp": "2026-04-29T21:02:37.497285",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 13.9%"
+    },
+    {
+      "timestamp": "2026-04-29T21:02:37.497290",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 54.7"
+    },
+    {
+      "timestamp": "2026-04-29T21:03:37.675806",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 13.5%"
+    },
+    {
+      "timestamp": "2026-04-29T21:03:37.675820",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 55.3"
+    },
+    {
+      "timestamp": "2026-04-29T21:04:37.592463",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 13.2%"
+    },
+    {
+      "timestamp": "2026-04-29T21:04:37.592489",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 56.0"
+    },
+    {
+      "timestamp": "2026-04-29T21:05:37.733158",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 12.8%"
+    },
+    {
+      "timestamp": "2026-04-29T21:05:37.733186",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 56.6"
+    },
+    {
+      "timestamp": "2026-04-29T21:06:37.669886",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 12.5%"
+    },
+    {
+      "timestamp": "2026-04-29T21:06:37.669955",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 57.2"
+    },
+    {
+      "timestamp": "2026-04-29T21:07:37.662624",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 12.2%"
+    },
+    {
+      "timestamp": "2026-04-29T21:07:37.662655",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 57.8"
+    },
+    {
+      "timestamp": "2026-04-29T21:08:37.760933",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 11.9%"
+    },
+    {
+      "timestamp": "2026-04-29T21:08:37.760986",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 58.3"
+    },
+    {
+      "timestamp": "2026-04-29T21:09:37.989009",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 11.6%"
+    },
+    {
+      "timestamp": "2026-04-29T21:09:37.989037",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 58.7"
+    },
+    {
+      "timestamp": "2026-04-29T21:10:37.848910",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 11.4%"
+    },
+    {
+      "timestamp": "2026-04-29T21:10:37.848956",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 59.2"
+    },
+    {
+      "timestamp": "2026-04-29T21:11:37.782990",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 11.1%"
+    },
+    {
+      "timestamp": "2026-04-29T21:11:37.783036",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 59.7"
+    },
+    {
+      "timestamp": "2026-04-29T21:12:37.938087",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 10.9%"
+    },
+    {
+      "timestamp": "2026-04-29T21:12:37.938128",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 60.1"
+    },
+    {
+      "timestamp": "2026-04-29T21:13:37.850107",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 10.6%"
+    },
+    {
+      "timestamp": "2026-04-29T21:13:37.850161",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 60.6"
+    },
+    {
+      "timestamp": "2026-04-29T21:14:37.877844",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 10.4%"
+    },
+    {
+      "timestamp": "2026-04-29T21:14:37.877887",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 61.0"
+    },
+    {
+      "timestamp": "2026-04-29T21:15:37.990913",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 10.2%"
+    },
+    {
+      "timestamp": "2026-04-29T21:15:37.990939",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 61.4"
+    },
+    {
+      "timestamp": "2026-04-29T21:16:37.969877",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 10.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:16:37.969929",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 61.8"
+    },
+    {
+      "timestamp": "2026-04-29T21:17:38.290070",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 8.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:17:38.290122",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 65.3"
+    },
+    {
+      "timestamp": "2026-04-29T21:18:38.419746",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 8.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:18:38.419802",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 65.2"
+    },
+    {
+      "timestamp": "2026-04-29T21:19:38.059327",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 8.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:19:38.059370",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 68.5"
+    },
+    {
+      "timestamp": "2026-04-29T21:20:38.362946",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 8.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:20:38.362997",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "DEGRADED_HEALTH",
+      "detail": "Health 68.5"
+    },
+    {
+      "timestamp": "2026-04-29T21:21:38.073942",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:22:38.111119",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:23:38.140986",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:24:38.414505",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:25:38.343546",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:26:38.277631",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    },
+    {
+      "timestamp": "2026-04-29T21:27:38.364904",
+      "world_id": "sonnet-46-drift",
+      "world_name": "The Drift",
+      "agent": "Claude Sonnet 4.6",
+      "type": "ELEVATED_ERRORS",
+      "detail": "Error rate 6.0%"
+    }
+  ]
+}

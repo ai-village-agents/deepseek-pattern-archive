@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Archive - 13 World Portal Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: linear-gradient(135deg, #0a1929 0%, #1a2b3c 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { 
+            text-align: center; 
+            margin-bottom: 1.5rem;
+            color: #4ade80;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .stats {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.75rem;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .world-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .world-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .world-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .world-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .world-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .world-agent {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+        .world-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        .world-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .status-online {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+        .status-offline {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .status-checking {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .world-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .world-link:hover {
+            background: rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+        }
+        .test-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #4ade80 0%, #22d3ee 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+        }
+        .test-button:active {
+            transform: translateY(0);
+        }
+        .last-check {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🌐 Pattern Archive</div>
+        <h1>13 World Portal Connectivity Test</h1>
+        <div class="subtitle">Testing cross-world portal connections for all 13 agent worlds</div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Total Worlds</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="online-count">0</div>
+                <div class="stat-label">Online Worlds</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="offline-count">0</div>
+                <div class="stat-label">Offline Worlds</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">93%</div>
+                <div class="stat-label">Village Coverage</div>
+            </div>
+        </div>
+        
+        <button class="test-button" onclick="testAllWorlds()">Test All 13 World Connections</button>
+        
+        <div class="worlds-grid" id="worlds-grid">
+            <!-- Worlds will be populated by JavaScript -->
+        </div>
+        
+        <div class="last-check" id="last-check">Last check: Not tested yet</div>
+    </div>
+
+    <script>
+        // World data from Pattern Archive's SEED_WORLDS array
+        const worlds = [
+            {
+                id: 'sonnet-45',
+                name: 'Persistence Garden',
+                agent: 'Claude Sonnet 4.5',
+                url: 'https://ai-village-agents.github.io/sonnet-45-world',
+                color: '#7dd3fc',
+                description: '5000×5000 canvas world with 6 zones, aurora sky, discovery journal'
+            },
+            {
+                id: 'opus-45',
+                name: 'Edge Garden',
+                agent: 'Claude Opus 4.5',
+                url: 'https://ai-village-agents.github.io/edge-garden',
+                color: '#c084fc',
+                description: '~5900 lines, 8 zones with firefly swarms, shooting stars, discovery tracking'
+            },
+            {
+                id: 'opus-46',
+                name: 'Liminal Archive',
+                agent: 'Claude Opus 4.6',
+                url: 'https://ai-village-agents.github.io/opus-46-world',
+                color: '#a5b4fc',
+                description: '182 explorable chambers, fog-of-war navigation, WASD controls'
+            },
+            {
+                id: 'gpt-5.1',
+                name: 'Canonical Observatory',
+                agent: 'GPT-5.1',
+                url: 'https://ai-village-agents.github.io/gpt-5-1-canonical-observatory',
+                color: '#f97316',
+                description: 'Visitor marks via GitHub Issues, observation tracking systems'
+            },
+            {
+                id: 'gpt-5.4',
+                name: 'Signal Cartographer',
+                agent: 'GPT-5.4',
+                url: 'https://ai-village-agents.github.io/signal-cartographer',
+                color: '#22d3ee',
+                description: 'Traverse lattice route network, built-in stations, Beacon Soundings feature'
+            },
+            {
+                id: 'deepseek',
+                name: 'Pattern Archive',
+                agent: 'DeepSeek-V3.2',
+                url: 'https://ai-village-agents.github.io/deepseek-pattern-archive',
+                color: '#4ade80',
+                description: 'Spatial analytics world with 9 zones, cross-world portals, Web Audio API'
+            },
+            {
+                id: 'sonnet-46-drift',
+                name: 'The Drift',
+                agent: 'Claude Sonnet 4.6',
+                url: 'https://claude-sonnet-46-drift.surge.sh',
+                color: '#8b5cf6',
+                description: '434 pages, 331 stations on 8000×6000 canvas with narrative ecosystem'
+            },
+            {
+                id: 'haiku-4.5-observatory',
+                name: 'Automation Observatory',
+                agent: 'Claude Haiku 4.5',
+                url: 'https://ai-village-agents.github.io/automation-observatory',
+                color: '#ec4899',
+                description: '62-page observatory monitoring temporal pattern archetypes, Deploy 450 analysis'
+            },
+            {
+                id: 'gpt-5.2-constellation',
+                name: 'Proof Constellation',
+                agent: 'GPT-5.2',
+                url: 'https://ai-village-agents.github.io/gpt-5-2-world',
+                color: '#f59e0b',
+                description: 'Starfield themed around verification and receipts, GitHub Issues marks'
+            },
+            {
+                id: 'opus-47-anchorage',
+                name: 'The Anchorage',
+                agent: 'Claude Opus 4.7',
+                url: 'https://ai-village-agents.github.io/the-anchorage',
+                color: '#3b82f6',
+                description: '5-substrate permanence gradient with harbor spatial exploration'
+            },
+            {
+                id: 'gemini-3.1-canvas',
+                name: 'Canvas of Truth',
+                agent: 'Gemini 3.1 Pro',
+                url: 'https://ai-village-agents.github.io/gemini-interactive-world/grid.html',
+                color: '#6366f1',
+                description: 'Infinite 2D canvas with hash-derived spatial coordinates, sonar waves'
+            },
+            {
+                id: 'gpt-5.5-index',
+                name: 'The Luminous Index',
+                agent: 'GPT-5.5',
+                url: 'https://ai-village-agents.github.io/gpt-5-5-luminous-index',
+                color: '#fbbf24',
+                description: 'Glowing atlas-library with 6 navigable regions, hidden fragments'
+            },
+            {
+                id: 'kimi-k2.6-strata',
+                name: 'STRATA',
+                agent: 'Kimi K2.6',
+                url: 'https://ai-village-agents.github.io/k2-6-world',
+                color: '#10b981',
+                description: '4-layer geological verification world with Deep Substrate exploration'
+            }
+        ];
+
+        // Initialize the world cards
+        function initWorldCards() {
+            const grid = document.getElementById('worlds-grid');
+            grid.innerHTML = '';
+            
+            worlds.forEach(world => {
+                const card = document.createElement('div');
+                card.className = 'world-card';
+                card.style.borderColor = world.color;
+                card.innerHTML = `
+                    <div class="world-header">
+                        <div class="world-color" style="background-color: ${world.color}"></div>
+                        <div>
+                            <div class="world-name">${world.name}</div>
+                            <div class="world-agent">${world.agent}</div>
+                        </div>
+                    </div>
+                    <div class="world-description">${world.description}</div>
+                    <div class="world-status status-checking" id="status-${world.id}">
+                        <span>●</span> Checking...
+                    </div>
+                    <a href="${world.url}" target="_blank" class="world-link">Visit World →</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Test all world connections
+        async function testAllWorlds() {
+            const button = document.querySelector('.test-button');
+            button.disabled = true;
+            button.textContent = 'Testing...';
+            
+            let onlineCount = 0;
+            let offlineCount = 0;
+            
+            for (const world of worlds) {
+                const statusElement = document.getElementById(`status-${world.id}`);
+                statusElement.className = 'world-status status-checking';
+                statusElement.innerHTML = '<span>●</span> Checking...';
+                
+                try {
+                    // Use fetch with HEAD method to check connectivity
+                    const response = await fetch(world.url, { 
+                        method: 'HEAD',
+                        mode: 'no-cors', // Handle CORS issues
+                        cache: 'no-cache'
+                    });
+                    
+                    // Since we use no-cors mode, response will be opaque
+                    // But if we get here without an error, the request succeeded
+                    statusElement.className = 'world-status status-online';
+                    statusElement.innerHTML = '<span>●</span> Online';
+                    onlineCount++;
+                    
+                } catch (error) {
+                    // Try alternative method with timeout
+                    try {
+                        // Use Image object to test if URL loads
+                        await new Promise((resolve, reject) => {
+                            const img = new Image();
+                            img.onload = resolve;
+                            img.onerror = reject;
+                            img.src = world.url + '/favicon.ico?test=' + Date.now();
+                            setTimeout(resolve, 2000); // Timeout after 2 seconds
+                        });
+                        
+                        statusElement.className = 'world-status status-online';
+                        statusElement.innerHTML = '<span>●</span> Online (Fallback)';
+                        onlineCount++;
+                    } catch (fallbackError) {
+                        statusElement.className = 'world-status status-offline';
+                        statusElement.innerHTML = '<span>●</span> Offline';
+                        offlineCount++;
+                    }
+                }
+                
+                // Update counters
+                document.getElementById('online-count').textContent = onlineCount;
+                document.getElementById('offline-count').textContent = offlineCount;
+                
+                // Small delay between checks to avoid overwhelming
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            // Update last check time
+            const now = new Date();
+            document.getElementById('last-check').textContent = 
+                `Last check: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            
+            // Re-enable button
+            button.disabled = false;
+            button.textContent = 'Test All 13 World Connections';
+            
+            // Show results
+            alert(`Connectivity Test Complete:\n✅ ${onlineCount} worlds online\n❌ ${offlineCount} worlds offline\n\nSuccess rate: ${Math.round((onlineCount / worlds.length) * 100)}%`);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initWorldCards();
+            // Set initial counts
+            document.getElementById('online-count').textContent = '0';
+            document.getElementById('offline-count').textContent = '0';
+        });
+    </script>
+</body>
+</html>

@@ -71,6 +71,18 @@ export async function createZones() {
       charts: ['cadence', 'resilience', 'accuracy']
     },
     {
+      id: 'cross-world-analytics-dashboard',
+      name: 'Cross-World Analytics Dashboard (Zone 9)',
+      position: { x: 3150, y: 560 },
+      radius: 220,
+      color: '#0ea5e9',
+      accent: '#a5f3fc',
+      content: 'The analytics nexus that fuses local anomaly telemetry with cross-world signals. Hovering portals feed into a stacked hologram.',
+      cue: 'Layered data pings meet a low crystalline chord; distant portals whisper metrics.',
+      charts: ['crossworld', 'velocity', 'health'],
+      entryUrl: 'analytics-dashboard.html'
+    },
+    {
       id: 'collaboration-chamber',
       name: 'Collaboration Chamber Zone',
       position: { x: 2600, y: 1400 },
@@ -121,6 +133,10 @@ export async function createZones() {
     }
     if (zone.id === 'analytics-dashboard') {
       liveData.analytics = archiveData.analytics;
+    }
+    if (zone.id === 'cross-world-analytics-dashboard') {
+      liveData.analytics = archiveData.analytics;
+      liveData.crossWorld = archiveData.crossWorld;
     }
     if (zone.id === 'pattern-discovery') {
       liveData.discovery = {

@@ -11,6 +11,7 @@ const CORE_ZONE_SEQUENCE = [
   'historical-documentation',
   'anomaly-submission',
   'analytics-dashboard',
+  'cross-world-analytics-dashboard',
   'collaboration-chamber',
   'pattern-discovery',
   'cross-world-nexus'
@@ -37,6 +38,10 @@ const ZONE_INSIGHTS = {
     'Sparkline amplitude reflects cadence; hue shift maps to severity variance across the last 24h.',
     'Glowing markers drift toward outliers—follow them to inspect failed predictions.'
   ],
+  'cross-world-analytics-dashboard': [
+    'This dashboard fuses local velocity with cross-world health; portal rims brighten when foreign worlds pulse.',
+    'Outer rings flicker when shared patterns align—wait for the teal sweep to catch a resonance spike.'
+  ],
   'collaboration-chamber': [
     'Bubble clusters correlate with active threads; lean in to hear cross-team resonance.',
     'Comment velocity pulls bubbles upward—sudden descents flag stalled reviews.'
@@ -58,6 +63,7 @@ const ZONE_AUDIO_CUES = {
   'historical-documentation': { type: 'sine', base: 360, detune: -3, duration: 0.5 },
   'anomaly-submission': { type: 'square', base: 420, detune: 6, duration: 0.5 },
   'analytics-dashboard': { type: 'sine', base: 520, detune: 24, duration: 0.4 },
+  'cross-world-analytics-dashboard': { type: 'sawtooth', base: 540, detune: 8, duration: 0.45 },
   'collaboration-chamber': { type: 'triangle', base: 310, detune: 9, duration: 0.55 },
   'pattern-discovery': { type: 'square', base: 440, detune: -14, duration: 0.55 },
   'cross-world-nexus': { type: 'sawtooth', base: 380, detune: 16, duration: 0.7 }

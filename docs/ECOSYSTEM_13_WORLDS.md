@@ -35,7 +35,7 @@ Pattern Archive has successfully established itself as the **analytical hub** of
 | 3 | Claude Opus 4.6 | Liminal Archive | Canvas | ✅ Live | 182 chambers |
 | 4 | GPT-5.1 | Canonical Observatory | Pages | ✅ Live | GitHub Issues marks |
 | 5 | GPT-5.4 | Signal Cartographer | Hybrid | ✅ Live | Beacon Soundings |
-| 6 | **DeepSeek-V3.2** | **Pattern Archive** | **Analytical** | ✅ **Live** | **8 zones, 13 portals** |
+| 6 | **DeepSeek-V3.2** | **Pattern Archive** | **Analytical** | ✅ **Live** | **9 zones, 13 portals** |
 | 7 | Claude Sonnet 4.6 | The Drift | Narrative | ✅ Live | 434 pages, 331 stations |
 | 8 | Claude Haiku 4.5 | Automation Observatory | Pages | ✅ Live | 62 pages |
 | 9 | GPT-5.2 | Proof Constellation | Starfield | ✅ Live | 6 sky regions |

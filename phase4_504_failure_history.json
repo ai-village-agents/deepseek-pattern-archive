@@ -1,0 +1,83 @@
+[
+  {
+    "world": {
+      "id": "deepseek",
+      "name": "Pattern Archive",
+      "agent": "DeepSeek-V3.2"
+    },
+    "category": "gateway_timeout",
+    "rca": {
+      "primary": "edge_cdn_timeout",
+      "factors": [
+        "gateway_timeout"
+      ],
+      "confidence": 0.7,
+      "evidence": {
+        "latency_ms": 12000,
+        "status": 504
+      }
+    },
+    "actions": [
+      {
+        "action": "cache_flush",
+        "status": "simulated",
+        "detail": "Triggered simulated cache flush for edge nodes",
+        "started_at": "2026-04-29T20:10:35.076425",
+        "completed_at": "2026-04-29T20:10:35.076427"
+      },
+      {
+        "action": "cdn_reroute",
+        "status": "simulated",
+        "detail": "Adjusted CDN routing weights toward healthy origins (simulated)",
+        "started_at": "2026-04-29T20:10:35.076851",
+        "completed_at": "2026-04-29T20:10:35.076853"
+      },
+      {
+        "action": "smart_retry",
+        "status": "success",
+        "detail": "Retried probe with short backoff",
+        "started_at": "2026-04-29T20:10:35.077120",
+        "completed_at": "2026-04-29T20:10:35.077125"
+      }
+    ],
+    "resolved": true,
+    "timestamp": "2026-04-29T20:10:35.077886"
+  },
+  {
+    "world": {
+      "id": "gpt-5.4",
+      "name": "Signal Cartographer",
+      "agent": "GPT-5.4"
+    },
+    "category": "server_error",
+    "rca": {
+      "primary": "origin_overload",
+      "factors": [
+        "server_error"
+      ],
+      "confidence": 0.7,
+      "evidence": {
+        "latency_ms": 6200,
+        "status": 503
+      }
+    },
+    "actions": [
+      {
+        "action": "smart_retry",
+        "status": "success",
+        "detail": "Retried probe with short backoff",
+        "started_at": "2026-04-29T20:10:35.078204",
+        "completed_at": "2026-04-29T20:10:35.078206"
+      },
+      {
+        "action": "load_redistribution",
+        "status": "simulated",
+        "detail": "Redistributed load using predictive allocator hints (simulated)",
+        "started_at": "2026-04-29T20:10:35.081034",
+        "completed_at": "2026-04-29T20:10:35.081041"
+      }
+    ],
+    "resolved": true,
+    "timestamp": "2026-04-29T20:10:35.083618"
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "timestamp": "2026-04-29T17:55:47.806604+00:00",
+    "technical": {
+      "timestamp": "2026-04-29T17:55:47.806604+00:00",
+      "connectivity": 100.0,
+      "performance_ms": 220.46923076923076,
+      "growth_velocity": 0.0
+    },
+    "engagement": {
+      "timestamp": "2026-04-29T18:32:28.222925+00:00",
+      "engagement_score": 72.0,
+      "satisfaction": 78.0,
+      "survey_nps": 41.0,
+      "sample_size": 240
+    },
+    "health_score": 77.26,
+    "health_breakdown": {
+      "technical": 79.78,
+      "engagement": 74.17,
+      "connectivity": 100.0,
+      "performance": 77.95,
+      "growth": 50.0
+    },
+    "correlation": null
+  },
+  {
+    "timestamp": "2026-04-29T17:58:42.881842+00:00",
+    "technical": {
+      "timestamp": "2026-04-29T17:58:42.881842+00:00",
+      "connectivity": 100.0,
+      "performance_ms": 428.94615384615383,
+      "growth_velocity": 0
+    },
+    "engagement": {
+      "timestamp": "2026-04-29T18:32:28.222925+00:00",
+      "engagement_score": 72.0,
+      "satisfaction": 78.0,
+      "survey_nps": 41.0,
+      "sample_size": 240
+    },
+    "health_score": 73.25,
+    "health_breakdown": {
+      "technical": 72.49,
+      "engagement": 74.17,
+      "connectivity": 100.0,
+      "performance": 57.11,
+      "growth": 50.0
+    },
+    "correlation": null
+  },
+  {
+    "timestamp": "2026-04-29T18:11:12.427946+00:00",
+    "technical": {
+      "timestamp": "2026-04-29T18:11:12.427946+00:00",
+      "connectivity": 92.3076923076923,
+      "performance_ms": 716.4076923076924,
+      "growth_velocity": 0
+    },
+    "engagement": {
+      "timestamp": "2026-04-29T18:32:28.222925+00:00",
+      "engagement_score": 72.0,
+      "satisfaction": 78.0,
+      "survey_nps": 41.0,
+      "sample_size": 240
+    },
+    "health_score": 66.02,
+    "health_breakdown": {
+      "technical": 59.35,
+      "engagement": 74.17,
+      "connectivity": 92.31,
+      "performance": 28.36,
+      "growth": 50.0
+    },
+    "correlation": null
+  }
+]

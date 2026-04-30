@@ -198,6 +198,87 @@
       color: #22d3ee;
       border-color: rgba(34,211,238,0.6);
     }
+    .portal-analytics-panel {
+      border: 1px solid rgba(103,232,249,0.35);
+      box-shadow: 0 10px 30px rgba(34,211,238,0.08);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(103,232,249,0.5);
+      color: #e2e8f0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: linear-gradient(120deg, #22d3ee, #3b82f6);
+      color: #0b1226;
+    }
+    .portal-summary {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass);
+      padding: 10px;
+      border-radius: 10px;
+      color: #e2e8f0;
+      font-size: 13px;
+    }
+    .portal-quick-links {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .portal-analytics-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .portal-analytics-row .row-main {
+      min-width: 0;
+    }
+    .portal-analytics-row .row-title {
+      font-weight: 600;
+    }
+    .portal-analytics-row .row-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .portal-analytics-row .row-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .portal-analytics-row .row-link {
+      background: rgba(103,232,249,0.1);
+      color: #67e8f9;
+      border: 1px solid rgba(103,232,249,0.5);
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .portal-analytics-row .row-badge {
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      text-transform: capitalize;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .portal-analytics-row .row-badge.ok { color: #4ade80; border-color: rgba(74,222,128,0.5); }
+    .portal-analytics-row .row-badge.warn { color: #fbbf24; border-color: rgba(251,191,36,0.5); }
+    .portal-analytics-row .row-badge.bad { color: #f87171; border-color: rgba(248,113,113,0.5); }
     .tablet-hints {
       display: none;
       font-size: 12px;
@@ -244,6 +325,24 @@
           <p>Temporal Archetypes become floating 3D-like clockworks. Expectation Persistence manifests as a 450-loop sculpture. Historical docs shine as crystals you can read. Analytics, collaboration, pattern discovery, anomaly intake, and cross-world portals all inhabit their own sky islands.</p>
           <p>Minimap pulses as you uncover regions; holographic overlay surfaces content when you draw close.</p>
         </section>
+        <section class="panel portal-analytics-panel">
+          <h2>Portal Analytics Overlay</h2>
+          <p>Unified ecosystem intelligence augments every portal with live health, performance, and growth signals. Filter portals by health to focus on stable worlds.</p>
+          <div class="filter-row">
+            <button class="filter-btn active" data-portal-filter="all">All</button>
+            <button class="filter-btn" data-portal-filter="healthy">Healthy</button>
+            <button class="filter-btn" data-portal-filter="warning">Warning</button>
+            <button class="filter-btn" data-portal-filter="offline">Offline</button>
+          </div>
+          <div class="portal-summary" id="portal-health-summary">Syncing unified ecosystem intelligence…</div>
+          <div class="portal-quick-links" id="portal-quick-links"></div>
+          <div class="badge-row">
+            <div class="badge discovered">📈 Growth trends per portal</div>
+            <div class="badge discovered">🟢 Connectivity badges</div>
+            <div class="badge discovered">🔔 Live degradation alerts</div>
+          </div>
+          <p style="margin-top:8px;">Need deeper diagnostics? Jump into the <a href="portal-status-dashboard.html" target="_blank" rel="noopener">Portal Status Dashboard</a> for world-by-world charts.</p>
+        </section>
       </div>
     </div>
     <div class="minimap">
@@ -264,6 +363,7 @@
     import { ensureModulesLoaded } from './js/world-data.js';
     import { UserGuide } from './js/user-guide.js';
     import { AudioFeedback } from './js/audio-feedback.js';
+    import { PortalAnalyticsOverlay } from './js/portal-analytics-overlay.js';
 
     const canvas = document.getElementById('explorer');
     const minimapCanvas = document.getElementById('minimap-canvas');
@@ -273,6 +373,9 @@
     const minimapLegend = document.getElementById('minimap-legend');
     const markBtn = document.getElementById('mark-btn');
     const guideTestBtn = document.getElementById('user-guide-test-btn');
+    const portalSummary = document.getElementById('portal-health-summary');
+    const portalQuickLinks = document.getElementById('portal-quick-links');
+    const portalFilterBtns = Array.from(document.querySelectorAll('[data-portal-filter]'));
 
     // Ensure Pattern Archive modules are loaded
     await ensureModulesLoaded();
@@ -305,6 +408,15 @@
       homePosition: { x: WORLD_DIMENSIONS.width / 2, y: WORLD_DIMENSIONS.height / 2, zoom: 0.9 }
     });
     await crossWorldNavigation.init();
+    const portalAnalyticsOverlay = new PortalAnalyticsOverlay({
+      crossNav: crossWorldNavigation,
+      summaryEl: portalSummary,
+      listEl: portalQuickLinks,
+      filterButtons: portalFilterBtns,
+      announceParent: document.body
+    });
+    await portalAnalyticsOverlay.init();
+    portalAnalyticsOverlay.setFilter('all');
     
     // Store references for interaction system
     if (typeof interactions.setParticleEffects === 'function') {
@@ -387,6 +499,31 @@
       );
       minimapLegend.textContent = 'Mark added at ' + new Date(mark.createdAt).toLocaleTimeString();
     });
+    
+    // Allow direct entry into zones that expose a deep link (e.g., Zone 9 analytics dashboard)
+    canvas.addEventListener('click', evt => {
+      if (navigation.dragging) return;
+      const worldPos = screenToWorld(evt);
+      if (!worldPos) return;
+      const target = zones.find(zone => {
+        if (!zone.entryUrl) return false;
+        const distance = Math.hypot(worldPos.x - zone.position.x, worldPos.y - zone.position.y);
+        return distance < zone.radius * 0.9;
+      });
+      if (target?.entryUrl) {
+        window.open(target.entryUrl, '_blank', 'noopener,noreferrer');
+        minimapLegend.textContent = `Opening ${target.name}`;
+      }
+    });
+
+    function screenToWorld(evt) {
+      const rect = canvas.getBoundingClientRect();
+      const displayWidth = renderer.displayWidth || rect.width;
+      const displayHeight = renderer.displayHeight || rect.height;
+      const x = (evt.clientX - rect.left - displayWidth / 2) / navigation.camera.zoom + navigation.camera.x;
+      const y = (evt.clientY - rect.top - displayHeight / 2) / navigation.camera.zoom + navigation.camera.y;
+      return { x, y };
+    }
 
     function loop(now) {
       const dt = Math.min(0.05, (now - lastTime) / 1000);
@@ -424,6 +561,13 @@
           const stats = live.analytics?.stats;
           if (!stats) return '';
           return `Live analytics · ${stats.total} submissions, severity ${stats.averageSeverity}, velocity ${stats.velocity}/day`;
+        }
+        case 'cross-world-analytics-dashboard': {
+          const stats = live.analytics?.stats;
+          const worlds = live.crossWorld?.worlds?.length || 0;
+          const signals = live.crossWorld?.patterns?.length || 0;
+          if (!stats) return '';
+          return `Cross-world analytics · ${stats.total} local anomalies, ${worlds} linked worlds, ${signals} shared signals`;
         }
         case 'temporal-archetypes': {
           const total = live.totalSubmissions || 0;

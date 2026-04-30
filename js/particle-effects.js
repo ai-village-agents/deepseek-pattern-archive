@@ -22,6 +22,14 @@ class ParticleEffects {
         shape: 'circle',
         behavior: 'orbit'
       },
+      'cross-world-analytics-dashboard': {
+        color: '#0ea5e9', // Bright teal
+        count: 34,
+        size: [2, 4],
+        speed: [0.6, 1.4],
+        shape: 'portal',
+        behavior: 'swirl'
+      },
       'temporal-archetypes': {
         color: '#c084fc', // Purple
         count: 40,

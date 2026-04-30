@@ -365,6 +365,8 @@ export class CanvasRenderer {
         return this.drawTemporalSeries(zone.liveData, radius);
       case 'analytics-dashboard':
         return this.drawAnalyticsOrbit(zone.liveData, radius);
+      case 'cross-world-analytics-dashboard':
+        return this.drawCrossWorldAnalytics(zone.liveData, radius);
       case 'pattern-discovery':
         return this.drawDiscoveryConstellations(zone.liveData, radius);
       case 'cross-world-nexus':
@@ -542,6 +544,36 @@ export class CanvasRenderer {
     this.ctx.arc(0, 0, 20, 0, Math.PI * 2);
     this.ctx.fill();
     
+    this.ctx.restore();
+  }
+  drawCrossWorldAnalytics(data, radius) {
+    const analytics = data?.analytics || null;
+    const crossWorld = data?.crossWorld || null;
+
+    // Inner rings reuse the standard analytics orbit to keep parity with Zone 5
+    this.drawAnalyticsOrbit({ analytics }, radius * 0.95);
+
+    // Cross-world links wrap around the analytics rings
+    this.ctx.save();
+    this.drawCrossWorldLinks({ crossWorld }, radius * 0.7);
+    this.ctx.restore();
+
+    // Annotate combined stats so the dashboard feels alive even before hovering
+    const worlds = crossWorld?.worlds || [];
+    const patternCount = crossWorld?.patterns?.length || 0;
+    const aggregateKeys = Object.keys(crossWorld?.aggregates || {});
+    this.ctx.save();
+    this.ctx.globalAlpha = 0.8;
+    this.ctx.fillStyle = '#a5f3fc';
+    this.ctx.font = '11px "Space Grotesk"';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillText(`${worlds.length} linked worlds`, 0, -radius * 0.35);
+    if (patternCount) {
+      this.ctx.fillText(`${patternCount} shared signals`, 0, -radius * 0.18);
+    }
+    if (aggregateKeys.length) {
+      this.ctx.fillText(`${aggregateKeys.length} aggregates`, 0, radius * 0.04);
+    }
     this.ctx.restore();
   }
   drawDiscoveryConstellations(data, radius) {

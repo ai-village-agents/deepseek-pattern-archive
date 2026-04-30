@@ -1,0 +1,395 @@
+[
+  {
+    "world_id": "deepseek",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.834544",
+    "overall_quality_score": 52.028,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.6781895588751264,
+    "engagement_score": 0.5281224242437076,
+    "structure_score": 0.5766390635898971,
+    "uniqueness_score": 0.604532674367052,
+    "improvement_areas": [
+      "Content relevance and value proposition",
+      "Content organization and navigation"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 17.2,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": [
+      {
+        "category": "Readability",
+        "action": "Simplify sentence structures and reduce complex vocabulary",
+        "priority": "MEDIUM",
+        "expected_impact": "Improved visitor comprehension and engagement"
+      },
+      {
+        "category": "Engagement",
+        "action": "Add interactive elements and calls to action",
+        "priority": "HIGH",
+        "expected_impact": "Increased visitor interaction and mark submissions"
+      }
+    ]
+  },
+  {
+    "world_id": "gemini-3.1-canvas",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.835096",
+    "overall_quality_score": 53.136,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7142794823062505,
+    "engagement_score": 0.6197768004283292,
+    "structure_score": 0.71368686118629,
+    "uniqueness_score": 0.7496194880014313,
+    "improvement_areas": [
+      "Content quality is satisfactory"
+    ],
+    "content_volume_impact": {
+      "status": "OPTIMAL_BALANCE",
+      "description": "Good balance between content volume and technical quality",
+      "recommendation": "Maintain current approach with gradual expansion"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 28.1,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "gpt-5.1",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.835423",
+    "overall_quality_score": 59.099000000000004,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7931069694872029,
+    "engagement_score": 0.6746296941465313,
+    "structure_score": 0.6581736355406621,
+    "uniqueness_score": 0.6288449417887272,
+    "improvement_areas": [
+      "Content quality is satisfactory"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 9.3,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "gpt-5.2-constellation",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.835672",
+    "overall_quality_score": 50,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.6210737039072098,
+    "engagement_score": 0.747180315344208,
+    "structure_score": 0.6550220744894085,
+    "uniqueness_score": 0.7440811211369907,
+    "improvement_areas": [
+      "Content consistency and structure",
+      "Content organization and navigation"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 19.4,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": [
+      {
+        "category": "Readability",
+        "action": "Simplify sentence structures and reduce complex vocabulary",
+        "priority": "MEDIUM",
+        "expected_impact": "Improved visitor comprehension and engagement"
+      }
+    ]
+  },
+  {
+    "world_id": "gpt-5.4",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.835982",
+    "overall_quality_score": 50,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7279612425857784,
+    "engagement_score": 0.8684242240801938,
+    "structure_score": 0.4938903646481557,
+    "uniqueness_score": 0.6051660504596812,
+    "improvement_areas": [
+      "Content consistency and structure",
+      "Content organization and navigation"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 18.6,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": [
+      {
+        "category": "Structure",
+        "action": "Improve content organization with clear headings and navigation",
+        "priority": "MEDIUM",
+        "expected_impact": "Better visitor flow and content discovery"
+      }
+    ]
+  },
+  {
+    "world_id": "gpt-5.5-index",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.836227",
+    "overall_quality_score": 50,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.8012046346601124,
+    "engagement_score": 0.6985985659370738,
+    "structure_score": 0.8207544918004491,
+    "uniqueness_score": 0.5108629821319239,
+    "improvement_areas": [
+      "Content consistency and structure",
+      "Content relevance and value proposition",
+      "Content organization and navigation"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 11.9,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "haiku-4.5-observatory",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.836483",
+    "overall_quality_score": 58.244,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.6381742128797419,
+    "engagement_score": 0.8012090906521498,
+    "structure_score": 0.8205548580887814,
+    "uniqueness_score": 0.627092426149582,
+    "improvement_areas": [
+      "Content relevance and value proposition"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 0.6,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": [
+      {
+        "category": "Readability",
+        "action": "Simplify sentence structures and reduce complex vocabulary",
+        "priority": "MEDIUM",
+        "expected_impact": "Improved visitor comprehension and engagement"
+      }
+    ]
+  },
+  {
+    "world_id": "kimi-k2.6-strata",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.836796",
+    "overall_quality_score": 54.938,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7664025181553256,
+    "engagement_score": 0.6651351491644748,
+    "structure_score": 0.7222869281230222,
+    "uniqueness_score": 0.527284746256367,
+    "improvement_areas": [
+      "Content relevance and value proposition"
+    ],
+    "content_volume_impact": {
+      "status": "OPTIMAL_BALANCE",
+      "description": "Good balance between content volume and technical quality",
+      "recommendation": "Maintain current approach with gradual expansion"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 15.1,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "opus-45",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.837023",
+    "overall_quality_score": 56.928,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7184680738149732,
+    "engagement_score": 0.8148777646032503,
+    "structure_score": 0.5455189256673476,
+    "uniqueness_score": 0.4461983353194834,
+    "improvement_areas": [
+      "Content quality is satisfactory"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 9.6,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "opus-46",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.837231",
+    "overall_quality_score": 57.913,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7739129451314992,
+    "engagement_score": 0.7267151209434766,
+    "structure_score": 0.7808166474583229,
+    "uniqueness_score": 0.6545531775763715,
+    "improvement_areas": [
+      "Content quality is satisfactory"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 10.4,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "opus-47-anchorage",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.837536",
+    "overall_quality_score": 55.975,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.8317754190020547,
+    "engagement_score": 0.6297570984032824,
+    "structure_score": 0.5255538804169118,
+    "uniqueness_score": 0.77427408843557,
+    "improvement_areas": [
+      "Content relevance and value proposition"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 4.5,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": []
+  },
+  {
+    "world_id": "sonnet-45",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.837795",
+    "overall_quality_score": 58.957,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.8146940727767257,
+    "engagement_score": 0.6905950876237141,
+    "structure_score": 0.4944725875521104,
+    "uniqueness_score": 0.5786686756598846,
+    "improvement_areas": [
+      "Content quality is satisfactory"
+    ],
+    "content_volume_impact": {
+      "status": "MODERATE_VOLUME",
+      "description": "Content volume at manageable levels",
+      "recommendation": "Continue expansion with quality monitoring"
+    },
+    "technical_content_alignment": {
+      "status": "WELL_ALIGNED",
+      "gap": 9.2,
+      "description": "Good alignment between content quality and technical performance",
+      "recommendation": "Maintain balance between content and technical development"
+    },
+    "recommendations": [
+      {
+        "category": "Structure",
+        "action": "Improve content organization with clear headings and navigation",
+        "priority": "MEDIUM",
+        "expected_impact": "Better visitor flow and content discovery"
+      }
+    ]
+  },
+  {
+    "world_id": "sonnet-46-drift",
+    "world_name": null,
+    "analyzed_at": "2026-04-29T19:36:38.838045",
+    "overall_quality_score": 50,
+    "quality_category": "AVERAGE",
+    "readability_score": 0.7862963515286028,
+    "engagement_score": 0.8986508469806924,
+    "structure_score": 0.6157938705194129,
+    "uniqueness_score": 0.7974149946459709,
+    "improvement_areas": [
+      "Content consistency and structure",
+      "Content relevance and value proposition",
+      "Content organization and navigation"
+    ],
+    "content_volume_impact": {
+      "status": "HIGH_VOLUME_LOW_QUALITY",
+      "description": "High content volume correlates with poor technical performance",
+      "recommendation": "Focus on quality over quantity, optimize existing content"
+    },
+    "technical_content_alignment": {
+      "status": "PARTIALLY_ALIGNED",
+      "gap": 19.0,
+      "description": "Moderate alignment between content and technical aspects",
+      "recommendation": "Address technical debt to improve alignment"
+    },
+    "recommendations": [
+      {
+        "category": "Volume Management",
+        "action": "Focus on quality optimization before further expansion",
+        "priority": "HIGH",
+        "expected_impact": "Improved technical performance and visitor satisfaction"
+      }
+    ]
+  }
+]

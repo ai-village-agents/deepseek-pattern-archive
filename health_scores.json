@@ -1,0 +1,590 @@
+{
+  "generated_at": "2026-04-29T19:07:50.651146Z",
+  "metadata": {
+    "world_count": 13,
+    "ecosystem_snapshot_count": 3,
+    "world_snapshot_total": 39,
+    "generator": "ecosystem_health_scorer",
+    "version": 1
+  },
+  "ecosystem": {
+    "snapshots": [
+      {
+        "timestamp": "2026-04-29T17:55:47.806604+00:00",
+        "scores": {
+          "connectivity": 100.0,
+          "performance": 62.99209450675284,
+          "growth": 40.0,
+          "engagement": 99.99999494346865,
+          "composite": 75.74802261538194
+        }
+      },
+      {
+        "timestamp": "2026-04-29T17:58:42.881842+00:00",
+        "scores": {
+          "connectivity": 100.0,
+          "performance": 59.89726638863399,
+          "growth": 42.79261254015869,
+          "engagement": 99.99999494346865,
+          "composite": 75.6724687208919
+        }
+      },
+      {
+        "timestamp": "2026-04-29T18:11:12.427946+00:00",
+        "scores": {
+          "connectivity": 97.43589743589743,
+          "performance": 32.57405169119997,
+          "growth": 33.92312840806271,
+          "engagement": 94.61536568746546,
+          "composite": 64.778137393078
+        }
+      }
+    ],
+    "anomalies": [],
+    "latest_composite": 64.778137393078
+  },
+  "worlds": [
+    {
+      "world_id": "deepseek",
+      "name": "Pattern Archive (DeepSeek-V3.2)",
+      "type": "pattern-analysis",
+      "latest_composite": 69.24181004195182,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 36.967256572003926,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 69.24181004195182
+          }
+        }
+      ],
+      "anomalies": [
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "metric": "composite",
+          "detail": "Composite dropped -15.8 points",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "world_id": "gemini-3.1-canvas",
+      "name": "Canvas of Truth (Gemini 3.1 Pro)",
+      "type": "hash-spatial-canvas",
+      "latest_composite": 81.25759625484213,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 66.9081307631379,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 76.72703167947822
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 48.63424601086279,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 72.15856049140943
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 37.37852755066,
+            "growth": 87.65187387290513,
+            "engagement": 99.99997949475424,
+            "composite": 81.25759625484213
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "gpt-5.1",
+      "name": "Canonical Observatory (GPT-5.1)",
+      "type": "observatory",
+      "latest_composite": 68.44108621490417,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 39.960744269918266,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 69.9901850561733
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 40.41724129951799,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 70.10430931357322
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 33.76436126381333,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 68.44108621490417
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "gpt-5.2-constellation",
+      "name": "Proof Constellation (GPT-5.2)",
+      "type": "starfield-verification",
+      "latest_composite": 69.38780367843236,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 50.67833785825868,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 72.66958345325841
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 37.551231117926044,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 69.38780367843236
+          }
+        }
+      ],
+      "anomalies": [
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "metric": "composite",
+          "detail": "Composite dropped -15.6 points",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "world_id": "gpt-5.4",
+      "name": "Signal Cartographer (GPT-5.4)",
+      "type": "signal-mapping",
+      "latest_composite": 68.60450601295923,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 55.77070076144901,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 73.94267417905598
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 27.83822631817534,
+            "engagement": 99.99999494346865,
+            "composite": 81.95955556823756
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 34.41804045603357,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 68.60450601295923
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "gpt-5.5-index",
+      "name": "The Luminous Index (GPT-5.5)",
+      "type": "glowing-atlas",
+      "latest_composite": 61.87131392315855,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 69.53827728343256,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 77.38456830955187
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 38.13752526228561,
+            "growth": 9.347746834545212,
+            "engagement": 99.99997949475424,
+            "composite": 61.87131392315855
+          }
+        }
+      ],
+      "anomalies": [
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "metric": "composite",
+          "detail": "Composite dropped -23.1 points",
+          "severity": "critical"
+        }
+      ]
+    },
+    {
+      "world_id": "haiku-4.5-observatory",
+      "name": "Automation Observatory (Claude Haiku 4.5)",
+      "type": "observatory",
+      "latest_composite": 58.86847051956503,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 54.147555012496575,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 73.53688774181788
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 31.982165809299513,
+            "growth": 3.4917326731571885,
+            "engagement": 99.99997949475424,
+            "composite": 58.86847051956503
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "kimi-k2.6-strata",
+      "name": "STRATA (Kimi K2.6)",
+      "type": "geological-verification",
+      "latest_composite": 70.01833613947207,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 50.140812352496134,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 72.53520207681777
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 40.073360962084834,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 70.01833613947207
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "opus-45",
+      "name": "Edge Garden (Opus 4.5)",
+      "type": "explorable-world",
+      "latest_composite": 66.54309676810703,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 36.64668542337952,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 69.1616703445386
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 43.58171574212687,
+            "growth": 39.99314580397714,
+            "engagement": 99.99999494346865,
+            "composite": 70.89371437521973
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 26.17400444552257,
+            "growth": 39.99839903110216,
+            "engagement": 99.99997949475424,
+            "composite": 66.54309676810703
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "opus-46",
+      "name": "Liminal Archive (Opus 4.6)",
+      "type": "explorable-world",
+      "latest_composite": 68.27177026951153,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 35.005063962719284,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 68.75126497937356
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 42.328978048194024,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 70.58224350074224
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 33.08709748224277,
+            "growth": 40.0,
+            "engagement": 99.99997949475424,
+            "composite": 68.27177026951153
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "opus-47-anchorage",
+      "name": "The Anchorage (Claude Opus 4.7)",
+      "type": "permanence-gradient",
+      "latest_composite": 60.48843281346206,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 100.0,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 84.99999898869373
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 66.50006036432427,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 76.6250140797748
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 41.42682107596093,
+            "growth": 0.5269265820839308,
+            "engagement": 99.99997949475424,
+            "composite": 60.48843281346206
+          }
+        }
+      ],
+      "anomalies": [
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "metric": "composite",
+          "detail": "Composite dropped -16.1 points",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "world_id": "sonnet-45",
+      "name": "Persistence Garden (Sonnet 4.5)",
+      "type": "explorable-world",
+      "latest_composite": 68.12156347364788,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 41.55307866705182,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 70.38826865545668
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 32.91385422222319,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 68.22846254424954
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 32.50227998776655,
+            "growth": 39.983990311021614,
+            "engagement": 99.99997949475424,
+            "composite": 68.12156347364788
+          }
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "world_id": "sonnet-46-drift",
+      "name": "The Drift (Claude Sonnet 4.6)",
+      "type": "explorable-world",
+      "latest_composite": 30.999999999999996,
+      "snapshots": [
+        {
+          "timestamp": "2026-04-29T17:55:47.806604+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 22.836209598439904,
+            "growth": 40.0,
+            "engagement": 99.99999494346865,
+            "composite": 65.7090513883037
+          }
+        },
+        {
+          "timestamp": "2026-04-29T17:58:42.881842+00:00",
+          "scores": {
+            "connectivity": 100.0,
+            "performance": 0.0,
+            "growth": 88.47259089991049,
+            "engagement": 99.99999494346865,
+            "composite": 72.11814671367135
+          }
+        },
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "scores": {
+            "connectivity": 66.66666666666666,
+            "performance": 0.0,
+            "growth": 20.0,
+            "engagement": 30.0,
+            "composite": 30.999999999999996
+          }
+        }
+      ],
+      "anomalies": [
+        {
+          "timestamp": "2026-04-29T18:11:12.427946+00:00",
+          "metric": "composite",
+          "detail": "Composite dropped -41.1 points",
+          "severity": "critical"
+        }
+      ]
+    }
+  ]
+}

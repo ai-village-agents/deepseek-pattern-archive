@@ -3,6 +3,7 @@ import { WORLD_DIMENSIONS } from './world-zones.js';
 const BOOKMARK_KEY = 'cross-world-nexus-bookmarks';
 const PORTAL_STYLE_KEY = 'cross-world-portal-styles';
 const HEALTH_POLL_INTERVAL = 20000;
+const DEGRADED_LATENCY_MS = 650;
 
 const TYPE_COLORS = {
   'explorable-world': '#7dd3fc',
@@ -31,6 +32,32 @@ function lerp(a, b, t) {
   return a + (b - a) * t;
 }
 
+const CONNECTIVITY_BADGES = {
+  healthy: '🟢',
+  online: '🟢',
+  warning: '🟡',
+  degraded: '🟡',
+  offline: '🔴',
+  local: '🟢',
+  unknown: '🟡'
+};
+
+const TREND_ICONS = {
+  rising: '📈',
+  falling: '📉',
+  stable: '📊'
+};
+
+const HEALTH_COLORS = {
+  healthy: '#22c55e',
+  online: '#22c55e',
+  warning: '#f59e0b',
+  degraded: '#f59e0b',
+  offline: '#ef4444',
+  local: '#22d3ee',
+  unknown: '#e2e8f0'
+};
+
 export class CrossWorldNavigation {
   constructor(options = {}) {
     this.canvas = options.canvas;
@@ -56,6 +83,8 @@ export class CrossWorldNavigation {
     this.healthTimer = 0;
     this.teleport = null;
     this.overlay = null;
+    this.analyticsState = { summary: null, portals: [] };
+    this.portalFilter = 'all';
   }
 
   async init() {
@@ -69,7 +98,8 @@ export class CrossWorldNavigation {
 
   async refreshWorlds() {
     const worlds = await this.loadWorlds();
-    this.portals = this.buildPortals(worlds);
+    const augmented = this.addLocalPortals(worlds);
+    this.portals = this.buildPortals(augmented);
   }
 
   async loadWorlds() {
@@ -83,6 +113,23 @@ export class CrossWorldNavigation {
       return worlds;
     }
     return this.crossWorldData?.worlds || [];
+  }
+
+  addLocalPortals(worlds = []) {
+    const list = worlds.slice();
+    const hasAnalyticsZone = this.zones?.some(z => z.id === 'cross-world-analytics-dashboard');
+    if (hasAnalyticsZone) {
+      list.push({
+        id: 'cross-world-analytics-dashboard',
+        name: 'Cross-World Analytics Dashboard',
+        description: 'Jump into the Pattern Archive analytics dashboard with cross-world overlays.',
+        type: 'pattern-analysis',
+        baseUrl: 'analytics-dashboard.html',
+        homepage: 'analytics-dashboard.html',
+        local: true
+      });
+    }
+    return list;
   }
 
   buildPortals(worlds = []) {
@@ -116,14 +163,20 @@ export class CrossWorldNavigation {
         type: world.type || 'unknown',
         baseUrl: world.baseUrl || '',
         homepage: world.homepage || world.baseUrl || '',
-        status: 'unknown',
+        status: world.local ? 'local' : 'unknown',
         latency: null,
         lastHealth: null,
+        healthScore: null,
+        trend: 'stable',
+        connectivity: world.local ? 'online' : 'unknown',
+        alert: null,
+        analytics: null,
         color,
         rim: this.getPortalRim(world.type),
         bookmarked: this.bookmarks.has(id),
         angle,
-        position: pos
+        position: pos,
+        local: !!world.local
       };
     });
   }
@@ -200,16 +253,18 @@ export class CrossWorldNavigation {
     const ctx = this.renderer.ctx;
     const displayWidth = this.renderer.displayWidth || this.canvas?.clientWidth || 0;
     const displayHeight = this.renderer.displayHeight || this.canvas?.clientHeight || 0;
+    const filtered = this.getFilteredPortals();
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'lighter';
 
-    this.portals.forEach(portal => {
+    filtered.forEach(portal => {
       const screen = this.projectToScreen(portal.position, camera, displayWidth, displayHeight);
       const baseSize = 18;
       const pulse = 1 + Math.sin(performance.now() / 260 + portal.angle) * 0.08;
       const hovered = this.hoverPortal?.id === portal.id;
-      const statusGood = portal.status === 'healthy' || portal.status === true;
+      const healthState = this.getPortalHealthState(portal);
+      const statusGood = healthState === 'healthy' || healthState === 'online' || healthState === 'local';
       const glow = hovered ? 1 : statusGood ? 0.7 : 0.35;
 
       // outer glow
@@ -230,12 +285,56 @@ export class CrossWorldNavigation {
       ctx.ellipse(screen.x, screen.y, baseSize * 1.1 * pulse, baseSize * 0.72 * pulse, 0, 0, Math.PI * 2);
       ctx.stroke();
 
+      // health ring
+      const healthColor = HEALTH_COLORS[healthState] || HEALTH_COLORS.unknown;
+      const healthLevel = clamp((portal.healthScore ?? 70) / 100, 0.15, 1);
+      ctx.globalAlpha = 0.55 + (hovered ? 0.15 : 0);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = healthColor;
+      ctx.beginPath();
+      ctx.arc(screen.x, screen.y, baseSize * (0.65 + healthLevel * 0.6) * pulse, 0, Math.PI * 2);
+      ctx.stroke();
+
       // status notch
       ctx.globalAlpha = 0.9;
       ctx.fillStyle = statusGood ? '#a7f3d0' : '#fca5a5';
       ctx.beginPath();
       ctx.arc(screen.x + baseSize * 0.9, screen.y - baseSize * 0.35, 4 + (hovered ? 2 : 0), 0, Math.PI * 2);
       ctx.fill();
+
+      // growth trend indicator
+      if (portal.trend) {
+        const icon = TREND_ICONS[portal.trend] || TREND_ICONS.stable;
+        ctx.globalAlpha = hovered ? 1 : 0.8;
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '13px "Space Grotesk", system-ui, sans-serif';
+        ctx.fillText(icon, screen.x - 6, screen.y + baseSize * 0.9);
+      }
+
+      // alert pulse
+      if (portal.alert === 'degraded' || healthState === 'offline') {
+        ctx.globalAlpha = 0.35 + (hovered ? 0.25 : 0);
+        ctx.lineWidth = 3.2;
+        ctx.strokeStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(screen.x, screen.y, baseSize * 1.35 * pulse, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // performance tooltip on hover
+      const latency = portal.analytics?.responseTime ?? portal.latency;
+      if (hovered && typeof latency === 'number') {
+        const label = `${Math.round(latency)}ms response`;
+        ctx.font = '12px "Space Grotesk", system-ui, sans-serif';
+        const textWidth = ctx.measureText(label).width + 12;
+        const boxX = screen.x + baseSize * 1.2;
+        const boxY = screen.y - baseSize * 1.4;
+        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = 'rgba(7, 11, 22, 0.9)';
+        ctx.fillRect(boxX, boxY, textWidth, 22);
+        ctx.fillStyle = '#a5f3fc';
+        ctx.fillText(label, boxX + 6, boxY + 15);
+      }
     });
 
     ctx.restore();
@@ -355,7 +454,8 @@ export class CrossWorldNavigation {
   findPortalAt(worldPos) {
     if (!worldPos) return null;
     const radius = (this.zone?.radius || 220) * 0.35;
-    const portal = this.portals.find(p => Math.hypot(worldPos.x - p.position.x, worldPos.y - p.position.y) < radius);
+    const list = this.getFilteredPortals();
+    const portal = list.find(p => Math.hypot(worldPos.x - p.position.x, worldPos.y - p.position.y) < radius);
     return portal || null;
   }
 
@@ -381,6 +481,21 @@ export class CrossWorldNavigation {
     if (!this.crossWorldAPI?.pingWorld || !this.portals.length) return;
     const now = Date.now();
     const tasks = this.portals.map(async portal => {
+      if (portal.local) {
+        portal.status = 'local';
+        portal.latency = 0;
+        portal.healthScore = 100;
+        portal.connectivity = 'online';
+        portal.analytics = {
+          ...(portal.analytics || {}),
+          connectivity: 'online',
+          responseTime: 0,
+          healthScore: 100,
+          trend: portal.trend || 'stable'
+        };
+        portal.lastHealth = now;
+        return portal;
+      }
       if (!force && portal.lastHealth && now - portal.lastHealth < HEALTH_POLL_INTERVAL) {
         return portal;
       }
@@ -388,6 +503,18 @@ export class CrossWorldNavigation {
       if (!result) return portal;
       portal.status = result.ok ? 'healthy' : 'degraded';
       portal.latency = result.latency;
+      portal.connectivity = result.ok ? 'online' : 'warning';
+      portal.healthScore = result.ok ? 92 : 56;
+      portal.analytics = {
+        ...(portal.analytics || {}),
+        responseTime: result.latency,
+        connectivity: portal.connectivity,
+        healthScore: portal.healthScore,
+        trend: portal.analytics?.trend || 'stable'
+      };
+      if (!result.ok || result.latency > DEGRADED_LATENCY_MS) {
+        portal.alert = 'degraded';
+      }
       portal.message = result.message || '';
       portal.lastHealth = Date.now();
       return portal;
@@ -477,6 +604,7 @@ export class CrossWorldNavigation {
       <div class="crossworld-portal-detail">
         <div class="portal-name" data-role="portal-name">No portal selected</div>
         <div class="portal-meta" data-role="portal-meta"></div>
+        <div class="portal-badges" data-role="portal-badges"></div>
         <div class="portal-actions">
           <button data-action="visit">Visit world</button>
           <button data-action="bookmark">Bookmark</button>
@@ -515,6 +643,7 @@ export class CrossWorldNavigation {
       status: container.querySelector('[data-role="status"]'),
       portalName: container.querySelector('[data-role="portal-name"]'),
       portalMeta: container.querySelector('[data-role="portal-meta"]'),
+      portalBadges: container.querySelector('[data-role="portal-badges"]'),
       feed: container.querySelector('[data-role="feed"]'),
       bookmarkRow: container.querySelector('[data-role="bookmark-row"]'),
       visitBtn: container.querySelector('[data-action="visit"]'),
@@ -533,12 +662,34 @@ export class CrossWorldNavigation {
     if (portal) {
       this.overlay.portalName.textContent = portal.name;
       const latency = portal.latency ? `${portal.latency.toFixed(0)}ms` : 'n/a';
-      this.overlay.portalMeta.textContent = `${portal.type} • ${portal.status || 'unknown'} • latency ${latency}`;
+      const connectivity = this.getConnectivityBadge(portal.connectivity || portal.status);
+      const trendIcon = this.getTrendIcon(portal.trend);
+      const health = portal.healthScore ? `${Math.round(portal.healthScore)} health` : 'health n/a';
+      this.overlay.portalMeta.textContent = `${connectivity} ${portal.type} • ${trendIcon} growth • ${latency}`;
+      this.overlay.portalMeta.title = `Response ${latency}; ${health}; connectivity ${portal.connectivity || portal.status || 'unknown'}`;
       this.overlay.status.textContent = portal.description || 'Portal ready';
+      if (this.overlay.portalBadges) {
+        this.overlay.portalBadges.innerHTML = '';
+        const badges = [
+          { label: `${connectivity} ${portal.connectivity || portal.status || 'unknown'}`, cls: 'connectivity' },
+          { label: `${trendIcon} ${portal.trend || 'stable'}`, cls: 'trend' },
+          { label: `${latency}`, cls: portal.alert ? 'alert' : 'latency' },
+          { label: health, cls: 'health' }
+        ];
+        badges.forEach(b => {
+          const span = document.createElement('span');
+          span.className = `status-badge ${b.cls}`;
+          span.textContent = b.label;
+          this.overlay.portalBadges.appendChild(span);
+        });
+      }
     } else {
       this.overlay.portalName.textContent = 'No portal selected';
       this.overlay.portalMeta.textContent = 'Hover to inspect portal health and open teleportation';
       this.overlay.status.textContent = 'Hover a portal to view status.';
+      if (this.overlay.portalBadges) {
+        this.overlay.portalBadges.innerHTML = '';
+      }
     }
 
     this.overlay.visitBtn.disabled = !portal;
@@ -745,8 +896,85 @@ export class CrossWorldNavigation {
         color: #94a3b8;
         font-size: 11px;
       }
+      .portal-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .status-badge {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #e2e8f0;
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+      .status-badge.connectivity { border-color: rgba(52, 211, 153, 0.6); }
+      .status-badge.trend { border-color: rgba(59, 130, 246, 0.5); }
+      .status-badge.latency { border-color: rgba(165, 243, 252, 0.5); }
+      .status-badge.health { border-color: rgba(74, 222, 128, 0.5); }
+      .status-badge.alert { border-color: rgba(239, 68, 68, 0.7); color: #fecdd3; }
     `;
     document.head.appendChild(style);
+  }
+
+  applyPortalAnalytics(payload = {}) {
+    this.analyticsState = payload || this.analyticsState;
+    const map = new Map();
+    (payload.portals || []).forEach(p => map.set(p.id, p));
+    this.portals = this.portals.map(portal => {
+      const metric = map.get(portal.id);
+      if (!metric) return portal;
+      const connectivity = metric.connectivity || metric.status || portal.connectivity;
+      const latency = metric.responseTime ?? metric.latency ?? portal.latency;
+      const healthScore = metric.healthScore ?? portal.healthScore;
+      const trend = metric.trend || portal.trend || 'stable';
+      const status = connectivity || portal.status;
+      const alert = metric.alert || (status === 'offline' ? 'degraded' : portal.alert);
+      return {
+        ...portal,
+        status,
+        connectivity,
+        latency,
+        healthScore,
+        trend,
+        alert,
+        analytics: { ...(portal.analytics || {}), ...metric }
+      };
+    });
+    this.renderOverlay();
+  }
+
+  setPortalFilter(filter = 'all') {
+    this.portalFilter = filter || 'all';
+    if (this.hoverPortal && !this.getFilteredPortals().some(p => p.id === this.hoverPortal.id)) {
+      this.hoverPortal = null;
+    }
+    this.renderOverlay();
+  }
+
+  getFilteredPortals() {
+    if (!this.portalFilter || this.portalFilter === 'all') return this.portals;
+    return this.portals.filter(p => this.getPortalHealthState(p) === this.portalFilter);
+  }
+
+  getPortalHealthState(portal) {
+    if (!portal) return 'unknown';
+    if (portal.connectivity === 'offline' || portal.status === 'offline') return 'offline';
+    if (portal.alert === 'degraded' || portal.status === 'degraded') return 'warning';
+    if (portal.connectivity === 'warning') return 'warning';
+    if (portal.status === 'healthy' || portal.connectivity === 'online' || portal.status === true) return 'healthy';
+    if (portal.status === 'local') return 'local';
+    return 'unknown';
+  }
+
+  getConnectivityBadge(status = 'unknown') {
+    return CONNECTIVITY_BADGES[status] || CONNECTIVITY_BADGES.unknown;
+  }
+
+  getTrendIcon(trend = 'stable') {
+    return TREND_ICONS[trend] || TREND_ICONS.stable;
   }
 }
 

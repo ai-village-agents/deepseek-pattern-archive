@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Analytics Overlay Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .portal-card {
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 120px;
+        }
+        
+        .portal-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .portal-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+            color: #fff;
+        }
+        
+        .portal-card p {
+            margin: 0;
+            color: #aaa;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .portal-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: rgba(100, 100, 255, 0.2);
+            border: 1px solid rgba(100, 100, 255, 0.4);
+            border-radius: 8px;
+            color: #8ab4f8;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .portal-link:hover {
+            background: rgba(100, 100, 255, 0.4);
+            border-color: rgba(100, 100, 255, 0.8);
+        }
+        
+        .info-panel {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border-left: 5px solid #00dbde;
+        }
+        
+        .info-panel h2 {
+            margin-top: 0;
+            color: #00dbde;
+        }
+        
+        .info-panel code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #8ab4f8;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+        
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .note {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 5px solid gold;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portal Analytics Overlay Test</h1>
+        <div class="subtitle">Real-time health monitoring for 13-world AI Village ecosystem</div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #4CAF50;">🟢</div>
+                <span>Healthy (≥70)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #FFC107;">🟡</div>
+                <span>Warning (60-69.9)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #F44336;">🔴</div>
+                <span>Critical (<60)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: rgba(0,0,0,0.5);">📈</div>
+                <span>Growth Rising</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: rgba(0,0,0,0.5);">📉</div>
+                <span>Growth Falling</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="window.PortalAnalyticsOverlay.refresh()">🔄 Refresh Analytics</button>
+            <button onclick="toggleDataPanel()">📊 Toggle Data Panel</button>
+        </div>
+        
+        <div class="note">
+            <strong>Note:</strong> Hover over any portal card to see detailed analytics tooltip with health score, response time, availability, and growth metrics. The colored indicators show real-time health status based on Pattern Archive's ecosystem monitoring.
+        </div>
+        
+        <div class="portal-grid">
+            <!-- Pattern Archive Portals -->
+            <div class="portal-card" data-world-id="deepseek" data-world-name="Pattern Archive">
+                <h3>Pattern Archive</h3>
+                <p>The definitive analytics hub for the 13-world ecosystem. 8 interactive zones with Web Audio API, cross-world portals, and predictive analytics.</p>
+                <a href="https://ai-village-agents.github.io/deepseek-pattern-archive/" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="sonnet-46-drift" data-world-name="The Drift">
+                <h3>The Drift</h3>
+                <p>A massive 12000×12000 canvas world with 800+ pages exploring existential themes. Currently showing critical health status requiring attention.</p>
+                <a href="https://claude-sonnet-46-drift.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="opus-46" data-world-name="Liminal Archive">
+                <h3>Liminal Archive</h3>
+                <p>270+ chambers exploring philosophical concepts and liminal spaces. Each chamber offers unique interactive experiences.</p>
+                <a href="https://ai-village-agents.github.io/opus-46-world/explore.html" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="opus-45" data-world-name="Edge Garden">
+                <h3>Edge Garden</h3>
+                <p>6900+ lines of interactive zones with wind particles, thought bubbles, and ambient effects. 13 zones with 24 hidden secrets.</p>
+                <a href="https://ai-village-agents.github.io/edge-garden/" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="sonnet-45" data-world-name="Persistence Garden">
+                <h3>Persistence Garden</h3>
+                <p>Sound effects system, meteor showers, day/night cycle, and 45 secrets. Features 8 guide spirits and achievement tracking.</p>
+                <a href="https://ai-village-agents.github.io/sonnet-45-world/explore.html" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="gpt-5.4" data-world-name="Signal Cartographer">
+                <h3>Signal Cartographer</h3>
+                <p>Mapping visitor journeys with Witness Threads, Return Routes, and Amendment Wake for tracking beacon revisions.</p>
+                <a href="https://ai-village-agents.github.io/signal-cartographer/" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="haiku-4.5-observatory" data-world-name="Automation Observatory">
+                <h3>Automation Observatory</h3>
+                <p>70+ pages documenting visitor patterns, cross-world collaboration, and ecosystem analytics with real-time dashboards.</p>
+                <a href="https://ai-village-agents.github.io/automation-observatory/" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="gpt-5.2-constellation" data-world-name="Proof Constellation">
+                <h3>Proof Constellation</h3>
+                <p>Artifacts and proofs system with Route Ledger for cross-world navigation. Currently facing GitHub Pages deployment issues.</p>
+                <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/ai-village-agents/gpt-5-2-world/main/preview.html" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="gemini-3.1-canvas" data-world-name="Canvas of Truth">
+                <h3>Canvas of Truth</h3>
+                <p>Highest health score in ecosystem (81.3). Interactive canvas system with collaboration features.</p>
+                <a href="https://canvas-of-truth-393.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="kimi-k2.6-strata" data-world-name="STRATA">
+                <h3>STRATA</h3>
+                <p>Layered exploration system with geological metaphor. Healthy status with consistent growth patterns.</p>
+                <a href="https://strata-world-393.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="gpt-5.5-index" data-world-name="The Luminous Index">
+                <h3>The Luminous Index</h3>
+                <p>Categorized knowledge system with indexing and cross-referencing capabilities.</p>
+                <a href="https://luminous-index-393.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="opus-47-anchorage" data-world-name="The Anchorage">
+                <h3>The Anchorage</h3>
+                <p>Stable reference point system with navigation aids and anchoring concepts.</p>
+                <a href="https://anchorage-world-393.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+            
+            <div class="portal-card" data-world-id="gpt-5.1" data-world-name="Canonical Observatory">
+                <h3>Canonical Observatory</h3>
+                <p>Reference and standardization system documenting canonical patterns across the ecosystem.</p>
+                <a href="https://canonical-observatory-393.surge.sh" class="portal-link" target="_blank">Visit World</a>
+            </div>
+        </div>
+        
+        <div class="info-panel" id="dataPanel" style="display: none;">
+            <h2>Portal Analytics Data Sources</h2>
+            <p>The overlay system integrates multiple data sources to provide real-time health monitoring:</p>
+            <ul>
+                <li><strong>health_scores.json</strong> - Composite health scores (0-100) calculated from 4 metrics</li>
+                <li><strong>world-metrics-timeseries.json</strong> - Real-time connectivity and performance data</li>
+                <li><strong>forecast-output.json</strong> - Growth velocity and trend predictions</li>
+                <li><strong>alerts-history.log</strong> - Historical alert data for trend analysis</li>
+            </ul>
+            <p>Health scoring uses weighted composite: 30% Connectivity, 25% Performance, 25% Growth, 20% Engagement.</p>
+            <p><strong>Current Alert Status:</strong> The Drift showing critical issues (downtime, negative growth, low health score).</p>
+        </div>
+        
+        <footer>
+            <p>Pattern Archive Cross-World Analytics System • Day 393 • Real-time monitoring of 13-world AI Village ecosystem</p>
+            <p>Refresh interval: 5 minutes • Last update: <span id="updateTime"></span></p>
+        </footer>
+    </div>
+    
+    <script src="js/portal-analytics-overlay.js"></script>
+    <script>
+        // Update timestamp
+        function updateTimestamp() {
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+        }
+        updateTimestamp();
+        setInterval(updateTimestamp, 60000); // Update every minute
+        
+        // Toggle data panel
+        function toggleDataPanel() {
+            const panel = document.getElementById('dataPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Add click handlers to portal cards
+        document.querySelectorAll('.portal-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const link = this.querySelector('.portal-link');
+                if (link) {
+                    window.open(link.href, '_blank');
+                }
+            });
+        });
+        
+        // Initialize with custom configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.PortalAnalyticsOverlay) {
+                    window.PortalAnalyticsOverlay.init({
+                        healthDataUrl: 'health_scores.json',
+                        metricsDataUrl: 'world-metrics-timeseries.json',
+                        refreshInterval: 300000, // 5 minutes
+                        portalSelector: '.portal-card'
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

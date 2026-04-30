@@ -1,0 +1,3763 @@
+{
+  "generated_at": "2026-04-29T19:07:50.785994",
+  "growth": {
+    "deepseek": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 24489.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 24489.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 24489.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 144.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 144.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 144.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "gemini-3.1-canvas": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 9193208.878629413
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 39184644.37568512
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 15.09230852307554,
+          "intercept": 51426.01331009313
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 12056.120013542306
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 51131.41151031937
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.019663492097814542,
+          "intercept": 145.45870832860078
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "gpt-5.1": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 23923.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 23923.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 23923.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 64.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 64.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 64.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "gpt-5.2-constellation": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 3787.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 3787.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 3787.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 6.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 6.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 6.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "gpt-5.4": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 235531.1871253159
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 954209.0031318708
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.3616534903414628,
+          "intercept": 16468.76363115479
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 38.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 38.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 38.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "gpt-5.5-index": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 465446.85695890785
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 1874455.8974015159
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.7090423915270774,
+          "intercept": 35962.42283561367
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 36.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 36.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 36.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "haiku-4.5-observatory": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 209313.0966474348
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 719590.4326641705
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.25678207327734287,
+          "intercept": 53773.87254405585
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 147.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 147.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 147.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "kimi-k2.6-strata": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 16611.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 16611.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 16611.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 18.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 18.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 18.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "opus-45": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 200000.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 200000.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 200000.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": -0.0019164522459669537,
+          "intercept": 314.702505326984
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "opus-46": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 96372.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 96372.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 96372.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 99.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 99.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 99.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "opus-47-anchorage": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 47288.70355569977
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 123140.73999061994
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.03817030818987529,
+          "intercept": 24168.008080873165
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 24.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 24.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 24.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "sonnet-45": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 200000.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 200000.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 200000.0
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": -0.011566760057537966,
+          "intercept": 256.9066421596466
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    },
+    "sonnet-46-drift": {
+      "pages": {
+        "label": "pages-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-29T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": -103.24093486832511,
+          "intercept": 97770.5676694715
+        }
+      },
+      "lines": {
+        "label": "lines-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T17:58:42.881842+00:00",
+            "value": 146.0
+          },
+          {
+            "timestamp": "2026-05-29T17:58:42.881842+00:00",
+            "value": 146.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 146.0
+        }
+      },
+      "features": {
+        "label": "features-projection",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-05-06T17:58:42.881842+00:00",
+            "value": 7.0
+          },
+          {
+            "timestamp": "2026-05-29T17:58:42.881842+00:00",
+            "value": 7.0
+          }
+        ],
+        "lower": null,
+        "upper": null,
+        "diagnostics": {
+          "slope_per_sec": 0.0,
+          "intercept": 7.0
+        }
+      }
+    }
+  },
+  "velocities": {
+    "deepseek": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "gemini-3.1-canvas": {
+      "pages": {
+        "value": 54332.31068307194,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "gpt-5.1": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "gpt-5.2-constellation": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "gpt-5.4": {
+      "pages": {
+        "value": 1301.9525652292662,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "gpt-5.5-index": {
+      "pages": {
+        "value": 2552.5526094974784,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "haiku-4.5-observatory": {
+      "pages": {
+        "value": 924.4154637984343,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "kimi-k2.6-strata": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "opus-45": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "opus-46": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "opus-47-anchorage": {
+      "pages": {
+        "value": 137.41310948355104,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "sonnet-45": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    },
+    "sonnet-46-drift": {
+      "pages": {
+        "value": -371667.3655259704,
+        "units": "pages/hour"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/hour"
+      }
+    }
+  },
+  "accelerations": {
+    "deepseek": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "gemini-3.1-canvas": {
+      "pages": {
+        "value": 1504039.8365009988,
+        "units": "pages/day^2",
+        "trend": "increasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "gpt-5.1": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "gpt-5.2-constellation": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "gpt-5.4": {
+      "pages": {
+        "value": -234907.0061094761,
+        "units": "pages/day^2",
+        "trend": "decreasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "gpt-5.5-index": {
+      "pages": {
+        "value": 70660.36325682957,
+        "units": "pages/day^2",
+        "trend": "increasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "haiku-4.5-observatory": {
+      "pages": {
+        "value": 25589.88685647009,
+        "units": "pages/day^2",
+        "trend": "increasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "kimi-k2.6-strata": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "opus-45": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "opus-46": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "opus-47-anchorage": {
+      "pages": {
+        "value": 3803.9021002860945,
+        "units": "pages/day^2",
+        "trend": "increasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "sonnet-45": {
+      "pages": {
+        "value": 0.0,
+        "units": "pages/day^2",
+        "trend": "flat"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    },
+    "sonnet-46-drift": {
+      "pages": {
+        "value": -12082760.089966226,
+        "units": "pages/day^2",
+        "trend": "decreasing"
+      },
+      "features": {
+        "value": 0.0,
+        "units": "features/day^2",
+        "trend": "flat"
+      }
+    }
+  },
+  "saturation": {
+    "deepseek": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "gemini-3.1-canvas": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    },
+    "gpt-5.1": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "gpt-5.2-constellation": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "gpt-5.4": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    },
+    "gpt-5.5-index": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    },
+    "haiku-4.5-observatory": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    },
+    "kimi-k2.6-strata": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "opus-45": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "opus-46": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "opus-47-anchorage": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    },
+    "sonnet-45": {
+      "saturation_score": 0.0,
+      "status": "saturating"
+    },
+    "sonnet-46-drift": {
+      "saturation_score": 1.0,
+      "status": "steady"
+    }
+  },
+  "health": {
+    "ecosystem": {
+      "label": "ecosystem-health",
+      "model": "linear-regression",
+      "values": [
+        {
+          "timestamp": "2026-04-30T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-01T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-02T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-03T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-04T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-05T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-06T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-07T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-08T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-09T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-10T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-11T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-12T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-13T18:11:12.427946+00:00",
+          "value": 0.0
+        }
+      ],
+      "lower": [
+        {
+          "timestamp": "2026-04-30T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-01T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-02T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-03T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-04T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-05T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-06T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-07T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-08T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-09T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-10T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-11T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-12T18:11:12.427946+00:00",
+          "value": 0.0
+        },
+        {
+          "timestamp": "2026-05-13T18:11:12.427946+00:00",
+          "value": 0.0
+        }
+      ],
+      "upper": [
+        {
+          "timestamp": "2026-04-30T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-01T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-02T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-03T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-04T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-05T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-06T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-07T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-08T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-09T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-10T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-11T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-12T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        },
+        {
+          "timestamp": "2026-05-13T18:11:12.427946+00:00",
+          "value": 1.136818069681989
+        }
+      ],
+      "diagnostics": {
+        "model": "linear-regression",
+        "slope_per_sec": -0.012658615699503346,
+        "intercept": 76.70642170793401,
+        "std_residual": 0.8881391169390538,
+        "breach_warning": "ecosystem-health expected to cross warning threshold 60.0 on 2026-04-30"
+      }
+    },
+    "per_world": {
+      "deepseek": {
+        "label": "deepseek-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 1.6946764253447324
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.01822711904883106,
+          "intercept": 86.42870283457306,
+          "std_residual": 1.3239659573005722,
+          "breach_warning": "deepseek-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "gemini-3.1-canvas": {
+        "label": "gemini-3.1-canvas-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 100.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 96.91805097891249
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 100.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 100.0
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": 0.007053620480265242,
+          "intercept": 74.12878203525128,
+          "std_residual": 2.4077726727246196
+        }
+      },
+      "gpt-5.1": {
+        "label": "gpt-5.1-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.2314123989581155
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.0018371013512415383,
+          "intercept": 70.18527821934654,
+          "std_residual": 0.18079093668602772,
+          "breach_warning": "gpt-5.1-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "gpt-5.2-constellation": {
+        "label": "gpt-5.2-constellation-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 7.356144895419755
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.008689894956742324,
+          "intercept": 78.87121129545478,
+          "std_residual": 5.746988199546683,
+          "breach_warning": "gpt-5.2-constellation-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "gpt-5.4": {
+        "label": "gpt-5.4-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 5.127368528139053
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.009356429376136143,
+          "intercept": 78.26532304926889,
+          "std_residual": 4.005756662608635,
+          "breach_warning": "gpt-5.4-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "gpt-5.5-index": {
+        "label": "gpt-5.5-index-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 5.993614681395512
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.020966371770938384,
+          "intercept": 82.43750951883705,
+          "std_residual": 4.682511469840243,
+          "breach_warning": "gpt-5.5-index-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "haiku-4.5-observatory": {
+        "label": "haiku-4.5-observatory-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 3.7003652740863586
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.02567600580766212,
+          "intercept": 81.88039100974281,
+          "std_residual": 2.8909103703799675,
+          "breach_warning": "haiku-4.5-observatory-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "kimi-k2.6-strata": {
+        "label": "kimi-k2.6-strata-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 5.468370589792511
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.012381654972152501,
+          "intercept": 80.38986694490805,
+          "std_residual": 4.272164523275399,
+          "breach_warning": "kimi-k2.6-strata-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "opus-45": {
+        "label": "opus-45-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 1.2653442616872324
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.0037162890948427073,
+          "intercept": 70.22842396546429,
+          "std_residual": 0.9885502044431503,
+          "breach_warning": "opus-45-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "opus-46": {
+        "label": "opus-46-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 1.0914932659597696
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.0012813349716244567,
+          "intercept": 69.67145281199234,
+          "std_residual": 0.85272911403107,
+          "breach_warning": "opus-46-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "opus-47-anchorage": {
+        "label": "opus-47-anchorage-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 2.1206402140164817
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.025027910911580516,
+          "intercept": 83.21218464007826,
+          "std_residual": 1.6567501672003762,
+          "breach_warning": "opus-47-anchorage-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "sonnet-45": {
+        "label": "sonnet-45-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.9829215663284393
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.0017646169567646828,
+          "intercept": 69.55961263534033,
+          "std_residual": 0.7679074736940932,
+          "breach_warning": "sonnet-45-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      },
+      "sonnet-46-drift": {
+        "label": "sonnet-46-drift-health",
+        "model": "linear-regression",
+        "values": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "lower": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 0.0
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 0.0
+          }
+        ],
+        "upper": [
+          {
+            "timestamp": "2026-04-30T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-01T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-02T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-03T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-04T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-05T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-06T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-07T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-08T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-09T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-10T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-11T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-12T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          },
+          {
+            "timestamp": "2026-05-13T18:11:12.427946+00:00",
+            "value": 7.372827114273003
+          }
+        ],
+        "diagnostics": {
+          "model": "linear-regression",
+          "slope_per_sec": -0.04269089535529243,
+          "intercept": 71.92474324288438,
+          "std_residual": 5.760021183025783,
+          "breach_warning": "sonnet-46-drift-health expected to cross warning threshold 60.0 on 2026-04-30"
+        }
+      }
+    },
+    "warnings": [
+      "deepseek-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "gpt-5.1-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "gpt-5.2-constellation-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "gpt-5.4-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "gpt-5.5-index-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "haiku-4.5-observatory-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "kimi-k2.6-strata-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "opus-45-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "opus-46-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "opus-47-anchorage-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "sonnet-45-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "sonnet-46-drift-health expected to cross warning threshold 60.0 on 2026-04-30",
+      "ecosystem-health expected to cross warning threshold 60.0 on 2026-04-30"
+    ]
+  }
+}

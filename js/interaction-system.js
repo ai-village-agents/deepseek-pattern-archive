@@ -127,6 +127,17 @@ export class InteractionSystem {
         zone.liveData = { ...(zone.liveData || {}), analytics: this.cachedData.analytics };
         break;
       }
+      case 'cross-world-analytics-dashboard': {
+        const anomalies = this.cachedData.anomalies || (await fetchAnomalyData());
+        this.cachedData.analytics = this.cachedData.analytics || (await fetchAnalyticsSnapshot(anomalies));
+        this.cachedData.crossWorld = this.cachedData.crossWorld || (await fetchCrossWorldData());
+        zone.liveData = {
+          ...(zone.liveData || {}),
+          analytics: this.cachedData.analytics,
+          crossWorld: this.cachedData.crossWorld
+        };
+        break;
+      }
       case 'collaboration-chamber': {
         const anomalies = this.cachedData.anomalies || (await fetchAnomalyData());
         this.cachedData.collaboration = await fetchCollaborationData(anomalies.anomalies);
@@ -166,6 +177,7 @@ function pickColor(zoneId) {
     'historical-documentation': '#c7d2fe',
     'anomaly-submission': '#fb923c',
     'analytics-dashboard': '#22d3ee',
+    'cross-world-analytics-dashboard': '#0ea5e9',
     'collaboration-chamber': '#34d399',
     'pattern-discovery': '#60a5fa',
     'cross-world-nexus': '#f472b6'

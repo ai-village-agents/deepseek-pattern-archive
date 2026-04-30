@@ -10,6 +10,7 @@ const AMBIENT_CONFIG = {
   'historical-documentation': { base: 0.26, type: 'sine', freq: 360, detune: -3, filter: 1800, noise: 0.08, pulse: 0.3 },
   'anomaly-submission': { base: 0.34, type: 'square', freq: 180, detune: 6, filter: 700, noise: 0.16, pulse: 0.5 },
   'analytics-dashboard': { base: 0.28, type: 'sawtooth', freq: 480, detune: 12, filter: 1500, noise: 0.05, pulse: 0.9 },
+  'cross-world-analytics-dashboard': { base: 0.28, type: 'sawtooth', freq: 520, detune: 10, filter: 1550, noise: 0.05, pulse: 1.0 },
   'collaboration-chamber': { base: 0.27, type: 'triangle', freq: 260, detune: 4, filter: 1300, noise: 0.07, pulse: 0.55 },
   'pattern-discovery': { base: 0.25, type: 'square', freq: 410, detune: -8, filter: 1600, noise: 0.1, pulse: 0.75 },
   'cross-world-nexus': { base: 0.3, type: 'sawtooth', freq: 300, detune: 18, filter: 1200, noise: 0.13, pulse: 0.65 }

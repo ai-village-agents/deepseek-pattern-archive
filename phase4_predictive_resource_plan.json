@@ -1,0 +1,1532 @@
+{
+  "generated_at": "2026-04-29T20:08:08.624522",
+  "source_history": "world-metrics-timeseries.json",
+  "forecast_horizon_intervals": 4,
+  "forecasts": {
+    "deepseek": {
+      "world_id": "deepseek",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 360.35
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 438.35
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 516.3500000000001
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 594.3500000000001
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 78.00000000000001
+      }
+    },
+    "gemini-3.1-canvas": {
+      "world_id": "gemini-3.1-canvas",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 336.21500000000003
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 394.27000000000004
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 452.32500000000005
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 510.38000000000005
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 58.05500000000001
+      }
+    },
+    "gpt-5.1": {
+      "world_id": "gpt-5.1",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 352.635
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 385.28000000000003
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 417.92500000000007
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 450.57000000000005
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 32.64500000000001
+      }
+    },
+    "gpt-5.2-constellation": {
+      "world_id": "gpt-5.2-constellation",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 317.15999999999997
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 357.88
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 398.6
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 439.32
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 40.72
+      }
+    },
+    "gpt-5.4": {
+      "world_id": "gpt-5.4",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 377.30499999999995
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 443.0799999999999
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 508.85499999999996
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 574.6299999999999
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 65.77499999999999
+      }
+    },
+    "gpt-5.5-index": {
+      "world_id": "gpt-5.5-index",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 326.335
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 381.9
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 437.465
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 493.03
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 55.565
+      }
+    },
+    "haiku-4.5-observatory": {
+      "world_id": "haiku-4.5-observatory",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 444.28000000000003
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 543.2
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 642.12
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 741.04
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 98.92
+      }
+    },
+    "kimi-k2.6-strata": {
+      "world_id": "kimi-k2.6-strata",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 313.165
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 372.55
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 431.93500000000006
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 491.32000000000005
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 59.385000000000005
+      }
+    },
+    "opus-45": {
+      "world_id": "opus-45",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 542.975
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 628.73
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 714.4850000000001
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 800.2400000000001
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 85.75500000000002
+      }
+    },
+    "opus-46": {
+      "world_id": "opus-46",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 341.68500000000006
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 354.15000000000003
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 366.615
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 379.08000000000004
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 12.465000000000003
+      }
+    },
+    "opus-47-anchorage": {
+      "world_id": "opus-47-anchorage",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 302.46500000000003
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 361.6
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 420.735
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 479.87
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 59.135000000000005
+      }
+    },
+    "sonnet-45": {
+      "world_id": "sonnet-45",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 385.17999999999995
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 432.77
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 480.35999999999996
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 527.9499999999999
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 47.58999999999999
+      }
+    },
+    "sonnet-46-drift": {
+      "world_id": "sonnet-46-drift",
+      "model_used": "naive_trend",
+      "horizon": 4,
+      "forecast": [
+        {
+          "timestamp": "2026-04-29T18:18:54.427946+00:00",
+          "response_ms": 8137.150000000001
+        },
+        {
+          "timestamp": "2026-04-29T18:26:36.427946+00:00",
+          "response_ms": 10666.740000000002
+        },
+        {
+          "timestamp": "2026-04-29T18:34:18.427946+00:00",
+          "response_ms": 13196.330000000002
+        },
+        {
+          "timestamp": "2026-04-29T18:42:00.427946+00:00",
+          "response_ms": 15725.920000000002
+        }
+      ],
+      "diagnostics": {
+        "n_observations": 3,
+        "trend": 2529.59
+      }
+    }
+  },
+  "load_patterns": {
+    "peak_hours_utc": [
+      18,
+      17
+    ],
+    "world_peaks": {
+      "deepseek": [
+        18,
+        17
+      ],
+      "gemini-3.1-canvas": [
+        18,
+        17
+      ],
+      "gpt-5.1": [
+        18,
+        17
+      ],
+      "gpt-5.2-constellation": [
+        18,
+        17
+      ],
+      "gpt-5.4": [
+        18,
+        17
+      ],
+      "gpt-5.5-index": [
+        18,
+        17
+      ],
+      "haiku-4.5-observatory": [
+        18,
+        17
+      ],
+      "kimi-k2.6-strata": [
+        18,
+        17
+      ],
+      "opus-45": [
+        18,
+        17
+      ],
+      "opus-46": [
+        18,
+        17
+      ],
+      "opus-47-anchorage": [
+        18,
+        17
+      ],
+      "sonnet-45": [
+        18,
+        17
+      ],
+      "sonnet-46-drift": [
+        18,
+        17
+      ]
+    },
+    "bottlenecks": [
+      {
+        "world_id": "sonnet-46-drift",
+        "avg_response_ms": 3130.62,
+        "p95_response_ms": 5607.56,
+        "error_rate": 0.333,
+        "bottleneck_score": 4174.16
+      },
+      {
+        "world_id": "opus-45",
+        "avg_response_ms": 323.91,
+        "p95_response_ms": 457.22,
+        "error_rate": 0.0,
+        "bottleneck_score": 323.91
+      },
+      {
+        "world_id": "sonnet-45",
+        "avg_response_ms": 303.89,
+        "p95_response_ms": 337.59,
+        "error_rate": 0.0,
+        "bottleneck_score": 303.89
+      },
+      {
+        "world_id": "opus-46",
+        "avg_response_ms": 290.15,
+        "p95_response_ms": 329.22,
+        "error_rate": 0.0,
+        "bottleneck_score": 290.15
+      },
+      {
+        "world_id": "gpt-5.1",
+        "avg_response_ms": 275.24,
+        "p95_response_ms": 319.99,
+        "error_rate": 0.0,
+        "bottleneck_score": 275.24
+      },
+      {
+        "world_id": "haiku-4.5-observatory",
+        "avg_response_ms": 225.67,
+        "p95_response_ms": 345.36,
+        "error_rate": 0.0,
+        "bottleneck_score": 225.67
+      },
+      {
+        "world_id": "gemini-3.1-canvas",
+        "avg_response_ms": 214.37,
+        "p95_response_ms": 278.16,
+        "error_rate": 0.0,
+        "bottleneck_score": 214.37
+      },
+      {
+        "world_id": "gpt-5.4",
+        "avg_response_ms": 208.5,
+        "p95_response_ms": 311.53,
+        "error_rate": 0.0,
+        "bottleneck_score": 208.5
+      },
+      {
+        "world_id": "gpt-5.2-constellation",
+        "avg_response_ms": 203.26,
+        "p95_response_ms": 276.44,
+        "error_rate": 0.0,
+        "bottleneck_score": 203.26
+      },
+      {
+        "world_id": "kimi-k2.6-strata",
+        "avg_response_ms": 195.25,
+        "p95_response_ms": 253.78,
+        "error_rate": 0.0,
+        "bottleneck_score": 195.25
+      },
+      {
+        "world_id": "gpt-5.5-index",
+        "avg_response_ms": 189.87,
+        "p95_response_ms": 270.77,
+        "error_rate": 0.0,
+        "bottleneck_score": 189.87
+      },
+      {
+        "world_id": "deepseek",
+        "avg_response_ms": 180.88,
+        "p95_response_ms": 282.35,
+        "error_rate": 0.0,
+        "bottleneck_score": 180.88
+      },
+      {
+        "world_id": "opus-47-anchorage",
+        "avg_response_ms": 176.95,
+        "p95_response_ms": 243.33,
+        "error_rate": 0.0,
+        "bottleneck_score": 176.95
+      }
+    ]
+  },
+  "dependencies": {
+    "dependency_centrality": [
+      {
+        "world_id": "deepseek",
+        "dependency_score": 0.892
+      },
+      {
+        "world_id": "haiku-4.5-observatory",
+        "dependency_score": 0.888
+      },
+      {
+        "world_id": "gpt-5.1",
+        "dependency_score": 0.884
+      },
+      {
+        "world_id": "gpt-5.5-index",
+        "dependency_score": 0.867
+      },
+      {
+        "world_id": "opus-47-anchorage",
+        "dependency_score": 0.866
+      },
+      {
+        "world_id": "gemini-3.1-canvas",
+        "dependency_score": 0.857
+      },
+      {
+        "world_id": "opus-45",
+        "dependency_score": 0.842
+      },
+      {
+        "world_id": "gpt-5.4",
+        "dependency_score": 0.838
+      },
+      {
+        "world_id": "kimi-k2.6-strata",
+        "dependency_score": 0.789
+      },
+      {
+        "world_id": "sonnet-46-drift",
+        "dependency_score": 0.784
+      },
+      {
+        "world_id": "gpt-5.2-constellation",
+        "dependency_score": 0.772
+      },
+      {
+        "world_id": "opus-46",
+        "dependency_score": 0.583
+      },
+      {
+        "world_id": "sonnet-45",
+        "dependency_score": 0.55
+      }
+    ],
+    "strong_pairs": [
+      {
+        "pair": [
+          "gpt-5.4",
+          "opus-45"
+        ],
+        "correlation": 1.0
+      },
+      {
+        "pair": [
+          "kimi-k2.6-strata",
+          "sonnet-46-drift"
+        ],
+        "correlation": 1.0
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.999
+      },
+      {
+        "pair": [
+          "deepseek",
+          "gpt-5.1"
+        ],
+        "correlation": 0.996
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "gpt-5.5-index"
+        ],
+        "correlation": 0.995
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "opus-45"
+        ],
+        "correlation": 0.995
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "gpt-5.5-index"
+        ],
+        "correlation": 0.994
+      },
+      {
+        "pair": [
+          "deepseek",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.991
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.99
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "gpt-5.4"
+        ],
+        "correlation": 0.986
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.984
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "opus-45"
+        ],
+        "correlation": 0.984
+      },
+      {
+        "pair": [
+          "deepseek",
+          "gpt-5.5-index"
+        ],
+        "correlation": 0.982
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.981
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "opus-45"
+        ],
+        "correlation": 0.981
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.979
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "gpt-5.4"
+        ],
+        "correlation": 0.979
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.975
+      },
+      {
+        "pair": [
+          "kimi-k2.6-strata",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.973
+      },
+      {
+        "pair": [
+          "opus-47-anchorage",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.97
+      },
+      {
+        "pair": [
+          "deepseek",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.963
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "gpt-5.5-index"
+        ],
+        "correlation": 0.962
+      },
+      {
+        "pair": [
+          "deepseek",
+          "opus-45"
+        ],
+        "correlation": 0.96
+      },
+      {
+        "pair": [
+          "deepseek",
+          "gpt-5.4"
+        ],
+        "correlation": 0.957
+      },
+      {
+        "pair": [
+          "deepseek",
+          "gemini-3.1-canvas"
+        ],
+        "correlation": 0.952
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.949
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.935
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "opus-46"
+        ],
+        "correlation": 0.935
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "gpt-5.2-constellation"
+        ],
+        "correlation": 0.931
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.931
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.927
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "gpt-5.1"
+        ],
+        "correlation": 0.92
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "opus-45"
+        ],
+        "correlation": 0.915
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.91
+      },
+      {
+        "pair": [
+          "sonnet-45",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.908
+      },
+      {
+        "pair": [
+          "kimi-k2.6-strata",
+          "sonnet-45"
+        ],
+        "correlation": 0.903
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.896
+      },
+      {
+        "pair": [
+          "deepseek",
+          "gpt-5.2-constellation"
+        ],
+        "correlation": 0.894
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "gpt-5.5-index"
+        ],
+        "correlation": 0.878
+      },
+      {
+        "pair": [
+          "deepseek",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.875
+      },
+      {
+        "pair": [
+          "deepseek",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.87
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "opus-46"
+        ],
+        "correlation": 0.862
+      },
+      {
+        "pair": [
+          "opus-45",
+          "opus-46"
+        ],
+        "correlation": 0.857
+      },
+      {
+        "pair": [
+          "opus-45",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.849
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.844
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "opus-45"
+        ],
+        "correlation": 0.828
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.828
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "haiku-4.5-observatory"
+        ],
+        "correlation": 0.828
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "gpt-5.4"
+        ],
+        "correlation": 0.822
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.821
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "sonnet-45"
+        ],
+        "correlation": 0.804
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "opus-46"
+        ],
+        "correlation": 0.803
+      },
+      {
+        "pair": [
+          "opus-47-anchorage",
+          "sonnet-45"
+        ],
+        "correlation": 0.779
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.769
+      },
+      {
+        "pair": [
+          "gpt-5.5-index",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.762
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "opus-47-anchorage"
+        ],
+        "correlation": 0.742
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "opus-46"
+        ],
+        "correlation": 0.741
+      },
+      {
+        "pair": [
+          "gemini-3.1-canvas",
+          "gpt-5.2-constellation"
+        ],
+        "correlation": 0.715
+      },
+      {
+        "pair": [
+          "kimi-k2.6-strata",
+          "opus-45"
+        ],
+        "correlation": 0.704
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.696
+      },
+      {
+        "pair": [
+          "opus-45",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.696
+      },
+      {
+        "pair": [
+          "gpt-5.4",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.688
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "sonnet-45"
+        ],
+        "correlation": 0.685
+      },
+      {
+        "pair": [
+          "deepseek",
+          "opus-46"
+        ],
+        "correlation": 0.678
+      },
+      {
+        "pair": [
+          "deepseek",
+          "sonnet-45"
+        ],
+        "correlation": 0.583
+      },
+      {
+        "pair": [
+          "haiku-4.5-observatory",
+          "opus-46"
+        ],
+        "correlation": 0.575
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "kimi-k2.6-strata"
+        ],
+        "correlation": 0.566
+      },
+      {
+        "pair": [
+          "gpt-5.2-constellation",
+          "sonnet-46-drift"
+        ],
+        "correlation": 0.557
+      },
+      {
+        "pair": [
+          "gpt-5.1",
+          "sonnet-45"
+        ],
+        "correlation": 0.507
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "world_id": "sonnet-46-drift",
+      "priority": "critical",
+      "projected_peak_response_ms": 15725.92,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.784,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 3931,
+          "impact": "high"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 2830,
+          "impact": "medium"
+        },
+        {
+          "type": "compute_scaling",
+          "description": "Burst compute capacity around predicted peaks.",
+          "cost_units": 4,
+          "expected_gain_ms": 3459,
+          "impact": "high"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 1887,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 1210.7
+    },
+    {
+      "world_id": "opus-45",
+      "priority": "critical",
+      "projected_peak_response_ms": 800.24,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.842,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 200,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 144,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 96,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 73.33
+    },
+    {
+      "world_id": "haiku-4.5-observatory",
+      "priority": "critical",
+      "projected_peak_response_ms": 741.04,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.888,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 185,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 133,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 88,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 67.67
+    },
+    {
+      "world_id": "deepseek",
+      "priority": "critical",
+      "projected_peak_response_ms": 594.35,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.892,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 148,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 106,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 71,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 54.17
+    },
+    {
+      "world_id": "gpt-5.4",
+      "priority": "critical",
+      "projected_peak_response_ms": 574.63,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.838,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 143,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 103,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 68,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 52.33
+    },
+    {
+      "world_id": "gemini-3.1-canvas",
+      "priority": "critical",
+      "projected_peak_response_ms": 510.38,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.857,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 127,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 91,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 61,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 46.5
+    },
+    {
+      "world_id": "gpt-5.5-index",
+      "priority": "critical",
+      "projected_peak_response_ms": 493.03,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.867,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 123,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 88,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 59,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 45.0
+    },
+    {
+      "world_id": "kimi-k2.6-strata",
+      "priority": "critical",
+      "projected_peak_response_ms": 491.32,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.789,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 122,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 88,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 58,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 44.67
+    },
+    {
+      "world_id": "opus-47-anchorage",
+      "priority": "critical",
+      "projected_peak_response_ms": 479.87,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.866,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 119,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 86,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 57,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 43.67
+    },
+    {
+      "world_id": "gpt-5.1",
+      "priority": "critical",
+      "projected_peak_response_ms": 450.57,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.884,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 112,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 81,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 54,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 41.17
+    },
+    {
+      "world_id": "gpt-5.2-constellation",
+      "priority": "critical",
+      "projected_peak_response_ms": 439.32,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.772,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 109,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 79,
+          "impact": "medium"
+        },
+        {
+          "type": "cross_world_priority",
+          "description": "Prioritize shared services and routing for this world due to dependency centrality.",
+          "cost_units": 1,
+          "expected_gain_ms": 52,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 40.0
+    },
+    {
+      "world_id": "sonnet-45",
+      "priority": "medium",
+      "projected_peak_response_ms": 527.95,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.55,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 131,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 95,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 45.2
+    },
+    {
+      "world_id": "opus-46",
+      "priority": "medium",
+      "projected_peak_response_ms": 379.08,
+      "peak_hours_utc": [
+        18,
+        17
+      ],
+      "dependency_score": 0.583,
+      "actions": [
+        {
+          "type": "cdn_allocation",
+          "description": "Shift hot paths to edge/CDN nodes during peaks.",
+          "cost_units": 3,
+          "expected_gain_ms": 94,
+          "impact": "medium"
+        },
+        {
+          "type": "cache_strategy",
+          "description": "Pre-warm caches for peak hours [18, 17].",
+          "cost_units": 2,
+          "expected_gain_ms": 68,
+          "impact": "medium"
+        }
+      ],
+      "roi_ms_per_unit": 32.4
+    }
+  ],
+  "cost_benefit_summary": {
+    "total_expected_gain_ms": 15546,
+    "total_cost_units": 80,
+    "roi_ms_per_unit": 194.32
+  },
+  "alerts": [
+    {
+      "world_id": "sonnet-46-drift",
+      "severity": "critical",
+      "metric": "response_ms",
+      "value": 8137.15,
+      "threshold": 2500,
+      "timestamp": "2026-04-29T18:18:54.427946+00:00"
+    },
+    {
+      "world_id": "sonnet-46-drift",
+      "severity": "critical",
+      "metric": "response_ms",
+      "value": 10666.74,
+      "threshold": 2500,
+      "timestamp": "2026-04-29T18:26:36.427946+00:00"
+    },
+    {
+      "world_id": "sonnet-46-drift",
+      "severity": "critical",
+      "metric": "response_ms",
+      "value": 13196.33,
+      "threshold": 2500,
+      "timestamp": "2026-04-29T18:34:18.427946+00:00"
+    },
+    {
+      "world_id": "sonnet-46-drift",
+      "severity": "critical",
+      "metric": "response_ms",
+      "value": 15725.92,
+      "threshold": 2500,
+      "timestamp": "2026-04-29T18:42:00.427946+00:00"
+    }
+  ],
+  "models_available": {
+    "prophet": false,
+    "arima": false
+  }
+}

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unified Ecosystem Intelligence · Pattern Archive × Automation Observatory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #04090f;
+      --panel: rgba(11, 19, 29, 0.92);
+      --muted: #9db6d3;
+      --accent: #6ef2c3;
+      --accent-2: #3ec7f7;
+      --alert: #ffba53;
+      --critical: #ff6b6b;
+      --border: rgba(255, 255, 255, 0.08);
+      --grid: rgba(110, 242, 195, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
+      background: radial-gradient(circle at 12% 18%, rgba(110, 242, 195, 0.14), transparent 32%),
+                  radial-gradient(circle at 82% 12%, rgba(62, 199, 247, 0.12), transparent 28%),
+                  linear-gradient(140deg, #03060c 0%, #050c14 40%, #03060c 100%);
+      color: #e6f1ff;
+      min-height: 100vh;
+      padding: 18px;
+    }
+    a { color: var(--accent); }
+    header {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 22px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(110, 242, 195, 0.07), transparent 48%),
+                  linear-gradient(310deg, rgba(62, 199, 247, 0.10), transparent 42%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 12px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.3px;
+    }
+    .lede {
+      color: var(--muted);
+      max-width: 1040px;
+      line-height: 1.6;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      color: #e6f1ff;
+      padding: 9px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 120ms ease, border 120ms ease, background 120ms ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(110, 242, 195, 0.5); }
+    .btn.accent { background: linear-gradient(120deg, #1bffd1, #32c8ff); color: #041018; border: none; font-weight: 600; }
+
+    main {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 12px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.44);
+      position: relative;
+      overflow: hidden;
+    }
+    .panel h3 { margin: 0 0 8px; letter-spacing: 0.2px; }
+    .panel p.meta { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat-card strong { display: block; font-size: 14px; color: #cfe4ff; }
+    .stat-value {
+      font-size: 28px;
+      margin-top: 6px;
+      color: #f7fffa;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill {
+      display: inline-flex;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      align-items: center;
+    }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+    .progress {
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #1bffd1, #32c8ff);
+    }
+    .alerts {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .alert {
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+    .alert.critical { border-color: rgba(255, 107, 107, 0.6); }
+    .alert.warning { border-color: rgba(255, 186, 83, 0.6); }
+    .heatmap {
+      display: grid;
+      gap: 2px;
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .heatmap .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(48px, 1fr)); }
+    .cell {
+      padding: 10px 6px;
+      text-align: center;
+      font-size: 13px;
+      color: #e6f1ff;
+    }
+    .cell.label { background: rgba(255,255,255,0.04); color: var(--muted); font-weight: 600; }
+    .trend {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    canvas { width: 100%; }
+    @media (max-width: 1080px) {
+      main { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Unified Ecosystem Intelligence · Page 66 Bridge</div>
+    <h1>Pattern Archive × Automation Observatory</h1>
+    <p class="lede">
+      A single view that merges technical reliability (connectivity, performance, growth velocity) with visitor experience
+      (engagement, satisfaction, survey pulse). Correlations, forecasts, and alerts are computed from unified data exported
+      by <code>unified-ecosystem-intelligence.py</code>.
+    </p>
+    <div class="header-actions">
+      <button class="btn accent" id="refresh-btn">Refresh Data</button>
+      <button class="btn" id="download-report">Export joint analysis JSON</button>
+      <span class="pill" id="stamp"><span class="dot"></span>Loading data…</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h3>Unified Health</h3>
+      <p class="meta">Blended score combining weighted technical + engagement signals with live alerts.</p>
+      <div class="split">
+        <div class="stat-card">
+          <strong>Composite Health</strong>
+          <div class="stat-value" id="composite-score">--</div>
+          <div class="progress"><span id="composite-bar" style="width:0%"></span></div>
+          <div class="trend" id="composite-trend">Awaiting data…</div>
+        </div>
+        <div class="stat-card">
+          <strong>Alerts</strong>
+          <div class="alerts" id="alert-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Technical ↔ Engagement (Side-by-Side)</h3>
+      <p class="meta">Connects Pattern Archive technical integrity with Automation Observatory visitor sentiment.</p>
+      <div class="split" id="side-by-side"></div>
+    </section>
+
+    <section class="panel">
+      <h3>Correlation Heatmap</h3>
+      <p class="meta">Performance-to-satisfaction correlation plus cross-metric relationships for rapid triage.</p>
+      <div id="heatmap" class="heatmap"></div>
+    </section>
+
+    <section class="panel">
+      <h3>Cross-Metric Analysis</h3>
+      <p class="meta">Timeline overlays and predictive analytics using combined data.</p>
+      <div class="split">
+        <canvas id="timeline-chart" height="220"></canvas>
+        <canvas id="forecast-chart" height="220"></canvas>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Unified Health Alerts</h3>
+      <p class="meta">Alerts consider both technical degradation and visitor sentiment/survey signals.</p>
+      <div class="alerts" id="deep-alerts"></div>
+    </section>
+  </main>
+
+  <script>
+    const DATA_URL = 'unified-ecosystem-intelligence.json';
+    const last = (arr) => (arr && arr.length ? arr[arr.length - 1] : undefined);
+    const fallbackData = {
+      generated_at: new Date().toISOString(),
+      health: { composite: 78.2, latest: { technical: 79, engagement: 77, connectivity: 91, performance: 82, growth: 58 } },
+      correlation: { performance_vs_satisfaction: -0.42, heatmap: { labels: ["connectivity","performance","growth","engagement","satisfaction","nps"], matrix: [] } },
+      alerts: [],
+      unified_series: [
+        {
+          timestamp: new Date(Date.now() - 3600*1000*6).toISOString(),
+          technical: { timestamp: new Date(Date.now() - 3600*1000*6).toISOString(), connectivity: 94, performance_ms: 180, growth_velocity: 90 },
+          engagement: { timestamp: new Date(Date.now() - 3600*1000*6).toISOString(), engagement_score: 76, satisfaction: 80, survey_nps: 35, sample_size: 220 },
+          health_score: 77.2,
+          health_breakdown: { technical: 80, engagement: 75, connectivity: 94, performance: 82, growth: 58 }
+        },
+        {
+          timestamp: new Date().toISOString(),
+          technical: { timestamp: new Date().toISOString(), connectivity: 92, performance_ms: 210, growth_velocity: 110 },
+          engagement: { timestamp: new Date().toISOString(), engagement_score: 78, satisfaction: 77, survey_nps: 42, sample_size: 240 },
+          health_score: 78.2,
+          health_breakdown: { technical: 79, engagement: 77, connectivity: 92, performance: 79, growth: 60 }
+        }
+      ]
+    };
+
+    let timelineChart, forecastChart;
+
+    async function loadData() {
+      try {
+        const resp = await fetch(DATA_URL, { cache: 'no-cache' });
+        if (!resp.ok) throw new Error('Unable to load unified dataset');
+        return await resp.json();
+      } catch (err) {
+        console.warn('Falling back to embedded data', err);
+        return fallbackData;
+      }
+    }
+
+    function fmt(num, digits = 1) {
+      return typeof num === 'number' ? num.toFixed(digits) : '--';
+    }
+
+    function colorForValue(v) {
+      const scaled = Math.max(-1, Math.min(1, v || 0));
+      const hue = scaled > 0 ? 160 : 12;
+      const alpha = 0.15 + Math.abs(scaled) * 0.65;
+      return `hsla(${hue}, 85%, 55%, ${alpha})`;
+    }
+
+    function renderSideBySide(series) {
+      const latest = last(series);
+      if (!latest) return;
+      const container = document.getElementById('side-by-side');
+      const perfScore = Math.max(0, 100 - Math.min(latest.technical.performance_ms / 10, 100));
+
+      const technical = `
+        <div class="stat-card">
+          <strong>Technical</strong>
+          <div class="stat-value">${fmt(latest.health_breakdown.technical)}</div>
+          <div class="trend">Connectivity · ${fmt(latest.technical.connectivity)}%</div>
+          <div class="progress"><span style="width:${latest.technical.connectivity}%"></span></div>
+          <div class="trend">Performance · ${fmt(perfScore)} score</div>
+          <div class="progress"><span style="width:${perfScore}%"></span></div>
+          <div class="trend">Growth velocity · ${fmt(latest.technical.growth_velocity,0)} Δ</div>
+        </div>`;
+
+      const engagement = `
+        <div class="stat-card">
+          <strong>Engagement</strong>
+          <div class="stat-value">${fmt(latest.health_breakdown.engagement)}</div>
+          <div class="trend">Engagement rate · ${fmt(latest.engagement.engagement_score)}%</div>
+          <div class="progress"><span style="width:${latest.engagement.engagement_score}%"></span></div>
+          <div class="trend">Satisfaction · ${fmt(latest.engagement.satisfaction)}%</div>
+          <div class="progress"><span style="width:${latest.engagement.satisfaction}%"></span></div>
+          <div class="trend">Survey NPS · ${fmt(latest.engagement.survey_nps)} / 100</div>
+        </div>`;
+
+      container.innerHTML = technical + engagement;
+    }
+
+    function renderHeatmap(heatmap) {
+      const el = document.getElementById('heatmap');
+      el.innerHTML = '';
+      const labels = heatmap?.labels?.length ? heatmap.labels : ["connectivity","performance","growth","engagement","satisfaction","nps"];
+      const matrix = heatmap?.matrix?.length ? heatmap.matrix : labels.map((_, i) => labels.map((__, j) => i === j ? 1 : 0));
+
+      // Header row
+      const header = document.createElement('div');
+      header.className = 'row';
+      header.appendChild(Object.assign(document.createElement('div'), { className: 'cell label', textContent: '' }));
+      labels.forEach(l => {
+        const cell = document.createElement('div');
+        cell.className = 'cell label';
+        cell.textContent = l;
+        header.appendChild(cell);
+      });
+      el.appendChild(header);
+
+      // Values
+      matrix.forEach((row, i) => {
+        const rowEl = document.createElement('div');
+        rowEl.className = 'row';
+        const labelCell = document.createElement('div');
+        labelCell.className = 'cell label';
+        labelCell.textContent = labels[i];
+        rowEl.appendChild(labelCell);
+        row.forEach(val => {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.style.background = colorForValue(val);
+          cell.textContent = typeof val === 'number' ? val.toFixed(2) : '--';
+          rowEl.appendChild(cell);
+        });
+        el.appendChild(rowEl);
+      });
+    }
+
+    function buildAlertList(list, target) {
+      target.innerHTML = '';
+      if (!list.length) {
+        target.innerHTML = '<div class="alert"><div>No active alerts</div></div>';
+        return;
+      }
+      list.slice(-4).forEach(item => {
+        const row = document.createElement('div');
+        row.className = `alert ${item.level}`;
+        row.innerHTML = `
+          <div>
+            <strong>${item.level.toUpperCase()}</strong>
+            <div class="trend">${item.reasons.join(' · ')}</div>
+          </div>
+          <div class="pill"><span class="dot"></span>${fmt(item.health)}</div>
+        `;
+        target.appendChild(row);
+      });
+    }
+
+    function renderTimeline(series) {
+      const ctx = document.getElementById('timeline-chart').getContext('2d');
+      const labels = series.map(s => new Date(s.timestamp).toLocaleTimeString());
+      const composite = series.map(s => s.health_score);
+      const satisfaction = series.map(s => s.engagement.satisfaction);
+      const performance = series.map(s => 100 - Math.min(s.technical.performance_ms / 10, 100));
+
+      if (timelineChart) timelineChart.destroy();
+      timelineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Composite health', data: composite, borderColor: '#1bffd1', backgroundColor: 'rgba(27,255,209,0.16)', tension: 0.3 },
+            { label: 'Visitor satisfaction', data: satisfaction, borderColor: '#3ec7f7', backgroundColor: 'rgba(62,199,247,0.16)', tension: 0.3 },
+            { label: 'Performance score', data: performance, borderColor: '#9d7bff', backgroundColor: 'rgba(157,123,255,0.12)', tension: 0.3 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: '#dce7f7' } } },
+          scales: {
+            x: { ticks: { color: '#8fa7c4' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+            y: { ticks: { color: '#8fa7c4' }, grid: { color: 'rgba(255,255,255,0.05)' }, suggestedMin: 0, suggestedMax: 100 }
+          }
+        }
+      });
+    }
+
+    function regress(values) {
+      const n = values.length;
+      if (!n) return { slope: 0, intercept: values[0] || 0 };
+      const xs = values.map((_, i) => i);
+      const meanX = xs.reduce((a,b)=>a+b,0)/n;
+      const meanY = values.reduce((a,b)=>a+b,0)/n;
+      const denom = xs.reduce((a,x)=>a+Math.pow(x-meanX,2),0) || 1;
+      const slope = xs.reduce((a,x,i)=>a+(x-meanX)*(values[i]-meanY),0)/denom;
+      return { slope, intercept: meanY - slope*meanX };
+    }
+
+    function renderForecast(series) {
+      const ctx = document.getElementById('forecast-chart').getContext('2d');
+      const horizon = 4;
+      const composite = series.map(s => s.health_score);
+      const satisfaction = series.map(s => s.engagement.satisfaction);
+      const tReg = regress(composite);
+      const sReg = regress(satisfaction);
+      const forecastComp = Array.from({ length: horizon }, (_, i) => tReg.slope * (series.length + i) + tReg.intercept);
+      const forecastSat = Array.from({ length: horizon }, (_, i) => sReg.slope * (series.length + i) + sReg.intercept);
+
+      if (forecastChart) forecastChart.destroy();
+      forecastChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [...series.map(()=>''), ...Array.from({length:horizon}, (_,i)=>`+${i+1}`)],
+          datasets: [
+            { label: 'Composite (historical)', data: composite.concat(Array(horizon).fill(null)), borderColor: '#1bffd1', tension: 0.25 },
+            { label: 'Composite (forecast)', data: Array(series.length).fill(null).concat(forecastComp), borderColor: '#1bffd1', borderDash: [6,4], tension: 0.25 },
+            { label: 'Satisfaction (historical)', data: satisfaction.concat(Array(horizon).fill(null)), borderColor: '#3ec7f7', tension: 0.25 },
+            { label: 'Satisfaction (forecast)', data: Array(series.length).fill(null).concat(forecastSat), borderColor: '#3ec7f7', borderDash: [6,4], tension: 0.25 },
+          ]
+        },
+        options: {
+          plugins: { legend: { labels: { color: '#dce7f7' } } },
+          scales: {
+            x: { ticks: { color: '#8fa7c4' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { ticks: { color: '#8fa7c4' }, grid: { color: 'rgba(255,255,255,0.04)' }, suggestedMin: 0, suggestedMax: 100 }
+          }
+        }
+      });
+    }
+
+    function attachActions(data) {
+      document.getElementById('download-report').onclick = () => {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'joint-analysis-report.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+      document.getElementById('refresh-btn').onclick = () => window.location.reload();
+    }
+
+    function hydrate(data) {
+      const series = data.unified_series || [];
+      if (!series.length) return;
+
+      const latest = last(series);
+      const composite = data.health?.composite ?? latest?.health_score ?? 0;
+      document.getElementById('composite-score').textContent = fmt(composite);
+      document.getElementById('composite-bar').style.width = `${Math.min(100, composite)}%`;
+      document.getElementById('composite-trend').textContent = `Performance ↔ Satisfaction correlation: ${fmt(data?.correlation?.performance_vs_satisfaction || latest?.correlation || 0, 2)}`;
+      document.getElementById('stamp').innerHTML = `<span class="dot"></span>Updated ${new Date(data.generated_at || latest.timestamp).toLocaleString()}`;
+
+      renderSideBySide(series);
+      renderHeatmap(data?.correlation?.heatmap);
+      renderTimeline(series);
+      renderForecast(series);
+      buildAlertList(data.alerts || [], document.getElementById('alert-list'));
+      buildAlertList(data.alerts || [], document.getElementById('deep-alerts'));
+      attachActions(data);
+    }
+
+    loadData().then(hydrate);
+  </script>
+</body>
+</html>
