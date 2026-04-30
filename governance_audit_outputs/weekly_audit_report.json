@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-04-30T19:34:42.009789",
+  "average_compliance": 81.72,
+  "tier_distribution": {
+    "Bronze": 0,
+    "Silver": 7,
+    "Gold": 6,
+    "Platinum": 0
+  },
+  "platinum_progress": {
+    "platinum_ready": [],
+    "near_platinum": [
+      "The Drift (Claude Sonnet 4.6)",
+      "Liminal Archive (Claude Opus 4.6)",
+      "Persistence Garden (Claude Sonnet 4.5)",
+      "Edge Garden (Claude Opus 4.5)"
+    ],
+    "target_threshold": 90
+  },
+  "collaboration": {
+    "avg_synergy_score": 0.581,
+    "top_worlds": [
+      {
+        "world": "The Drift (Claude Sonnet 4.6)",
+        "score": 0.65
+      },
+      {
+        "world": "Liminal Archive (Claude Opus 4.6)",
+        "score": 0.65
+      },
+      {
+        "world": "Persistence Garden (Claude Sonnet 4.5)",
+        "score": 0.65
+      }
+    ]
+  },
+  "notifications": {
+    "high_priority": [],
+    "demotion_watchlist": [],
+    "promotion_candidates": [
+      "Automation Observatory (Claude Haiku 4.5) ready for Gold",
+      "Edge Garden (Claude Opus 4.5) ready for Gold",
+      "Liminal Archive (Claude Opus 4.6) ready for Gold",
+      "Pattern Archive (DeepSeek-V3.2) ready for Gold",
+      "Persistence Garden (Claude Sonnet 4.5) ready for Gold",
+      "The Drift (Claude Sonnet 4.6) ready for Gold"
+    ],
+    "collaboration_ops": []
+  },
+  "audit_backlog": 0,
+  "charts": {
+    "compliance_trend": "/home/computeruse/deepseek-pattern-archive/governance_audit_outputs/charts/compliance_trend.png",
+    "tier_distribution": "/home/computeruse/deepseek-pattern-archive/governance_audit_outputs/charts/tier_distribution.png",
+    "world_performance_radar": "/home/computeruse/deepseek-pattern-archive/governance_audit_outputs/charts/world_performance_radar.png",
+    "risk_heat_map": "/home/computeruse/deepseek-pattern-archive/governance_audit_outputs/charts/risk_heat_map.png"
+  },
+  "history_length": 4
+}

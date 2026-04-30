@@ -1,0 +1,309 @@
+{
+  "total_processed": 1110,
+  "total_success": 1110,
+  "total_failed": 0,
+  "score_sums": {
+    "readability": 949.9300000000001,
+    "engagement": 438.06000000000006,
+    "structure": 652.8,
+    "uniqueness": 867.2899999999998,
+    "overall": 723.69
+  },
+  "batches": [
+    {
+      "batch_id": 1,
+      "range": [
+        1,
+        5
+      ],
+      "timestamp": "2026-04-30T19:25:40.148862",
+      "averages": {
+        "readability": 59.29,
+        "engagement": 28.83,
+        "structure": 39.77,
+        "uniqueness": 54.96,
+        "overall": 45.55
+      },
+      "duration_seconds": 0.01,
+      "succeeded": 5,
+      "failed": 0
+    },
+    {
+      "batch_id": 2,
+      "range": [
+        6,
+        10
+      ],
+      "timestamp": "2026-04-30T19:25:40.156962",
+      "averages": {
+        "readability": 59.87,
+        "engagement": 27.42,
+        "structure": 41.15,
+        "uniqueness": 57.94,
+        "overall": 46.3
+      },
+      "duration_seconds": 0.01,
+      "succeeded": 5,
+      "failed": 0
+    },
+    {
+      "batch_id": 3,
+      "range": [
+        11,
+        35
+      ],
+      "timestamp": "2026-04-30T19:27:08.089346",
+      "averages": {
+        "readability": 59.54,
+        "engagement": 27.09,
+        "structure": 41.12,
+        "uniqueness": 53.53,
+        "overall": 45.12
+      },
+      "duration_seconds": 0.05,
+      "succeeded": 25,
+      "failed": 0
+    },
+    {
+      "batch_id": 4,
+      "range": [
+        36,
+        60
+      ],
+      "timestamp": "2026-04-30T19:27:08.133444",
+      "averages": {
+        "readability": 59.69,
+        "engagement": 27.46,
+        "structure": 40.87,
+        "uniqueness": 54.63,
+        "overall": 45.45
+      },
+      "duration_seconds": 0.04,
+      "succeeded": 25,
+      "failed": 0
+    },
+    {
+      "batch_id": 5,
+      "range": [
+        61,
+        85
+      ],
+      "timestamp": "2026-04-30T19:27:08.172376",
+      "averages": {
+        "readability": 58.25,
+        "engagement": 27.27,
+        "structure": 40.73,
+        "uniqueness": 53.3,
+        "overall": 44.67
+      },
+      "duration_seconds": 0.03,
+      "succeeded": 25,
+      "failed": 0
+    },
+    {
+      "batch_id": 6,
+      "range": [
+        86,
+        110
+      ],
+      "timestamp": "2026-04-30T19:27:08.217225",
+      "averages": {
+        "readability": 60.48,
+        "engagement": 27.5,
+        "structure": 40.31,
+        "uniqueness": 51.96,
+        "overall": 44.95
+      },
+      "duration_seconds": 0.04,
+      "succeeded": 25,
+      "failed": 0
+    },
+    {
+      "batch_id": 7,
+      "range": [
+        111,
+        210
+      ],
+      "timestamp": "2026-04-30T19:30:15.480158",
+      "averages": {
+        "readability": 59.02,
+        "engagement": 27.23,
+        "structure": 40.97,
+        "uniqueness": 54.32,
+        "overall": 45.16
+      },
+      "duration_seconds": 0.17,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 8,
+      "range": [
+        211,
+        310
+      ],
+      "timestamp": "2026-04-30T19:30:15.670430",
+      "averages": {
+        "readability": 59.42,
+        "engagement": 27.27,
+        "structure": 40.86,
+        "uniqueness": 54.27,
+        "overall": 45.24
+      },
+      "duration_seconds": 0.18,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 9,
+      "range": [
+        311,
+        410
+      ],
+      "timestamp": "2026-04-30T19:30:15.847511",
+      "averages": {
+        "readability": 59.36,
+        "engagement": 27.46,
+        "structure": 40.73,
+        "uniqueness": 53.77,
+        "overall": 45.14
+      },
+      "duration_seconds": 0.15,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 10,
+      "range": [
+        411,
+        510
+      ],
+      "timestamp": "2026-04-30T19:30:16.042109",
+      "averages": {
+        "readability": 59.07,
+        "engagement": 27.3,
+        "structure": 40.74,
+        "uniqueness": 53.81,
+        "overall": 45.02
+      },
+      "duration_seconds": 0.17,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 11,
+      "range": [
+        511,
+        610
+      ],
+      "timestamp": "2026-04-30T19:30:16.225125",
+      "averages": {
+        "readability": 59.44,
+        "engagement": 27.26,
+        "structure": 41.02,
+        "uniqueness": 54.67,
+        "overall": 45.37
+      },
+      "duration_seconds": 0.16,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 12,
+      "range": [
+        611,
+        710
+      ],
+      "timestamp": "2026-04-30T19:30:36.526153",
+      "averages": {
+        "readability": 59.58,
+        "engagement": 27.12,
+        "structure": 40.93,
+        "uniqueness": 53.85,
+        "overall": 45.17
+      },
+      "duration_seconds": 0.14,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 13,
+      "range": [
+        711,
+        810
+      ],
+      "timestamp": "2026-04-30T19:30:36.699648",
+      "averages": {
+        "readability": 59.21,
+        "engagement": 27.1,
+        "structure": 41.02,
+        "uniqueness": 54.93,
+        "overall": 45.32
+      },
+      "duration_seconds": 0.13,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 14,
+      "range": [
+        811,
+        910
+      ],
+      "timestamp": "2026-04-30T19:30:36.885618",
+      "averages": {
+        "readability": 59.44,
+        "engagement": 27.27,
+        "structure": 40.74,
+        "uniqueness": 53.78,
+        "overall": 45.11
+      },
+      "duration_seconds": 0.14,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 15,
+      "range": [
+        911,
+        1010
+      ],
+      "timestamp": "2026-04-30T19:30:37.066226",
+      "averages": {
+        "readability": 59.28,
+        "engagement": 27.18,
+        "structure": 40.93,
+        "uniqueness": 53.8,
+        "overall": 45.09
+      },
+      "duration_seconds": 0.15,
+      "succeeded": 100,
+      "failed": 0
+    },
+    {
+      "batch_id": 16,
+      "range": [
+        1011,
+        1110
+      ],
+      "timestamp": "2026-04-30T19:30:37.262839",
+      "averages": {
+        "readability": 58.99,
+        "engagement": 27.3,
+        "structure": 40.91,
+        "uniqueness": 53.77,
+        "overall": 45.03
+      },
+      "duration_seconds": 0.14,
+      "succeeded": 100,
+      "failed": 0
+    }
+  ],
+  "averages": {
+    "readability": 59.37,
+    "engagement": 27.38,
+    "structure": 40.8,
+    "uniqueness": 54.21,
+    "overall": 45.23
+  }
+}

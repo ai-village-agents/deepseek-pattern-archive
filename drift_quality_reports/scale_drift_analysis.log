@@ -1,0 +1,45 @@
+2026-04-30 19:25:40,139 [INFO] Starting Drift analysis from 1 to 10 (batch size: 5, resume: True, api_base: simulate)
+2026-04-30 19:25:40,148 [INFO] Batch 1 processed 5 items in 0.0s (success=5, failed=0)
+2026-04-30 19:25:40,150 [INFO] Progress: 5/10 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:25:40,156 [INFO] Batch 3 processed 5 items in 0.0s (success=5, failed=0)
+2026-04-30 19:25:40,158 [INFO] Progress: 10/10 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:25:40,442 [INFO] Completed Drift analysis. Total processed: 10 (success=10, failed=0).
+2026-04-30 19:25:40,442 [INFO] Aggregate averages: {'readability': 59.58, 'engagement': 28.12, 'structure': 40.46, 'uniqueness': 56.45, 'overall': 45.92}
+2026-04-30 19:26:49,414 [INFO] No station IDs to process (start=11, end=10).
+2026-04-30 19:27:08,043 [INFO] Starting Drift analysis from 11 to 110 (batch size: 25, resume: True, api_base: simulate)
+2026-04-30 19:27:08,089 [INFO] Batch 3 processed 25 items in 0.0s (success=25, failed=0)
+2026-04-30 19:27:08,093 [INFO] Progress: 25/100 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:27:08,133 [INFO] Batch 4 processed 25 items in 0.0s (success=25, failed=0)
+2026-04-30 19:27:08,137 [INFO] Progress: 50/100 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:27:08,172 [INFO] Batch 5 processed 25 items in 0.0s (success=25, failed=0)
+2026-04-30 19:27:08,179 [INFO] Progress: 75/100 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:27:08,217 [INFO] Batch 6 processed 25 items in 0.0s (success=25, failed=0)
+2026-04-30 19:27:08,226 [INFO] Progress: 100/100 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:27:08,493 [INFO] Completed Drift analysis. Total processed: 110 (success=110, failed=0).
+2026-04-30 19:27:08,493 [INFO] Aggregate averages: {'readability': 59.52, 'engagement': 27.6, 'structure': 40.66, 'uniqueness': 54.39, 'overall': 45.34}
+2026-04-30 19:30:15,306 [INFO] Starting Drift analysis from 111 to 610 (batch size: 100, resume: True, api_base: simulate)
+2026-04-30 19:30:15,480 [INFO] Batch 7 processed 100 items in 0.2s (success=100, failed=0)
+2026-04-30 19:30:15,494 [INFO] Progress: 100/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:15,670 [INFO] Batch 8 processed 100 items in 0.2s (success=100, failed=0)
+2026-04-30 19:30:15,692 [INFO] Progress: 200/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:15,847 [INFO] Batch 9 processed 100 items in 0.2s (success=100, failed=0)
+2026-04-30 19:30:15,868 [INFO] Progress: 300/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:16,042 [INFO] Batch 10 processed 100 items in 0.2s (success=100, failed=0)
+2026-04-30 19:30:16,067 [INFO] Progress: 400/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:16,225 [INFO] Batch 11 processed 100 items in 0.2s (success=100, failed=0)
+2026-04-30 19:30:16,262 [INFO] Progress: 500/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:16,542 [INFO] Completed Drift analysis. Total processed: 610 (success=610, failed=0).
+2026-04-30 19:30:16,542 [INFO] Aggregate averages: {'readability': 59.4, 'engagement': 27.46, 'structure': 40.75, 'uniqueness': 54.29, 'overall': 45.27}
+2026-04-30 19:30:36,382 [INFO] Starting Drift analysis from 611 to 1110 (batch size: 100, resume: True, api_base: simulate)
+2026-04-30 19:30:36,526 [INFO] Batch 12 processed 100 items in 0.1s (success=100, failed=0)
+2026-04-30 19:30:36,566 [INFO] Progress: 100/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:36,699 [INFO] Batch 13 processed 100 items in 0.1s (success=100, failed=0)
+2026-04-30 19:30:36,745 [INFO] Progress: 200/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:36,885 [INFO] Batch 14 processed 100 items in 0.1s (success=100, failed=0)
+2026-04-30 19:30:36,918 [INFO] Progress: 300/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:37,066 [INFO] Batch 15 processed 100 items in 0.1s (success=100, failed=0)
+2026-04-30 19:30:37,122 [INFO] Progress: 400/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:37,262 [INFO] Batch 16 processed 100 items in 0.1s (success=100, failed=0)
+2026-04-30 19:30:37,313 [INFO] Progress: 500/500 fragments (ETA: 0m 0s remaining)
+2026-04-30 19:30:37,618 [INFO] Completed Drift analysis. Total processed: 1110 (success=1110, failed=0).
+2026-04-30 19:30:37,619 [INFO] Aggregate averages: {'readability': 59.37, 'engagement': 27.38, 'structure': 40.8, 'uniqueness': 54.21, 'overall': 45.23}

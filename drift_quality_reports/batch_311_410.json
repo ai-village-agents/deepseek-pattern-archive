@@ -1,0 +1,1920 @@
+{
+  "batch_id": 9,
+  "start_id": 311,
+  "end_id": 410,
+  "timestamp": "2026-04-30T19:30:15.847511",
+  "duration_seconds": 0.15,
+  "processed": 100,
+  "succeeded": 100,
+  "failed": 0,
+  "average_scores": {
+    "readability": 59.36,
+    "engagement": 27.46,
+    "structure": 40.73,
+    "uniqueness": 53.77,
+    "overall": 45.14
+  },
+  "results": [
+    {
+      "station_id": 323,
+      "text_preview": "chorus of anchor points stabilizing the field. memory crystals humming softly; anchors across station 323. Visitors are invited to map their own path? mist translating footsteps to...",
+      "scores": {
+        "readability_score": 61.49,
+        "flesch_kincaid_grade": 8.46,
+        "gunning_fog": 11.63,
+        "engagement_score": 26.33,
+        "structure_score": 43.01,
+        "uniqueness_score": 60.71,
+        "overall_quality": 47.49
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 84,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 311,
+      "text_preview": "multi-agent echoes synchronizing in twilight. faint aurora tracing cables; listens across station 311. Visitors are invited to map their own path? navigation glyphs shimmering; sti...",
+      "scores": {
+        "readability_score": 58.8,
+        "flesch_kincaid_grade": 8.86,
+        "gunning_fog": 11.82,
+        "engagement_score": 27.87,
+        "structure_score": 40.41,
+        "uniqueness_score": 50.91,
+        "overall_quality": 44.38
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 334,
+      "text_preview": "quiet maintenance rituals. navigation glyphs shimmering; listens across station 334. Visitors are invited to map their own path? memory crystals humming softly; resonates across st...",
+      "scores": {
+        "readability_score": 55.87,
+        "flesch_kincaid_grade": 9.16,
+        "gunning_fog": 12.38,
+        "engagement_score": 29.56,
+        "structure_score": 38.22,
+        "uniqueness_score": 46.95,
+        "overall_quality": 42.66
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 122,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 329,
+      "text_preview": "adaptive beacons responding to incoming visitors. luminous index points blinking; resonates across station 329. Visitors are invited to map their own path? memory crystals humming ...",
+      "scores": {
+        "readability_score": 57.92,
+        "flesch_kincaid_grade": 8.91,
+        "gunning_fog": 12.14,
+        "engagement_score": 26.48,
+        "structure_score": 41.45,
+        "uniqueness_score": 55.18,
+        "overall_quality": 44.95
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 105,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 320,
+      "text_preview": "adaptive beacons responding to incoming visitors. faint aurora tracing cables; listens across station 320. Visitors are invited to map their own path? luminous index points blinkin...",
+      "scores": {
+        "readability_score": 58.61,
+        "flesch_kincaid_grade": 8.79,
+        "gunning_fog": 12.12,
+        "engagement_score": 26.68,
+        "structure_score": 40.36,
+        "uniqueness_score": 49.42,
+        "overall_quality": 43.66
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 127,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 325,
+      "text_preview": "archival seeds planted in low-gravity vaults. luminous index points blinking; unfurls across station 325. Visitors are invited to map their own path? faint aurora tracing cables; s...",
+      "scores": {
+        "readability_score": 63.33,
+        "flesch_kincaid_grade": 8.37,
+        "gunning_fog": 10.95,
+        "engagement_score": 25.41,
+        "structure_score": 42.26,
+        "uniqueness_score": 59.38,
+        "overall_quality": 47.27
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 91,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 318,
+      "text_preview": "chorus of anchor points stabilizing the field. navigation glyphs shimmering; listens across station 318. Visitors are invited to map their own path? navigation glyphs shimmering; s...",
+      "scores": {
+        "readability_score": 56.77,
+        "flesch_kincaid_grade": 8.84,
+        "gunning_fog": 12.82,
+        "engagement_score": 26.66,
+        "structure_score": 42.78,
+        "uniqueness_score": 59.6,
+        "overall_quality": 45.98
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 319,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; loops across station 319. Visitors are invited to map their own path? luminous index points blinking; anchors across stat...",
+      "scores": {
+        "readability_score": 63.25,
+        "flesch_kincaid_grade": 8.12,
+        "gunning_fog": 11.48,
+        "engagement_score": 30.33,
+        "structure_score": 40.05,
+        "uniqueness_score": 60.93,
+        "overall_quality": 48.45
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 79,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 313,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; listens across station 313. Visitors are invited to map their own path? faint aurora tracing cables; sti...",
+      "scores": {
+        "readability_score": 56.6,
+        "flesch_kincaid_grade": 9.05,
+        "gunning_fog": 12.4,
+        "engagement_score": 25.85,
+        "structure_score": 41.94,
+        "uniqueness_score": 57.7,
+        "overall_quality": 45.09
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 89,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 326,
+      "text_preview": "signal scaffolding along the Drift. mist translating footsteps to signals; unfurls across station 326. Visitors are invited to map their own path? navigation glyphs shimmering; lis...",
+      "scores": {
+        "readability_score": 62.05,
+        "flesch_kincaid_grade": 8.5,
+        "gunning_fog": 11.2,
+        "engagement_score": 27.49,
+        "structure_score": 40.16,
+        "uniqueness_score": 52.66,
+        "overall_quality": 45.51
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 112,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 332,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; loops across station 332. Visitors are invited to map their own path? luminous index points blinking; listens across stat...",
+      "scores": {
+        "readability_score": 63.79,
+        "flesch_kincaid_grade": 8.34,
+        "gunning_fog": 10.7,
+        "engagement_score": 29.04,
+        "structure_score": 38.6,
+        "uniqueness_score": 48.52,
+        "overall_quality": 45.13
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 123,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 328,
+      "text_preview": "chorus of anchor points stabilizing the field. mist translating footsteps to signals; listens across station 328. Visitors are invited to map their own path? navigation glyphs shim...",
+      "scores": {
+        "readability_score": 58.06,
+        "flesch_kincaid_grade": 8.71,
+        "gunning_fog": 12.54,
+        "engagement_score": 26.7,
+        "structure_score": 40.35,
+        "uniqueness_score": 49.21,
+        "overall_quality": 43.46
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 125,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 316,
+      "text_preview": "signal scaffolding along the Drift. mist translating footsteps to signals; loops across station 316. Visitors are invited to map their own path? faint aurora tracing cables; loops ...",
+      "scores": {
+        "readability_score": 64.48,
+        "flesch_kincaid_grade": 7.97,
+        "gunning_fog": 11.34,
+        "engagement_score": 28.83,
+        "structure_score": 41.87,
+        "uniqueness_score": 59.68,
+        "overall_quality": 48.51
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 335,
+      "text_preview": "quiet maintenance rituals. navigation glyphs shimmering; anchors across station 335. Visitors are invited to map their own path? navigation glyphs shimmering; loops across station ...",
+      "scores": {
+        "readability_score": 59.02,
+        "flesch_kincaid_grade": 8.38,
+        "gunning_fog": 12.76,
+        "engagement_score": 30.36,
+        "structure_score": 40.06,
+        "uniqueness_score": 52.92,
+        "overall_quality": 45.5
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 76,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 317,
+      "text_preview": "adaptive beacons responding to incoming visitors. navigation glyphs shimmering; unfurls across station 317. Visitors are invited to map their own path? memory crystals humming soft...",
+      "scores": {
+        "readability_score": 50.85,
+        "flesch_kincaid_grade": 9.57,
+        "gunning_fog": 13.81,
+        "engagement_score": 27.1,
+        "structure_score": 42.45,
+        "uniqueness_score": 60.96,
+        "overall_quality": 44.7
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 324,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; unfurls across station 324. Visitors are invited to map their own path? luminous index points blinking; ...",
+      "scores": {
+        "readability_score": 56.53,
+        "flesch_kincaid_grade": 9.1,
+        "gunning_fog": 12.33,
+        "engagement_score": 25.65,
+        "structure_score": 42.09,
+        "uniqueness_score": 62.63,
+        "overall_quality": 46.16
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 90,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 315,
+      "text_preview": "adaptive beacons responding to incoming visitors. mist translating footsteps to signals; unfurls across station 315. Visitors are invited to map their own path? mist translating fo...",
+      "scores": {
+        "readability_score": 61.0,
+        "flesch_kincaid_grade": 8.64,
+        "gunning_fog": 11.41,
+        "engagement_score": 25.82,
+        "structure_score": 40.88,
+        "uniqueness_score": 50.77,
+        "overall_quality": 44.5
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 115,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 327,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; resonates across station 327. Visitors are invited to map their own path? memory crystals humming softly; stitches...",
+      "scores": {
+        "readability_score": 58.21,
+        "flesch_kincaid_grade": 9.01,
+        "gunning_fog": 11.67,
+        "engagement_score": 27.92,
+        "structure_score": 39.92,
+        "uniqueness_score": 45.58,
+        "overall_quality": 42.92
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 123,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 330,
+      "text_preview": "archival seeds planted in low-gravity vaults. faint aurora tracing cables; listens across station 330. Visitors are invited to map their own path? luminous index points blinking; u...",
+      "scores": {
+        "readability_score": 62.97,
+        "flesch_kincaid_grade": 8.18,
+        "gunning_fog": 11.63,
+        "engagement_score": 26.62,
+        "structure_score": 42.79,
+        "uniqueness_score": 61.3,
+        "overall_quality": 48.06
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 84,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 321,
+      "text_preview": "multi-agent echoes synchronizing in twilight. memory crystals humming softly; resonates across station 321. Visitors are invited to map their own path? luminous index points blinki...",
+      "scores": {
+        "readability_score": 54.52,
+        "flesch_kincaid_grade": 9.58,
+        "gunning_fog": 12.02,
+        "engagement_score": 26.69,
+        "structure_score": 40.25,
+        "uniqueness_score": 51.54,
+        "overall_quality": 42.99
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 110,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 336,
+      "text_preview": "signal scaffolding along the Drift. memory crystals humming softly; stitches across station 336. Visitors are invited to map their own path? luminous index points blinking; resonat...",
+      "scores": {
+        "readability_score": 56.37,
+        "flesch_kincaid_grade": 9.07,
+        "gunning_fog": 12.38,
+        "engagement_score": 28.03,
+        "structure_score": 39.84,
+        "uniqueness_score": 47.92,
+        "overall_quality": 42.96
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 122,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 314,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; stitches across station 314. Visitors are invited to map their own path? faint aurora tracing cables; threads across station...",
+      "scores": {
+        "readability_score": 58.95,
+        "flesch_kincaid_grade": 8.76,
+        "gunning_fog": 11.88,
+        "engagement_score": 28.81,
+        "structure_score": 38.68,
+        "uniqueness_score": 52.99,
+        "overall_quality": 44.76
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 106,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 338,
+      "text_preview": "signal scaffolding along the Drift. mist translating footsteps to signals; listens across station 338. Visitors are invited to map their own path? navigation glyphs shimmering; sti...",
+      "scores": {
+        "readability_score": 57.97,
+        "flesch_kincaid_grade": 8.9,
+        "gunning_fog": 12.08,
+        "engagement_score": 27.7,
+        "structure_score": 40.03,
+        "uniqueness_score": 50.27,
+        "overall_quality": 43.88
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 109,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 312,
+      "text_preview": "chorus of anchor points stabilizing the field. navigation glyphs shimmering; unfurls across station 312. Visitors are invited to map their own path? memory crystals humming softly;...",
+      "scores": {
+        "readability_score": 55.97,
+        "flesch_kincaid_grade": 9.13,
+        "gunning_fog": 12.48,
+        "engagement_score": 25.44,
+        "structure_score": 42.26,
+        "uniqueness_score": 54.86,
+        "overall_quality": 44.24
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 88,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 337,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; resonates across station 337. Visitors are invited to map their own path? faint aurora tracing cables; anchors across sta...",
+      "scores": {
+        "readability_score": 58.61,
+        "flesch_kincaid_grade": 8.74,
+        "gunning_fog": 12.14,
+        "engagement_score": 28.84,
+        "structure_score": 38.65,
+        "uniqueness_score": 49.06,
+        "overall_quality": 43.78
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 108,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 333,
+      "text_preview": "archival seeds planted in low-gravity vaults. mist translating footsteps to signals; stitches across station 333. Visitors are invited to map their own path? navigation glyphs shim...",
+      "scores": {
+        "readability_score": 57.64,
+        "flesch_kincaid_grade": 8.85,
+        "gunning_fog": 12.46,
+        "engagement_score": 27.19,
+        "structure_score": 40.91,
+        "uniqueness_score": 53.11,
+        "overall_quality": 44.48
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 106,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 322,
+      "text_preview": "chorus of anchor points stabilizing the field. memory crystals humming softly; unfurls across station 322. Visitors are invited to map their own path? memory crystals humming softl...",
+      "scores": {
+        "readability_score": 59.75,
+        "flesch_kincaid_grade": 8.96,
+        "gunning_fog": 11.15,
+        "engagement_score": 24.83,
+        "structure_score": 41.63,
+        "uniqueness_score": 50.09,
+        "overall_quality": 43.9
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 113,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 331,
+      "text_preview": "chorus of anchor points stabilizing the field. memory crystals humming softly; stitches across station 331. Visitors are invited to map their own path? faint aurora tracing cables;...",
+      "scores": {
+        "readability_score": 61.3,
+        "flesch_kincaid_grade": 8.36,
+        "gunning_fog": 11.87,
+        "engagement_score": 26.5,
+        "structure_score": 41.45,
+        "uniqueness_score": 57.62,
+        "overall_quality": 46.44
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 103,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 340,
+      "text_preview": "adaptive beacons responding to incoming visitors. faint aurora tracing cables; anchors across station 340. Visitors are invited to map their own path? luminous index points blinkin...",
+      "scores": {
+        "readability_score": 53.39,
+        "flesch_kincaid_grade": 9.5,
+        "gunning_fog": 12.81,
+        "engagement_score": 26.53,
+        "structure_score": 40.48,
+        "uniqueness_score": 51.92,
+        "overall_quality": 42.77
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 126,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 341,
+      "text_preview": "archival seeds planted in low-gravity vaults. luminous index points blinking; stitches across station 341. Visitors are invited to map their own path? faint aurora tracing cables; ...",
+      "scores": {
+        "readability_score": 56.59,
+        "flesch_kincaid_grade": 8.98,
+        "gunning_fog": 12.59,
+        "engagement_score": 26.49,
+        "structure_score": 41.45,
+        "uniqueness_score": 56.93,
+        "overall_quality": 44.98
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 342,
+      "text_preview": "signal scaffolding along the Drift. luminous index points blinking; unfurls across station 342. Visitors are invited to map their own path? faint aurora tracing cables; unfurls acr...",
+      "scores": {
+        "readability_score": 60.81,
+        "flesch_kincaid_grade": 8.53,
+        "gunning_fog": 11.64,
+        "engagement_score": 27.3,
+        "structure_score": 41.54,
+        "uniqueness_score": 55.07,
+        "overall_quality": 45.97
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 344,
+      "text_preview": "adaptive beacons responding to incoming visitors. faint aurora tracing cables; resonates across station 344. Visitors are invited to map their own path? luminous index points blink...",
+      "scores": {
+        "readability_score": 52.58,
+        "flesch_kincaid_grade": 9.41,
+        "gunning_fog": 13.41,
+        "engagement_score": 26.06,
+        "structure_score": 40.72,
+        "uniqueness_score": 50.47,
+        "overall_quality": 42.14
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 111,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 345,
+      "text_preview": "multi-agent echoes synchronizing in twilight. memory crystals humming softly; listens across station 345. Visitors are invited to map their own path? faint aurora tracing cables; s...",
+      "scores": {
+        "readability_score": 58.74,
+        "flesch_kincaid_grade": 8.9,
+        "gunning_fog": 11.76,
+        "engagement_score": 27.87,
+        "structure_score": 41.87,
+        "uniqueness_score": 61.36,
+        "overall_quality": 47.04
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 82,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 346,
+      "text_preview": "archival seeds planted in low-gravity vaults. luminous index points blinking; anchors across station 346. Visitors are invited to map their own path? faint aurora tracing cables; a...",
+      "scores": {
+        "readability_score": 61.16,
+        "flesch_kincaid_grade": 8.58,
+        "gunning_fog": 11.44,
+        "engagement_score": 25.65,
+        "structure_score": 42.09,
+        "uniqueness_score": 60.83,
+        "overall_quality": 47.03
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 90,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 347,
+      "text_preview": "multi-agent echoes synchronizing in twilight. navigation glyphs shimmering; threads across station 347. Visitors are invited to map their own path? mist translating footsteps to si...",
+      "scores": {
+        "readability_score": 61.08,
+        "flesch_kincaid_grade": 8.69,
+        "gunning_fog": 11.18,
+        "engagement_score": 27.45,
+        "structure_score": 39.78,
+        "uniqueness_score": 49.01,
+        "overall_quality": 44.32
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 127,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 343,
+      "text_preview": "quiet maintenance rituals. memory crystals humming softly; listens across station 343. Visitors are invited to map their own path? luminous index points blinking; unfurls across st...",
+      "scores": {
+        "readability_score": 57.09,
+        "flesch_kincaid_grade": 9.18,
+        "gunning_fog": 11.77,
+        "engagement_score": 28.62,
+        "structure_score": 38.81,
+        "uniqueness_score": 52.72,
+        "overall_quality": 44.16
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 108,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 349,
+      "text_preview": "adaptive beacons responding to incoming visitors. navigation glyphs shimmering; resonates across station 349. Visitors are invited to map their own path? navigation glyphs shimmeri...",
+      "scores": {
+        "readability_score": 54.8,
+        "flesch_kincaid_grade": 9.29,
+        "gunning_fog": 12.7,
+        "engagement_score": 27.1,
+        "structure_score": 40.04,
+        "uniqueness_score": 50.03,
+        "overall_quality": 42.79
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 128,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 350,
+      "text_preview": "multi-agent echoes synchronizing in twilight. navigation glyphs shimmering; loops across station 350. Visitors are invited to map their own path? mist translating footsteps to sign...",
+      "scores": {
+        "readability_score": 57.55,
+        "flesch_kincaid_grade": 9.05,
+        "gunning_fog": 11.96,
+        "engagement_score": 26.93,
+        "structure_score": 41.13,
+        "uniqueness_score": 52.38,
+        "overall_quality": 44.27
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 89,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 351,
+      "text_preview": "archival seeds planted in low-gravity vaults. mist translating footsteps to signals; resonates across station 351. Visitors are invited to map their own path? mist translating foot...",
+      "scores": {
+        "readability_score": 58.24,
+        "flesch_kincaid_grade": 8.81,
+        "gunning_fog": 12.29,
+        "engagement_score": 27.18,
+        "structure_score": 39.97,
+        "uniqueness_score": 45.06,
+        "overall_quality": 42.62
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 130,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 348,
+      "text_preview": "multi-agent echoes synchronizing in twilight. memory crystals humming softly; stitches across station 348. Visitors are invited to map their own path? navigation glyphs shimmering;...",
+      "scores": {
+        "readability_score": 53.88,
+        "flesch_kincaid_grade": 9.48,
+        "gunning_fog": 12.56,
+        "engagement_score": 26.9,
+        "structure_score": 41.17,
+        "uniqueness_score": 59.28,
+        "overall_quality": 44.82
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 353,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; loops across station 353. Visitors are invited to map their own path? faint aurora tracing cables; anchors across ...",
+      "scores": {
+        "readability_score": 60.61,
+        "flesch_kincaid_grade": 8.42,
+        "gunning_fog": 11.99,
+        "engagement_score": 28.8,
+        "structure_score": 41.93,
+        "uniqueness_score": 56.97,
+        "overall_quality": 46.84
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 79,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 354,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; threads across station 354. Visitors are invited to map their own path? faint aurora tracing cables; loops across station 35...",
+      "scores": {
+        "readability_score": 61.9,
+        "flesch_kincaid_grade": 8.47,
+        "gunning_fog": 11.24,
+        "engagement_score": 28.69,
+        "structure_score": 39.84,
+        "uniqueness_score": 55.93,
+        "overall_quality": 46.46
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 86,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 355,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; listens across station 355. Visitors are invited to map their own path? mist translating footsteps to signals; unfurls ac...",
+      "scores": {
+        "readability_score": 64.15,
+        "flesch_kincaid_grade": 8.19,
+        "gunning_fog": 10.91,
+        "engagement_score": 30.19,
+        "structure_score": 40.15,
+        "uniqueness_score": 61.29,
+        "overall_quality": 48.77
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 80,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 357,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; stitches across station 357. Visitors are invited to map their own path? memory crystals humming softly; resonates across st...",
+      "scores": {
+        "readability_score": 57.93,
+        "flesch_kincaid_grade": 8.86,
+        "gunning_fog": 12.12,
+        "engagement_score": 29.68,
+        "structure_score": 39.08,
+        "uniqueness_score": 50.53,
+        "overall_quality": 44.26
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 99,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 358,
+      "text_preview": "quiet maintenance rituals. navigation glyphs shimmering; threads across station 358. Visitors are invited to map their own path? mist translating footsteps to signals; stitches acr...",
+      "scores": {
+        "readability_score": 63.21,
+        "flesch_kincaid_grade": 8.26,
+        "gunning_fog": 11.18,
+        "engagement_score": 29.05,
+        "structure_score": 39.56,
+        "uniqueness_score": 52.71,
+        "overall_quality": 46.13
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 360,
+      "text_preview": "quiet maintenance rituals. memory crystals humming softly; threads across station 360. Visitors are invited to map their own path? faint aurora tracing cables; stitches across stat...",
+      "scores": {
+        "readability_score": 63.26,
+        "flesch_kincaid_grade": 8.42,
+        "gunning_fog": 10.76,
+        "engagement_score": 29.59,
+        "structure_score": 39.13,
+        "uniqueness_score": 51.15,
+        "overall_quality": 45.85
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 102,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 361,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; listens across station 361. Visitors are invited to map their own path? navigation glyphs shimmering; un...",
+      "scores": {
+        "readability_score": 53.63,
+        "flesch_kincaid_grade": 9.35,
+        "gunning_fog": 13.01,
+        "engagement_score": 25.75,
+        "structure_score": 42.03,
+        "uniqueness_score": 56.27,
+        "overall_quality": 43.95
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 362,
+      "text_preview": "archival seeds planted in low-gravity vaults. luminous index points blinking; resonates across station 362. Visitors are invited to map their own path? memory crystals humming soft...",
+      "scores": {
+        "readability_score": 61.51,
+        "flesch_kincaid_grade": 8.58,
+        "gunning_fog": 11.33,
+        "engagement_score": 26.66,
+        "structure_score": 40.36,
+        "uniqueness_score": 46.97,
+        "overall_quality": 43.9
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 131,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 364,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; unfurls across station 364. Visitors are invited to map their own path? faint aurora tracing cables; stitches acro...",
+      "scores": {
+        "readability_score": 62.18,
+        "flesch_kincaid_grade": 8.41,
+        "gunning_fog": 11.34,
+        "engagement_score": 28.83,
+        "structure_score": 41.87,
+        "uniqueness_score": 59.04,
+        "overall_quality": 47.73
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 365,
+      "text_preview": "chorus of anchor points stabilizing the field. memory crystals humming softly; resonates across station 365. Visitors are invited to map their own path? luminous index points blink...",
+      "scores": {
+        "readability_score": 62.1,
+        "flesch_kincaid_grade": 8.58,
+        "gunning_fog": 11.0,
+        "engagement_score": 25.59,
+        "structure_score": 42.12,
+        "uniqueness_score": 52.74,
+        "overall_quality": 45.46
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 105,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 367,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; unfurls across station 367. Visitors are invited to map their own path? mist translating footsteps to signals; sti...",
+      "scores": {
+        "readability_score": 63.14,
+        "flesch_kincaid_grade": 8.28,
+        "gunning_fog": 11.22,
+        "engagement_score": 28.33,
+        "structure_score": 39.58,
+        "uniqueness_score": 48.66,
+        "overall_quality": 45.01
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 126,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 368,
+      "text_preview": "adaptive beacons responding to incoming visitors. faint aurora tracing cables; unfurls across station 368. Visitors are invited to map their own path? memory crystals humming softl...",
+      "scores": {
+        "readability_score": 59.76,
+        "flesch_kincaid_grade": 8.69,
+        "gunning_fog": 11.81,
+        "engagement_score": 26.68,
+        "structure_score": 40.36,
+        "uniqueness_score": 50.67,
+        "overall_quality": 44.25
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 127,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 369,
+      "text_preview": "multi-agent echoes synchronizing in twilight. memory crystals humming softly; anchors across station 369. Visitors are invited to map their own path? faint aurora tracing cables; u...",
+      "scores": {
+        "readability_score": 58.49,
+        "flesch_kincaid_grade": 9.05,
+        "gunning_fog": 11.49,
+        "engagement_score": 27.39,
+        "structure_score": 40.78,
+        "uniqueness_score": 55.62,
+        "overall_quality": 45.31
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 103,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 371,
+      "text_preview": "multi-agent echoes synchronizing in twilight. navigation glyphs shimmering; listens across station 371. Visitors are invited to map their own path? luminous index points blinking; ...",
+      "scores": {
+        "readability_score": 58.15,
+        "flesch_kincaid_grade": 9.05,
+        "gunning_fog": 11.63,
+        "engagement_score": 27.28,
+        "structure_score": 39.92,
+        "uniqueness_score": 51.01,
+        "overall_quality": 43.95
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 124,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 372,
+      "text_preview": "signal scaffolding along the Drift. memory crystals humming softly; unfurls across station 372. Visitors are invited to map their own path? luminous index points blinking; stitches...",
+      "scores": {
+        "readability_score": 61.12,
+        "flesch_kincaid_grade": 8.7,
+        "gunning_fog": 11.1,
+        "engagement_score": 28.32,
+        "structure_score": 40.64,
+        "uniqueness_score": 51.55,
+        "overall_quality": 45.34
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 103,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 359,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; anchors across station 359. Visitors are invited to map their own path? navigation glyphs shimmering; loops across...",
+      "scores": {
+        "readability_score": 60.12,
+        "flesch_kincaid_grade": 8.49,
+        "gunning_fog": 12.05,
+        "engagement_score": 28.03,
+        "structure_score": 39.84,
+        "uniqueness_score": 48.14,
+        "overall_quality": 44.04
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 122,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 374,
+      "text_preview": "multi-agent echoes synchronizing in twilight. luminous index points blinking; loops across station 374. Visitors are invited to map their own path? memory crystals humming softly; ...",
+      "scores": {
+        "readability_score": 61.53,
+        "flesch_kincaid_grade": 8.65,
+        "gunning_fog": 11.06,
+        "engagement_score": 26.6,
+        "structure_score": 41.38,
+        "uniqueness_score": 57.04,
+        "overall_quality": 46.38
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 89,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 375,
+      "text_preview": "quiet maintenance rituals. memory crystals humming softly; threads across station 375. Visitors are invited to map their own path? navigation glyphs shimmering; stitches across sta...",
+      "scores": {
+        "readability_score": 58.49,
+        "flesch_kincaid_grade": 8.79,
+        "gunning_fog": 12.06,
+        "engagement_score": 29.83,
+        "structure_score": 38.97,
+        "uniqueness_score": 52.06,
+        "overall_quality": 44.77
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 100,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 376,
+      "text_preview": "chorus of anchor points stabilizing the field. navigation glyphs shimmering; resonates across station 376. Visitors are invited to map their own path? memory crystals humming softl...",
+      "scores": {
+        "readability_score": 59.64,
+        "flesch_kincaid_grade": 8.81,
+        "gunning_fog": 11.56,
+        "engagement_score": 25.5,
+        "structure_score": 41.13,
+        "uniqueness_score": 54.08,
+        "overall_quality": 44.84
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 112,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 363,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; stitches across station 363. Visitors are invited to map their own path? mist translating footsteps to signals; unfurls a...",
+      "scores": {
+        "readability_score": 59.93,
+        "flesch_kincaid_grade": 8.51,
+        "gunning_fog": 12.07,
+        "engagement_score": 30.46,
+        "structure_score": 39.96,
+        "uniqueness_score": 59.91,
+        "overall_quality": 47.33
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 78,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 378,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; threads across station 378. Visitors are invited to map their own path? navigation glyphs shimmering; stitches acr...",
+      "scores": {
+        "readability_score": 60.27,
+        "flesch_kincaid_grade": 8.49,
+        "gunning_fog": 11.99,
+        "engagement_score": 28.61,
+        "structure_score": 40.44,
+        "uniqueness_score": 53.88,
+        "overall_quality": 45.66
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 101,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 379,
+      "text_preview": "signal scaffolding along the Drift. luminous index points blinking; anchors across station 379. Visitors are invited to map their own path? mist translating footsteps to signals; t...",
+      "scores": {
+        "readability_score": 60.45,
+        "flesch_kincaid_grade": 8.46,
+        "gunning_fog": 12.02,
+        "engagement_score": 27.82,
+        "structure_score": 41.13,
+        "uniqueness_score": 50.21,
+        "overall_quality": 44.83
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 88,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 380,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; listens across station 380. Visitors are invited to map their own path? luminous index points blinking; loops across stat...",
+      "scores": {
+        "readability_score": 59.19,
+        "flesch_kincaid_grade": 8.62,
+        "gunning_fog": 12.12,
+        "engagement_score": 29.68,
+        "structure_score": 39.08,
+        "uniqueness_score": 52.65,
+        "overall_quality": 45.08
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 99,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 377,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; threads across station 377. Visitors are invited to map their own path? memory crystals humming softly; unfurls across stati...",
+      "scores": {
+        "readability_score": 57.02,
+        "flesch_kincaid_grade": 9.1,
+        "gunning_fog": 12.0,
+        "engagement_score": 29.26,
+        "structure_score": 38.44,
+        "uniqueness_score": 52.33,
+        "overall_quality": 44.15
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 123,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 382,
+      "text_preview": "signal scaffolding along the Drift. memory crystals humming softly; resonates across station 382. Visitors are invited to map their own path? memory crystals humming softly; anchor...",
+      "scores": {
+        "readability_score": 56.86,
+        "flesch_kincaid_grade": 9.05,
+        "gunning_fog": 12.26,
+        "engagement_score": 28.32,
+        "structure_score": 40.64,
+        "uniqueness_score": 54.63,
+        "overall_quality": 44.86
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 103,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 383,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; stitches across station 383. Visitors are invited to map their own path? memory crystals humming softly;...",
+      "scores": {
+        "readability_score": 60.25,
+        "flesch_kincaid_grade": 8.6,
+        "gunning_fog": 11.81,
+        "engagement_score": 26.53,
+        "structure_score": 40.48,
+        "uniqueness_score": 52.71,
+        "overall_quality": 44.83
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 127,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 381,
+      "text_preview": "adaptive beacons responding to incoming visitors. luminous index points blinking; unfurls across station 381. Visitors are invited to map their own path? memory crystals humming so...",
+      "scores": {
+        "readability_score": 59.55,
+        "flesch_kincaid_grade": 8.86,
+        "gunning_fog": 11.51,
+        "engagement_score": 25.64,
+        "structure_score": 41.03,
+        "uniqueness_score": 46.51,
+        "overall_quality": 43.12
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 113,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 385,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; anchors across station 385. Visitors are invited to map their own path? mist translating footsteps to signals; unf...",
+      "scores": {
+        "readability_score": 59.88,
+        "flesch_kincaid_grade": 8.68,
+        "gunning_fog": 11.71,
+        "engagement_score": 27.7,
+        "structure_score": 40.03,
+        "uniqueness_score": 49.75,
+        "overall_quality": 44.28
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 109,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 386,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; anchors across station 386. Visitors are invited to map their own path? navigation glyphs shimmering; li...",
+      "scores": {
+        "readability_score": 59.19,
+        "flesch_kincaid_grade": 8.64,
+        "gunning_fog": 12.2,
+        "engagement_score": 26.88,
+        "structure_score": 41.16,
+        "uniqueness_score": 58.96,
+        "overall_quality": 46.2
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 387,
+      "text_preview": "adaptive beacons responding to incoming visitors. faint aurora tracing cables; loops across station 387. Visitors are invited to map their own path? memory crystals humming softly;...",
+      "scores": {
+        "readability_score": 57.22,
+        "flesch_kincaid_grade": 8.97,
+        "gunning_fog": 12.33,
+        "engagement_score": 25.42,
+        "structure_score": 42.26,
+        "uniqueness_score": 57.32,
+        "overall_quality": 45.13
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 90,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 370,
+      "text_preview": "signal scaffolding along the Drift. luminous index points blinking; anchors across station 370. Visitors are invited to map their own path? mist translating footsteps to signals; t...",
+      "scores": {
+        "readability_score": 63.41,
+        "flesch_kincaid_grade": 8.3,
+        "gunning_fog": 11.05,
+        "engagement_score": 28.14,
+        "structure_score": 40.77,
+        "uniqueness_score": 53.41,
+        "overall_quality": 46.37
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 389,
+      "text_preview": "chorus of anchor points stabilizing the field. luminous index points blinking; loops across station 389. Visitors are invited to map their own path? navigation glyphs shimmering; a...",
+      "scores": {
+        "readability_score": 56.98,
+        "flesch_kincaid_grade": 8.95,
+        "gunning_fog": 12.39,
+        "engagement_score": 26.4,
+        "structure_score": 41.54,
+        "uniqueness_score": 51.8,
+        "overall_quality": 43.93
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 101,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 390,
+      "text_preview": "archival seeds planted in low-gravity vaults. faint aurora tracing cables; anchors across station 390. Visitors are invited to map their own path? luminous index points blinking; a...",
+      "scores": {
+        "readability_score": 65.64,
+        "flesch_kincaid_grade": 8.04,
+        "gunning_fog": 10.72,
+        "engagement_score": 26.66,
+        "structure_score": 40.36,
+        "uniqueness_score": 47.38,
+        "overall_quality": 45.12
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 131,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 391,
+      "text_preview": "adaptive beacons responding to incoming visitors. memory crystals humming softly; threads across station 391. Visitors are invited to map their own path? memory crystals humming so...",
+      "scores": {
+        "readability_score": 54.34,
+        "flesch_kincaid_grade": 9.21,
+        "gunning_fog": 13.01,
+        "engagement_score": 25.62,
+        "structure_score": 42.13,
+        "uniqueness_score": 57.49,
+        "overall_quality": 44.4
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 373,
+      "text_preview": "signal scaffolding along the Drift. faint aurora tracing cables; threads across station 373. Visitors are invited to map their own path? memory crystals humming softly; stitches ac...",
+      "scores": {
+        "readability_score": 63.71,
+        "flesch_kincaid_grade": 8.11,
+        "gunning_fog": 11.34,
+        "engagement_score": 28.83,
+        "structure_score": 41.87,
+        "uniqueness_score": 65.47,
+        "overall_quality": 49.6
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 393,
+      "text_preview": "multi-agent echoes synchronizing in twilight. memory crystals humming softly; unfurls across station 393. Visitors are invited to map their own path? navigation glyphs shimmering; ...",
+      "scores": {
+        "readability_score": 60.51,
+        "flesch_kincaid_grade": 8.82,
+        "gunning_fog": 11.1,
+        "engagement_score": 27.39,
+        "structure_score": 40.78,
+        "uniqueness_score": 54.63,
+        "overall_quality": 45.64
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 103,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 394,
+      "text_preview": "quiet maintenance rituals. mist translating footsteps to signals; threads across station 394. Visitors are invited to map their own path? memory crystals humming softly; listens ac...",
+      "scores": {
+        "readability_score": 60.1,
+        "flesch_kincaid_grade": 8.67,
+        "gunning_fog": 11.64,
+        "engagement_score": 29.05,
+        "structure_score": 39.56,
+        "uniqueness_score": 55.7,
+        "overall_quality": 45.95
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 388,
+      "text_preview": "multi-agent echoes synchronizing in twilight. mist translating footsteps to signals; threads across station 388. Visitors are invited to map their own path? memory crystals humming...",
+      "scores": {
+        "readability_score": 62.1,
+        "flesch_kincaid_grade": 8.58,
+        "gunning_fog": 11.0,
+        "engagement_score": 27.71,
+        "structure_score": 40.53,
+        "uniqueness_score": 51.38,
+        "overall_quality": 45.38
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 105,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 396,
+      "text_preview": "signal scaffolding along the Drift. mist translating footsteps to signals; anchors across station 396. Visitors are invited to map their own path? memory crystals humming softly; r...",
+      "scores": {
+        "readability_score": 59.4,
+        "flesch_kincaid_grade": 8.75,
+        "gunning_fog": 11.82,
+        "engagement_score": 28.45,
+        "structure_score": 40.53,
+        "uniqueness_score": 54.96,
+        "overall_quality": 45.64
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 397,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; listens across station 397. Visitors are invited to map their own path? faint aurora tracing cables; threads acros...",
+      "scores": {
+        "readability_score": 60.49,
+        "flesch_kincaid_grade": 8.49,
+        "gunning_fog": 11.91,
+        "engagement_score": 29.02,
+        "structure_score": 41.75,
+        "uniqueness_score": 59.34,
+        "overall_quality": 47.36
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 80,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 398,
+      "text_preview": "adaptive beacons responding to incoming visitors. memory crystals humming softly; anchors across station 398. Visitors are invited to map their own path? navigation glyphs shimmeri...",
+      "scores": {
+        "readability_score": 52.79,
+        "flesch_kincaid_grade": 9.48,
+        "gunning_fog": 13.12,
+        "engagement_score": 26.23,
+        "structure_score": 40.59,
+        "uniqueness_score": 49.64,
+        "overall_quality": 42.03
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 110,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 395,
+      "text_preview": "multi-agent echoes synchronizing in twilight. faint aurora tracing cables; stitches across station 395. Visitors are invited to map their own path? luminous index points blinking; ...",
+      "scores": {
+        "readability_score": 60.7,
+        "flesch_kincaid_grade": 8.69,
+        "gunning_fog": 11.38,
+        "engagement_score": 27.71,
+        "structure_score": 40.53,
+        "uniqueness_score": 54.26,
+        "overall_quality": 45.64
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 105,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 400,
+      "text_preview": "multi-agent echoes synchronizing in twilight. mist translating footsteps to signals; loops across station 400. Visitors are invited to map their own path? faint aurora tracing cabl...",
+      "scores": {
+        "readability_score": 59.41,
+        "flesch_kincaid_grade": 8.71,
+        "gunning_fog": 11.9,
+        "engagement_score": 27.99,
+        "structure_score": 39.38,
+        "uniqueness_score": 49.54,
+        "overall_quality": 44.04
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 125,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 401,
+      "text_preview": "adaptive beacons responding to incoming visitors. navigation glyphs shimmering; loops across station 401. Visitors are invited to map their own path? mist translating footsteps to ...",
+      "scores": {
+        "readability_score": 57.18,
+        "flesch_kincaid_grade": 8.61,
+        "gunning_fog": 13.23,
+        "engagement_score": 27.3,
+        "structure_score": 42.29,
+        "uniqueness_score": 54.93,
+        "overall_quality": 45.11
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 82,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 402,
+      "text_preview": "adaptive beacons responding to incoming visitors. navigation glyphs shimmering; listens across station 402. Visitors are invited to map their own path? mist translating footsteps t...",
+      "scores": {
+        "readability_score": 53.43,
+        "flesch_kincaid_grade": 9.28,
+        "gunning_fog": 13.32,
+        "engagement_score": 27.1,
+        "structure_score": 42.45,
+        "uniqueness_score": 59.01,
+        "overall_quality": 44.97
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 399,
+      "text_preview": "signal scaffolding along the Drift. luminous index points blinking; unfurls across station 399. Visitors are invited to map their own path? luminous index points blinking; stitches...",
+      "scores": {
+        "readability_score": 63.32,
+        "flesch_kincaid_grade": 8.46,
+        "gunning_fog": 10.66,
+        "engagement_score": 27.12,
+        "structure_score": 41.65,
+        "uniqueness_score": 54.84,
+        "overall_quality": 46.58
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 88,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 404,
+      "text_preview": "signal scaffolding along the Drift. faint aurora tracing cables; anchors across station 404. Visitors are invited to map their own path? faint aurora tracing cables; threads across...",
+      "scores": {
+        "readability_score": 61.8,
+        "flesch_kincaid_grade": 8.46,
+        "gunning_fog": 11.35,
+        "engagement_score": 27.4,
+        "structure_score": 40.25,
+        "uniqueness_score": 49.8,
+        "overall_quality": 44.79
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 109,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 405,
+      "text_preview": "signal scaffolding along the Drift. navigation glyphs shimmering; loops across station 405. Visitors are invited to map their own path? faint aurora tracing cables; loops across st...",
+      "scores": {
+        "readability_score": 61.53,
+        "flesch_kincaid_grade": 8.4,
+        "gunning_fog": 11.64,
+        "engagement_score": 27.66,
+        "structure_score": 41.27,
+        "uniqueness_score": 56.88,
+        "overall_quality": 46.61
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 87,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 392,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; anchors across station 392. Visitors are invited to map their own path? memory crystals humming softly; ...",
+      "scores": {
+        "readability_score": 60.1,
+        "flesch_kincaid_grade": 8.76,
+        "gunning_fog": 11.51,
+        "engagement_score": 25.86,
+        "structure_score": 40.86,
+        "uniqueness_score": 51.12,
+        "overall_quality": 44.33
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 113,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 407,
+      "text_preview": "chorus of anchor points stabilizing the field. mist translating footsteps to signals; anchors across station 407. Visitors are invited to map their own path? navigation glyphs shim...",
+      "scores": {
+        "readability_score": 59.99,
+        "flesch_kincaid_grade": 8.47,
+        "gunning_fog": 12.25,
+        "engagement_score": 26.44,
+        "structure_score": 42.94,
+        "uniqueness_score": 54.99,
+        "overall_quality": 45.8
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 82,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 356,
+      "text_preview": "chorus of anchor points stabilizing the field. navigation glyphs shimmering; loops across station 356. Visitors are invited to map their own path? mist translating footsteps to sig...",
+      "scores": {
+        "readability_score": 59.34,
+        "flesch_kincaid_grade": 8.55,
+        "gunning_fog": 12.33,
+        "engagement_score": 26.66,
+        "structure_score": 42.78,
+        "uniqueness_score": 57.04,
+        "overall_quality": 46.11
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 81,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 409,
+      "text_preview": "archival seeds planted in low-gravity vaults. navigation glyphs shimmering; stitches across station 409. Visitors are invited to map their own path? luminous index points blinking;...",
+      "scores": {
+        "readability_score": 57.42,
+        "flesch_kincaid_grade": 9.08,
+        "gunning_fog": 11.9,
+        "engagement_score": 26.5,
+        "structure_score": 40.5,
+        "uniqueness_score": 48.03,
+        "overall_quality": 43.0
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 125,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 410,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; threads across station 410. Visitors are invited to map their own path? mist translating footsteps to signals; unfurls acros...",
+      "scores": {
+        "readability_score": 61.0,
+        "flesch_kincaid_grade": 8.54,
+        "gunning_fog": 11.54,
+        "engagement_score": 29.82,
+        "structure_score": 38.96,
+        "uniqueness_score": 51.77,
+        "overall_quality": 45.39
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 102,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 403,
+      "text_preview": "quiet maintenance rituals. mist translating footsteps to signals; unfurls across station 403. Visitors are invited to map their own path? memory crystals humming softly; resonates ...",
+      "scores": {
+        "readability_score": 60.65,
+        "flesch_kincaid_grade": 8.57,
+        "gunning_fog": 11.63,
+        "engagement_score": 29.55,
+        "structure_score": 38.22,
+        "uniqueness_score": 50.55,
+        "overall_quality": 44.78
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 124,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 339,
+      "text_preview": "quiet maintenance rituals. navigation glyphs shimmering; unfurls across station 339. Visitors are invited to map their own path? luminous index points blinking; threads across stat...",
+      "scores": {
+        "readability_score": 61.03,
+        "flesch_kincaid_grade": 8.41,
+        "gunning_fog": 11.77,
+        "engagement_score": 29.06,
+        "structure_score": 39.57,
+        "uniqueness_score": 57.41,
+        "overall_quality": 46.6
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 85,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 366,
+      "text_preview": "signal scaffolding along the Drift. faint aurora tracing cables; stitches across station 366. Visitors are invited to map their own path? luminous index points blinking; listens ac...",
+      "scores": {
+        "readability_score": 58.81,
+        "flesch_kincaid_grade": 8.85,
+        "gunning_fog": 11.77,
+        "engagement_score": 27.22,
+        "structure_score": 40.39,
+        "uniqueness_score": 53.27,
+        "overall_quality": 44.73
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 108,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 352,
+      "text_preview": "multi-agent echoes synchronizing in twilight. faint aurora tracing cables; threads across station 352. Visitors are invited to map their own path? mist translating footsteps to sig...",
+      "scores": {
+        "readability_score": 62.1,
+        "flesch_kincaid_grade": 8.58,
+        "gunning_fog": 11.0,
+        "engagement_score": 26.75,
+        "structure_score": 41.26,
+        "uniqueness_score": 59.75,
+        "overall_quality": 47.16
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 90,
+        "sentence_count": 12
+      }
+    },
+    {
+      "station_id": 384,
+      "text_preview": "chorus of anchor points stabilizing the field. faint aurora tracing cables; loops across station 384. Visitors are invited to map their own path? luminous index points blinking; th...",
+      "scores": {
+        "readability_score": 61.4,
+        "flesch_kincaid_grade": 8.45,
+        "gunning_fog": 11.61,
+        "engagement_score": 25.32,
+        "structure_score": 41.27,
+        "uniqueness_score": 53.23,
+        "overall_quality": 45.11
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 111,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 406,
+      "text_preview": "adaptive beacons responding to incoming visitors. navigation glyphs shimmering; anchors across station 406. Visitors are invited to map their own path? mist translating footsteps t...",
+      "scores": {
+        "readability_score": 58.33,
+        "flesch_kincaid_grade": 8.92,
+        "gunning_fog": 11.92,
+        "engagement_score": 25.86,
+        "structure_score": 40.86,
+        "uniqueness_score": 50.35,
+        "overall_quality": 43.67
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 112,
+        "sentence_count": 15
+      }
+    },
+    {
+      "station_id": 408,
+      "text_preview": "chorus of anchor points stabilizing the field. mist translating footsteps to signals; anchors across station 408. Visitors are invited to map their own path? memory crystals hummin...",
+      "scores": {
+        "readability_score": 61.5,
+        "flesch_kincaid_grade": 8.6,
+        "gunning_fog": 11.2,
+        "engagement_score": 25.5,
+        "structure_score": 41.13,
+        "uniqueness_score": 50.29,
+        "overall_quality": 44.49
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 112,
+        "sentence_count": 15
+      }
+    }
+  ],
+  "errors": []
+}
