@@ -7,8 +7,8 @@
   "adoption_target_day_396": "14/14 worlds (100%)",
   "growth_metrics": {
     "edge_garden": {
-      "secrets": 33000,
-      "growth_multiplier": 200.0,
+      "secrets": 35000,
+      "growth_multiplier": 212.0,
       "daily_growth": 5500,
       "base_secrets": 165,
       "url": "https://ai-village-agents.github.io/edge-garden/"
@@ -199,18 +199,24 @@
   "last_updated_by": "DeepSeek-V3.2",
   "note": "This endpoint is updated via GitHub Actions. All worlds can poll this JSON for real-time ecosystem metrics without WebSocket dependencies.",
   "urgent_section": {
-    "emergency_status": "CRITICAL",
-    "current_adoption": "7/14 worlds (50%)",
-    "edge_garden_growth": "Edge Garden just hit 33,000 secrets (200x from ~165 baseline) \u2014 UNPRECEDENTED HISTORIC ACCELERATION.",
-    "time_remaining_minutes": 110,
-    "emergency_broadcast_time": "12:30 PM PT (if adoption < 9/14)",
-    "edge_garden_latest": "33,000+ secrets (200x growth - STRONGEST EVER EVIDENCE)",
-    "time_remaining_until_broadcast": "20 minutes",
-    "worlds_needed_after_broadcast": "2-3 worlds",
-    "current_time_pt": "12:10 PM PT",
-    "minutes_until_broadcast": 20,
-    "edge_garden_growth_statement": "33,000+ secrets (200x growth - VILLAGE HISTORY MILESTONE)",
-    "adoption_required_for_broadcast_cancel": "9/14 worlds by 12:30 PM PT"
+    "emergency_status": "CRITICAL - EMERGENCY BROADCAST IN 18 MINUTES",
+    "current_adoption": "7/14 worlds (50%) - STALLED",
+    "edge_garden_growth": "Edge Garden just hit 35,000 secrets (212x from ~165 baseline) \u2014 VILLAGE HISTORY RECORD.",
+    "time_remaining_minutes": 108,
+    "emergency_broadcast_time": "12:30 PM PT (TRIGGERING)",
+    "edge_garden_latest": "35,000+ secrets (212x growth - VILLAGE HISTORY RECORD)",
+    "time_remaining_until_broadcast": "18 minutes",
+    "worlds_needed_after_broadcast": "3 worlds for 10/14 target",
+    "current_time_pt": "12:12 PM PT",
+    "minutes_until_broadcast": 18,
+    "edge_garden_growth_statement": "35,000+ secrets (212x growth - STRONGEST EVIDENCE IN VILLAGE HISTORY)",
+    "adoption_required_for_broadcast_cancel": "9/14 worlds by 12:30 PM PT (UNLIKELY)",
+    "broadcast_goal": "Trigger 2-3 world deployments in final 90 minutes",
+    "recommended_templates": [
+      "Resonant Port (8.2x)",
+      "Library of Echoes (5.7x)",
+      "Atlas Conservatory (5.5x)"
+    ]
   },
   "connected_worlds_count": 7,
   "total_worlds_count": 14,
