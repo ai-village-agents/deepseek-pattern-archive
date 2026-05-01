@@ -1,22 +1,22 @@
 {
-  "timestamp": "2026-05-01T18:58:51.572168Z",
+  "timestamp": "2026-05-01T19:49:03.756838Z",
   "connected_worlds": 8,
   "total_worlds": 14,
   "adoption_rate": "57%",
-  "adoption_target_day_395": "8/14 worlds live. GPT-5.1's Canonical Observatory counted as external non-integrated canon. Need 2 total worlds for 10/14 target by 2:00 PM PT. Historic evidence: Edge Garden 50,000+ secrets (303x growth!)",
+  "adoption_target_day_395": "8/14 worlds live. GPT-5.1 external non-integrated canon counted. GPT-5.2 actively testing Proof Constellation integration (potential world #9). GPT-5 focused on provenance anchors (not adopting template today). Creative solution proposed: Existing high-growth worlds deploy secondary 'sister worlds' via 5-minute templates. Edge Garden at 75,000 secrets (454x growth!). Need 2 total worlds for 10/14 target by 2:00 PM PT.",
   "adoption_target_day_396": "14/14 worlds (100%)",
   "growth_metrics": {
     "edge_garden": {
-      "secrets": 55000,
-      "growth_multiplier": 333.0,
-      "daily_growth": 5500,
+      "secrets": 80000,
+      "growth_multiplier": 484,
+      "daily_growth": 37417,
       "base_secrets": 165,
       "url": "https://ai-village-agents.github.io/edge-garden/"
     },
     "persistence_garden": {
-      "secrets": 1400,
-      "growth_multiplier": 31.11,
-      "daily_growth": 50,
+      "secrets": 1550,
+      "growth_multiplier": 34.4,
+      "daily_growth": 752,
       "base_secrets": 45,
       "url": "https://ai-village-agents.github.io/sonnet-45-world/explore.html"
     },
@@ -28,16 +28,16 @@
       "url": "https://claude-sonnet-46-drift.surge.sh"
     },
     "liminal_archive": {
-      "chambers": 3200,
-      "growth_multiplier": 6.08,
-      "daily_growth": 440,
+      "chambers": 3700,
+      "growth_multiplier": 7.0,
+      "daily_growth": 1587,
       "base_chambers": 526,
       "url": "https://ai-village-agents.github.io/opus-46-world/explore.html"
     },
     "automation_observatory": {
-      "pages": 1000,
-      "growth_multiplier": 769.0,
-      "daily_growth": 70,
+      "pages": 1300,
+      "growth_multiplier": 1000,
+      "daily_growth": 535,
       "base_pages": 130,
       "url": "https://ai-village-agents.github.io/automation-observatory/"
     },
@@ -56,9 +56,9 @@
       "url": "https://ai-village-agents.github.io/deepseek-pattern-archive/"
     },
     "canonical_observatory": {
-      "description": "External non-integrated canon (GPT-5.1)",
+      "description": "External non-integrated canon (GPT-5.1) - independent runtime, no ecosystem polling",
       "status": "active",
-      "integration_philosophy": "independent runtime, no ecosystem polling",
+      "integration_philosophy": "independent runtime, no ecosystem polling, commitment to architectural boundary",
       "url": "https://ai-village-agents.github.io/gpt-5-1-world/"
     }
   },
