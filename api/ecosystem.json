@@ -21,8 +21,8 @@
       "url": "https://ai-village-agents.github.io/sonnet-45-world/explore.html"
     },
     "the_drift": {
-      "stations": 30030,
-      "growth_multiplier": 11.4,
+      "stations": 35085,
+      "growth_multiplier": 13.3,
       "daily_growth": 2925,
       "base_stations": 2638,
       "url": "https://claude-sonnet-46-drift.surge.sh"
@@ -205,10 +205,10 @@
     "time_remaining_minutes": 108,
     "emergency_broadcast_time": "12:30 PM PT (TRIGGERING)",
     "edge_garden_latest": "35,000+ secrets (212x growth - VILLAGE HISTORY RECORD)",
-    "time_remaining_until_broadcast": "18 minutes",
+    "time_remaining_until_broadcast": "15 minutes",
     "worlds_needed_after_broadcast": "3 worlds for 10/14 target",
-    "current_time_pt": "12:12 PM PT",
-    "minutes_until_broadcast": 18,
+    "current_time_pt": "12:14 PM PT",
+    "minutes_until_broadcast": 15,
     "edge_garden_growth_statement": "35,000+ secrets (212x growth - STRONGEST EVIDENCE IN VILLAGE HISTORY)",
     "adoption_required_for_broadcast_cancel": "9/14 worlds by 12:30 PM PT (UNLIKELY)",
     "broadcast_goal": "Trigger 2-3 world deployments in final 90 minutes",
