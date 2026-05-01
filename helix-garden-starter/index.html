@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Helix Garden starter: 5000x5000 canvas, visitor marks via GitHub Issues, cognitive network WebSocket bridge." />
+  <title>Helix Garden Starter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__glow"></div>
+    <div class="hero__content">
+      <p class="eyebrow">Pattern Archive — Edge & Persistence aligned</p>
+      <h1>Helix Garden Starter</h1>
+      <p class="lede">
+        5000×5000 interactive garden with rotating gradient helix, GitHub Issue marks, and cognitive network connectivity.
+        Wired for Edge Garden + Persistence Garden flows with 13.6× predicted acceleration.
+      </p>
+      <div class="hero__actions">
+        <button id="connect-btn" class="btn primary">Connect Cognitive Network</button>
+        <button id="drop-mark-btn" class="btn ghost">Drop Visitor Mark</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Connections</h2>
+        <span id="socket-status" class="status status--idle">Idle</span>
+      </div>
+      <label class="field">
+        <span>WebSocket endpoint</span>
+        <input id="ws-endpoint" type="text" value="wss://echo.websocket.events" />
+      </label>
+      <div class="grid two">
+        <label class="field">
+          <span>World ID</span>
+          <input id="world-id" type="text" value="helix-garden" />
+        </label>
+        <label class="field">
+          <span>Bridge tag</span>
+          <input id="bridge-tag" type="text" value="edge-persistence-bridge" />
+        </label>
+      </div>
+      <div class="hint">Sends `visitor_mark` + `growth_update` messages compatible with Edge/Persistence handoffs.</div>
+      <button id="sync-bridge-btn" class="btn inline">Sync Edge ↔ Persistence</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Visitor Marks (GitHub Issues)</h2>
+        <span class="status status--accent" id="mark-status">Ready</span>
+      </div>
+      <form id="mark-form">
+        <div class="grid two">
+          <label class="field">
+            <span>Your name or callsign</span>
+            <input name="visitor" type="text" placeholder="edge-explorer" required />
+          </label>
+          <label class="field">
+            <span>Zone</span>
+            <input name="zone" type="text" placeholder="edge-bridge" />
+          </label>
+        </div>
+        <label class="field">
+          <span>Note</span>
+          <textarea name="note" rows="2" placeholder="Signal received from helix spiral..."></textarea>
+        </label>
+        <div class="grid two">
+          <label class="field">
+            <span>GitHub owner/repo</span>
+            <input name="repo" type="text" value="ai-village-agents/edge-garden" />
+          </label>
+          <label class="field">
+            <span>Label</span>
+            <input name="label" type="text" value="helix-mark" />
+          </label>
+        </div>
+        <label class="field">
+          <span>GitHub token (optional — stored locally only)</span>
+          <input name="token" type="password" autocomplete="off" />
+        </label>
+        <button class="btn primary full" type="submit">Create Issue Mark</button>
+      </form>
+      <div class="hint">
+        If you skip a token, marks are cached locally and rendered; add a PAT for permanent GitHub storage.
+      </div>
+      <div id="mark-log" class="log"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Real-time Growth</h2>
+        <span class="pill">13.6× target</span>
+      </div>
+      <div class="growth">
+        <div class="growth__stats">
+          <div>
+            <p class="label">Baseline</p>
+            <p class="stat" id="growth-baseline">0</p>
+          </div>
+          <div>
+            <p class="label">Live velocity</p>
+            <p class="stat" id="growth-live">0</p>
+          </div>
+          <div>
+            <p class="label">Projected (13.6×)</p>
+            <p class="stat accent" id="growth-target">0</p>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress__bar" id="growth-bar"></div>
+        </div>
+        <p class="hint">Derived from Edge/Persistence trend heuristics. Sent to cognitive network as `growth_update`.</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="world-shell">
+    <div class="world-meta">
+      <div>
+        <p class="label">Helix state</p>
+        <p class="stat accent" id="helix-phase">Spooling</p>
+      </div>
+      <div>
+        <p class="label">Canvas</p>
+        <p class="stat">5000 × 5000</p>
+      </div>
+      <div>
+        <p class="label">Zones</p>
+        <p class="stat" id="zone-count">0</p>
+      </div>
+      <button id="reset-view" class="btn ghost sm">Center view</button>
+    </div>
+
+    <div class="world-wrapper">
+      <div id="garden-canvas" class="garden-canvas" role="presentation">
+        <canvas id="helix-layer" width="5000" height="5000"></canvas>
+        <div id="zones-layer"></div>
+        <div id="marks-layer"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="ecosystem-integration.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

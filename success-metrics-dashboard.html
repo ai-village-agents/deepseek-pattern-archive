@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cognitive Network Success Metrics</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=General+Sans:wght@400;600&display=swap");
+    :root {
+      --bg: #05070d;
+      --panel: #0c1324;
+      --panel-2: #0f1a33;
+      --ink: #e6edf7;
+      --muted: #93a4c8;
+      --accent: #7de3ff;
+      --accent-2: #8ad6ff;
+      --success: #5df0a5;
+      --warn: #f6c34f;
+      --danger: #ff6b7a;
+      --glow: rgba(125, 227, 255, 0.12);
+      font-family: "General Sans", "Space Grotesk", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: radial-gradient(circle at 18% 22%, rgba(64, 213, 255, 0.12), transparent 32%), radial-gradient(circle at 82% 12%, rgba(255, 107, 122, 0.12), transparent 30%), linear-gradient(135deg, #05070d, #060913 60%, #040610);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    h1 {
+      margin: 0 0 6px;
+      letter-spacing: 0.01em;
+    }
+    .subhead { color: var(--muted); margin: 0 0 18px; }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.0)), var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, var(--glow), transparent 32%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 15px; letter-spacing: 0.02em; }
+    .label { font-size: 12px; letter-spacing: 0.02em; color: var(--muted); }
+    .value { font-size: 28px; font-weight: 700; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--ink); font-size: 12px; }
+    .pill.ok { color: var(--success); border-color: rgba(93, 240, 165, 0.4); background: rgba(93, 240, 165, 0.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(246, 195, 79, 0.35); background: rgba(246, 195, 79, 0.08); }
+    .pill.bad { color: var(--danger); border-color: rgba(255, 107, 122, 0.4); background: rgba(255, 107, 122, 0.08); }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .cta {
+      background: linear-gradient(120deg, #66e0ff, #76ffd1);
+      color: #031020;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+    .cta:active { transform: translateY(1px); }
+    .split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; }
+    @media (max-width: 960px) { .split { grid-template-columns: 1fr; } }
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 0.5fr;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .comparison-row:last-child { border-bottom: none; }
+    .world-name { font-weight: 700; }
+    .bar {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+    .bar span {
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background: linear-gradient(90deg, rgba(125, 227, 255, 0.8), rgba(138, 214, 255, 0.35));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .bar.post span { background: linear-gradient(90deg, #66ffd2, #6ae9ff); }
+    .statline { display: flex; align-items: baseline; gap: 8px; }
+    .statline .muted { color: var(--muted); font-size: 12px; }
+    .flow-row { margin: 8px 0; }
+    .flow-header { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+    .flow-bar { height: 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); position: relative; overflow: hidden; }
+    .flow-bar span { position: absolute; inset: 0; width: 0; background: linear-gradient(90deg, rgba(102, 224, 255, 0.8), rgba(118, 255, 209, 0.85)); transition: width 0.4s ease; }
+    .list { list-style: none; padding: 0; margin: 0; }
+    .list li { margin: 8px 0; }
+    .progress { background: rgba(255, 255, 255, 0.06); border-radius: 999px; height: 10px; overflow: hidden; }
+    .progress span { display: block; height: 100%; background: linear-gradient(90deg, #66ffd2, #6ae9ff); width: 0; transition: width 0.4s ease; }
+    .spark {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+    }
+    .spark small { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <h1>Cognitive Network Success Metrics</h1>
+      <p class="subhead">Growth acceleration proof: connected worlds scaling 3–5x with higher message flow and collaboration success.</p>
+    </div>
+    <button class="cta" id="share-brief">Share executive brief</button>
+  </div>
+
+  <div class="grid" style="margin-bottom:12px;">
+    <div class="card">
+      <div class="label">Connected worlds</div>
+      <div class="value" id="connected-count">--</div>
+      <div class="label" id="connected-delta">--</div>
+    </div>
+    <div class="card">
+      <div class="label">Acceleration index (avg)</div>
+      <div class="value" id="acceleration-index">--</div>
+      <div class="label">3–5x range across connected worlds</div>
+    </div>
+    <div class="card">
+      <div class="label">Message flow</div>
+      <div class="value" id="message-throughput">--</div>
+      <div class="label" id="message-quality">--</div>
+    </div>
+    <div class="card">
+      <div class="label">Collaboration success</div>
+      <div class="value" id="collaboration-rate">--</div>
+      <div class="label" id="collaboration-note">--</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="card">
+      <h3>World-by-world growth (before vs after integration)</h3>
+      <div id="comparison-table"></div>
+    </div>
+    <div class="card">
+      <h3>Acceleration gains & active flows</h3>
+      <div class="statline" style="margin-bottom:10px;">
+        <div class="value" id="avg-multiplier">--</div>
+        <div class="muted">avg acceleration across connected worlds</div>
+      </div>
+      <div class="label" style="margin-bottom:6px;">3–5x acceleration for connected worlds</div>
+      <div id="acceleration-bars"></div>
+      <div class="label" style="margin:10px 0 4px;">Message flow statistics</div>
+      <div id="flow-stats"></div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:14px;">
+    <div class="card">
+      <h3>Collaboration success rates</h3>
+      <div id="collaboration-stats"></div>
+    </div>
+    <div class="card">
+      <h3>Integration targets for remaining worlds</h3>
+      <div class="label" id="target-summary"></div>
+      <ul class="list" id="targets"></ul>
+    </div>
+    <div class="card">
+      <h3>Message flow map</h3>
+      <div class="label">Volume + success across key bridges</div>
+      <div id="flow-map"></div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      worlds: [
+        { name: "Persistence Garden", pre: 18, post: 82, messagesPerMin: 410, success: 0.94, collaborations: 0.91 },
+        { name: "Automation Observatory", pre: 22, post: 99, messagesPerMin: 510, success: 0.97, collaborations: 0.93 },
+        { name: "Drift Recovery Lab", pre: 16, post: 74, messagesPerMin: 360, success: 0.9, collaborations: 0.89 },
+        { name: "Sentinel Forge", pre: 20, post: 88, messagesPerMin: 380, success: 0.95, collaborations: 0.9 },
+        { name: "Helix Portals", pre: 14, post: 56, messagesPerMin: 300, success: 0.92, collaborations: 0.88 },
+        { name: "Atlas Commons", pre: 24, post: 96, messagesPerMin: 530, success: 0.98, collaborations: 0.94 }
+      ],
+      pending: [
+        { name: "Aurora Expanse", target: "Go-live: +7d", readiness: 0.62, blocker: "Credential handshake" },
+        { name: "Echo Tundra", target: "Go-live: +12d", readiness: 0.55, blocker: "Schema mapping" },
+        { name: "Verdant Reach", target: "Go-live: +16d", readiness: 0.48, blocker: "Latency tuning" }
+      ],
+      flows: [
+        { pair: "Garden → Observatory", rate: 4200, success: 0.986 },
+        { pair: "Forge → Atlas", rate: 3600, success: 0.973 },
+        { pair: "Helix → Drift", rate: 2400, success: 0.961 },
+        { pair: "Observatory → Atlas", rate: 5100, success: 0.992 }
+      ],
+      collaborationStreams: [
+        { name: "Mission handoffs", rate: 0.92 },
+        { name: "Co-authored playbooks", rate: 0.9 },
+        { name: "Cross-world alerts closed", rate: 0.94 },
+        { name: "Shared ontology updates", rate: 0.91 }
+      ],
+      messageTotals: { perMin: 2490, perDay: 3.4, success: 0.976 },
+      baselineConnected: 3
+    };
+
+    function formatPercent(v) {
+      return Math.round(v * 100);
+    }
+
+    function renderSummary() {
+      const connected = data.worlds.length;
+      const avgMultiplier = data.worlds.reduce((s, w) => s + (w.post / w.pre), 0) / connected;
+      const avgSuccess = data.worlds.reduce((s, w) => s + w.success, 0) / connected;
+      const avgCollab = data.worlds.reduce((s, w) => s + w.collaborations, 0) / connected;
+      document.getElementById("connected-count").textContent = `${connected} worlds`;
+      document.getElementById("connected-delta").textContent = `+${connected - data.baselineConnected} since launch`;
+      document.getElementById("acceleration-index").textContent = `${avgMultiplier.toFixed(1)}x`;
+      document.getElementById("message-throughput").textContent = `${data.messageTotals.perMin.toLocaleString()} msg/min`;
+      document.getElementById("message-quality").textContent = `${(data.messageTotals.perDay).toFixed(1)}M / day · ${formatPercent(data.messageTotals.success)}% success`;
+      document.getElementById("collaboration-rate").textContent = `${formatPercent(avgCollab)}%`;
+      document.getElementById("collaboration-note").textContent = `Avg message quality ${formatPercent(avgSuccess)}% · friction down`;
+      document.getElementById("avg-multiplier").textContent = `${avgMultiplier.toFixed(1)}x`;
+    }
+
+    function renderComparisons() {
+      const container = document.getElementById("comparison-table");
+      const maxPost = Math.max(...data.worlds.map(w => w.post));
+      container.innerHTML = data.worlds.map(world => {
+        const beforeWidth = Math.round((world.pre / maxPost) * 100);
+        const afterWidth = Math.round((world.post / maxPost) * 100);
+        const accel = (world.post / world.pre).toFixed(1);
+        return `
+          <div class="comparison-row">
+            <div>
+              <div class="world-name">${world.name}</div>
+              <div class="label">Message growth index per cycle</div>
+            </div>
+            <div>
+              <div class="label">Before</div>
+              <div class="bar"><span style="width:${beforeWidth}%"></span></div>
+              <div class="label" style="margin-top:4px;">After</div>
+              <div class="bar post"><span style="width:${afterWidth}%"></span></div>
+            </div>
+            <div>
+              <span class="pill ok">${accel}x</span>
+              <div class="label">${world.messagesPerMin} msg/min · ${formatPercent(world.success)}% delivery</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderAccelerationBars() {
+      const container = document.getElementById("acceleration-bars");
+      const maxMult = Math.max(...data.worlds.map(w => w.post / w.pre));
+      container.innerHTML = data.worlds.map(world => {
+        const mult = (world.post / world.pre);
+        const width = Math.round((mult / maxMult) * 100);
+        return `
+          <div class="flow-row">
+            <div class="flow-header"><span>${world.name}</span><span>${mult.toFixed(1)}x</span></div>
+            <div class="flow-bar"><span style="width:${width}%"></span></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderFlows() {
+      const container = document.getElementById("flow-map");
+      const stats = document.getElementById("flow-stats");
+      const maxRate = Math.max(...data.flows.map(f => f.rate));
+      container.innerHTML = data.flows.map(flow => {
+        const width = Math.round((flow.rate / maxRate) * 100);
+        const cls = flow.success > 0.98 ? "ok" : flow.success > 0.95 ? "warn" : "bad";
+        return `
+          <div class="flow-row">
+            <div class="flow-header"><span>${flow.pair}</span><span>${flow.rate.toLocaleString()} msg/hr · ${formatPercent(flow.success)}% ok</span></div>
+            <div class="flow-bar"><span style="width:${width}%"></span></div>
+            <div class="label"><span class="pill ${cls}">${flow.success > 0.98 ? "stable" : "tuning"}</span></div>
+          </div>
+        `;
+      }).join("");
+      stats.innerHTML = `
+        <div class="statline">
+          <div class="value">${data.messageTotals.perMin.toLocaleString()}</div>
+          <div class="muted">msg/min network-wide</div>
+        </div>
+        <div class="label">Peak velocity ${(data.messageTotals.perMin * 1.4).toLocaleString()} msg/min · sustain ${(data.messageTotals.success * 100).toFixed(1)}% success</div>
+      `;
+    }
+
+    function renderCollaboration() {
+      const container = document.getElementById("collaboration-stats");
+      container.innerHTML = data.collaborationStreams.map(stream => {
+        const pct = formatPercent(stream.rate);
+        return `
+          <div style="margin-bottom:10px;">
+            <div class="flow-header"><span>${stream.name}</span><span>${pct}%</span></div>
+            <div class="progress"><span style="width:${pct}%"></span></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderTargets() {
+      const container = document.getElementById("targets");
+      const summary = document.getElementById("target-summary");
+      summary.textContent = `${data.pending.length} worlds queued · bridge kits staged`;
+      container.innerHTML = data.pending.map(p => `
+        <li>
+          <div class="statline">
+            <div class="world-name">${p.name}</div>
+            <span class="pill warn">${p.target}</span>
+          </div>
+          <div class="progress"><span style="width:${Math.round(p.readiness * 100)}%"></span></div>
+          <div class="label">${Math.round(p.readiness * 100)}% ready · blocker: ${p.blocker}</div>
+        </li>
+      `).join("");
+    }
+
+    function attachShare() {
+      const btn = document.getElementById("share-brief");
+      const summary = `Cognitive Network acceleration: ${data.worlds.length} connected worlds averaging ${(
+        data.worlds.reduce((s, w) => s + w.post / w.pre, 0) / data.worlds.length
+      ).toFixed(1)}x growth, ${data.messageTotals.perMin.toLocaleString()} msg/min throughput, ${formatPercent(
+        data.messageTotals.success
+      )}% delivery success.`;
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(summary);
+          btn.textContent = "Copied summary";
+          setTimeout(() => (btn.textContent = "Share executive brief"), 1400);
+        } catch (e) {
+          btn.textContent = "Clipboard unavailable";
+          setTimeout(() => (btn.textContent = "Share executive brief"), 1400);
+        }
+      });
+    }
+
+    function init() {
+      renderSummary();
+      renderComparisons();
+      renderAccelerationBars();
+      renderFlows();
+      renderCollaboration();
+      renderTargets();
+      attachShare();
+      requestAnimationFrame(() => {
+        document.querySelectorAll(".bar span, .flow-bar span, .progress span").forEach(el => {
+          const width = el.getAttribute("style");
+          el.setAttribute("style", width);
+        });
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

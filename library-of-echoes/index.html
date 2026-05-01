@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library of Echoes | Starter Template</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="atmosphere"></div>
+  <header class="hero">
+    <div class="hero__meta">Archive world prototype · Liminal-inspired · 5.7x projected acceleration</div>
+    <h1>Library of Echoes</h1>
+    <p class="hero__lede">An archive world built around reflections, resonant chambers, and the traces visitors leave behind.</p>
+    <div class="hero__grid">
+      <div class="metric-card">
+        <div class="metric-label">Live adoption</div>
+        <div class="metric-value"><span id="adoption-count">7</span>/14</div>
+        <div class="meter"><span id="adoption-meter" style="width:50%"></span></div>
+        <p class="metric-note">Real-time ecosystem integration pulse.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Predicted acceleration</div>
+        <div class="metric-value">5.7×</div>
+        <p class="metric-note">Pattern borrowed from Liminal Archive uplift.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Echo chambers ready</div>
+        <div class="metric-value" id="chamber-count">0</div>
+        <p class="metric-note">Rooms prepared to reflect visitor input.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" id="echo-panel">
+      <div class="panel__header">
+        <h2>Echoing Chambers</h2>
+        <p>Reflective rooms that capture whispers, invert and repeat them, and etch them as permanent marks.</p>
+      </div>
+      <div id="chamber-grid" class="chamber-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Leave an Echo</h2>
+        <p>Your words will ripple through a chosen chamber, mirrored with a reflective signature and saved as a permanent mark.</p>
+      </div>
+      <form id="echo-form" class="echo-form">
+        <label class="field">
+          <span>Message</span>
+          <input type="text" id="echo-input" name="echo" placeholder="Send a signal into the archive" required>
+        </label>
+        <label class="field">
+          <span>Choose chamber</span>
+          <select id="chamber-select" name="chamber"></select>
+        </label>
+        <label class="field inline">
+          <span>Resonance depth</span>
+          <input type="range" id="echo-depth" name="depth" min="1" max="5" value="3">
+        </label>
+        <button type="submit">Release echo</button>
+      </form>
+      <div class="reflection" id="reflection-preview">Echo preview will bloom here.</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Fog of War Exploration</h2>
+        <p>Discovery map inspired by Liminal Archive. Move across the grid to reveal hidden resonance zones.</p>
+      </div>
+      <div id="fog-grid" class="fog-grid" aria-label="Fog of war map"></div>
+    </section>
+
+    <section class="panel" id="permanent-marks">
+      <div class="panel__header">
+        <h2>Permanent Echo Marks</h2>
+        <p>Every echo leaves a trace. Stored locally to simulate the enduring archive.</p>
+      </div>
+      <div id="echo-log" class="echo-log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Ecosystem Integration Pulse</h2>
+        <p>Pre-configured network view showing current 7/14 adoption and the 5.7× acceleration vector.</p>
+      </div>
+      <div class="integration">
+        <div class="integration__stat">
+          <div class="integration__label">Adoption status</div>
+          <div class="integration__value" id="integration-adoption">7 / 14 ecosystems</div>
+          <div class="meter compact"><span id="integration-meter" style="width:50%"></span></div>
+        </div>
+        <div class="integration__stat">
+          <div class="integration__label">Acceleration pattern</div>
+          <div class="integration__value">5.7×</div>
+          <p class="integration__note">Projected growth if Library of Echoes follows Liminal Archive trajectory.</p>
+        </div>
+        <div class="integration__stat">
+          <div class="integration__label">Ecosystem benefits</div>
+          <ul class="benefits">
+            <li>Shared resonance layer lets partners reflect signals without schema changes.</li>
+            <li>Permanent marks enable longitudinal analysis of sentiment drifts.</li>
+            <li>Fog-of-war navigation translates to gradual exposure for new users.</li>
+            <li>Live adoption pulse simplifies network readiness tracking.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="setup-guide">
+      <div class="panel__header">
+        <h2>Quick Setup</h2>
+        <p>Load locally or deploy to GitHub Pages. Full guide in README inside <code>library-of-echoes</code>.</p>
+      </div>
+      <ol class="steps">
+        <li>Open <code>index.html</code> locally or serve the folder with any static server.</li>
+        <li>Customize sample chambers in <code>echoes.js</code> and styles in <code>styles.css</code>.</li>
+        <li>Deploy the folder to GitHub and enable Pages from the <code>main</code> branch or <code>docs/</code> folder.</li>
+        <li>Share the live URL with partners to mirror adoption in real time.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="echoes.js"></script>
+</body>
+</html>

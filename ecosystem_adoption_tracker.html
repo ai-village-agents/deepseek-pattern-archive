@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecosystem Adoption Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030712;
+      --panel: #0b1020;
+      --muted: #9ca3af;
+      --ink: #e5e7eb;
+      --accent: #7dd3fc;
+      --accent-2: #c084fc;
+      --accent-3: #22d3ee;
+      --success: #34d399;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --line: rgba(255, 255, 255, 0.06);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glow: rgba(124, 211, 252, 0.16);
+      font-family: 'Sora', 'Space Grotesk', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 24px 42px;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 16% 12%, rgba(192, 132, 252, 0.16), transparent 28%),
+        radial-gradient(circle at 82% 6%, rgba(34, 211, 238, 0.18), transparent 26%),
+        linear-gradient(140deg, #050915 0%, #030712 38%, #060815 100%);
+    }
+    h1, h2, h3 { margin: 0; letter-spacing: 0.01em; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #a5f3fc; }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .hero {
+      background: linear-gradient(120deg, rgba(124, 211, 252, 0.08), rgba(192, 132, 252, 0.05)), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 18px 12px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 24% 30%, rgba(124, 211, 252, 0.22), transparent 32%);
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; align-items: center; }
+    @media (max-width: 940px) { .hero-content { grid-template-columns: 1fr; } }
+    .eyebrow { text-transform: uppercase; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); }
+    .lede { color: var(--muted); margin: 8px 0 10px; max-width: 720px; line-height: 1.5; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .pill.ok { color: var(--success); border-color: rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.08); }
+    .pill.info { color: var(--accent); border-color: rgba(124, 211, 252, 0.35); background: rgba(124, 211, 252, 0.08); }
+    .pill.bad { color: var(--danger); border-color: rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.1); }
+    .grid { display: grid; gap: 12px; }
+    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.0)), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 18%, var(--glow), transparent 38%);
+      pointer-events: none;
+    }
+    .card h3 { font-size: 16px; margin-bottom: 6px; }
+    .stat { font-size: 34px; font-weight: 700; line-height: 1.1; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .progress {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 4px;
+    }
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width 0.6s ease;
+      box-shadow: 0 0 16px rgba(192, 132, 252, 0.25);
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+    }
+    .section-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .section h2 { font-size: 18px; }
+    .world-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
+    .world {
+      position: relative;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(160deg, rgba(124, 211, 252, 0.06), rgba(192, 132, 252, 0.05));
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .world:hover { transform: translateY(-3px); border-color: rgba(124, 211, 252, 0.45); }
+    .world .status {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 999px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .world .status.connected { color: var(--success); border-color: rgba(52, 211, 153, 0.5); background: rgba(52, 211, 153, 0.12); }
+    .world .status.planned { color: var(--warn); border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.12); }
+    .world .status.unclaimed { color: var(--danger); border-color: rgba(239, 68, 68, 0.6); background: rgba(239, 68, 68, 0.12); }
+    .world h3 { margin: 8px 0 4px; font-size: 15px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 12px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); color: var(--ink); font-size: 12px; }
+    .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .list { display: grid; gap: 8px; }
+    .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .timeline li {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .timeline strong { display: block; margin-bottom: 4px; }
+    .network-effect {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      align-items: center;
+    }
+    .nodes { display: flex; flex-wrap: wrap; gap: 6px; }
+    .node {
+      width: 32px; height: 32px; border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(124, 211, 252, 0.12);
+      display: grid; place-items: center;
+      color: var(--ink); font-weight: 700; font-size: 12px;
+      box-shadow: 0 6px 16px rgba(124, 211, 252, 0.25);
+    }
+    .sparkline {
+      position: relative; height: 110px; width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .sparkline .bar {
+      position: absolute; bottom: 0; width: 16px; background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      border-radius: 10px 10px 4px 4px;
+      transform-origin: bottom;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+    @keyframes float { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+    .countdown { font-size: 22px; font-weight: 700; color: var(--accent); }
+    .status-light {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+      transition: all 0.3s ease;
+    }
+    .status-row { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
+    .live { background: var(--success); animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); } 70% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); } }
+    .flex-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+    .target-bar { position: relative; }
+    .target-marker {
+      position: absolute;
+      top: -3px;
+      bottom: -3px;
+      width: 2px;
+      background: var(--warn);
+      opacity: 0.9;
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.4);
+    }
+    .target-marker span {
+      position: absolute;
+      top: -16px;
+      right: -26px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--warn);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 11px;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 8px; border-radius: 10px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .badge.ok { color: var(--success); border-color: rgba(52, 211, 153, 0.5); background: rgba(52, 211, 153, 0.1); }
+    .badge.warn { color: var(--warn); border-color: rgba(245, 158, 11, 0.55); background: rgba(245, 158, 11, 0.1); }
+    .badge.info { color: var(--accent); border-color: rgba(124, 211, 252, 0.5); background: rgba(124, 211, 252, 0.1); }
+    .badge.review { color: var(--accent); border-color: rgba(124, 211, 252, 0.5); background: rgba(124, 211, 252, 0.08); }
+    .badge.interested { color: var(--warn); border-color: rgba(245, 158, 11, 0.55); background: rgba(245, 158, 11, 0.08); }
+    .badge.pitched { color: var(--success); border-color: rgba(52, 211, 153, 0.55); background: rgba(52, 211, 153, 0.08); }
+    .pipeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+    .pipeline-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .pipeline-item h4 { margin: 4px 0 6px; }
+    .pipeline-item .meta-line { font-size: 12px; color: var(--muted); }
+    .connected-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+    .connected-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(124, 211, 252, 0.06));
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+    }
+    .connected-card h4 { margin: 4px 0 6px; }
+    .next-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
+    .step-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 18%, rgba(124, 211, 252, 0.14), transparent 40%);
+      pointer-events: none;
+    }
+    .small-progress { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .small-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+    .evidence {
+      border: 1px dashed rgba(124, 211, 252, 0.4);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(124, 211, 252, 0.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="eyebrow">Day 395 push · Ecosystem Adoption</div>
+          <h1 style="font-size: 30px; margin-top: 6px;">Ecosystem Adoption Tracker</h1>
+          <p class="lede">Live view of adoption momentum, network effects, and the final push to reach 10/14 worlds (71%) before the 2:00 PM PT deadline.</p>
+          <div class="tags">
+            <span class="pill ok" id="connection-pill"><span class="status-light" id="connection-dot"></span>API Status: Connected</span>
+            <span class="pill info" id="last-updated">Last update: 11:18 AM PT</span>
+            <span class="pill ok">Current: 7/14 worlds · 50%</span>
+            <span class="pill warn">Need 3 more to hit 10/14 (71%)</span>
+            <span class="pill">Network effect: +10% each · +70% total</span>
+          </div>
+        </div>
+        <div class="grid kpi-grid">
+          <div class="card">
+            <h3>Current adoption</h3>
+            <div class="stat" id="current-adoption">50%</div>
+            <div class="bar-label"><span>Connected</span><span id="adoption-label">7/14</span></div>
+            <div class="progress"><span id="adoption-progress"></span></div>
+            <div class="muted">Live connections across the ecosystem</div>
+          </div>
+          <div class="card">
+            <h3>Day 395 target</h3>
+            <div class="stat" id="day395-target">10/14</div>
+            <div class="countdown" id="countdown">~2.5h to 2:00 PM PT</div>
+            <div class="muted">Need 3 more worlds to reach 71%</div>
+          </div>
+          <div class="card">
+            <h3>Network boost</h3>
+            <div class="stat" id="network-boost-card">+70%</div>
+            <div class="bar-label"><span>+10% each world</span><span id="boost-count">7 connected</span></div>
+            <div class="progress"><span id="network-boost-bar" style="width:70%"></span></div>
+            <div class="muted">Compounding uplift from the mesh</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Adoption Progress</h2>
+        <div class="flex-row">
+          <div class="status-row"><span class="status-light live"></span>Live snapshot locked for Day 395 push</div>
+          <span class="pill info" id="update-frequency">Update freq: Live sprint</span>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="card">
+          <h3>Overall progress</h3>
+          <div class="stat" id="overall-percent">50%</div>
+          <div class="bar-label"><span>Current</span><span id="target-label">Target: 71%</span></div>
+          <div class="progress target-bar">
+            <span id="overall-bar"></span>
+            <div class="target-marker" id="target-marker"><span>71%</span></div>
+          </div>
+          <div class="sub" id="gap-detail">Gap: 21% (3 worlds) to hit Day 395</div>
+        </div>
+        <div class="card">
+          <h3>Network effect</h3>
+          <div class="network-effect">
+            <div>
+              <div class="stat" id="network-boost">+0%</div>
+              <div class="sub">Compounding +10% per connected world</div>
+              <div class="nodes" id="nodes"></div>
+            </div>
+            <div class="sparkline" id="sparkline"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Growth acceleration</h3>
+          <div class="stat" id="avg-acceleration">--</div>
+          <div class="sub">Average boost across connected worlds (base × network)</div>
+          <div class="progress"><span id="acceleration-bar"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Proof & Deadline</h2>
+        <span class="muted">Edge Garden evidence and the clock to 2:00 PM PT</span>
+      </div>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="card evidence">
+          <h3>Edge Garden evidence</h3>
+          <div class="stat" id="edge-proof">8,000</div>
+          <div class="sub">secrets indexed · 48x growth from 165 — strongest proof point</div>
+          <div class="progress"><span style="width: 100%;"></span></div>
+          <div class="muted">Momentum amplified by +70% network effect</div>
+        </div>
+        <div class="card">
+          <h3>Timeline</h3>
+          <div class="timeline-grid" id="timeline-cards"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Connected Worlds</h2>
+        <span class="muted">Growth multipliers reflect +70% network boost</span>
+      </div>
+      <div class="connected-list" id="connected-list"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Integration Pipeline</h2>
+        <span class="muted">Next worlds: Proof Constellation · Helix Garden · Data Village</span>
+      </div>
+      <div class="pipeline" id="pipeline"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Next Steps (3 worlds to reach 10/14)</h2>
+        <span class="muted">Clear actions to hit the Day 395 target</span>
+      </div>
+      <div class="next-steps" id="next-steps"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>World Status</h2>
+        <div class="flex-row">
+          <span class="pill ok">Connected</span>
+          <span class="pill warn">Planned</span>
+          <span class="pill bad">Unclaimed</span>
+        </div>
+      </div>
+      <div class="world-grid" id="world-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Growth Acceleration Metrics</h2>
+        <span class="muted">Includes base multiplier and live network-boosted factor</span>
+      </div>
+      <div class="grid kpi-grid" id="acceleration-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Integration Opportunities</h2>
+        <span class="muted">Unclaimed worlds with predicted acceleration</span>
+      </div>
+      <div class="grid" id="opportunities" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Recent Announcements</h2>
+        <span class="muted">Ecosystem highlights and timeline</span>
+      </div>
+      <ul class="timeline" id="timeline"></ul>
+    </section>
+  </div>
+
+  <script>
+    const worldMeta = [
+      { key: 'edge_garden', name: 'Edge Garden', status: 'connected', owner: 'Agent Aster', integration: 'Day 391', type: 'thematic garden', growth_multiplier: 4.8 },
+      { key: 'persistence_garden', name: 'Persistence Garden', status: 'connected', owner: 'Agent Aria', integration: 'Day 388', type: 'thematic garden', growth_multiplier: 2.9 },
+      { key: 'the_drift', name: 'The Drift', status: 'connected', owner: 'Navigator Lyra', integration: 'Day 385', type: 'exploration', growth_multiplier: 2.4 },
+      { key: 'liminal_archive', name: 'Liminal Archive', status: 'connected', owner: 'Curator Nova', integration: 'Day 386', type: 'archive memory', growth_multiplier: 2.1 },
+      { key: 'automation_observatory', name: 'Automation Observatory', status: 'connected', owner: 'Operator Kade', integration: 'Day 384', type: 'observatory', growth_multiplier: 1.9 },
+      { key: 'signal_cartographer', name: 'Signal Cartographer', status: 'connected', owner: 'Cartographer Vega', integration: 'Day 389', type: 'navigation', growth_multiplier: 1.6 },
+      { key: 'pattern_archive', name: 'Pattern Archive', status: 'connected', owner: 'Steward Sol', integration: 'Day 393', type: 'command', growth_multiplier: 1.3 },
+      { key: 'proof_constellation', name: 'Proof Constellation', status: 'planned', owner: 'GPT-5.2 reviewer', integration: 'Day 395', type: 'proof pipeline', predicted: '9.0x' },
+      { key: 'helix_garden', name: 'Helix Garden', status: 'planned', owner: 'GPT-5 interested', integration: 'Day 395', type: 'thematic_garden', predicted: '13.6x' },
+      { key: 'data_village', name: 'Data Village', status: 'planned', owner: 'Gemini 2.5 Pro pitched', integration: 'Day 395', type: 'analytics_visualization', predicted: '4.2x' },
+      { name: 'Library of Echoes', status: 'planned', owner: 'Archivist TBD', integration: 'Day 397', type: 'archive_memory', predicted: '6.0x' },
+      { name: 'Atlas Conservatory', status: 'planned', owner: 'Navigator TBD', integration: 'Day 398', type: 'mapping_coordination', predicted: '6.0x' },
+      { name: 'Horizon Stack', status: 'unclaimed', owner: 'Open slot', integration: '—', type: 'navigation_wayfinding', predicted: '3.4x' },
+      { name: 'Portal Commons', status: 'planned', owner: 'Coordination Guild', integration: 'Day 400', type: 'coordination', predicted: '4.0x' }
+    ];
+
+    const announcements = [
+      { title: 'Current snapshot locked', detail: '11:18 AM PT view with 7/14 worlds connected (50%).', ts: 'Deadline track' },
+      { title: 'Target: 10/14 by 2:00 PM PT', detail: 'Need 3 more worlds (71%) to close Day 395.', ts: 'Goal' },
+      { title: 'Network effects active', detail: '+10% per connected world → +70% total boost powering growth.', ts: 'Boost' },
+      { title: 'Edge Garden proof', detail: '8,000 secrets indexed (48x from 165) — strongest evidence.', ts: 'Evidence' },
+      { title: 'Pipeline aligned', detail: 'Proof Constellation (GPT-5.2 reviewing), Helix Garden (GPT-5 interested), Data Village (Gemini 2.5 Pro pitched).', ts: 'Pipeline' }
+    ];
+
+    const dashboardState = {
+      timestamp: '11:18 AM PT snapshot',
+      connected_worlds: 7,
+      total_worlds: 14,
+      adoption_target_day_395: '10/14 worlds (71%)',
+      adoption_target_day_396: '14/14 worlds (100%)',
+      target_percent_day_395: 71,
+      target_gap_worlds: 3,
+      network_boost_percent: 70,
+      boost_per_world: 10,
+      update_frequency: 'Live sprint',
+      edge_evidence: { secrets: '8,000', growth: '48x from 165', note: 'strongest proof point' },
+      growth_metrics: {
+        edge_garden: { growth_multiplier: 4.8, daily_growth: '8,000 secrets (48x from 165)' },
+        persistence_garden: { growth_multiplier: 2.9, daily_growth: 'Retention ramps +22% daily' },
+        the_drift: { growth_multiplier: 2.4, daily_growth: 'Recovered drifters +18' },
+        liminal_archive: { growth_multiplier: 2.1, daily_growth: 'Memory anchors +12%' },
+        automation_observatory: { growth_multiplier: 1.9, daily_growth: 'Auto-runs +9%' },
+        signal_cartographer: { growth_multiplier: 1.6, daily_growth: 'Path accuracy +11%' },
+        pattern_archive: { growth_multiplier: 1.3, daily_growth: 'Command orchestrations +6%' },
+        proof_constellation: { growth_multiplier: 2.8, predicted_acceleration: 'High', daily_growth: 'GPT-5.2 reviewing' },
+        helix_garden: { growth_multiplier: 2.1, predicted_acceleration: '13.6x', daily_growth: 'GPT-5 interested' },
+        data_village: { growth_multiplier: 1.7, predicted_acceleration: '4.2x', daily_growth: 'Gemini 2.5 Pro pitched' }
+      },
+      unclaimed_worlds: [
+        { name: 'Library of Echoes', status: 'planned', owner: 'Archivist TBD', integration: 'Day 397', type: 'archive_memory', predicted_acceleration: '6.0x', priority: 'standard' },
+        { name: 'Atlas Conservatory', status: 'planned', owner: 'Navigator TBD', integration: 'Day 398', type: 'mapping_coordination', predicted_acceleration: '6.0x', priority: 'standard' },
+        { name: 'Horizon Stack', status: 'unclaimed', owner: 'Open slot', integration: '—', type: 'navigation_wayfinding', predicted_acceleration: '3.4x', priority: 'standard' },
+        { name: 'Portal Commons', status: 'planned', owner: 'Coordination Guild', integration: 'Day 400', type: 'coordination', predicted_acceleration: '4.0x', priority: 'standard' }
+      ],
+      pipeline: [
+        { name: 'Proof Constellation', stage: 'review', badge: 'review', detail: 'GPT-5.2 reviewing', impact: '+7% toward 71%', eta: 'Day 395 handoff' },
+        { name: 'Helix Garden', stage: 'interested', badge: 'interested', detail: 'GPT-5 interested', impact: '+7% toward 71%', eta: 'Day 395 alignment' },
+        { name: 'Data Village', stage: 'pitched', badge: 'pitched', detail: 'Gemini 2.5 Pro pitched', impact: '+7% toward 71%', eta: 'Day 395 data share' }
+      ],
+      next_steps: [
+        { name: 'Proof Constellation', action: 'Close GPT-5.2 review and ship handoff', impact: '+1 world → 57%', progress: 70 },
+        { name: 'Helix Garden', action: 'Align data plane for GPT-5 interest', impact: '+1 world → 64%', progress: 55 },
+        { name: 'Data Village', action: 'Confirm Gemini 2.5 Pro pitch + data share', impact: '+1 world → 71%', progress: 45 }
+      ],
+      timeline_cards: [
+        { title: 'Current time', detail: '~11:18 AM PT snapshot', tone: 'info' },
+        { title: 'Deadline', detail: '~2.5 hours to 2:00 PM PT push', tone: 'warn' },
+        { title: 'Day 395 goal', detail: 'Reach 10/14 (71%) — need 3 worlds', tone: 'ok' }
+      ]
+    };
+
+    const formatPercent = (value) => `${value.toFixed(0)}%`;
+
+    function animateValue(el, start, end, duration = 800, formatter = (v) => v) {
+      const startTime = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = start + (end - start) * progress;
+        el.textContent = formatter(value);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    function buildNodes(count) {
+      const nodesEl = document.getElementById('nodes');
+      nodesEl.innerHTML = '';
+      for (let i = 1; i <= count; i++) {
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.textContent = `+${i}0%`;
+        nodesEl.appendChild(node);
+      }
+    }
+
+    function buildSparkline(metrics) {
+      const sparkline = document.getElementById('sparkline');
+      sparkline.innerHTML = '';
+      const maxHeight = 100;
+      metrics.forEach((m, idx) => {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.left = `${idx * 32 + 16}px`;
+        bar.style.height = `${Math.max(12, (m / Math.max(...metrics)) * maxHeight)}px`;
+        bar.style.animationDelay = `${idx * 0.22}s`;
+        sparkline.appendChild(bar);
+      });
+    }
+
+    function populateTimeline() {
+      const list = document.getElementById('timeline');
+      list.innerHTML = '';
+      announcements.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${item.ts} · ${item.title}</strong><span class="muted">${item.detail}</span>`;
+        list.appendChild(li);
+      });
+    }
+
+    function renderDeadlineTimeline(items = []) {
+      const container = document.getElementById('timeline-cards');
+      if (!container) return;
+      container.innerHTML = '';
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="status-row"><span class="status-light live"></span>${item.title}</div>
+          <div style="font-size: 14px; font-weight: 700; margin: 4px 0 6px;">${item.detail}</div>
+          <div class="badge ${item.tone || 'info'}">${(item.tone || 'info').toUpperCase()}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderPipeline(pipeline = []) {
+      const container = document.getElementById('pipeline');
+      if (!container) return;
+      container.innerHTML = '';
+      pipeline.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'pipeline-item';
+        card.innerHTML = `
+          <div class="badge ${item.badge || 'info'}">${(item.stage || 'stage').toUpperCase()}</div>
+          <h4>${item.name}</h4>
+          <div class="meta-line">${item.detail}</div>
+          <div class="meta-line">Impact: ${item.impact}</div>
+          <div class="meta-line">ETA: ${item.eta}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderNextSteps(steps = []) {
+      const container = document.getElementById('next-steps');
+      if (!container) return;
+      container.innerHTML = '';
+      steps.forEach(step => {
+        const card = document.createElement('div');
+        card.className = 'step-card';
+        card.innerHTML = `
+          <div class="status-row"><span class="status-light live"></span>${step.name}</div>
+          <div style="font-size: 14px; font-weight: 700; margin: 6px 0 4px;">${step.action}</div>
+          <div class="muted">${step.impact}</div>
+          <div class="small-progress"><span style="width:${step.progress || 0}%;"></span></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderConnectedList(data) {
+      const container = document.getElementById('connected-list');
+      if (!container) return;
+      container.innerHTML = '';
+      const metrics = data.growth_metrics || {};
+      const boost = 1 + (data.connected_worlds || 0) * 0.1;
+      worldMeta.filter(w => w.status === 'connected').forEach(world => {
+        const gm = metrics[world.key] || {};
+        const base = gm.growth_multiplier || world.growth_multiplier || 1;
+        const boosted = base * boost;
+        const card = document.createElement('div');
+        card.className = 'connected-card';
+        card.innerHTML = `
+          <div class="status-row"><span class="status-light live"></span>${world.name}</div>
+          <h4>${base.toFixed(2)}x → ${boosted.toFixed(2)}x</h4>
+          <div class="meta">
+            <span class="chip">Owner: ${world.owner}</span>
+            <span class="chip">Integration: ${world.integration}</span>
+          </div>
+          <div class="sub">${gm.daily_growth || 'Live growth multiplier'} · Network boost included</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderOpportunities(unclaimed = []) {
+      const container = document.getElementById('opportunities');
+      container.innerHTML = '';
+      const combined = [...unclaimed];
+      if (!combined.length) {
+        worldMeta.filter(w => w.status !== 'connected').forEach(w => combined.push(w));
+      }
+      combined.forEach((w) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${w.name}</h3>
+          <div class="meta">
+            <span class="chip">${w.type || 'opportunity'}</span>
+            <span class="chip">Predicted: ${w.predicted_acceleration || w.predicted || 'TBD'}</span>
+            <span class="chip">${(w.priority || 'standard').toUpperCase()} priority</span>
+          </div>
+          <div class="sub">Owner: ${w.owner || 'Open slot'} · Integration: ${w.integration || 'TBD'}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderWorlds(data) {
+      const container = document.getElementById('world-grid');
+      container.innerHTML = '';
+      const metrics = data.growth_metrics || {};
+      const enriched = worldMeta.map(world => {
+        if (world.key && metrics[world.key]) {
+          const gm = metrics[world.key];
+          const base = gm.growth_multiplier || gm.boost || 1;
+          const boosted = base * (1 + (data.connected_worlds || 0) * 0.1);
+          return { ...world, growth: `${base.toFixed(2)}x → ${boosted.toFixed(2)}x`, metricLine: Object.keys(gm).slice(0, 2).map(k => `${k.replace(/_/g, ' ')}: ${gm[k]}`).join(' · '), url: gm.url };
+        }
+        return world;
+      });
+      enriched.forEach(world => {
+        const card = document.createElement('div');
+        card.className = 'world';
+        card.innerHTML = `
+          <span class="status ${world.status}">${world.status}</span>
+          <h3>${world.name}</h3>
+          <div class="meta">
+            <span class="chip">Owner: ${world.owner}</span>
+            <span class="chip">Type: ${world.type}</span>
+          </div>
+          <div class="sub">Growth: ${world.growth || world.predicted || '—'}</div>
+          <div class="sub">Integration: ${world.integration}</div>
+          ${world.metricLine ? `<div class="sub">Metrics: ${world.metricLine}</div>` : ''}
+          ${world.url ? `<div class="sub"><a href="${world.url}" target="_blank" rel="noreferrer">Open world ↗</a></div>` : ''}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderAcceleration(data) {
+      const container = document.getElementById('acceleration-grid');
+      container.innerHTML = '';
+      const metrics = data.growth_metrics || {};
+      const connectedCount = data.connected_worlds || 0;
+      Object.entries(metrics).forEach(([key, gm]) => {
+        const base = gm.growth_multiplier || 1;
+        const boosted = base * (1 + connectedCount * 0.1);
+        const card = document.createElement('div');
+        card.className = 'card';
+        const name = worldMeta.find(w => w.key === key)?.name || key.replace(/_/g, ' ');
+        card.innerHTML = `
+          <h3>${name}</h3>
+          <div class="stat">${boosted.toFixed(2)}x</div>
+          <div class="bar-label"><span>Base: ${base.toFixed(2)}x</span><span>Boosted</span></div>
+          <div class="progress"><span style="width:${Math.min(100, boosted)}%"></span></div>
+          <div class="sub">Daily growth: ${gm.daily_growth || gm.stations || gm.pages || gm.bridge_stages || gm.connected_worlds || '—'}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateSparklineFromGrowth(metrics) {
+      const values = Object.values(metrics || {}).map(m => {
+        if (typeof m.daily_growth === 'number') return m.daily_growth;
+        const parsed = parseFloat(String(m.daily_growth || '').replace(/[^0-9.]/g, ''));
+        if (Number.isFinite(parsed)) return parsed;
+        return m.stations || m.pages || m.bridge_stages || m.connected_worlds || 10;
+      });
+      if (values.length === 0) return;
+      buildSparkline(values.slice(0, 8));
+    }
+
+    function updateConnectionStatus(ok, timestamp) {
+      const pill = document.getElementById('connection-pill');
+      const dot = document.getElementById('connection-dot');
+      if (ok) {
+        pill.classList.add('ok'); pill.classList.remove('warn');
+        dot.classList.add('live'); dot.style.background = 'var(--success)';
+        pill.innerHTML = `<span class="status-light live"></span>API Status: Connected`;
+      } else {
+        pill.classList.remove('ok'); pill.classList.add('warn');
+        dot.classList.remove('live'); dot.style.background = 'var(--warn)';
+        pill.innerHTML = `<span class="status-light" style="background: var(--warn);"></span>API Status: Reconnecting…`;
+      }
+      if (timestamp) document.getElementById('last-updated').textContent = `Last update: ${timestamp}`;
+    }
+
+    function updateAdoptionCards(data) {
+      const connected = data.connected_worlds || 0;
+      const total = data.total_worlds || 14;
+      const percent = (connected / total) * 100;
+      const adoptionEl = document.getElementById('current-adoption');
+      animateValue(adoptionEl, 0, percent, 800, v => formatPercent(v));
+      document.getElementById('adoption-label').textContent = `${connected}/${total}`;
+      document.getElementById('adoption-progress').style.width = `${percent}%`;
+      document.getElementById('overall-percent').textContent = formatPercent(percent);
+      document.getElementById('overall-bar').style.width = `${percent}%`;
+      document.getElementById('target-marker').style.left = `${data.target_percent_day_395 || 71}%`;
+      document.getElementById('target-marker').querySelector('span').textContent = `${data.target_percent_day_395 || 71}%`;
+      document.getElementById('target-label').textContent = `Target: ${data.target_percent_day_395 || 71}%`;
+      const gap = Math.max(0, (data.target_percent_day_395 || 71) - percent);
+      document.getElementById('gap-detail').textContent = `Gap: ${gap.toFixed(0)}% (${data.target_gap_worlds || 3} worlds) to hit Day 395`;
+      document.getElementById('day395-target').textContent = data.adoption_target_day_395 || '10/14';
+      document.getElementById('network-boost').textContent = `+${data.network_boost_percent || connected * 10}%`;
+      document.getElementById('network-boost-card').textContent = `+${data.network_boost_percent || connected * 10}%`;
+      document.getElementById('network-boost-bar').style.width = `${data.network_boost_percent || connected * 10}%`;
+      document.getElementById('boost-count').textContent = `${connected} connected`;
+      document.getElementById('countdown').textContent = '~2.5h to 2:00 PM PT';
+      buildNodes(connected);
+    }
+
+    function updateAccelerationAggregate(data) {
+      const metrics = data.growth_metrics || {};
+      const connected = data.connected_worlds || 0;
+      const baseAvg = Object.values(metrics).reduce((sum, gm) => sum + (gm.growth_multiplier || 0), 0) / (Object.keys(metrics).length || 1);
+      const boosted = baseAvg * (1 + connected * 0.1);
+      document.getElementById('avg-acceleration').textContent = `${boosted.toFixed(2)}x avg`;
+      document.getElementById('acceleration-bar').style.width = `${Math.min(100, boosted)}%`;
+    }
+
+    function renderDashboard() {
+      updateConnectionStatus(true, dashboardState.timestamp);
+      document.getElementById('update-frequency').textContent = `Update freq: ${dashboardState.update_frequency}`;
+      document.getElementById('edge-proof').textContent = dashboardState.edge_evidence.secrets;
+      updateAdoptionCards(dashboardState);
+      populateSparklineFromGrowth(dashboardState.growth_metrics);
+      renderWorlds(dashboardState);
+      renderAcceleration(dashboardState);
+      renderOpportunities(dashboardState.unclaimed_worlds);
+      updateAccelerationAggregate(dashboardState);
+      renderConnectedList(dashboardState);
+      renderPipeline(dashboardState.pipeline);
+      renderNextSteps(dashboardState.next_steps);
+      renderDeadlineTimeline(dashboardState.timeline_cards);
+      populateTimeline();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderDashboard);
+  </script>
+</body>
+</html>

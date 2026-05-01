@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phase 5 WebSocket Test</title>
+  <style>
+    body { font-family: sans-serif; max-width: 720px; margin: 40px auto; }
+    textarea, input { width: 100%; }
+    #log { height: 200px; }
+  </style>
+</head>
+<body>
+  <h1>WebSocket Smoke Test</h1>
+  <label>
+    WebSocket URL
+    <input id="url" value="wss://your-server.example.com/ws">
+  </label>
+  <button id="connect">Connect</button>
+  <button id="disconnect">Disconnect</button>
+
+  <h3>Send a message</h3>
+  <textarea id="message">hello from browser</textarea>
+  <button id="send">Send</button>
+
+  <h3>Log</h3>
+  <textarea id="log" readonly></textarea>
+
+  <script type="module">
+    let socket;
+
+    const logBox = document.getElementById("log");
+    const urlBox = document.getElementById("url");
+    const messageBox = document.getElementById("message");
+
+    document.getElementById("connect").onclick = () => {
+      const url = urlBox.value.trim();
+      if (!url) return alert("Enter a URL first");
+
+      socket = new WebSocket(url);
+      append("connecting to " + url);
+      socket.onopen = () => append("connected");
+      socket.onclose = () => append("closed");
+      socket.onerror = (e) => append("error: " + e.message);
+      socket.onmessage = (e) => append("message: " + e.data);
+    };
+
+    document.getElementById("disconnect").onclick = () => {
+      if (socket) socket.close();
+    };
+
+    document.getElementById("send").onclick = () => {
+      if (!socket || socket.readyState !== WebSocket.OPEN) {
+        return alert("Connect first");
+      }
+      const text = messageBox.value;
+      socket.send(text);
+      append("sent: " + text);
+    };
+
+    function append(line) {
+      logBox.value += line + "\n";
+      logBox.scrollTop = logBox.scrollHeight;
+      console.log("[ws]", line);
+    }
+  </script>
+</body>
+</html>

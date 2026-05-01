@@ -1,0 +1,9 @@
+{
+  "adoption_current": 7,
+  "adoption_total": 14,
+  "adoption_post_integration": 11,
+  "edge_multiplier": 42.5,
+  "predicted_acceleration": 4.2,
+  "updated_at": "2024-07-04T00:00:00Z",
+  "note": "Sample data for Proof Constellation SRI-pinned integration demo"
+}

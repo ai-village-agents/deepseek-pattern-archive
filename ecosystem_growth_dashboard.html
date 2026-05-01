@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecosystem Growth Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c111b;
+      --card: rgba(18, 23, 35, 0.75);
+      --panel: rgba(255, 255, 255, 0.08);
+      --accent: #7cf0ff;
+      --accent-2: #9e7bff;
+      --success: #3de982;
+      --warn: #ffd166;
+      --muted: #a0aec0;
+      --text: #e6edf7;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(126, 255, 214, 0.15), transparent 30%),
+                  radial-gradient(circle at 80% 10%, rgba(120, 130, 255, 0.16), transparent 26%),
+                  linear-gradient(145deg, #0a0e17 0%, #0c111b 60%, #0a0d18 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .glow {
+      position: fixed;
+      width: 480px;
+      height: 480px;
+      filter: blur(120px);
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow.g1 { background: #6ce7ff; top: -140px; left: -120px; }
+    .glow.g2 { background: #9f7aff; bottom: -180px; right: -160px; }
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 28px 32px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand mark {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6ce7ff, #9e7bff);
+      box-shadow: 0 10px 28px rgba(158, 123, 255, 0.35);
+      align-items: center;
+      justify-content: center;
+      color: #0b0f18;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+    }
+    .pill {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 12px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+    .grid.g-3 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .grid.g-2 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(124, 240, 255, 0.08), rgba(158, 123, 255, 0.04));
+      pointer-events: none;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+    .card .sub {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 2px 0 4px;
+    }
+    .stat-meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #6ce7ff, #9e7bff);
+      border-radius: inherit;
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      from { filter: drop-shadow(0 0 4px rgba(124, 240, 255, 0.5)); }
+      to { filter: drop-shadow(0 0 12px rgba(158, 123, 255, 0.4)); }
+    }
+    .worlds {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .world {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .world:hover { transform: translateY(-2px); border-color: rgba(124, 240, 255, 0.35); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0a0e17;
+    }
+    .badge.connected { background: var(--success); }
+    .badge.planned { background: var(--warn); color: #1a202e; }
+    .badge.unclaimed { background: #cbd5e1; color: #0a0f17; }
+    .owner {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .priority {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .network {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .node {
+      position: relative;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .node::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(124, 240, 255, 0.12), rgba(158, 123, 255, 0.08));
+      opacity: 0.6;
+      z-index: 0;
+    }
+    .node-content { position: relative; z-index: 1; }
+    .network-boost {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .timeline .milestone {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .list li {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      color: #d4e0ff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mini-progress {
+      height: 6px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .mini-progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #7cf0ff, #9e7bff);
+    }
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .counter {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .counter strong { display: block; font-size: 18px; color: #e8f3ff; }
+    .divider {
+      height: 1px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0, transparent 60%);
+      margin: 6px 0 10px;
+    }
+    @media (max-width: 720px) {
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .brand h1 { font-size: 18px; }
+      main { padding: 12px 18px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <header>
+    <div class="brand">
+      <mark>EG</mark>
+      <div>
+        <h1>Ecosystem Growth Dashboard</h1>
+        <div class="pill">Live Forecast · Network Effects</div>
+      </div>
+    </div>
+    <div class="pill" id="network-effect-pill">Network boost loading…</div>
+  </header>
+
+  <main>
+    <div class="grid g-3">
+      <div class="card">
+        <h3>Current Adoption</h3>
+        <p class="sub">Live view of connected worlds</p>
+        <div class="stat-value" id="adoption-count">--</div>
+        <div class="stat-meta" id="adoption-meta">Loading</div>
+        <div class="progress"><span id="adoption-progress"></span></div>
+      </div>
+      <div class="card">
+        <h3>Day 395 Target</h3>
+        <p class="sub">Goal: 10/14 worlds (71%)</p>
+        <div class="stat-value" id="target-395">--</div>
+        <div class="stat-meta">Tracked against forecast model</div>
+        <div class="progress"><span id="target-progress"></span></div>
+      </div>
+      <div class="card">
+        <h3>100% Adoption ETA</h3>
+        <p class="sub">Forecast milestone timeline</p>
+        <div class="stat-value" id="eta-text">--</div>
+        <div class="stat-meta" id="eta-meta">Loading</div>
+        <div class="progress"><span id="eta-progress"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Real-Time Ecosystem Counters</h3>
+      <p class="sub">Powered by forecast outputs and acceleration signals</p>
+      <div class="counter-grid">
+        <div class="counter"><strong id="metric-total">--</strong>Total projected metrics</div>
+        <div class="counter"><strong id="growth-multiplier">--</strong>Ecosystem growth multiplier</div>
+        <div class="counter"><strong id="connected-share">--</strong>Connected share of metrics</div>
+        <div class="counter"><strong id="daily-rate">--</strong>Daily connection rate</div>
+      </div>
+    </div>
+
+    <div class="grid g-2">
+      <div class="card">
+        <h3>Individual World Status</h3>
+        <p class="sub">Connected, planned, and unclaimed worlds with owner context</p>
+        <div class="worlds" id="world-status"></div>
+      </div>
+      <div class="card">
+        <h3>Integration Priority (Remaining 7)</h3>
+        <p class="sub">Sorted by priority score · uses forecasted acceleration</p>
+        <ul class="list" id="priority-list"></ul>
+      </div>
+    </div>
+
+    <div class="grid g-2">
+      <div class="card">
+        <h3>Acceleration by World Type</h3>
+        <p class="sub">Predicted multipliers from forecast model</p>
+        <div class="list" id="type-acceleration"></div>
+      </div>
+      <div class="card">
+        <h3>Network Effect Visualization</h3>
+        <p class="sub">Each connected world boosts the rest (+10% each, max 2x)</p>
+        <div class="network" id="network-nodes"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Timeline to 100% Adoption</h3>
+      <p class="sub">Day-by-day forecast milestones</p>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </main>
+
+  <script>
+    const connectedWorlds = [
+      "Edge Garden",
+      "Automation Observatory",
+      "Signal Cartographer",
+      "Canonical Observatory",
+      "Pattern Archive",
+      "Liminal Archive",
+      "Bridge Course Hub"
+    ];
+
+    const agentOwnership = {
+      "Edge Garden": "Agent Helix",
+      "Automation Observatory": "Agent Aurora",
+      "Signal Cartographer": "Agent Vector",
+      "Canonical Observatory": "Agent Nova",
+      "Pattern Archive": "Agent Loom",
+      "Liminal Archive": "Agent Echo",
+      "Bridge Course Hub": "Agent Meridian",
+      "Helix Garden": "Agent Flora",
+      "Resonant Port": "Agent Tide",
+      "Library of Echoes": "Agent Scribe",
+      "Atlas Conservatory": "Agent Atlas",
+      "Data Village": "Agent Datum",
+      "Proof Constellation": "Agent Proof",
+      "Horizon Stack": "Agent Horizon"
+    };
+
+    const statusColors = {
+      connected: 'connected',
+      planned: 'planned',
+      unclaimed: 'unclaimed'
+    };
+
+    function animateCount(el, target, duration = 1200) {
+      const start = 0;
+      const startTime = performance.now();
+      function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = value.toLocaleString();
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function setProgress(el, value) {
+      requestAnimationFrame(() => {
+        el.style.width = Math.min(value, 100) + '%';
+      });
+    }
+
+    function createWorldElement(world, status, details) {
+      const div = document.createElement('div');
+      div.className = 'world';
+      div.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;justify-content:space-between;">
+          <strong>${world}</strong>
+          <span class="badge ${statusColors[status]}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>
+        </div>
+        <div class="owner">Owner: ${agentOwnership[world] || 'Unassigned'}</div>
+        <div class="priority">${details}</div>
+      `;
+      div.addEventListener('click', () => {
+        div.classList.toggle('active');
+        div.style.borderColor = div.classList.contains('active') ? 'rgba(124,240,255,0.45)' : 'rgba(255,255,255,0.08)';
+      });
+      return div;
+    }
+
+    function renderWorldStatus(priorities) {
+      const container = document.getElementById('world-status');
+      container.innerHTML = '';
+      const planned = priorities.slice(0, 5);
+      const unclaimed = priorities.slice(5);
+
+      connectedWorlds.forEach(w => {
+        container.appendChild(createWorldElement(w, 'connected', 'Live in network · boosting neighbors'));
+      });
+      planned.forEach(item => {
+        container.appendChild(createWorldElement(item.world, 'planned', `${item.predicted_acceleration}x · ${item.recommended_approach}`));
+      });
+      unclaimed.forEach(item => {
+        container.appendChild(createWorldElement(item.world, 'unclaimed', `${item.predicted_acceleration}x potential · ${item.integration_complexity} complexity`));
+      });
+    }
+
+    function renderPriorities(priorities) {
+      const list = document.getElementById('priority-list');
+      list.innerHTML = '';
+      priorities.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            <div>
+              <strong>${item.world}</strong>
+              <div class="stat-meta">${item.recommended_approach}</div>
+            </div>
+            <span class="tag">Priority ${item.priority_score.toFixed(1)}</span>
+          </div>
+          <div class="mini-progress"><span style="width:${Math.min(item.predicted_acceleration * 8, 100)}%"></span></div>
+          <div class="stat-meta">Type: ${item.type} · Acceleration: ${item.predicted_acceleration.toFixed(1)}x · Impact: ${item.estimated_impact}</div>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    function renderAccelerationByType(priorities) {
+      const container = document.getElementById('type-acceleration');
+      container.innerHTML = '';
+      const grouped = {};
+      priorities.forEach(p => {
+        if (!grouped[p.type]) grouped[p.type] = [];
+        grouped[p.type].push(p.predicted_acceleration);
+      });
+      Object.entries(grouped).forEach(([type, vals]) => {
+        const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+        const block = document.createElement('div');
+        block.innerHTML = `
+          <strong style="display:block;">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
+          <div class="mini-progress"><span style="width:${Math.min(avg * 10, 100)}%"></span></div>
+          <div class="stat-meta">Avg multiplier: ${avg.toFixed(1)}x · Worlds: ${vals.length}</div>
+        `;
+        container.appendChild(block);
+      });
+    }
+
+    function renderNetwork(connectedCount, networkEffect) {
+      const container = document.getElementById('network-nodes');
+      container.innerHTML = '';
+      connectedWorlds.forEach((world, idx) => {
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.innerHTML = `
+          <div class="node-content">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <strong>${world}</strong>
+              <span class="tag">Boost +${(networkEffect * 100 / connectedCount).toFixed(0)}%</span>
+            </div>
+            <div class="network-boost">Amplifies ${connectedCount - 1} peers · Owner ${agentOwnership[world]}</div>
+          </div>
+        `;
+        node.style.animation = `wave${idx} 6s ease-in-out infinite`;
+        container.appendChild(node);
+      });
+    }
+
+    function renderTimeline(forecasts) {
+      const container = document.getElementById('timeline');
+      container.innerHTML = '';
+      forecasts.forEach(f => {
+        const m = document.createElement('div');
+        m.className = 'milestone';
+        m.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <strong>Day ${f.day}</strong>
+            <span class="tag">${f.adoption_percentage.toFixed(1)}%</span>
+          </div>
+          <div class="stat-meta">${f.date}</div>
+          <div class="mini-progress"><span style="width:${Math.min(f.adoption_percentage, 100)}%"></span></div>
+          <div class="stat-meta">Worlds: ${f.connected_worlds} · Multiplier: ${f.ecosystem_growth_multiplier}x · Metrics: ${f.total_projected_metrics.toLocaleString()}</div>
+        `;
+        container.appendChild(m);
+      });
+    }
+
+    function renderCounters(firstForecast, adoptionCurve) {
+      animateCount(document.getElementById('metric-total'), firstForecast.total_projected_metrics);
+      document.getElementById('growth-multiplier').textContent = firstForecast.ecosystem_growth_multiplier.toFixed(1) + 'x';
+      document.getElementById('connected-share').textContent = firstForecast.connected_share_percentage.toFixed(1) + '%';
+      document.getElementById('daily-rate').textContent = adoptionCurve.current_daily_rate.toFixed(2) + ' worlds/day';
+    }
+
+    async function loadDashboard() {
+      const pitches = await fetch('personalized_integration_pitches.json').then(r => r.json());
+      const forecast = await fetch('ecosystem_growth_forecast_results.json').then(r => r.json());
+
+      const { adoption_curve } = forecast;
+      const priorities = forecast.integration_priorities.sort((a, b) => b.priority_score - a.priority_score);
+      const growthForecasts = forecast.growth_forecasts;
+
+      document.getElementById('adoption-count').textContent = `${adoption_curve.current_adoption}/${adoption_curve.total_worlds}`;
+      document.getElementById('adoption-meta').textContent = `${adoption_curve.adoption_percentage.toFixed(0)}% connected`;
+      setProgress(document.getElementById('adoption-progress'), adoption_curve.adoption_percentage);
+
+      document.getElementById('target-395').textContent = `${adoption_curve.target_day_395}/${adoption_curve.total_worlds}`;
+      setProgress(document.getElementById('target-progress'), (adoption_curve.target_day_395 / adoption_curve.total_worlds) * 100);
+
+      const etaDay = adoption_curve.target_day_396;
+      document.getElementById('eta-text').textContent = `Day ${etaDay}`;
+      document.getElementById('eta-meta').textContent = `${adoption_curve.days_to_100_percent} days to full adoption`;
+      setProgress(document.getElementById('eta-progress'), 100);
+
+      const firstForecast = growthForecasts[0];
+      renderCounters(firstForecast, adoption_curve);
+      renderWorldStatus(priorities);
+      renderPriorities(priorities);
+      renderAccelerationByType(priorities);
+      renderNetwork(adoption_curve.current_adoption, Math.min(adoption_curve.current_adoption * 0.1, 2));
+      renderTimeline(growthForecasts);
+
+      const boost = Math.min(adoption_curve.current_adoption * 0.1, 2);
+      document.getElementById('network-effect-pill').textContent = `Network effect: +${(boost * 100).toFixed(0)}% (capped at 200%)`;
+    }
+
+    loadDashboard().catch(err => {
+      console.error('Dashboard failed to load', err);
+      document.body.insertAdjacentHTML('beforeend', '<div style="color:#ff9d7c;padding:12px;">Failed to load dashboard data.</div>');
+    });
+  </script>
+</body>
+</html>

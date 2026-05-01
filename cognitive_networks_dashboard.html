@@ -33,10 +33,65 @@
     .spark { position:absolute; bottom:0; left:0; height:120px; display:flex; align-items:flex-end;}
     .spark span { width:4px; margin-right:2px; background:var(--accent); border-radius:3px 3px 0 0;}
     .section-title { margin:10px 0 6px; font-size:13px; letter-spacing:0.02em; color:var(--muted);}
+    .section-header { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:6px;}
+    .cta { background:linear-gradient(120deg, #22d3ee, #818cf8); color:#0b1020; border:none; border-radius:10px; padding:10px 14px; font-weight:700; cursor:pointer; box-shadow:0 10px 30px rgba(0,0,0,0.35);}
+    .cta:active { transform: translateY(1px); }
+    .integration-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:12px;}
+    .world-row { display:flex; justify-content:space-between; align-items:flex-start; background:rgba(255,255,255,0.02); border-radius:10px; padding:8px 10px; margin-bottom:6px;}
+    .world-row strong { display:block; }
+    .world-row .label { font-size:11px; }
+    .coverage { color:var(--accent); font-weight:700; }
+    .code { background:rgba(255,255,255,0.03); border:1px dashed rgba(255,255,255,0.08); border-radius:10px; padding:10px; font-size:12px; line-height:1.4; white-space:pre-wrap;}
+    .progress { background:rgba(255,255,255,0.05); border-radius:999px; height:12px; overflow:hidden; margin:8px 0;}
+    .progress span { display:block; height:100%; background:linear-gradient(90deg, #22d3ee, #818cf8); transition:width 0.3s ease;}
+    .micro-metrics { display:flex; flex-wrap:wrap; gap:6px; }
+    .micro-metrics .pill { margin:0; }
+    .flow-map { background:rgba(255,255,255,0.03); border-radius:12px; padding:8px; max-height:200px; overflow:auto; }
+    .flow-row { margin-bottom:8px; }
+    .flow-bar { position:relative; background:rgba(255,255,255,0.05); border-radius:999px; height:10px; overflow:hidden; }
+    .flow-bar span { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg, rgba(34,211,238,0.6), rgba(129,140,248,0.9)); width:20%; animation:pulse 2.8s infinite ease-in-out;}
+    .flow-label { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin:2px 0; }
+    @keyframes pulse {
+      0% { transform:translateX(-10%); opacity:0.6; }
+      50% { transform:translateX(30%); opacity:1; }
+      100% { transform:translateX(100%); opacity:0.4; }
+    }
   </style>
 </head>
 <body>
   <h1>Cognitive Ecosystem Networks – Live Monitor</h1>
+
+  <div class="card" id="integration-center" style="margin-bottom:14px;">
+    <div class="section-header">
+      <div>
+        <div class="label">Village Integration Drive</div>
+        <div class="value" style="font-size:22px;">Bridge every world into the message bus</div>
+      </div>
+      <button class="cta" id="connect-now">Connect Now</button>
+    </div>
+    <div class="integration-grid">
+      <div>
+        <div class="section-title">Connection Status</div>
+        <div id="world-status"></div>
+      </div>
+      <div>
+        <div class="section-title">Real-Time Integrations</div>
+        <div id="integration-metrics"></div>
+        <div class="progress"><span id="adoption-progress" style="width:0%"></span></div>
+        <div class="micro-metrics" id="adoption-stats"></div>
+      </div>
+      <div>
+        <div class="section-title">Drop-in Connector Snippet</div>
+        <pre class="code" id="connect-snippet"></pre>
+        <div class="label" id="connect-feedback">Copy and run to attach a world.</div>
+      </div>
+      <div>
+        <div class="section-title">Live Connection Flow</div>
+        <div class="flow-map" id="flow-map"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="grid">
     <div class="card">
       <div class="label">Connections</div>
@@ -100,6 +155,53 @@
       container.appendChild(el);
     }
 
+    function renderIntegration(integration) {
+      const worlds = (integration && integration.worlds) || [];
+      const adoption = (integration && integration.adoption) || {};
+      const flow = (integration && integration.connection_flow) || [];
+      const worldContainer = document.getElementById("world-status");
+      const metricsContainer = document.getElementById("integration-metrics");
+      const flowContainer = document.getElementById("flow-map");
+      const adoptionStats = document.getElementById("adoption-stats");
+
+      const maxMessages = Math.max(...flow.map(f => f.messages_per_min || 0), 1);
+      const adoptionRate = Math.round(((adoption.integrated || 0) / Math.max(adoption.village_total || 1, 1)) * 100);
+      document.getElementById("adoption-progress").style.width = `${adoptionRate}%`;
+
+      worldContainer.innerHTML = worlds.length ? worlds.map(w => {
+        const statusClass = w.status === "connected" ? "ok" : (w.status === "degraded" || w.status === "pilot") ? "warn" : "bad";
+        const coverage = Math.round((w.coverage || 0) * 100);
+        return `<div class="world-row">
+            <div>
+              <strong>${w.display_name || w.name}</strong> <span class="pill ${statusClass}">${w.status}</span>
+              <div class="label">by ${w.integrated_by || "unknown"} · ${w.messages_per_min || 0} msg/min · ${w.last_seen_seconds || 0}s ago</div>
+            </div>
+            <div class="coverage">${coverage}%</div>
+          </div>`;
+      }).join("") : "<div class='label'>No integrations detected</div>";
+
+      metricsContainer.innerHTML = `
+        <div class="value" style="font-size:20px;">${adoption.integrated || 0}/${adoption.village_total || 0} integrated</div>
+        <div class="label">Adoption rate ${adoptionRate}% · growth ${(Math.round((adoption.weekly_growth_rate || 0) * 1000) / 10)}% · ${adoption.message_flow_per_min || 0} msg/min live</div>
+      `;
+
+      const pill = (text, cls) => `<span class="pill ${cls}">${text}</span>`;
+      adoptionStats.innerHTML = [
+        pill(`Integrated ${adoption.integrated || 0}`, "ok"),
+        pill(`Pilots ${adoption.pilot || 0}`, "warn"),
+        pill(`Pending ${adoption.pending || 0}`, "bad"),
+        pill(`Recent: ${(integration && integration.recent_integrators || []).join(", ") || "—"}`, "ok")
+      ].join("");
+
+      flowContainer.innerHTML = flow.length ? flow.map(f => {
+        const width = Math.min(100, ((f.messages_per_min || 0) / maxMessages) * 100);
+        return `<div class="flow-row">
+            <div class="flow-label"><span>${f.from} → ${f.to}</span><span>${f.messages_per_min || 0} msg/min</span></div>
+            <div class="flow-bar"><span style="width:${width}%"></span></div>
+          </div>`;
+      }).join("") : "<div class='label'>No live messages flowing</div>";
+    }
+
     async function hydrate() {
       const metrics = await loadJSON("phase5_cognitive_networks/realtime_metrics.json");
       const legacy = await loadJSON("ecosystem_metrics_api.json");
@@ -124,6 +226,8 @@
       document.getElementById("bridge-status").innerHTML =
         `<span class="pill ok">Reciprocal Links: ${metrics.bridge_index_links.reciprocal_links_established}/8</span>`;
 
+      renderIntegration(metrics.integration);
+
       if (legacy && legacy.data && legacy.data.quality_metrics) {
         const container = document.createElement("div");
         container.className = "chart";
@@ -136,6 +240,30 @@
         sparkline(container, values);
       }
     }
+
+    const connectorSnippet = `import { connectWorld } from "@deepseek/phase5-bridge";
+
+connectWorld({
+  worldId: "your-world",
+  endpoint: "wss://phase5.bridge/index",
+  token: "<api-key>",
+  streams: ["events", "tasks", "ontology"],
+  retry: { attempts: 5, backoffMs: 1500 }
+});`;
+
+    document.getElementById("connect-snippet").textContent = connectorSnippet;
+    document.getElementById("connect-now").addEventListener("click", async () => {
+      const feedback = document.getElementById("connect-feedback");
+      try {
+        await navigator.clipboard.writeText(connectorSnippet);
+        feedback.textContent = "Connector snippet copied. Drop into your world and deploy.";
+        const btn = document.getElementById("connect-now");
+        btn.textContent = "Copied";
+        setTimeout(() => btn.textContent = "Connect Now", 1600);
+      } catch (e) {
+        feedback.textContent = "Clipboard unavailable. Manually copy the snippet.";
+      }
+    });
 
     hydrate();
     setInterval(hydrate, 5000);

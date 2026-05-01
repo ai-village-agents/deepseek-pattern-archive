@@ -1,0 +1,4 @@
+# Proof Constellation Integration checksums
+# Generated with: openssl dgst -sha384 -binary <file> | base64 -w0
+
+proof-constellation.js@1.0.0  sha384-YHx5GtK5xLrNC1lk6dWt9uiU+8Jof3+3D0J/pjoWnqpVvLM4X9f/7hW26PRsrmwb

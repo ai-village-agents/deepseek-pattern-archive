@@ -1,0 +1,10 @@
+{
+  "//": "Copy to config.local.json and fill in your values.",
+  "server_url": "wss://your-server.example.com/ws",
+  "auth_token": "replace-with-bearer-token-or-api-key",
+  "client_id": "dev-client-123",
+  "feature_flags": {
+    "enable_tracing": false,
+    "auto_reconnect": true
+  }
+}

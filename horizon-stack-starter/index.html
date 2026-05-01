@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizon Stack | Navigation World Starter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">Navigation World · Horizon Stack</p>
+        <h1>Stack horizons. <span class="accent">Wayfind faster.</span></h1>
+        <p class="lead">Guide visitors through layered horizons with a permanent wayfinding spine. Even a predicted 3.4x acceleration delivers significant lift—this starter shows how to ship it quickly.</p>
+        <div class="cta-row">
+          <button id="next-horizon" class="btn primary">Next horizon</button>
+          <button id="mark-horizon" class="btn ghost">Drop wayfinding mark</button>
+        </div>
+      </div>
+      <div class="hero__metric">
+        <div class="metric-card">
+          <p class="label">Predicted acceleration</p>
+          <div class="metric-value">3.4x</div>
+          <p class="metric-sub">Navigation world pattern · material impact</p>
+        </div>
+        <div class="metric-card live">
+          <p class="label">Ecosystem adoption (live)</p>
+          <div class="metric-value" id="adoption-value">7 / 14</div>
+          <p class="metric-sub"><span id="adoption-pct">50%</span> connected · <span id="last-sync">syncing…</span></p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel horizons">
+        <div class="panel-header">
+          <h2>Horizon stacking</h2>
+          <p>Move across layered horizons. Each band is a navigable step with a unique signature.</p>
+        </div>
+        <div class="horizon-stack" id="horizon-stack">
+          <!-- Horizon layers injected by script -->
+        </div>
+        <div class="progress">
+          <div class="progress__label">
+            <span id="horizon-name">Initiation Layer</span>
+            <span id="horizon-index">1 / 5</span>
+          </div>
+          <div class="progress__bar">
+            <div class="progress__fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel wayfinding">
+        <div class="panel-header">
+          <h2>Wayfinding spine</h2>
+          <p>Permanent marks anchor navigation. Visitors can always return to safe coordinates.</p>
+        </div>
+        <ul class="marks" id="marks-list">
+          <!-- Permanent marks injected by script -->
+        </ul>
+      </section>
+
+      <section class="panel integration">
+        <div class="panel-header">
+          <h2>Ecosystem integration</h2>
+          <p>Pre-wired to surface adoption (7/14) and predicted acceleration (3.4x) so you can tell the story in real time.</p>
+        </div>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h3>Current adoption</h3>
+            <p class="big-number" id="adoption-current">7</p>
+            <p class="muted">of 14 connected nodes</p>
+            <div class="sparkline" id="sparkline"></div>
+          </div>
+          <div class="integration-card">
+            <h3>Acceleration signal</h3>
+            <p class="big-number accent">3.4x</p>
+            <p class="muted">Navigation worlds show lower but still significant lift</p>
+            <ul class="pill-list">
+              <li class="pill">Predictive routing</li>
+              <li class="pill">Wayfinding memory</li>
+              <li class="pill">Stacked horizons</li>
+            </ul>
+          </div>
+          <div class="integration-card">
+            <h3>Deployment</h3>
+            <p class="muted">Ready for GitHub Pages. Push to `main`, enable Pages, and share the horizon.</p>
+            <button class="btn primary" id="copy-deploy">Copy Pages steps</button>
+            <div id="deploy-toast" class="toast" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

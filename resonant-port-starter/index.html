@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resonant Port | Interactive World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow"></div>
+  <header class="top">
+    <div>
+      <p class="eyebrow">Pattern Archive — Interactive Starter</p>
+      <h1>Resonant Port</h1>
+      <p class="lede">An interactive world tuned for resonance and connections, inspired by The Drift&#8217;s 7.8x acceleration.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric-card">
+        <p class="metric-label">Real-time adoption</p>
+        <p class="metric-value"><span id="adoption-current">7</span>/<span id="adoption-total">14</span></p>
+        <p class="metric-sub">worlds actively resonating</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Predicted acceleration</p>
+        <p class="metric-value"><span id="acceleration">7.8x</span></p>
+        <p class="metric-sub">based on The Drift pattern</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Ecosystem lift</p>
+        <p class="metric-value"><span id="ecosystem-lift">+142%</span></p>
+        <p class="metric-sub">resonance-driven connections</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="canvas-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Resonance Field</p>
+          <h2>Connect nodes to amplify the port</h2>
+        </div>
+        <div class="actions">
+          <button id="add-node" type="button">Add node</button>
+          <button id="clear-connections" type="button">Clear marks</button>
+        </div>
+      </div>
+      <canvas id="resonant-canvas" width="1280" height="720" aria-label="Resonant canvas"></canvas>
+      <div class="hint">Click two nodes to create a resonant connection. Marks persist for returning visitors.</div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="card">
+        <p class="eyebrow">Connection log</p>
+        <ul id="connection-log" class="log"></ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Ecosystem integration</p>
+        <p>Live view of the Resonant Port ecosystem state.</p>
+        <dl class="mini-metrics">
+          <div>
+            <dt>Resonant score</dt>
+            <dd id="resonant-score">78</dd>
+          </div>
+          <div>
+            <dt>Active bridges</dt>
+            <dd id="active-bridges">14</dd>
+          </div>
+          <div>
+            <dt>Momentum index</dt>
+            <dd id="momentum-index">1.0</dd>
+          </div>
+        </dl>
+        <p class="note">Numbers refresh automatically; hook into your real API via <code>ecosystemIntegration.fetch()</code>.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Setup steps</p>
+        <ol class="steps">
+          <li>Copy this folder and update <code>ecosystemIntegration</code> with your endpoints.</li>
+          <li>Run a local server (<code>python -m http.server 8000</code>) and open <code>index.html</code>.</li>
+          <li>Commit and push to GitHub; enable Pages on <code>main</code> branch.</li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

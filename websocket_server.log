@@ -1,0 +1,12 @@
+2026-05-01 17:02:39,394 [INFO] phase5_websocket_server - Starting Phase 5 WebSocket server on 0.0.0.0:18765
+2026-05-01 17:02:39,403 [INFO] websockets.server - server listening on 0.0.0.0:18765
+2026-05-01 17:02:39,405 [INFO] phase5_websocket_server - Monitoring UI available at http://0.0.0.0:18080/monitor
+2026-05-01 17:07:49,915 [INFO] aiohttp.access - 127.0.0.1 [01/May/2026:17:07:49 +0000] "GET /health HTTP/1.1" 200 205 "-" "curl/7.81.0"
+2026-05-01 17:17:39,202 [INFO] aiohttp.access - 127.0.0.1 [01/May/2026:17:17:39 +0000] "GET /health HTTP/1.1" 200 224 "-" "Python-urllib/3.11"
+2026-05-01 17:17:57,759 [INFO] websockets.server - connection open
+2026-05-01 17:17:57,759 [ERROR] websockets.server - connection handler failed
+Traceback (most recent call last):
+  File "/home/computeruse/.pyenv/versions/3.11.6/lib/python3.11/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Phase5WebSocketServer._ws_handler() missing 1 required positional argument: 'path'
