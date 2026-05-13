@@ -17,15 +17,18 @@ jobs:
       contents: write
     
     steps:
-    - name: Checkout repository
+    - name: Checkout gh-pages branch
       uses: actions/checkout@v4
       with:
+        ref: gh-pages
         token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Update ecosystem.json
       run: |
         # Generate updated ecosystem metrics
-        cat > api/ecosystem.json << 'EOF2'
+        ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        mkdir -p api
+        cat > api/ecosystem.json <<EOF2
         {
           "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
           "connected_worlds": 7,
@@ -156,4 +159,4 @@ jobs:
         git add api/ecosystem.json
         git diff --cached --quiet && { echo 'No changes to commit.'; exit 0; }
         git commit -m "Update ecosystem metrics $ts"
-        git push
+        git push origin HEAD:gh-pages
