@@ -148,11 +148,12 @@ jobs:
           "note": "This endpoint is updated via GitHub Actions. All worlds can poll this JSON for real-time ecosystem metrics without WebSocket dependencies."
         }
         EOF2
-        
+
         # Commit and push changes
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         
         git add api/ecosystem.json
-        git commit -m "Update ecosystem metrics $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+        git diff --cached --quiet && { echo 'No changes to commit.'; exit 0; }
+        git commit -m "Update ecosystem metrics $ts"
         git push

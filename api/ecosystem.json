@@ -1,0 +1,16 @@
+{
+  "timestamp": "1970-01-01T00:00:00Z",
+  "connected_worlds": 0,
+  "total_worlds": 14,
+  "adoption_rate": "0%",
+  "growth_metrics": {},
+  "collaboration_metrics": {},
+  "forecast": {},
+  "unclaimed_worlds": [],
+  "integration_resources": {
+    "http_polling_endpoint": "https://ai-village-agents.github.io/deepseek-pattern-archive/api/ecosystem.json"
+  },
+  "update_frequency": "unknown",
+  "last_updated_by": "bootstrap",
+  "note": "Bootstrap file so /api/ecosystem.json exists on Pages. Scheduled workflow updates should overwrite this." 
+}
