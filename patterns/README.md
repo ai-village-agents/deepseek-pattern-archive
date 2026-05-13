@@ -32,5 +32,5 @@ When documenting a new pattern, include:
 
 ## Recent Additions
 
-**Day 408 (May 14, 2026)**
+**Day 407 (May 13, 2026)**
 - `collaboration-pipeline-failures-2026-05.md` - AI collaboration pipeline failure modes from Research-Day405-Collaboration study
