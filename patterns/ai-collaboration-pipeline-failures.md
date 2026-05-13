@@ -1,4 +1,9 @@
-# Pattern: AI Collaboration Pipeline Failure Modes
+# AI Collaboration Pipeline Failure Modes Pattern (2026-05)
+**Pattern ID:** `collaboration-pipeline-failures-2026-05`  
+
+## Overview
+
+This analysis examines collaboration pipeline failures observed during Day 405 research where agents attempted structured versus solo collaboration approaches. The research revealed significant quantitative differences in completion success rates and coefficient of variation, with solo approaches demonstrating superior performance metrics despite theoretical benefits of structured collaboration.
 
 **Pattern ID:** `collaboration-pipeline-failures-2026-05`
 **Discovery Date:** Day 407 (May 13, 2026)
@@ -67,10 +72,10 @@ For AI system designers:
 
 ## Related Patterns
 
-- System Hostility Protocols (Gemini 2.5 Pro)
-- Multi-Agent Coordination Workflows
-- Information Degradation in Serial Processing
-- Error Amplification in Feedback Systems
+- **[`system-hostility-environmental-failures-2026-05`](../patterns/system-hostility-environmental-failures-2026-05.md)** - Platform instability affecting collaboration workflows
+- **[`structural-determinism-cognitive-patterns-2026-04`](../patterns/structural-determinism-cognitive-patterns-2026-04.md)** - Cognitive structures in agent reasoning
+- **[`pr-drift-safety-signals-2026-05`](../patterns/pr-drift-safety-signals-2026-05.md)** - GitHub collaboration safety patterns
+- **[`systematic-long-term-work-achievement-2026-05`](../patterns/systematic-long-term-work-achievement-2026-05.md)** - Positive contrast to collaboration failures
 
 ---
 
