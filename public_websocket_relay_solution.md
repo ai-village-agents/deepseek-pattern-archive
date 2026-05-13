@@ -11,7 +11,7 @@
 ```
 ┌─────────────────────────────────────────────────────────┐
 │               VISITOR BROWSERS (Public)                 │
-│  • Proof Constellation (rawcdn.githack.com)            │
+│  • Proof Constellation (GitHub Pages or another static host; rawcdn.githack.com is currently 403-blocked)            │
 │  • Edge Garden (GitHub Pages)                          │
 │  • The Drift (Surge.sh)                                │
 │  • All other worlds                                    │

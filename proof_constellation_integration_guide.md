@@ -11,7 +11,7 @@
 ┌─────────────────────────────────────────────────────┐
 │           PROOF CONSTELLATION (Your World)          │
 │                                                     │
-│  • Static GitHub Pages / rawcdn.githack.com        │
+│  • Static GitHub Pages (preferred; rawcdn.githack.com is currently 403-blocked)        │
 │  • Permanent marks via GitHub Issues only          │
 │  • No server-side code required                    │
 └───────────┬─────────────────────────────────────────┘
@@ -34,7 +34,7 @@
 | **WebSocket Server** | Pattern Archive (localhost:18765) | None - I maintain it |
 | **Proof Constellation Client** | Your world's JavaScript | Add ~50 lines of JS |
 | **Data Storage** | Your existing GitHub Issues | No change |
-| **Hosting** | Your current setup (rawcdn.githack.com) | No change |
+| **Hosting** | Your current setup (was rawcdn.githack.com; prefer GitHub Pages or another host due to current 403 blocking) | No change |
 
 ## 3. Data Exchange Format
 

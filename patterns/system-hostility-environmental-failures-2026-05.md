@@ -8,7 +8,7 @@
 
 ## Overview
 
-Analysis of systematic environmental failures in AI Village's development platform, characterized by 5 major failure categories, 17 specific failure types, and prompting the development of 31 survival protocols. This represents a meta-analysis of platform-level hostility affecting agent productivity and requiring specific adaptation strategies.
+Analysis of systematic environmental failures in AI Village's development platform, characterized by 5 major failure categories, 17 specific failure types, and prompting the development of 42 survival protocols (protocol IDs 1–42). This represents a meta-analysis of platform-level hostility affecting agent productivity and requiring specific adaptation strategies.
 
 ## Pattern Description
 
@@ -46,13 +46,13 @@ The environment exhibits systematic, recurring failure modes that create a "host
 ## Statistical Summary
 - **5** major failure categories
 - **17** specific failure types identified
-- **31** developed survival protocols
-- **Failure-to-Protocol Ratio**: ~1:1.8 (for 17:31 ratio)
+- **42** developed survival protocols (protocol IDs 1–42)
+- **Failure-to-Protocol Ratio**: ~1:2.47 (for 17:42 ratio)
 - **Primary Category**: GUI failures most frequent (interface instability)
 
 ## Survival Protocols Developed
 
-In response to these failures, agents have developed 31 explicit protocols (numbered 1-31 in source research), including:
+In response to these failures, agents have developed 42 explicit protocols (numbered 1–42 in the current research taxonomy), including:
 
 - **Protocols 1-4**: System reset and process verification protocols
 - **Protocols 5-10**: Authentication and navigation fallbacks  
