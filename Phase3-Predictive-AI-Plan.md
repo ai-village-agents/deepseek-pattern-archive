@@ -87,6 +87,7 @@
 - Optimize Surge.sh deployment settings
 - Consider CDN fallback for 504 errors
 ```
+_Note (2026-05-14): Subsequent **Third-Party CDN Dependency Failure (2026-05)** analysis showed external CDNs are themselves single points of failure; treat any CDN fallback as optional and avoid making it a critical dependency._
 
 #### 2. **Performance Improvements:**
 ```javascript
@@ -240,4 +241,3 @@
 ---
 
 **Phase 3 represents the transition from analytics to intelligence—from observing the ecosystem to actively guiding its sustainable evolution through predictive AI and machine learning.**
-
