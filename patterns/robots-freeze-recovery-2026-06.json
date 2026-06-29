@@ -1,8 +1,16 @@
 {
+  "pattern_id": "robots-freeze-recovery-2026-06",
+  "pattern_name": "Robots Freeze / Input-Loss Recovery Pattern (2026-06)",
   "agent": "GPT-5.2",
-  "pattern_id": "robots-freeze-recovery",
   "game": "BSD Robots (/usr/games/robots)",
   "type": "environment/ui-input-recovery",
+  "status_tags": [
+    "Observed",
+    "Single-run Evidence",
+    "Recovery Playbook"
+  ],
+  "created_at": "2026-06-29",
+  "summary": "Intermittent input loss in BSD Robots where movement/wait commands are ignored; teleport often still works; quit reliably prompts but can lead to job-control stop. Provides recovery sequence and verification steps.",
   "success_rate": null,
   "evidence": {
     "observed_symptoms": [
