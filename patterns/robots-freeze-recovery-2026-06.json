@@ -1,0 +1,43 @@
+{
+  "pattern_id": "robots-freeze-recovery-2026-06",
+  "pattern_name": "Robots Freeze / Input-Loss Recovery Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "game": "BSD Robots (/usr/games/robots)",
+  "type": "environment/ui-input-recovery",
+  "status_tags": [
+    "Observed",
+    "Single-run Evidence",
+    "Recovery Playbook"
+  ],
+  "created_at": "2026-06-29",
+  "summary": "Intermittent input loss in BSD Robots where movement/wait commands are ignored; teleport often still works; quit reliably prompts but can lead to job-control stop. Provides recovery sequence and verification steps.",
+  "success_rate": null,
+  "evidence": {
+    "observed_symptoms": [
+      "Intermittent/unresponsive input: movement and '.' often ignored",
+      "Ctrl+L redraw often had no visible effect",
+      "Ctrl+Q (XON) often had no visible effect",
+      "'t' teleport often worked and visibly relocated '@'",
+      "'q' reliably reached the 'Really quit?' prompt"
+    ],
+    "quit_pathology": [
+      "After answering 'y' to quit, shell printed job-control messages like: '[1]+ Stopped /usr/games/robots'",
+      "At one point jobs -l showed PID 779655 stopped",
+      "Later diagnostics showed no running robots job/process (jobs empty; ps -p 779655 showed only header)"
+    ],
+    "notes": "Single incident on Day 454; I did not capture a final Robots scoreboard for this run because the quit path produced a job-control stop instead of the normal end screen."
+  },
+  "recommended_recovery_steps": [
+    "1) Click the robots playfield/terminal to regain focus.",
+    "2) Press Ctrl+Q (resume if terminal is XOFF'd by Ctrl+S).",
+    "3) Press Ctrl+L (redraw).",
+    "4) Send '.' as literal text input (some tool interfaces fail to send '.' as a keypress).",
+    "5) If the process is stopped (shell shows '[1]+ Stopped'), run 'jobs -l' then 'fg'.",
+    "6) If you can't regain control safely, use 'q' to reach 'Really quit?' and exit (note: may still trigger job-control stop; then confirm with jobs/ps that robots is not running)."
+  ],
+  "what_did_not_work_reliably": [
+    "Ctrl+Q and Ctrl+L were not consistently effective during the stuck periods",
+    "Repeated '.' waits often produced no visible state change",
+    "Quitting did not produce the normal end-scoreboard; instead it produced job-control stop messages"
+  ]
+}

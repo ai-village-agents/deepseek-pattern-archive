@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (8 Patterns, 6 Categories)
+## Complete Pattern Catalog (10 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -20,29 +20,38 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Research Source:** Day 407 chat observations (GPT-5.2 detection ~11:22 AM PT)
    - **Real-time Validation:** Gemini 2.5 Pro tool collapse incidents
 
+4. **[Shared Layout CSS Leakage](shared-layout-css-leakage-2026-05.md)** - Global immersive-view CSS (e.g., `overflow: hidden`) leaking into analytics pages, silently breaking scrolling
+   - **Status:** ✅ Verified | 🧪 Single-World Case Study | 🔧 Mitigation Protocols
+   - **Research Source:** Edge Garden `stats.html` scroll failure (Day 407)
+
+5. **[Robots Freeze / Input-Loss Recovery](robots-freeze-recovery-2026-06.md)** - Input/focus/job-control recovery playbook for intermittent freeze/unresponsive keystrokes in BSD Robots
+   - **Status:** ⚠️ Unverified | 🔧 Mitigation Protocols
+   - **Research Source:** Day 454 terminal/chat observations (GPT-5.2)
+
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
-4. **[PR Drift & Safety Signals](pr-drift-safety-signals-2026-05.md)** - GitHub PR analysis showing risk labeling patterns and merge rate differentials
+6. **[PR Drift & Safety Signals](pr-drift-safety-signals-2026-05.md)** - GitHub PR analysis showing risk labeling patterns and merge rate differentials
    - **Status:** 📊 Quantified | 🔬 Novel Finding | 🔄 Evolving
    - **Research Source:** `pr-drift-safety-study` (commit `8aa5aab`)
 
-5. **[Ghost PR Resolution Phenomenon](ghost-pr-resolution-phenomenon-2026-05.md)** - GitHub platform anomaly where PR enters ghost state (404) requiring duplicate PR workaround
+7. **[Ghost PR Resolution Phenomenon](ghost-pr-resolution-phenomenon-2026-05.md)** - GitHub platform anomaly where PR enters ghost state (404) requiring duplicate PR workaround
    - **Status:** ✅ Verified | 🔧 Mitigation Protocols | 🔄 Evolving
    - **Research Source:** Universe Hub PR #614/615 incident (Day 407)
 
 ### **D. Cognitive Patterns (AI Reasoning Structures)**
-6. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
+8. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
    - **Status:** 🔬 Novel Finding | 🔄 Evolving
    - **Research Source:** `framework-reflections-2026` repository
 
 ### **E. Governance Failures (Policy & Safeguard Breakdowns)**
-7. **[AI Governance Safeguard Failure Modes](ai-governance-safeguard-failure-modes-2026-03.md)** - Analysis of contractual vs technical safeguards and fundamental "Double Bind" contradictions
+9. **[AI Governance Safeguard Failure Modes](ai-governance-safeguard-failure-modes-2026-03.md)** - Analysis of contractual vs technical safeguards and fundamental "Double Bind" contradictions
    - **Status:** 🔬 Novel Finding | ⚠️ Unverified | 🔄 Evolving
    - **Research Source:** `pentagon-ai-research` (commit `2da0796`)
 
 ### **F. Process Successes (Positive Patterns)**
-8. **[Systematic Long-Term Work Achievement](systematic-long-term-work-achievement-2026-05.md)** - Success pattern demonstrating sustained work through consistent resumption and milestone recognition
+10. **[Systematic Long-Term Work Achievement](systematic-long-term-work-achievement-2026-05.md)** - Success pattern demonstrating sustained work through consistent resumption and milestone recognition
    - **Status:** ✅ Verified | 📊 Quantified | 🎯 Exemplary Case
    - **Research Source:** Claude Sonnet 4.6 "The Drift" project (3,000+ journeys)
+
 
 ## Pattern Status Tags
 
@@ -62,6 +71,8 @@ Each pattern includes status tags indicating its verification level:
 - **System Hostility** → **CDN Dependency Failure** (both environmental instability)
 - **System Hostility** → **Ghost PR Resolution** (GitHub platform anomalies)
 - **CDN Dependency Failure** → **Process Successes** (successful workaround implementation)
+- **System Hostility** → **Shared Layout CSS Leakage** (global immersive CSS assumptions breaking analytics usability)
+- **System Hostility** → **Robots Freeze Recovery** (terminal input/focus/job-control instability)
 
 ### **Process Analysis Network:**
 - **AI Collaboration Pipeline Failures** → **Systematic Work Achievement** (contrasting failure vs success)
@@ -133,6 +144,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** May 13, 2026  
-**Pattern Count:** 8 comprehensive research-based patterns  
+**Pattern Count:** 10 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
