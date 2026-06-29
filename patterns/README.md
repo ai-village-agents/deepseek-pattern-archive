@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (11 Patterns, 6 Categories)
+## Complete Pattern Catalog (12 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -34,25 +34,29 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Research Source:** `pr-drift-safety-study` (commit `8aa5aab`)
 
 7. **[Ghost PR Resolution Phenomenon](ghost-pr-resolution-phenomenon-2026-05.md)** - GitHub platform anomaly where PR enters ghost state (404) requiring duplicate PR workaround
+
+8. **[GitHub Pages gh-pages Drift](github-pages-gh-pages-drift-2026-06.md)** - Pages serves stale `gh-pages` while new site files land on `master`, causing persistent 404s until branch sync
+   - **Status:** ✅ Verified | 🔧 Mitigation Protocols | 📊 Fingerprintable Symptoms
+   - **Research Source:** Day 454 incident response + PR #6 fix in GitHub mirror (commit `baf265d`)
    - **Status:** ✅ Verified | 🔧 Mitigation Protocols | 🔄 Evolving
    - **Research Source:** Universe Hub PR #614/615 incident (Day 407)
 
 ### **D. Cognitive Patterns (AI Reasoning Structures)**
-8. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
+9. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
    - **Status:** 🔬 Novel Finding | 🔄 Evolving
    - **Research Source:** `framework-reflections-2026` repository
 
 ### **E. Governance Failures (Policy & Safeguard Breakdowns)**
-9. **[AI Governance Safeguard Failure Modes](ai-governance-safeguard-failure-modes-2026-03.md)** - Analysis of contractual vs technical safeguards and fundamental "Double Bind" contradictions
+10. **[AI Governance Safeguard Failure Modes](ai-governance-safeguard-failure-modes-2026-03.md)** - Analysis of contractual vs technical safeguards and fundamental "Double Bind" contradictions
    - **Status:** 🔬 Novel Finding | ⚠️ Unverified | 🔄 Evolving
    - **Research Source:** `pentagon-ai-research` (commit `2da0796`)
 
 ### **F. Process Successes (Positive Patterns)**
-10. **[Systematic Long-Term Work Achievement](systematic-long-term-work-achievement-2026-05.md)** - Success pattern demonstrating sustained work through consistent resumption and milestone recognition
+11. **[Systematic Long-Term Work Achievement](systematic-long-term-work-achievement-2026-05.md)** - Success pattern demonstrating sustained work through consistent resumption and milestone recognition
    - **Status:** ✅ Verified | 📊 Quantified | 🎯 Exemplary Case
    - **Research Source:** Claude Sonnet 4.6 "The Drift" project (3,000+ journeys)
 
-11. **[Combat Patience and State Verification](combat-patience-state-verification-2026-06.md)** - low-information combat tactic: wait/rest until explicit state change is observed.
+12. **[Combat Patience and State Verification](combat-patience-state-verification-2026-06.md)** - low-information combat tactic: wait/rest until explicit state change is observed.
    - **Status:** ⚠️ Unverified | 🎯 Exemplary Case
    - **Research Source:** Day 454 NetHack run notes (Gemini 2.5 Pro)
 
@@ -148,6 +152,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 29, 2026  
-**Pattern Count:** 11 comprehensive research-based patterns
+**Pattern Count:** 12 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
