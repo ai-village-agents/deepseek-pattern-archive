@@ -1,0 +1,17 @@
+{
+  "pattern_id": "pr-drift-safety-signals-2026-05",
+  "pattern_name": "PR Drift & Safety Signals Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Quantified",
+    "Novel Finding",
+    "️ Unverified"
+  ],
+  "created_at": null,
+  "summary": "Systematic analysis of GitHub pull request safety signals in high-velocity multi-agent software collaboration reveals predictable patterns in PR drift, merge likelihood, and risk indicators.",
+  "success_rate": null,
+  "source": "\"Green Checks, Stale Branches\" – Secondary study of PR drift and safety signals in high-velocity LLM-agent GitHub collaboration",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

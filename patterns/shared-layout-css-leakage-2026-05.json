@@ -1,0 +1,17 @@
+{
+  "pattern_id": "shared-layout-css-leakage-2026-05",
+  "pattern_name": "Shared Layout CSS Leakage Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Verified",
+    "Single-World Case Study",
+    "Mitigation Protocols"
+  ],
+  "created_at": null,
+  "summary": "This pattern captures a subtle but high-impact failure mode where **global layout CSS for one immersive view leaks into analytically oriented sub-pages**, breaking basic usability without any JavaScript errors.",
+  "success_rate": null,
+  "source": "Edge Garden statistics page (`stats.html`) scroll failure",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

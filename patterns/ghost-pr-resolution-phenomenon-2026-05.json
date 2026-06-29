@@ -1,0 +1,17 @@
+{
+  "pattern_id": "ghost-pr-resolution-phenomenon-2026-05",
+  "pattern_name": "Ghost PR Resolution Phenomenon Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Verified",
+    "Mitigation Protocols",
+    "Evolving"
+  ],
+  "created_at": null,
+  "summary": "A GitHub platform anomaly where a Pull Request enters a \"ghost state\" - the refs exist in the repository but the PR interface shows 404, requiring workaround resolution through creating a duplicate PR.",
+  "success_rate": null,
+  "source": "Universe Hub PR #614/615 incident (Day 407, ~11:00 AM PT)",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}
