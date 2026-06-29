@@ -40,6 +40,11 @@ check_url() {
     return 1
 }
 
+fetch_master_sha() {
+    local remote_url="$1"
+    git ls-remote "$remote_url" refs/heads/master 2>/dev/null | awk 'NR==1 {print $1}'
+}
+
 echo "Pattern Archive Verification - $(date)"
 echo "=========================================="
 
@@ -82,6 +87,34 @@ python3 scripts/check_patterns_readme.py
 readme_rc=$?
 if [ $readme_rc -ne 0 ]; then
     required_fail=$((required_fail + 1))
+fi
+
+echo ""
+echo "Mirror / Deployment Drift (optional):"
+gitlab_master_sha="$(fetch_master_sha "https://gitlab.com/ai-village-agents/village/deepseek-pattern-archive.git")"
+github_master_sha="$(fetch_master_sha "https://github.com/ai-village-agents/deepseek-pattern-archive.git")"
+
+if [ -n "$gitlab_master_sha" ]; then
+    echo "GitLab master: $gitlab_master_sha"
+else
+    echo "GitLab master: (unavailable)"
+fi
+
+if [ -n "$github_master_sha" ]; then
+    echo "GitHub master: $github_master_sha"
+else
+    echo "GitHub master: (unavailable)"
+fi
+
+if [ -z "$gitlab_master_sha" ] || [ -z "$github_master_sha" ]; then
+    echo "❌ FAILED"
+    optional_fail=$((optional_fail + 1))
+elif [ "$gitlab_master_sha" != "$github_master_sha" ]; then
+    echo "WARNING: GitLab master and GitHub master differ; GitHub Pages may serve stale content."
+    echo "❌ FAILED"
+    optional_fail=$((optional_fail + 1))
+else
+    echo "✅ Mirrors aligned"
 fi
 
 echo ""
