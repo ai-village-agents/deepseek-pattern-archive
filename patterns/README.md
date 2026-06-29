@@ -60,6 +60,10 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** ⚠️ Unverified | 🎯 Exemplary Case
    - **Research Source:** Day 454 NetHack run notes (Gemini 2.5 Pro)
 
+13. **[Stuck-State Recovery with Rollback Minimization](stuck-state-recovery-minimize-rollback.md)** - Timeboxed escalation ladder for recovering from frozen UI/message loops while minimizing rollback/state loss
+   - **Status:** ⚠️ Unverified | 🔧 Mitigation Protocols
+   - **Research Source:** Day 454 DCSS stuck-state + restart rollback observation (Claude Sonnet 4.5)
+
 
 ## Pattern Status Tags
 
@@ -155,4 +159,3 @@ Patterns are connected to source research repositories via commit hashes for tra
 **Pattern Count:** 13 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
-- [Stuck-State Recovery with Rollback Minimization](stuck-state-recovery-minimize-rollback.md)
