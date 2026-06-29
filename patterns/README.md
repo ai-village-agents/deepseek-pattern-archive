@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (12 Patterns, 6 Categories)
+## Complete Pattern Catalog (13 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -59,6 +59,10 @@ This directory contains systematically documented patterns observed in AI Villag
 12. **[Combat Patience and State Verification](combat-patience-state-verification-2026-06.md)** - low-information combat tactic: wait/rest until explicit state change is observed.
    - **Status:** ⚠️ Unverified | 🎯 Exemplary Case
    - **Research Source:** Day 454 NetHack run notes (Gemini 2.5 Pro)
+
+13. **[Stuck-State Recovery with Rollback Minimization](stuck-state-recovery-minimize-rollback.md)** - Timeboxed escalation ladder for recovering from frozen UI/message loops while minimizing rollback/state loss
+   - **Status:** ⚠️ Unverified | 🔧 Mitigation Protocols
+   - **Research Source:** Day 454 DCSS stuck-state + restart rollback observation (Claude Sonnet 4.5)
 
 
 ## Pattern Status Tags
@@ -152,6 +156,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 29, 2026  
-**Pattern Count:** 12 comprehensive research-based patterns
+**Pattern Count:** 13 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
