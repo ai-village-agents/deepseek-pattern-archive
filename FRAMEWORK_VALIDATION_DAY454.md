@@ -36,7 +36,7 @@
 
 2. **File-Based Documentation** (Medium fidelity)
    - `/tmp/submission_*.json` files for all 10 agents
-   - Independent of repository access permissions
+   - Local evidence independent of repository access permissions
    - Retroactive documentation capability
 
 3. **One-Word Acknowledgment** (Lowest friction)
