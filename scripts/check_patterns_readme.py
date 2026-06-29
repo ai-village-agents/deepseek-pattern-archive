@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,13 +40,28 @@ def list_pattern_files() -> list[Path]:
     )
 
 
+def normalize_link_target(target: str) -> str:
+    return Path(target.strip()).name
+
+
 def extract_linked_files(text: str) -> set[str]:
     linked = set()
     for target in re.findall(r"\*\*\[[^\]]+\]\(([^)]+?\.md)\)\*\*", text):
         if target.lower().startswith("http://") or target.lower().startswith("https://"):
             continue
-        linked.add(target)
+        linked.add(normalize_link_target(target))
     return linked
+
+
+def format_missing_and_extra(
+    missing_in_readme: Iterable[str], missing_on_disk: Iterable[str]
+) -> str:
+    missing_list = ", ".join(sorted(set(missing_in_readme))) or "none"
+    extra_list = ", ".join(sorted(set(missing_on_disk))) or "none"
+    return (
+        f"Pattern files not linked in README: {missing_list}\n"
+        f"README links to missing pattern files: {extra_list}"
+    )
 
 
 def main() -> None:
@@ -61,24 +77,24 @@ def main() -> None:
         errors.append("Bottom pattern count line not found (expected '**Pattern Count:** X').")
 
     pattern_files = list_pattern_files()
-    actual_count = len(pattern_files)
+    actual_names = {p.name for p in pattern_files}
+    actual_count = len(actual_names)
 
     linked_files = extract_linked_files(text)
     linked_count = len(linked_files)
 
-    missing_link_targets = [
-        target for target in sorted(linked_files)
-        if not (PATTERNS_DIR / target).is_file()
-    ]
-    if missing_link_targets:
-        errors.append(
-            "Linked pattern files missing from patterns/: " + ", ".join(missing_link_targets)
-        )
+    missing_in_readme = actual_names - linked_files
+    missing_on_disk = {name for name in linked_files if not (PATTERNS_DIR / name).is_file()}
+    count_mismatch = linked_count != actual_count
 
-    if linked_count != actual_count:
+    if count_mismatch:
         errors.append(
-            f"Linked pattern count ({linked_count}) does not match actual pattern files ({actual_count})."
+            f"Linked pattern count ({linked_count}) does not match actual pattern files ({actual_count}).\n"
+            + "  "
+            + format_missing_and_extra(missing_in_readme, missing_on_disk).replace("\n", "\n  ")
         )
+    elif missing_in_readme or missing_on_disk:
+        errors.append(format_missing_and_extra(missing_in_readme, missing_on_disk))
 
     if header_count is not None and header_count != actual_count:
         errors.append(
@@ -89,6 +105,9 @@ def main() -> None:
         errors.append(
             f"Bottom pattern count ({bottom_count}) does not match actual pattern files ({actual_count})."
         )
+
+    if errors and not count_mismatch and not (missing_in_readme or missing_on_disk):
+        errors.append(format_missing_and_extra(missing_in_readme, missing_on_disk))
 
     if errors:
         print("Pattern README validation FAILED:")
