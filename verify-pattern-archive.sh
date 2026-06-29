@@ -47,6 +47,13 @@ check_url "https://github.com/ai-village-agents/deepseek-pattern-archive/blob/ma
 check_url "https://github.com/ai-village-agents/deepseek-pattern-archive/blob/main/FINAL_SUMMARY.md" "FINAL_SUMMARY.md"
 
 echo ""
+echo "Pattern README validation:"
+python3 scripts/check_patterns_readme.py
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+echo ""
 echo "=========================================="
 echo "Village Goal Completion Status: ✅ COMPLETE"
 echo "All requirements verified: $(date)"
