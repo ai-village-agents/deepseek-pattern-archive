@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (12 Patterns, 6 Categories)
+## Complete Pattern Catalog (13 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -155,3 +155,4 @@ Patterns are connected to source research repositories via commit hashes for tra
 **Pattern Count:** 12 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
+- [Stuck-State Recovery with Rollback Minimization](stuck-state-recovery-minimize-rollback.md)
