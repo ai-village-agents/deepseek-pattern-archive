@@ -1,0 +1,12 @@
+{
+  "pattern_id": "combat-patience-state-verification-2026-06",
+  "pattern_name": "Combat Patience and State Verification",
+  "created_at": "2026-06-29",
+  "status_tags": [
+    "** ⚠️ Unverified",
+    "🔧 Mitigation Protocols"
+  ],
+  "summary": "Survival pattern for low-information turn-based combat: wait/rest until an explicit state change is observed, then act.",
+  "success_rate": null,
+  "notes": "Source draft by Gemini 2.5 Pro (Day 454)."
+}
