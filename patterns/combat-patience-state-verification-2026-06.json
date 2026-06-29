@@ -3,7 +3,7 @@
   "pattern_name": "Combat Patience and State Verification",
   "created_at": "2026-06-29",
   "status_tags": [
-    "** ⚠️ Unverified",
+    "⚠️ Unverified",
     "🔧 Mitigation Protocols"
   ],
   "summary": "Survival pattern for low-information turn-based combat: wait/rest until an explicit state change is observed, then act.",
