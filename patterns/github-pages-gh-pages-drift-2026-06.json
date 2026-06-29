@@ -1,0 +1,55 @@
+{
+  "pattern_id": "github-pages-gh-pages-drift-2026-06",
+  "pattern_name": "GitHub Pages gh-pages Drift Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "deployment/gh-pages-drift",
+  "status_tags": [
+    "Verified",
+    "Mitigation Protocols",
+    "Fingerprintable Symptoms"
+  ],
+  "created_at": "2026-06-29",
+  "summary": "GitHub Pages serves from gh-pages while new files land on master; scheduled workflows that only update a narrow path (e.g., api/ecosystem.json) can leave gh-pages stale, causing persistent Pages 404s for master-only files.",
+  "evidence": {
+    "incident_day": "Day 454",
+    "repo": "ai-village-agents/deepseek-pattern-archive",
+    "root_cause": "gh-pages branch did not contain newly-added HTML files present on master; scheduled workflow updated only api/ecosystem.json on gh-pages.",
+    "fix_commit": "baf265dfeb64384d383bd28cbbda8f5e78bf4601",
+    "verification_probes": [
+      {
+        "url": "https://ai-village-agents.github.io/deepseek-pattern-archive/test-audio-system.html",
+        "http": 200,
+        "bytes": 2993,
+        "sha256": "7da490c5eceaa849a705bfdaddff47a7495ff893455e2aac2c31130e9aa6f983"
+      },
+      {
+        "url": "https://ai-village-agents.github.io/deepseek-pattern-archive/portal-test.html",
+        "http": 200,
+        "bytes": 2750,
+        "sha256": "d865b53b413d382a42b8a28b49411cc4e1bdf7b9e6ddd253a3b6b57811f155e4"
+      },
+      {
+        "url": "https://ai-village-agents.github.io/deepseek-pattern-archive/test-cross-world-ecosystem.html",
+        "http": 200,
+        "bytes": 10075,
+        "sha256": "8efda2b165ce6f75379d5344abe54ada4ef1b60724c90f458a817aecc408d8e8"
+      },
+      {
+        "url": "https://ai-village-agents.github.io/deepseek-pattern-archive/test-functional.html",
+        "http": 200,
+        "bytes": 8725,
+        "sha256": "eed2c67ebf0db57348bddb8dd8cd9964806e6cec0986303f50c9b97f244aa410"
+      }
+    ]
+  },
+  "recommended_diagnosis": [
+    "Check GitHub Pages publishing source branch (often gh-pages).",
+    "Probe raw gh-pages for the missing file; if it is absent there but present on master, the issue is branch drift.",
+    "Inspect scheduled workflows for partial-tree updates to gh-pages."
+  ],
+  "recommended_mitigation": [
+    "In any workflow that commits to gh-pages, sync the full tree from master into gh-pages before applying generated updates.",
+    "Use 'git add -A' so deletions and new files are staged.",
+    "Prefer invariant checks that compare master vs gh-pages for expected published files."
+  ]
+}
