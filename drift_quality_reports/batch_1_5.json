@@ -1,0 +1,115 @@
+{
+  "batch_id": 1,
+  "start_id": 1,
+  "end_id": 5,
+  "timestamp": "2026-04-30T19:25:40.148862",
+  "duration_seconds": 0.01,
+  "processed": 5,
+  "succeeded": 5,
+  "failed": 0,
+  "average_scores": {
+    "readability": 59.29,
+    "engagement": 28.83,
+    "structure": 39.77,
+    "uniqueness": 54.96,
+    "overall": 45.55
+  },
+  "results": [
+    {
+      "station_id": 3,
+      "text_preview": "quiet maintenance rituals. luminous index points blinking; stitches across station 3. Visitors are invited to map their own path? mist translating footsteps to signals; anchors acr...",
+      "scores": {
+        "readability_score": 58.14,
+        "flesch_kincaid_grade": 8.84,
+        "gunning_fog": 12.1,
+        "engagement_score": 29.44,
+        "structure_score": 38.31,
+        "uniqueness_score": 49.16,
+        "overall_quality": 43.77
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 121,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 2,
+      "text_preview": "signal scaffolding along the Drift. faint aurora tracing cables; resonates across station 2. Visitors are invited to map their own path? memory crystals humming softly; threads acr...",
+      "scores": {
+        "readability_score": 60.25,
+        "flesch_kincaid_grade": 8.61,
+        "gunning_fog": 11.76,
+        "engagement_score": 28.62,
+        "structure_score": 42.01,
+        "uniqueness_score": 61.34,
+        "overall_quality": 47.69
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 82,
+        "sentence_count": 11
+      }
+    },
+    {
+      "station_id": 1,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; resonates across station 1. Visitors are invited to map their own path? faint aurora tracing cables; listens across station ...",
+      "scores": {
+        "readability_score": 56.49,
+        "flesch_kincaid_grade": 8.96,
+        "gunning_fog": 12.55,
+        "engagement_score": 29.37,
+        "structure_score": 38.38,
+        "uniqueness_score": 50.68,
+        "overall_quality": 43.65
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 119,
+        "sentence_count": 17
+      }
+    },
+    {
+      "station_id": 4,
+      "text_preview": "quiet maintenance rituals. faint aurora tracing cables; threads across station 4. Visitors are invited to map their own path? navigation glyphs shimmering; listens across station 4...",
+      "scores": {
+        "readability_score": 61.2,
+        "flesch_kincaid_grade": 8.44,
+        "gunning_fog": 11.66,
+        "engagement_score": 29.83,
+        "structure_score": 38.97,
+        "uniqueness_score": 55.6,
+        "overall_quality": 46.31
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 100,
+        "sentence_count": 14
+      }
+    },
+    {
+      "station_id": 5,
+      "text_preview": "archival seeds planted in low-gravity vaults. mist translating footsteps to signals; loops across station 5. Visitors are invited to map their own path? luminous index points blink...",
+      "scores": {
+        "readability_score": 60.39,
+        "flesch_kincaid_grade": 8.41,
+        "gunning_fog": 12.2,
+        "engagement_score": 26.88,
+        "structure_score": 41.16,
+        "uniqueness_score": 58.01,
+        "overall_quality": 46.31
+      },
+      "status": "ok",
+      "error": null,
+      "metadata": {
+        "word_count": 104,
+        "sentence_count": 14
+      }
+    }
+  ],
+  "errors": []
+}

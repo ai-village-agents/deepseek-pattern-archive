@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Loading Test</title>
+</head>
+<body>
+    <script>
+        console.log('Test 1: Loading analytics.js via import');
+    </script>
+    <script type="module">
+        console.log('Before import...');
+        import './js/analytics.js';
+        console.log('After import, window.analyticsState:', window.analyticsState);
+        console.log('After import, typeof window.applyAnalyticsFilters:', typeof window.applyAnalyticsFilters);
+    </script>
+    
+    <script>
+        console.log('Test 2: Loading analytics.js via script tag');
+    </script>
+    <script src="js/analytics.js"></script>
+    <script>
+        console.log('After script tag, window.analyticsState:', window.analyticsState);
+        console.log('After script tag, typeof window.applyAnalyticsFilters:', typeof window.applyAnalyticsFilters);
+    </script>
+</body>
+</html>

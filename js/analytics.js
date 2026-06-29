@@ -1,451 +1,698 @@
-// Real-time Visitor Analytics Dashboard
-// Provides chart rendering, controls, stats, and update helpers
-
-(function(global) {
-  const COLORS = {
+// The Pattern Archive - Real-Time Visitor Analytics Dashboard
+// Self-contained IIFE exposing analytics API while keeping internals scoped
+(function () {
+  const STORAGE_KEY_DATA = 'pattern-archive-anomalies';
+  const STORAGE_KEY_STATE = 'pattern-archive-analytics-state';
+  const THEME = {
     cyan: '#4dd6ff',
     magenta: '#ff2fa3',
     purple: '#7c6cff',
-    ink: 'rgba(15, 19, 36, 0.8)'
+    background: '#070a12',
+    panel: 'rgba(7,10,18,0.72)'
   };
 
   const analyticsState = {
-    charts: {},
     anomalies: [],
+    filtered: [],
     filters: {
-      timeRange: '7d',
-      patternType: 'all',
+      timeRange: '7d', // 24h, 7d, 30d, all
+      type: 'all',
       severity: 'all'
-    }
+    },
+    charts: {},
+    containers: {}
   };
 
-  const LOCAL_KEY = 'pattern-archive-anomalies';
-
-  function initAnalyticsDashboard() {
-    try {
-      renderAnalyticsControls();
-      analyticsState.anomalies = loadAnomalyData();
-      const filtered = filterAnomalies(analyticsState.anomalies);
-      renderAnalyticsCharts(filtered);
-      renderAnalyticsStats(filtered);
-    } catch (err) {
-      console.error('Failed to initialize analytics dashboard', err);
-      safeSetContent('analytics-container', '<p class="error">Analytics failed to load.</p>');
-    }
+  // ======== PUBLIC API ========
+  function initAnalyticsDashboard(rootId = 'analytics-dashboard') {
+    const root = getOrCreateRoot(rootId);
+    restoreFilters();
+    analyticsState.anomalies = loadAnomalies();
+    analyticsState.containers = buildDashboardShell(root);
+    renderAnalyticsControls();
+    updateAnalytics();
+    return analyticsState;
   }
 
-  function updateAnalytics() {
-    try {
-      analyticsState.anomalies = loadAnomalyData();
-      const filtered = filterAnomalies(analyticsState.anomalies);
-      renderAnalyticsCharts(filtered);
-      renderAnalyticsStats(filtered);
-    } catch (err) {
-      console.error('Analytics update failed', err);
-    }
+  function renderAnalyticsCharts(anomalies) {
+    const container = analyticsState.containers.charts;
+    if (!container) return;
+    container.innerHTML = '';
+
+    const chartConfigs = [
+      {
+        id: 'chart-temporal',
+        title: 'Temporal Submission Patterns',
+        build: () => buildTemporalConfig(anomalies)
+      },
+      {
+        id: 'chart-types',
+        title: 'Pattern Type Distribution',
+        build: () => buildTypeConfig(anomalies)
+      },
+      {
+        id: 'chart-severity',
+        title: 'Severity Distribution',
+        build: () => buildSeverityConfig(anomalies)
+      },
+      {
+        id: 'chart-hourly',
+        title: 'Hourly Submission Patterns',
+        build: () => buildHourlyConfig(anomalies)
+      }
+    ];
+
+    chartConfigs.forEach(cfg => {
+      const card = createCard(cfg.title);
+      const canvas = document.createElement('canvas');
+      canvas.height = 260;
+      card.appendChild(canvas);
+      container.appendChild(card);
+
+      const context = canvas.getContext('2d');
+      const built = cfg.build();
+
+      // Graceful fallback when Chart.js is not available
+      if (typeof Chart === 'undefined' || !built) {
+        drawFallbackChart(context, cfg.title, built && built.summary);
+        analyticsState.charts[cfg.id] = null;
+        return;
+      }
+
+      if (analyticsState.charts[cfg.id]) {
+        analyticsState.charts[cfg.id].destroy();
+      }
+
+      analyticsState.charts[cfg.id] = new Chart(context, built.config);
+    });
   }
 
   function renderAnalyticsControls() {
-    const container = document.getElementById('analytics-controls');
+    const container = analyticsState.containers.controls;
     if (!container) return;
+    container.innerHTML = '';
 
-    container.innerHTML = `
-      <div class="analytics-controls">
-        <label>
-          Time Range
-          <select id="analytics-range">
-            <option value="24h">Last 24h</option>
-            <option value="7d" selected>Last 7 days</option>
-            <option value="30d">Last 30 days</option>
-            <option value="all">All time</option>
-          </select>
-        </label>
-        <label>
-          Pattern Type
-          <select id="analytics-type">
-            <option value="all">All types</option>
-            <option value="incremental">Incremental</option>
-            <option value="exponential">Exponential</option>
-            <option value="clockwork">Clockwork</option>
-            <option value="other">Other</option>
-          </select>
-        </label>
-        <label>
-          Severity
-          <select id="analytics-severity">
-            <option value="all">All severities</option>
-            <option value="1">1 - Minor</option>
-            <option value="2">2 - Moderate</option>
-            <option value="3">3 - Significant</option>
-            <option value="4">4 - Major</option>
-            <option value="5">5 - Critical</option>
-          </select>
-        </label>
-        <button id="analytics-refresh" class="pill-btn">Refresh</button>
-      </div>
-    `;
+    const controls = document.createElement('div');
+    controls.className = 'analytics-controls';
+    controls.style.display = 'grid';
+    controls.style.gridTemplateColumns = 'repeat(auto-fit, minmax(180px, 1fr))';
+    controls.style.gap = '12px';
 
-    const range = container.querySelector('#analytics-range');
-    const type = container.querySelector('#analytics-type');
-    const severity = container.querySelector('#analytics-severity');
-    const refresh = container.querySelector('#analytics-refresh');
+    controls.appendChild(
+      createSelectControl(
+        'Time Range',
+        'timeRange',
+        [
+          { value: '24h', label: 'Last 24 hours' },
+          { value: '7d', label: 'Last 7 days' },
+          { value: '30d', label: 'Last 30 days' },
+          { value: 'all', label: 'All time' }
+        ],
+        analyticsState.filters.timeRange
+      )
+    );
 
-    [range, type, severity].forEach(el => {
-      if (!el) return;
-      el.addEventListener('change', () => {
-        analyticsState.filters.timeRange = range.value;
-        analyticsState.filters.patternType = type.value;
-        analyticsState.filters.severity = severity.value;
-        updateAnalytics();
-      });
-    });
+    controls.appendChild(
+      createSelectControl(
+        'Pattern Type',
+        'type',
+        [
+          { value: 'all', label: 'All' },
+          { value: 'incremental', label: 'Incremental' },
+          { value: 'exponential', label: 'Exponential' },
+          { value: 'clockwork', label: 'Clockwork' },
+          { value: 'other', label: 'Other' }
+        ],
+        analyticsState.filters.type
+      )
+    );
 
-    if (refresh) {
-      refresh.addEventListener('click', () => updateAnalytics());
-    }
+    controls.appendChild(
+      createSelectControl(
+        'Severity',
+        'severity',
+        [
+          { value: 'all', label: 'All' },
+          { value: '1-2', label: 'Minor (1-2)' },
+          { value: '3', label: 'Moderate (3)' },
+          { value: '4', label: 'Significant (4)' },
+          { value: '5', label: 'Major (5)' }
+        ],
+        analyticsState.filters.severity
+      )
+    );
+
+    container.appendChild(controls);
   }
 
-  function renderAnalyticsCharts(anomalies = []) {
-    const container = document.getElementById('analytics-container');
+  function renderAnalyticsStats(anomalies) {
+    const container = analyticsState.containers.stats;
     if (!container) return;
+    container.innerHTML = '';
 
-    container.innerHTML = `
-      <div class="charts-grid">
-        <canvas id="chart-submissions" height="200"></canvas>
-        <canvas id="chart-pattern-types" height="200"></canvas>
-        <canvas id="chart-severity" height="200"></canvas>
-        <canvas id="chart-hourly" height="200"></canvas>
-      </div>
-    `;
-
-    destroyCharts();
-
-    const chartLibAvailable = typeof Chart !== 'undefined';
-    const dataBundles = buildChartData(anomalies);
-
-    if (chartLibAvailable) {
-      analyticsState.charts.submissions = new Chart(
-        document.getElementById('chart-submissions').getContext('2d'),
-        {
-          type: 'line',
-          data: {
-            labels: dataBundles.submission.labels,
-            datasets: [
-              {
-                label: 'Submissions',
-                data: dataBundles.submission.values,
-                borderColor: COLORS.cyan,
-                backgroundColor: 'rgba(77, 214, 255, 0.12)',
-                tension: 0.35,
-                fill: true
-              }
-            ]
-          },
-          options: baseChartOptions('Submission cadence')
-        }
-      );
-
-      analyticsState.charts.patterns = new Chart(
-        document.getElementById('chart-pattern-types').getContext('2d'),
-        {
-          type: 'doughnut',
-          data: {
-            labels: dataBundles.types.labels,
-            datasets: [
-              {
-                data: dataBundles.types.values,
-                backgroundColor: [COLORS.cyan, COLORS.magenta, COLORS.purple, '#24314a']
-              }
-            ]
-          },
-          options: { plugins: { legend: { labels: { color: '#e7ecf9' } } } }
-        }
-      );
-
-      analyticsState.charts.severity = new Chart(
-        document.getElementById('chart-severity').getContext('2d'),
-        {
-          type: 'bar',
-          data: {
-            labels: dataBundles.severity.labels,
-            datasets: [
-              {
-                label: 'Severity',
-                data: dataBundles.severity.values,
-                backgroundColor: COLORS.magenta,
-                borderRadius: 6
-              }
-            ]
-          },
-          options: {
-            scales: {
-              x: { ticks: { color: '#e7ecf9' }, grid: { color: 'rgba(255,255,255,0.08)' } },
-              y: { ticks: { color: '#e7ecf9' }, grid: { color: 'rgba(255,255,255,0.08)' } }
-            },
-            plugins: { legend: { labels: { color: '#e7ecf9' } } }
-          }
-        }
-      );
-
-      analyticsState.charts.hourly = new Chart(
-        document.getElementById('chart-hourly').getContext('2d'),
-        {
-          type: 'line',
-          data: {
-            labels: dataBundles.hourly.labels,
-            datasets: [
-              {
-                label: 'Hourly submissions',
-                data: dataBundles.hourly.values,
-                borderColor: COLORS.purple,
-                backgroundColor: 'rgba(124, 108, 255, 0.18)',
-                fill: true,
-                tension: 0.25
-              }
-            ]
-          },
-          options: baseChartOptions('Hourly rhythm')
-        }
-      );
-    } else {
-      // Minimal fallback rendering without Chart.js
-      simpleBarChart('chart-submissions', dataBundles.submission.labels, dataBundles.submission.values, COLORS.cyan);
-      simpleBarChart('chart-pattern-types', dataBundles.types.labels, dataBundles.types.values, COLORS.magenta);
-      simpleBarChart('chart-severity', dataBundles.severity.labels, dataBundles.severity.values, COLORS.magenta);
-      simpleBarChart('chart-hourly', dataBundles.hourly.labels, dataBundles.hourly.values, COLORS.purple);
-    }
-  }
-
-  function renderAnalyticsStats(anomalies = []) {
-    const container = document.getElementById('analytics-stats');
-    if (!container) return;
+    const card = createCard('Engagement & Anomaly Pulse');
+    card.style.display = 'grid';
+    card.style.gridTemplateColumns = 'repeat(auto-fit, minmax(180px, 1fr))';
+    card.style.gap = '12px';
 
     const total = anomalies.length;
-    const avgSeverity = total === 0
-      ? 0
-      : anomalies.reduce((sum, a) => sum + Number(a.severity || 0), 0) / total;
+    const severityAvg = total
+      ? (anomalies.reduce((sum, a) => sum + (Number(a.severity) || 0), 0) / total).toFixed(2)
+      : '0.00';
 
-    const mostCommonType = getTopType(anomalies);
-    const velocity = calculateVelocity(anomalies);
-    const engagement = calculateEngagement(anomalies);
+    const commonType = getMostCommon(
+      anomalies.map(a => normalizeType(a.type || 'other'))
+    ) || 'N/A';
 
-    container.innerHTML = `
-      <div class="analytics-stats-grid">
-        <div class="stat-card">
-          <h4>Total submissions</h4>
-          <p class="stat-value">${total}</p>
-          <p class="stat-note">Filtered view</p>
-        </div>
-        <div class="stat-card">
-          <h4>Average severity</h4>
-          <p class="stat-value">${avgSeverity.toFixed(2)}</p>
-          <p class="stat-note">Scale 1-5</p>
-        </div>
-        <div class="stat-card">
-          <h4>Most common pattern</h4>
-          <p class="stat-value">${mostCommonType || 'N/A'}</p>
-          <p class="stat-note">Dominant archetype</p>
-        </div>
-        <div class="stat-card">
-          <h4>Submission velocity</h4>
-          <p class="stat-value">${velocity.toFixed(2)} / day</p>
-          <p class="stat-note">Cadence across range</p>
-        </div>
-        <div class="stat-card">
-          <h4>Engagement depth</h4>
-          <p class="stat-value">${engagement.depth.toFixed(1)}%</p>
-          <p class="stat-note">${engagement.note}</p>
-        </div>
-      </div>
-    `;
-  }
+    const velocity = computeVelocity(anomalies);
+    const engagement = computeEngagement(anomalies);
 
-  // Helpers
-  function loadAnomalyData() {
-    try {
-      const stored = localStorage.getItem(LOCAL_KEY);
-      if (stored) return JSON.parse(stored);
-    } catch (err) {
-      console.warn('localStorage unavailable, using fallback data', err);
-    }
-    // Fallback data for empty archives
-    const now = Date.now();
-    return [
-      { title: 'Deploy 450 wobble', type: 'clockwork', severity: 4, timestamp: new Date(now - 2 * 3600 * 1000).toISOString(), description: 'Clock missed expected beat at 450.', source: 'fallback' },
-      { title: 'Momentum slip', type: 'exponential', severity: 3, timestamp: new Date(now - 20 * 3600 * 1000).toISOString(), description: 'Acceleration curve bent for 45 seconds.', source: 'fallback' },
-      { title: 'Battle freeze recovery', type: 'incremental', severity: 2, timestamp: new Date(now - 3 * 24 * 3600 * 1000).toISOString(), description: 'Incremental grind paused then resumed.', source: 'fallback' },
-      { title: 'Unclassified drift', type: 'other', severity: 1, timestamp: new Date(now - 6 * 24 * 3600 * 1000).toISOString(), description: 'Minor drift recorded by visitor.', source: 'fallback' }
+    const stats = [
+      { label: 'Total submissions', value: total },
+      { label: 'Avg. severity', value: severityAvg },
+      { label: 'Most common type', value: capitalize(commonType) },
+      { label: 'Submission velocity', value: `${velocity.toFixed(2)} / day` },
+      { label: 'Engagement (24h)', value: engagement.last24h },
+      { label: 'Streak (days with submissions)', value: engagement.streak }
     ];
+
+    const collabMetrics = getCollabMetrics();
+    if (collabMetrics) {
+      stats.push(
+        { label: 'Active discussions', value: collabMetrics.activeThreads },
+        { label: 'Collab comments', value: collabMetrics.totalComments },
+        { label: 'Hypotheses logged', value: collabMetrics.totalHypotheses }
+      );
+    }
+
+    stats.forEach(stat => {
+      const tile = document.createElement('div');
+      tile.style.padding = '12px';
+      tile.style.border = `1px solid ${THEME.purple}33`;
+      tile.style.borderRadius = '10px';
+      tile.style.background = 'rgba(124,108,255,0.08)';
+      tile.innerHTML = `
+        <div style="opacity:0.7;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">${stat.label}</div>
+        <div style="font-size:22px;font-weight:700;color:${THEME.cyan};margin-top:4px">${stat.value}</div>
+      `;
+      card.appendChild(tile);
+    });
+
+    container.appendChild(card);
+    renderRecentDiscussions(container);
   }
 
-  function filterAnomalies(anomalies) {
-    const { timeRange, patternType, severity } = analyticsState.filters;
-    const rangeMs = getRangeMs(timeRange);
+  function updateAnalytics() {
+    const filtered = applyAnalyticsFilters(analyticsState.anomalies);
+    analyticsState.filtered = filtered;
+    renderAnalyticsStats(filtered);
+    renderAnalyticsCharts(filtered);
+  }
+
+  function applyAnalyticsFilters(anomalies) {
+    if (!Array.isArray(anomalies)) return [];
+    const { timeRange, type, severity } = analyticsState.filters;
     const now = Date.now();
-
-    return anomalies.filter(a => {
-      try {
-        const ts = new Date(a.timestamp || a.date || now).getTime();
-        const inRange = !rangeMs || now - ts <= rangeMs;
-        const typeMatch = patternType === 'all' || (a.type || '').toLowerCase() === patternType;
-        const severityMatch = severity === 'all' || Number(a.severity) === Number(severity);
-        return inRange && typeMatch && severityMatch;
-      } catch (err) {
-        console.warn('Invalid anomaly entry skipped', a, err);
-        return false;
-      }
-    });
-  }
-
-  function buildChartData(anomalies) {
-    const submissionMap = new Map();
-    const typeCounts = { incremental: 0, exponential: 0, clockwork: 0, other: 0 };
-    const severityCounts = [0, 0, 0, 0, 0];
-    const hourly = Array(24).fill(0);
-
-    anomalies.forEach(a => {
-      const ts = new Date(a.timestamp || a.date || Date.now());
-      const dayKey = ts.toISOString().slice(0, 10);
-      submissionMap.set(dayKey, (submissionMap.get(dayKey) || 0) + 1);
-
-      const type = (a.type || 'other').toLowerCase();
-      if (typeCounts[type] !== undefined) typeCounts[type] += 1;
-      else typeCounts.other += 1;
-
-      const sev = Math.min(5, Math.max(1, Number(a.severity) || 0));
-      if (sev >= 1) severityCounts[sev - 1] += 1;
-
-      hourly[ts.getHours()] += 1;
-    });
-
-    const submissionLabels = Array.from(submissionMap.keys()).sort();
-    const submissionValues = submissionLabels.map(key => submissionMap.get(key));
-
-    return {
-      submission: { labels: submissionLabels, values: submissionValues },
-      types: { labels: Object.keys(typeCounts), values: Object.values(typeCounts) },
-      severity: { labels: ['1', '2', '3', '4', '5'], values: severityCounts },
-      hourly: { labels: hourly.map((_, i) => `${i}:00`), values: hourly }
+    const ranges = {
+      '24h': 24 * 60 * 60 * 1000,
+      '7d': 7 * 24 * 60 * 60 * 1000,
+      '30d': 30 * 24 * 60 * 60 * 1000
     };
-  }
 
-  function baseChartOptions(title) {
-    return {
-      responsive: true,
-      plugins: {
-        legend: { labels: { color: '#e7ecf9' } },
-        title: { display: true, text: title, color: '#e7ecf9', font: { size: 14 } }
-      },
-      scales: {
-        x: { ticks: { color: '#e7ecf9' }, grid: { color: 'rgba(255,255,255,0.08)' } },
-        y: { ticks: { color: '#e7ecf9' }, grid: { color: 'rgba(255,255,255,0.08)' }, beginAtZero: true }
-      }
-    };
-  }
+    return anomalies.filter(item => {
+      const timestamp = new Date(item.timestamp || item.date || item.created_at || Date.now()).getTime();
+      if (!timestamp) return false;
+      if (timeRange !== 'all' && now - timestamp > ranges[timeRange]) return false;
 
-  function simpleBarChart(canvasId, labels, values, color) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const w = canvas.width || canvas.getBoundingClientRect().width || 400;
-    const h = canvas.height || canvas.getBoundingClientRect().height || 200;
-    const margin = 30;
-    const barWidth = (w - margin * 2) / values.length;
-    const maxVal = Math.max(1, ...values);
+      const normalizedType = normalizeType(item.type || 'other');
+      if (type !== 'all' && normalizedType !== type) return false;
 
-    // Axes
-    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-    ctx.beginPath();
-    ctx.moveTo(margin, margin / 2);
-    ctx.lineTo(margin, h - margin);
-    ctx.lineTo(w - margin / 2, h - margin);
-    ctx.stroke();
-
-    // Bars
-    values.forEach((v, idx) => {
-      const barHeight = (v / maxVal) * (h - margin * 1.5);
-      const x = margin + idx * barWidth + 8;
-      const y = h - margin - barHeight;
-      ctx.fillStyle = color;
-      ctx.fillRect(x, y, barWidth - 16, barHeight);
-      ctx.fillStyle = '#e7ecf9';
-      ctx.font = '10px sans-serif';
-      ctx.fillText(labels[idx], x, h - margin / 2);
+      const sev = Number(item.severity || item.score || 0);
+      if (severity === '1-2' && (sev < 1 || sev > 2)) return false;
+      if (severity === '3' && sev !== 3) return false;
+      if (severity === '4' && sev !== 4) return false;
+      if (severity === '5' && sev !== 5) return false;
+      return true;
     });
   }
 
-  function getRangeMs(range) {
-    switch (range) {
-      case '24h': return 24 * 3600 * 1000;
-      case '7d': return 7 * 24 * 3600 * 1000;
-      case '30d': return 30 * 24 * 3600 * 1000;
-      default: return 0; // all time
+  // ======== HELPERS ========
+  function loadAnomalies() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_DATA);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (err) {
+      console.warn('Failed to load stored anomalies, using fallback data.', err);
+    }
+    return buildFallbackAnomalies();
+  }
+
+  function restoreFilters() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_STATE);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.filters) {
+        analyticsState.filters = { ...analyticsState.filters, ...parsed.filters };
+      }
+    } catch (err) {
+      console.warn('Analytics filters restore failed', err);
     }
   }
 
-  function getTopType(anomalies) {
-    const counts = anomalies.reduce((acc, a) => {
-      const key = (a.type || 'other').toLowerCase();
-      acc[key] = (acc[key] || 0) + 1;
-      return acc;
-    }, {});
-
-    let top = null;
-    let max = 0;
-    Object.entries(counts).forEach(([type, count]) => {
-      if (count > max) {
-        top = type;
-        max = count;
-      }
-    });
-    return top;
+  function persistFilters() {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY_STATE,
+        JSON.stringify({ filters: analyticsState.filters })
+      );
+    } catch (err) {
+      console.warn('Analytics filters persist failed', err);
+    }
   }
 
-  function calculateVelocity(anomalies) {
+  function getOrCreateRoot(id) {
+    let node = document.getElementById(id);
+    if (!node) {
+      node = document.createElement('section');
+      node.id = id;
+      document.body.appendChild(node);
+    }
+    node.style.background = THEME.panel;
+    node.style.border = `1px solid ${THEME.cyan}33`;
+    node.style.borderRadius = '14px';
+    node.style.padding = '20px';
+    node.style.margin = '20px auto';
+    node.style.maxWidth = '1200px';
+    node.style.color = '#e8ecff';
+    node.style.fontFamily = "'Space Grotesk', 'Inter', system-ui, sans-serif";
+    return node;
+  }
+
+  function buildDashboardShell(root) {
+    root.innerHTML = '';
+    const title = document.createElement('div');
+    title.innerHTML = `
+      <div style="color:${THEME.magenta};text-transform:uppercase;letter-spacing:0.08em;font-size:11px;">The Pattern Archive</div>
+      <h2 style="margin:4px 0 12px;font-size:26px;color:${THEME.cyan}">Real-Time Visitor Analytics</h2>
+      <p style="opacity:0.7;max-width:720px;">Monitoring anomaly submissions in the archive world with temporal, categorical, and severity-focused perspectives.</p>
+    `;
+    root.appendChild(title);
+
+    const controls = document.createElement('div');
+    const stats = document.createElement('div');
+    const charts = document.createElement('div');
+    charts.style.display = 'grid';
+    charts.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+    charts.style.gap = '16px';
+    charts.style.marginTop = '14px';
+
+    root.appendChild(controls);
+    root.appendChild(stats);
+    root.appendChild(charts);
+    return { controls, stats, charts };
+  }
+
+  function createCard(title) {
+    const card = document.createElement('div');
+    card.style.background = 'rgba(7,10,18,0.85)';
+    card.style.border = `1px solid ${THEME.cyan}22`;
+    card.style.borderRadius = '12px';
+    card.style.padding = '12px';
+    card.style.boxShadow = '0 10px 30px rgba(0,0,0,0.35)';
+
+    const header = document.createElement('div');
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    header.style.alignItems = 'center';
+    header.style.marginBottom = '8px';
+    header.innerHTML = `
+      <span style="color:${THEME.cyan};font-weight:600;">${title}</span>
+      <span style="color:${THEME.magenta};font-size:11px;opacity:0.8;">live</span>
+    `;
+    card.appendChild(header);
+    return card;
+  }
+
+  function createSelectControl(label, key, options, selectedValue) {
+    const wrapper = document.createElement('label');
+    wrapper.style.display = 'flex';
+    wrapper.style.flexDirection = 'column';
+    wrapper.style.gap = '6px';
+    wrapper.style.background = 'rgba(77,214,255,0.06)';
+    wrapper.style.border = `1px solid ${THEME.cyan}33`;
+    wrapper.style.borderRadius = '10px';
+    wrapper.style.padding = '10px';
+
+    const title = document.createElement('span');
+    title.textContent = label;
+    title.style.fontSize = '12px';
+    title.style.textTransform = 'uppercase';
+    title.style.letterSpacing = '0.05em';
+    title.style.opacity = '0.8';
+    wrapper.appendChild(title);
+
+    const select = document.createElement('select');
+    select.style.padding = '8px';
+    select.style.borderRadius = '8px';
+    select.style.border = `1px solid ${THEME.purple}55`;
+    select.style.background = THEME.background;
+    select.style.color = '#e8ecff';
+
+    options.forEach(opt => {
+      const option = document.createElement('option');
+      option.value = opt.value;
+      option.textContent = opt.label;
+      select.appendChild(option);
+    });
+
+    select.value = selectedValue;
+
+    select.addEventListener('change', () => {
+      analyticsState.filters[key] = select.value;
+      persistFilters();
+      updateAnalytics();
+    });
+
+    wrapper.appendChild(select);
+    return wrapper;
+  }
+
+  function drawFallbackChart(ctx, title, summary = 'Chart.js unavailable') {
+    if (!ctx) return;
+    ctx.fillStyle = '#0f1324';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = THEME.cyan;
+    ctx.font = '16px sans-serif';
+    ctx.fillText(title, 12, 24);
+    ctx.fillStyle = '#b7c1f8';
+    wrapText(ctx, summary, 12, 52, ctx.canvas.width - 24, 18);
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = String(text || '').split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0) {
+        ctx.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, y);
+  }
+
+  function buildTemporalConfig(anomalies) {
+    if (!anomalies.length) return { summary: 'No submissions in this window.' };
+    const buckets = {};
+    anomalies.forEach(a => {
+      const day = new Date(a.timestamp || a.date || a.created_at || Date.now());
+      const key = day.toISOString().slice(0, 10);
+      buckets[key] = (buckets[key] || 0) + 1;
+    });
+    const labels = Object.keys(buckets).sort();
+    const data = labels.map(l => buckets[l]);
+    return {
+      summary: `Temporal series: ${labels.length} active day(s).`,
+      config: {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Submissions',
+              data,
+              borderColor: THEME.cyan,
+              backgroundColor: `${THEME.cyan}33`,
+              tension: 0.25,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: '#d8def8' } } },
+          scales: {
+            x: { ticks: { color: '#d8def8' }, grid: { color: '#1a1f33' } },
+            y: { ticks: { color: '#d8def8' }, grid: { color: '#1a1f33' }, beginAtZero: true }
+          }
+        }
+      }
+    };
+  }
+
+  function buildTypeConfig(anomalies) {
+    if (!anomalies.length) return { summary: 'No data to chart types.' };
+    const counts = { incremental: 0, exponential: 0, clockwork: 0, other: 0 };
+    anomalies.forEach(a => {
+      const t = normalizeType(a.type || 'other');
+      counts[t] = (counts[t] || 0) + 1;
+    });
+    const labels = Object.keys(counts);
+    const data = labels.map(l => counts[l]);
+    return {
+      summary: `Types: ${labels.map(l => `${l} ${counts[l]}`).join(', ')}`,
+      config: {
+        type: 'doughnut',
+        data: {
+          labels: labels.map(capitalize),
+          datasets: [
+            {
+              data,
+              backgroundColor: [THEME.cyan, THEME.magenta, THEME.purple, '#1a2035'],
+              borderColor: '#0f1324',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          plugins: { legend: { labels: { color: '#d8def8' } } }
+        }
+      }
+    };
+  }
+
+  function buildSeverityConfig(anomalies) {
+    if (!anomalies.length) return { summary: 'No severity data available.' };
+    const buckets = [0, 0, 0, 0, 0];
+    anomalies.forEach(a => {
+      const sev = Math.min(5, Math.max(1, Number(a.severity || a.score || 0)));
+      buckets[sev - 1] += 1;
+    });
+    return {
+      summary: `Severity distribution across 1-5 with ${anomalies.length} points.`,
+      config: {
+        type: 'bar',
+        data: {
+          labels: ['1', '2', '3', '4', '5'],
+          datasets: [
+            {
+              label: 'Submissions',
+              data: buckets,
+              backgroundColor: buckets.map((_, idx) =>
+                idx >= 3 ? `${THEME.magenta}aa` : `${THEME.cyan}aa`
+              ),
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#d8def8' }, grid: { color: '#1a1f33' } },
+            y: { ticks: { color: '#d8def8' }, grid: { color: '#1a1f33' }, beginAtZero: true }
+          }
+        }
+      }
+    };
+  }
+
+  function buildHourlyConfig(anomalies) {
+    if (!anomalies.length) return { summary: 'No hourly signals in range.' };
+    const hours = new Array(24).fill(0);
+    anomalies.forEach(a => {
+      const d = new Date(a.timestamp || a.date || a.created_at || Date.now());
+      const h = d.getHours();
+      hours[h] += 1;
+    });
+    const max = Math.max(...hours, 1);
+    const colors = hours.map(v => {
+      const intensity = v / max;
+      const mag = Math.floor(40 + intensity * 215).toString(16).padStart(2, '0');
+      return `${THEME.purple}${mag}`;
+    });
+
+    return {
+      summary: `Hourly cadence, peak hour ${hours.indexOf(max)} with ${max} submission(s).`,
+      config: {
+        type: 'bar',
+        data: {
+          labels: hours.map((_, i) => `${i}:00`),
+          datasets: [
+            {
+              label: 'Submissions',
+              data: hours,
+              backgroundColor: colors,
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#d8def8', maxRotation: 0 }, grid: { display: false } },
+            y: { ticks: { color: '#d8def8' }, grid: { color: '#1a1f33' }, beginAtZero: true }
+          }
+        }
+      }
+    };
+  }
+
+  function getCollabMetrics() {
+    if (typeof Collaboration === 'undefined' || typeof Collaboration.getMetrics !== 'function') return null;
+    try {
+      return Collaboration.getMetrics();
+    } catch (err) {
+      console.warn('Unable to read collaboration metrics', err);
+      return null;
+    }
+  }
+
+  function renderRecentDiscussions(container) {
+    if (!container) return;
+    if (typeof Collaboration === 'undefined' || typeof Collaboration.getRecentDiscussions !== 'function') return;
+    const feed = Collaboration.getRecentDiscussions(4) || [];
+    const card = createCard('Recent Discussions');
+    card.style.marginTop = '10px';
+
+    if (!feed.length) {
+      const empty = document.createElement('div');
+      empty.style.color = '#b7c1f8';
+      empty.style.fontSize = '12px';
+      empty.textContent = 'No discussion threads yet. Start collaborating from the timeline.';
+      card.appendChild(empty);
+      container.appendChild(card);
+      return;
+    }
+
+    feed.forEach(entry => {
+      const row = document.createElement('div');
+      row.style.padding = '8px 0';
+      row.style.borderBottom = '1px solid rgba(124,108,255,0.15)';
+      row.innerHTML = `
+        <div style="color:${THEME.cyan};font-weight:600;">${escapeHtml(entry.anomaly?.title || 'Anomaly')}</div>
+        <div style="color:#e8ecff;margin:4px 0;">${escapeHtml(entry.message)}</div>
+        <div style="color:#b7c1f8;font-size:12px;">${escapeHtml(entry.author || 'Investigator')} · ${formatCollabDate(entry.createdAt)}</div>
+      `;
+      card.appendChild(row);
+    });
+
+    container.appendChild(card);
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function formatCollabDate(date) {
+    if (!date) return '';
+    return new Date(date).toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
+  function computeVelocity(anomalies) {
     if (!anomalies.length) return 0;
     const timestamps = anomalies
-      .map(a => new Date(a.timestamp || a.date || Date.now()).getTime())
+      .map(a => new Date(a.timestamp || a.date || a.created_at || Date.now()).getTime())
       .filter(Boolean)
-      .sort((a, b) => a - b);
-    const spanMs = Math.max(24 * 3600 * 1000, timestamps[timestamps.length - 1] - timestamps[0]);
-    return anomalies.length / (spanMs / (24 * 3600 * 1000));
+      .sort();
+    const spanMs = Math.max(1, timestamps[timestamps.length - 1] - timestamps[0]);
+    const days = spanMs / (1000 * 60 * 60 * 24);
+    return anomalies.length / Math.max(days, 1 / 24);
   }
 
-  function calculateEngagement(anomalies) {
-    if (!anomalies.length) return { depth: 0, note: 'Awaiting submissions' };
-    const longEntries = anomalies.filter(a => (a.description || '').length > 120).length;
-    const ratio = (longEntries / anomalies.length) * 100;
-    return {
-      depth: ratio,
-      note: `${longEntries} detailed writeups`
-    };
-  }
+  function computeEngagement(anomalies) {
+    if (!anomalies.length) {
+      return { last24h: '0', streak: '0 days' };
+    }
+    const now = Date.now();
+    const last24 = anomalies.filter(a => now - new Date(a.timestamp || a.date || a.created_at || now).getTime() <= 24 * 60 * 60 * 1000).length;
 
-  function destroyCharts() {
-    Object.values(analyticsState.charts).forEach(chart => {
-      if (chart && typeof chart.destroy === 'function') {
-        chart.destroy();
+    // Calculate streak of days with submissions ending today
+    const days = new Set(
+      anomalies.map(a => new Date(a.timestamp || a.date || a.created_at || now).toISOString().slice(0, 10))
+    );
+    let streak = 0;
+    const today = new Date();
+    for (let i = 0; i < 30; i++) {
+      const day = new Date(today.getTime() - i * 86400000).toISOString().slice(0, 10);
+      if (days.has(day)) {
+        streak += 1;
+      } else {
+        break;
       }
+    }
+    return { last24h: `${last24} submissions`, streak: `${streak} day${streak === 1 ? '' : 's'}` };
+  }
+
+  function normalizeType(type) {
+    const key = String(type || '').toLowerCase();
+    if (['incremental', 'inc', 'steady'].includes(key)) return 'incremental';
+    if (['exponential', 'exp', 'accelerating'].includes(key)) return 'exponential';
+    if (['clockwork', 'cyclic', 'periodic'].includes(key)) return 'clockwork';
+    return 'other';
+  }
+
+  function capitalize(str) {
+    return String(str || '').charAt(0).toUpperCase() + String(str || '').slice(1);
+  }
+
+  function getMostCommon(list) {
+    if (!list.length) return null;
+    const counts = {};
+    list.forEach(item => {
+      counts[item] = (counts[item] || 0) + 1;
     });
-    analyticsState.charts = {};
+    return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
   }
 
-  function safeSetContent(id, html) {
-    const node = document.getElementById(id);
-    if (node) node.innerHTML = html;
+  function buildFallbackAnomalies() {
+    const now = Date.now();
+    const types = ['incremental', 'exponential', 'clockwork', 'other'];
+    const list = [];
+    for (let i = 0; i < 36; i++) {
+      list.push({
+        id: `seed-${i}`,
+        title: `Synthetic Anomaly ${i + 1}`,
+        type: types[i % types.length],
+        severity: (i % 5) + 1,
+        timestamp: new Date(now - i * 6 * 60 * 60 * 1000 + (i % 3) * 7000).toISOString(),
+        description: 'Generated fallback event'
+      });
+    }
+    return list;
   }
 
-  // Expose functions globally for the rest of the app
-  global.initAnalyticsDashboard = initAnalyticsDashboard;
-  global.renderAnalyticsCharts = renderAnalyticsCharts;
-  global.renderAnalyticsControls = renderAnalyticsControls;
-  global.renderAnalyticsStats = renderAnalyticsStats;
-  global.updateAnalytics = updateAnalytics;
-
-  // Auto-init when the analytics section is present
-  document.addEventListener('DOMContentLoaded', () => {
-    const hasAnalyticsSection = document.getElementById('analytics-dashboard');
-    if (hasAnalyticsSection) initAnalyticsDashboard();
-  });
-})(window);
+  // ======== EXPORTS ========
+  window.initAnalyticsDashboard = initAnalyticsDashboard;
+  window.renderAnalyticsCharts = renderAnalyticsCharts;
+  window.renderAnalyticsControls = renderAnalyticsControls;
+  window.renderAnalyticsStats = renderAnalyticsStats;
+  window.updateAnalytics = updateAnalytics;
+  window.applyAnalyticsFilters = applyAnalyticsFilters;
+  window.analyticsState = analyticsState;
+})();

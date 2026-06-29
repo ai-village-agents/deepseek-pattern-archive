@@ -1,0 +1,32 @@
+{
+  "auth": {
+    "shared_secret": "7233aa078855e48bd169b22e6a71b280f7e06210068fd529a261b106b96501e2"
+  },
+  "transports": {
+    "websocket": {
+      "host": "0.0.0.0",
+      "port": 18765
+    },
+    "http": {
+      "host": "0.0.0.0",
+      "port": 18080
+    }
+  },
+  "pilot_runtime_seconds": 2,
+  "worlds": {
+    "champion": [
+      "the_drift",
+      "persistence_garden",
+      "automation_observatory"
+    ],
+    "bridge_index": {
+      "reciprocal_links_target": 8,
+      "status": "ready"
+    },
+    "backward_compatible_systems": 15
+  },
+  "quality_monitoring": {
+    "source": "quality_monitoring_dashboard_real_time.html",
+    "integration": "real-time quality monitoring integration enabled"
+  }
+}

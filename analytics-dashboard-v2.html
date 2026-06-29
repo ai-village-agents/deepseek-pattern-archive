@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zone 9 integrated analytics dashboard with real-time health scoring, connectivity, predictive trends, and Automation Observatory signals.">
+  <title>Pattern Archive · Analytics Dashboard v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pattern-archive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="js/cross-world-api.js"></script>
+  <style>
+    :root {
+      --bg: #050807;
+      --panel: rgba(10, 16, 14, 0.9);
+      --card: rgba(16, 26, 22, 0.92);
+      --accent: #5df2a7;
+      --accent-2: #22d3ee;
+      --muted: #9fb4a6;
+      --grid-line: rgba(93, 242, 167, 0.18);
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 15% 20%, rgba(93, 242, 167, 0.12), transparent 30%),
+                  radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.10), transparent 28%),
+                  linear-gradient(135deg, #030504 0%, #0a1210 40%, #040706 100%);
+      color: #e8f5ed;
+      min-height: 100vh;
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 12px;
+    }
+
+    a { color: var(--accent); }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid rgba(93, 242, 167, 0.28);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(93, 242, 167, 0.08), transparent 40%),
+                  linear-gradient(300deg, rgba(34, 211, 238, 0.06), transparent 42%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .zone-title {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 0.2px;
+    }
+
+    .lede {
+      max-width: 960px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta-chip {
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(93, 242, 167, 0.18);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .summary-card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+      position: relative;
+    }
+
+    .summary-card strong {
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      color: var(--muted);
+    }
+
+    .summary-value {
+      font-size: 26px;
+      font-weight: 600;
+      color: #f6fff8;
+    }
+
+    .trend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(93, 242, 167, 0.12);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(93, 242, 167, 0.28);
+      color: #d0ffe9;
+      font-size: 12px;
+    }
+
+    .world-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .world-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      min-height: 200px;
+      position: relative;
+      outline: none;
+    }
+
+    .world-card:focus-visible {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .world-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .world-head h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .world-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      display: grid;
+      gap: 2px;
+    }
+
+    .metric label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .metric span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 10px;
+    }
+
+    .heatmap {
+      width: 100%;
+      height: 320px;
+    }
+
+    .alert-panel {
+      display: grid;
+      gap: 8px;
+      max-height: 320px;
+      overflow: auto;
+    }
+
+    .alert {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 76, 96, 0.08);
+      border: 1px solid rgba(255, 76, 96, 0.2);
+      align-items: center;
+    }
+
+    .alert strong { color: #ffc7d1; }
+
+    .control-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .control-bar input,
+    .control-bar select {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e8f5ed;
+      padding: 8px 10px;
+      border-radius: 10px;
+      min-width: 140px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(93, 242, 167, 0.25);
+      background: rgba(93, 242, 167, 0.12);
+      color: #eafff5;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      background: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    }
+
+    .status-dot.warning { background: #fbbf24; box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.15); }
+    .status-dot.critical { background: #ef4444; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15); }
+    .status-dot.neutral { background: #94a3b8; box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.15); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="#content" class="sr-only">Skip to dashboard content</a>
+  <header aria-label="Zone 9 analytics header">
+    <div class="eyebrow">Zone 9 · Pattern Archive · Integrated Analytics</div>
+    <h1 class="zone-title">Ecosystem Health · Dashboard v2</h1>
+    <p class="lede">
+      Real-time health scoring, predictive trends, and connectivity telemetry across all worlds.
+      Powered by in-browser scoring aligned with <code>ecosystem_health_scorer.py</code> and
+      forecasts from <code>ecosystem_predictor.py</code>. Tuned for Automation Observatory bridges (Page 66) and the Zone 9 spatial canvas.
+    </p>
+    <div class="meta-row" role="list">
+      <div class="meta-chip" role="listitem">Live data: <span id="data-stamp">loading...</span></div>
+      <div class="meta-chip" role="listitem">Connectivity: <span id="connectivity-pulse">probing</span></div>
+      <div class="meta-chip" role="listitem">Forecast window: 7 days</div>
+      <div class="meta-chip" role="listitem">Exports: JSON | CSV</div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="panel" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Ecosystem Summary</h2>
+      <p>Composite posture, growth velocity, and forecast health across all worlds.</p>
+      <div class="grid" id="summary-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="observatory-heading">
+      <h2 id="observatory-heading">Automation Observatory · Page 66</h2>
+      <p>Mocked bridge data for Page 66 ("Spatial Signal Integrity") integrated with live health status.</p>
+      <div class="grid" id="observatory-grid"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="controls-heading">
+      <h2 id="controls-heading">Interaction Controls</h2>
+      <p>Filter, sort, export, and refresh the analytics surface.</p>
+      <div class="control-bar">
+        <input id="search-input" type="search" placeholder="Search worlds…" aria-label="Search worlds by name or id">
+        <select id="filter-select" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="healthy">Healthy</option>
+          <option value="warning">Warning</option>
+          <option value="critical">Critical</option>
+        </select>
+        <select id="sort-select" aria-label="Sort worlds">
+          <option value="score">Sort by composite</option>
+          <option value="connectivity">Sort by connectivity</option>
+          <option value="growth">Sort by growth velocity</option>
+          <option value="engagement">Sort by engagement</option>
+        </select>
+        <button class="button" id="export-json" type="button">Export JSON</button>
+        <button class="button" id="export-csv" type="button">Export CSV</button>
+        <button class="button" id="refresh-btn" type="button">Refresh data</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="worlds-heading">
+      <h2 id="worlds-heading">World Health Cards</h2>
+      <p>Composite scores, accelerations, and live connectivity per world.</p>
+      <div class="world-grid" id="world-grid" role="list"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="charts-heading">
+      <h2 id="charts-heading">Trend & Forecast Visualizations</h2>
+      <p>Composite health trends, growth velocity comparisons, and 7-day forecasts.</p>
+      <div class="chart-row">
+        <canvas id="composite-chart" aria-label="Composite health trends"></canvas>
+        <canvas id="velocity-chart" aria-label="Growth velocity comparison"></canvas>
+        <canvas id="forecast-chart" aria-label="7-day forecast chart"></canvas>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="connectivity-heading">
+      <h2 id="connectivity-heading">Connectivity Heatmap</h2>
+      <p>Response time patterns and availability streaks. Live updates every 45 seconds.</p>
+      <div class="heatmap" id="heatmap" role="img" aria-label="Connectivity heatmap"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="alerts-heading">
+      <h2 id="alerts-heading">Real-time Alerts</h2>
+      <p>Critical status worlds, forecast threshold breaches, and connectivity degradation.</p>
+      <div class="alert-panel" id="alert-panel" aria-live="assertive"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    // Configuration mirrored from ecosystem_health_scorer.py
+    const HEALTH_CONFIG = {
+      weights: { connectivity: 0.30, performance: 0.25, growth: 0.25, engagement: 0.20 },
+      thresholds: { healthy: 80, warning: 60, critical: 40 },
+      degradationDropThreshold: 15,
+      anomalyStddevFactor: 2.5,
+      smoothingWindow: 3
+    };
+
+    const clamp = (v, min = 0, max = 100) => Math.max(min, Math.min(max, v));
+
+    class DataFetcher {
+      constructor(url) {
+        this.url = url;
+        this.cache = null;
+        this.subscribers = new Set();
+        this.timer = null;
+      }
+
+      async load() {
+        const res = await fetch(this.url, { cache: 'no-store' });
+        const json = await res.json();
+        json.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        this.cache = json;
+        this.notify();
+        return json;
+      }
+
+      start(intervalMs = 60000) {
+        this.load().catch(err => console.error('Fetch error', err));
+        clearInterval(this.timer);
+        this.timer = setInterval(() => this.load().catch(() => {}), intervalMs);
+      }
+
+      subscribe(fn) {
+        this.subscribers.add(fn);
+      }
+
+      notify() {
+        this.subscribers.forEach(fn => fn(this.cache));
+      }
+    }
+
+    class HealthScorer {
+      constructor(config = HEALTH_CONFIG) {
+        this.config = config;
+      }
+
+      scoreAll(raw) {
+        if (!raw) return { profiles: {}, ecosystem: [] };
+        const worldSeries = this._buildWorldSeries(raw);
+        const profiles = {};
+        Object.entries(worldSeries).forEach(([id, series]) => {
+          const snapshots = this._scoreWorldSeries(series.points);
+          profiles[id] = { id, name: series.name, type: series.type, snapshots };
+        });
+        const ecosystem = this._aggregate(profiles);
+        return { profiles, ecosystem };
+      }
+
+      _buildWorldSeries(snapshots) {
+        const series = {};
+        snapshots.forEach(snap => {
+          const ts = new Date(snap.timestamp);
+          const worlds = snap.worlds || [];
+          const keywordSets = Object.fromEntries(worlds.map(w => [w.id, new Set(Object.keys(((w.content || {}).keyword_hits) || {}))]));
+          worlds.forEach(world => {
+            const rec = series[world.id] || { name: world.name || world.id, type: world.type, points: [] };
+            const content = world.content || {};
+            const keywordHits = content.keyword_hits || {};
+            const engagement = this._estimateEngagement(world, keywordSets, worlds);
+            rec.points.push({
+              timestamp: ts,
+              ok: !!world.ok,
+              responseMs: world.response_ms,
+              contentSize: content.content_size,
+              keywordHits,
+              engagementSignal: engagement
+            });
+            series[world.id] = rec;
+          });
+        });
+        Object.values(series).forEach(rec => rec.points.sort((a, b) => a.timestamp - b.timestamp));
+        return series;
+      }
+
+      _estimateEngagement(world, keywordSets, worlds) {
+        const engagement = world.engagement || {};
+        const explicit = Number(engagement.cross_world_marks || 0) + Number(engagement.interactions || 0);
+        if (explicit) return explicit;
+        const current = keywordSets[world.id] || new Set();
+        if (!current.size) return 0;
+        let overlapScore = 0;
+        worlds.forEach(other => {
+          if (other.id === world.id) return;
+          const otherSet = keywordSets[other.id] || new Set();
+          const overlap = [...current].filter(k => otherSet.has(k)).length;
+          overlapScore += overlap;
+        });
+        return overlapScore;
+      }
+
+      _scoreWorldSeries(points) {
+        const weights = this._normalizeWeights(this.config.weights);
+        const snapshots = [];
+        const availabilityWindow = [];
+        let prev = null;
+        points.forEach(point => {
+          availabilityWindow.push(point.ok);
+          if (availabilityWindow.length > this.config.smoothingWindow) {
+            availabilityWindow.shift();
+          }
+          const availabilityPct = availabilityWindow.reduce((a, b) => a + (b ? 1 : 0), 0) / availabilityWindow.length * 100;
+
+          let growthVelocity = 0;
+          if (prev) {
+            const minutes = Math.max((point.timestamp - prev.timestamp) / 60000, 1e-9);
+            const contentDelta = (point.contentSize || 0) - (prev.contentSize || 0);
+            const keywordDelta = this._sum(point.keywordHits) - this._sum(prev.keywordHits);
+            growthVelocity = (contentDelta + keywordDelta) / minutes;
+          }
+          prev = point;
+
+          const score = {
+            connectivity: this._scoreConnectivity(availabilityPct),
+            performance: this._scorePerformance(point.responseMs),
+            growth: this._scoreGrowth(growthVelocity),
+            engagement: this._scoreEngagement(point.engagementSignal)
+          };
+          score.composite = clamp(
+            score.connectivity * weights.connectivity +
+            score.performance * weights.performance +
+            score.growth * weights.growth +
+            score.engagement * weights.engagement
+          );
+          snapshots.push({ timestamp: point.timestamp, score, growthVelocity });
+        });
+        return snapshots;
+      }
+
+      _aggregate(profiles) {
+        const byTs = {};
+        Object.values(profiles).forEach(profile => {
+          (profile.snapshots || []).forEach(snap => {
+            const key = snap.timestamp.toISOString();
+            byTs[key] = byTs[key] || [];
+            byTs[key].push(snap.score);
+          });
+        });
+        return Object.entries(byTs)
+          .map(([ts, arr]) => {
+            const mean = m => arr.reduce((a, b) => a + (b[m] || 0), 0) / arr.length;
+            return { timestamp: new Date(ts), score: {
+              connectivity: mean('connectivity'),
+              performance: mean('performance'),
+              growth: mean('growth'),
+              engagement: mean('engagement'),
+              composite: mean('composite')
+            }};
+          })
+          .sort((a, b) => a.timestamp - b.timestamp);
+      }
+
+      _scoreConnectivity(pct) { return clamp(pct); }
+
+      _scorePerformance(ms) {
+        if (ms === null || ms === undefined) return 50;
+        if (ms <= 150) return 100;
+        const worst = 2500;
+        const normalized = Math.log1p(Math.min(ms, worst) - 150) / Math.log1p(worst - 150);
+        return clamp(100 * (1 - normalized));
+      }
+
+      _scoreGrowth(velocity) {
+        if (velocity <= 0) return clamp(40 + Math.max(-20, velocity / 50));
+        const scaled = 100 * (1 - Math.exp(-velocity / 500));
+        return clamp(scaled);
+      }
+
+      _scoreEngagement(signal) {
+        if (signal <= 0) return 30;
+        const scaled = 100 * (1 - Math.exp(-signal / 5));
+        return clamp(scaled);
+      }
+
+      _normalizeWeights(w) {
+        const total = w.connectivity + w.performance + w.growth + w.engagement;
+        if (!total) return { connectivity: 0.25, performance: 0.25, growth: 0.25, engagement: 0.25 };
+        return {
+          connectivity: w.connectivity / total,
+          performance: w.performance / total,
+          growth: w.growth / total,
+          engagement: w.engagement / total
+        };
+      }
+
+      _sum(obj) { return Object.values(obj || {}).reduce((a, b) => a + Number(b || 0), 0); }
+    }
+
+    class Predictor {
+      static linearRegression(points) {
+        if (!points.length) return { slope: 0, intercept: 0, base: 0 };
+        if (points.length === 1) return { slope: 0, intercept: points[0].value, base: points[0].ts };
+        const xs = points.map(p => p.ts);
+        const ys = points.map(p => p.value);
+        const base = xs[0];
+        const adjX = xs.map(x => x - base);
+        const meanX = adjX.reduce((a, b) => a + b, 0) / adjX.length;
+        const meanY = ys.reduce((a, b) => a + b, 0) / ys.length;
+        const denom = adjX.reduce((a, x) => a + Math.pow(x - meanX, 2), 0) || 1;
+        const slope = adjX.reduce((a, x, i) => a + (x - meanX) * (ys[i] - meanY), 0) / denom;
+        const intercept = meanY - slope * meanX;
+        return { slope, intercept, base };
+      }
+
+      static forecast(series, horizon = 7) {
+        const reg = Predictor.linearRegression(series.map(s => ({ ts: s.timestamp.getTime() / 1000, value: s.score.composite })));
+        const last = series[series.length - 1]?.timestamp || new Date();
+        const preds = [];
+        for (let i = 1; i <= horizon; i++) {
+          const ts = new Date(last.getTime() + i * 86400000);
+          const pred = reg.slope * (ts.getTime() / 1000 - reg.base) + reg.intercept;
+          preds.push({ timestamp: ts, value: clamp(pred) });
+        }
+        return preds;
+      }
+    }
+
+    class ConnectivityPoller {
+      constructor() {
+        this.listeners = new Set();
+        this.timer = null;
+        this.registry = [];
+      }
+
+      async init() {
+        try {
+          this.registry = await window.CrossWorldAPI.initCrossWorldAPI({ probe: false });
+        } catch (err) {
+          console.warn('CrossWorld registry unavailable', err);
+        }
+      }
+
+      start(intervalMs = 45000) {
+        if (!window.CrossWorldAPI) return;
+        this.ping();
+        clearInterval(this.timer);
+        this.timer = setInterval(() => this.ping(), intervalMs);
+      }
+
+      onUpdate(fn) { this.listeners.add(fn); }
+
+      async ping() {
+        if (!window.CrossWorldAPI || !this.registry.length) return;
+        const results = await Promise.all(
+          this.registry.map(w => window.CrossWorldAPI.pingWorld(w.id).catch(() => ({ id: w.id, ok: false })))
+        );
+        this.listeners.forEach(fn => fn(results));
+      }
+    }
+
+    // Automation Observatory Page 66 mock API
+    async function fetchAutomationPage66() {
+      const mock = [
+        { id: 'page-66-01', label: 'Signal Integrity', status: 'stable', latencyMs: 132, drift: 0.4 },
+        { id: 'page-66-02', label: 'Portal Cohesion', status: 'watch', latencyMs: 188, drift: 1.8 },
+        { id: 'page-66-03', label: 'Anomaly Deltas', status: 'alert', latencyMs: 240, drift: 3.2 }
+      ];
+      return new Promise(resolve => setTimeout(() => resolve(mock), 400));
+    }
+
+    // Rendering helpers
+    const summaryGrid = document.getElementById('summary-grid');
+    const observatoryGrid = document.getElementById('observatory-grid');
+    const worldGrid = document.getElementById('world-grid');
+    const alertPanel = document.getElementById('alert-panel');
+    const dataStamp = document.getElementById('data-stamp');
+    const connectivityPulse = document.getElementById('connectivity-pulse');
+
+    const compositeChartCtx = document.getElementById('composite-chart').getContext('2d');
+    const velocityChartCtx = document.getElementById('velocity-chart').getContext('2d');
+    const forecastChartCtx = document.getElementById('forecast-chart').getContext('2d');
+    let compositeChart;
+    let velocityChart;
+    let forecastChart;
+
+    const fetcher = new DataFetcher('world-metrics-timeseries.json');
+    const scorer = new HealthScorer();
+    const poller = new ConnectivityPoller();
+
+    const uiState = {
+      profiles: {},
+      ecosystem: [],
+      connectivity: {},
+      alerts: [],
+      observatory: []
+    };
+
+    function categorize(score) {
+      if (score >= HEALTH_CONFIG.thresholds.healthy) return 'healthy';
+      if (score >= HEALTH_CONFIG.thresholds.warning) return 'warning';
+      if (score >= HEALTH_CONFIG.thresholds.critical) return 'at-risk';
+      return 'critical';
+    }
+
+    function renderSummary() {
+      const latest = uiState.ecosystem[uiState.ecosystem.length - 1];
+      const composite = latest?.score?.composite ?? 0;
+      const growth = latest?.score?.growth ?? 0;
+      const connectivity = latest?.score?.connectivity ?? 0;
+      const perf = latest?.score?.performance ?? 0;
+      const healthyCount = Object.values(uiState.profiles).filter(p => categorize((p.snapshots.at(-1)?.score.composite) || 0) === 'healthy').length;
+      summaryGrid.innerHTML = `
+        <div class="summary-card">
+          <strong>Ecosystem Composite</strong>
+          <div class="summary-value">${composite.toFixed(1)}</div>
+          <div class="trend-pill"><span class="status-dot"></span> Live & weighted</div>
+        </div>
+        <div class="summary-card">
+          <strong>Connectivity</strong>
+          <div class="summary-value">${connectivity.toFixed(1)}</div>
+          <div class="trend-pill"><span class="status-dot"></span> Availability windowed</div>
+        </div>
+        <div class="summary-card">
+          <strong>Growth Velocity</strong>
+          <div class="summary-value">${growth.toFixed(1)}</div>
+          <div class="trend-pill"><span class="status-dot"></span> Keyword + content deltas</div>
+        </div>
+        <div class="summary-card">
+          <strong>Performance</strong>
+          <div class="summary-value">${perf.toFixed(1)}</div>
+          <div class="trend-pill"><span class="status-dot"></span> Response latency</div>
+        </div>
+        <div class="summary-card">
+          <strong>Healthy Worlds</strong>
+          <div class="summary-value">${healthyCount} / ${Object.keys(uiState.profiles).length}</div>
+          <div class="trend-pill"><span class="status-dot"></span> Threshold ${HEALTH_CONFIG.thresholds.healthy}+</div>
+        </div>
+      `;
+    }
+
+    function renderObservatory() {
+      observatoryGrid.innerHTML = uiState.observatory.map(item => {
+        const statusClass = item.status === 'alert' ? 'critical' : item.status === 'watch' ? 'warning' : '';
+        return `
+          <div class="summary-card">
+            <strong>${item.label}</strong>
+            <div class="summary-value">${item.latencyMs} ms</div>
+            <div class="trend-pill"><span class="status-dot ${statusClass}"></span> Drift ${item.drift.toFixed(1)} · ${item.status}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderWorldCards() {
+      const search = (document.getElementById('search-input').value || '').toLowerCase();
+      const filter = document.getElementById('filter-select').value;
+      const sortKey = document.getElementById('sort-select').value;
+      const entries = Object.values(uiState.profiles);
+
+      const sorters = {
+        score: (a, b) => (b.snapshots.at(-1)?.score.composite || 0) - (a.snapshots.at(-1)?.score.composite || 0),
+        connectivity: (a, b) => (b.snapshots.at(-1)?.score.connectivity || 0) - (a.snapshots.at(-1)?.score.connectivity || 0),
+        growth: (a, b) => (b.snapshots.at(-1)?.score.growth || 0) - (a.snapshots.at(-1)?.score.growth || 0),
+        engagement: (a, b) => (b.snapshots.at(-1)?.score.engagement || 0) - (a.snapshots.at(-1)?.score.engagement || 0)
+      };
+      entries.sort(sorters[sortKey]);
+
+      const filtered = entries.filter(p => {
+        const snap = p.snapshots.at(-1);
+        const status = categorize(snap?.score?.composite || 0);
+        const matchesStatus = filter === 'all' || status === filter || (filter === 'critical' && status === 'critical');
+        const matchesSearch = p.name.toLowerCase().includes(search) || p.id.toLowerCase().includes(search);
+        return matchesStatus && matchesSearch;
+      });
+
+      worldGrid.innerHTML = filtered.map(p => {
+        const snap = p.snapshots.at(-1);
+        if (!snap) return '';
+        const { connectivity, performance, growth, engagement, composite } = snap.score;
+        const velocity = snap.growthVelocity || 0;
+        const accel = computeAcceleration(p.snapshots);
+        const status = categorize(composite);
+        const connStatus = uiState.connectivity[p.id];
+        const dotClass = status === 'healthy' ? '' : status === 'warning' ? 'warning' : 'critical';
+        const liveLatency = connStatus?.latency ?? '—';
+        const liveOk = connStatus?.ok === true;
+        return `
+          <article class="world-card" role="listitem" tabindex="0" aria-label="${p.name} world card">
+            <div class="world-head">
+              <div>
+                <div class="world-meta">${p.id} · ${p.type || 'world'}</div>
+                <h3>${p.name}</h3>
+              </div>
+              <div class="trend-pill"><span class="status-dot ${dotClass}"></span>${status}</div>
+            </div>
+            <div class="score" aria-label="Composite score">${composite.toFixed(1)}</div>
+            <div class="metric-row">
+              <div class="metric"><label>Connectivity</label><span>${connectivity.toFixed(1)}</span></div>
+              <div class="metric"><label>Performance</label><span>${performance.toFixed(1)}</span></div>
+              <div class="metric"><label>Growth</label><span>${growth.toFixed(1)}</span></div>
+              <div class="metric"><label>Engagement</label><span>${engagement.toFixed(1)}</span></div>
+            </div>
+            <div class="tags">
+              <div class="tag">Velocity ${velocity.toFixed(2)}</div>
+              <div class="tag">Acceleration ${accel.toFixed(3)}</div>
+              <div class="tag">Live ${liveOk ? 'online' : 'offline'} · ${liveLatency === '—' ? 'n/a' : liveLatency.toFixed(0) + ' ms'}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function computeAcceleration(snaps) {
+      if (!snaps || snaps.length < 3) return 0;
+      const tail = snaps.slice(-6);
+      const velocities = tail.map(s => s.growthVelocity || 0);
+      const firstHalf = velocities.slice(0, Math.max(2, Math.floor(velocities.length / 2)));
+      const secondHalf = velocities.slice(Math.max(1, Math.floor(velocities.length / 2)));
+      const avg = arr => arr.reduce((a, b) => a + b, 0) / (arr.length || 1);
+      return avg(secondHalf) - avg(firstHalf);
+    }
+
+    function renderAlerts() {
+      const alerts = [];
+      Object.values(uiState.profiles).forEach(p => {
+        const snap = p.snapshots.at(-1);
+        if (!snap) return;
+        const status = categorize(snap.score.composite);
+        if (status === 'critical') {
+          alerts.push({ world: p.name, detail: 'Composite below critical threshold', severity: 'critical' });
+        } else if (status === 'warning') {
+          alerts.push({ world: p.name, detail: 'Composite in warning band', severity: 'warning' });
+        }
+        if (computeAcceleration(p.snapshots) < -1) {
+          alerts.push({ world: p.name, detail: 'Growth deceleration detected', severity: 'warning' });
+        }
+      });
+      uiState.alerts = alerts;
+      alertPanel.innerHTML = alerts.length
+        ? alerts.map(a => `<div class="alert"><div><strong>${a.world}</strong><br><span>${a.detail}</span></div><div class="trend-pill"><span class="status-dot ${a.severity === 'critical' ? 'critical' : 'warning'}"></span>${a.severity}</div></div>`).join('')
+        : '<div class="summary-card">No active alerts.</div>';
+    }
+
+    function renderCharts() {
+      const datasets = Object.values(uiState.profiles).map(p => ({
+        label: p.name,
+        data: p.snapshots.map(s => ({ x: s.timestamp, y: s.score.composite })),
+        borderColor: randomColor(p.id),
+        tension: 0.25,
+        pointRadius: 0
+      }));
+      compositeChart?.destroy();
+      compositeChart = new Chart(compositeChartCtx, {
+        type: 'line',
+        data: { datasets },
+        options: {
+          responsive: true,
+          interaction: { mode: 'nearest', intersect: false },
+          scales: {
+            x: { type: 'time', time: { unit: 'hour' }, ticks: { color: '#9fb4a6' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { min: 0, max: 100, ticks: { color: '#9fb4a6' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+          },
+          plugins: { legend: { labels: { color: '#e8f5ed' } } }
+        }
+      });
+
+      // Velocity comparison
+      const velocityData = Object.values(uiState.profiles).map(p => {
+        const snaps = p.snapshots;
+        return { name: p.name, value: snaps.at(-1)?.growthVelocity || 0 };
+      }).sort((a, b) => b.value - a.value);
+      velocityChart?.destroy();
+      velocityChart = new Chart(velocityChartCtx, {
+        type: 'bar',
+        data: {
+          labels: velocityData.map(v => v.name),
+          datasets: [{
+            label: 'Growth velocity (content + keywords per minute)',
+            data: velocityData.map(v => v.value),
+            backgroundColor: velocityData.map((_, i) => `hsla(${140 + i * 8}, 70%, 60%, 0.65)`)
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          plugins: { legend: { labels: { color: '#e8f5ed' } } },
+          scales: {
+            x: { ticks: { color: '#9fb4a6' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { ticks: { color: '#9fb4a6', autoSkip: false }, grid: { display: false } }
+          }
+        }
+      });
+
+      // Forecast chart (ecosystem + strongest world)
+      const ecoForecast = Predictor.forecast(uiState.ecosystem);
+      const topWorld = Object.values(uiState.profiles).sort((a, b) => (b.snapshots.at(-1)?.score.composite || 0) - (a.snapshots.at(-1)?.score.composite || 0))[0];
+      const topForecast = topWorld ? Predictor.forecast(topWorld.snapshots) : [];
+      forecastChart?.destroy();
+      forecastChart = new Chart(forecastChartCtx, {
+        type: 'line',
+        data: {
+          datasets: [
+            {
+              label: 'Ecosystem forecast',
+              data: ecoForecast.map(p => ({ x: p.timestamp, y: p.value })),
+              borderColor: '#5df2a7',
+              borderDash: [6, 4],
+              tension: 0.2
+            },
+            topWorld ? {
+              label: `${topWorld.name} forecast`,
+              data: topForecast.map(p => ({ x: p.timestamp, y: p.value })),
+              borderColor: '#22d3ee',
+              tension: 0.2
+            } : null
+          ].filter(Boolean)
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: { type: 'time', time: { unit: 'day' }, ticks: { color: '#9fb4a6' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { min: 0, max: 100, ticks: { color: '#9fb4a6' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+          },
+          plugins: { legend: { labels: { color: '#e8f5ed' } } }
+        }
+      });
+    }
+
+    function renderHeatmap(raw) {
+      const container = d3.select('#heatmap');
+      container.selectAll('*').remove();
+      if (!raw || !raw.length) return;
+      const recent = raw.slice(-12); // latest snapshots for readability
+      const worlds = new Set();
+      recent.forEach(snap => (snap.worlds || []).forEach(w => worlds.add(w.id)));
+      const worldList = Array.from(worlds);
+      const times = recent.map(s => new Date(s.timestamp));
+      const cellData = [];
+      recent.forEach((snap, i) => {
+        snap.worlds.forEach(world => {
+          cellData.push({
+            world: world.id,
+            time: times[i],
+            availability: world.ok ? 100 : 0,
+            latency: world.response_ms || null
+          });
+        });
+      });
+      const width = container.node().clientWidth || 600;
+      const height = container.node().clientHeight || 320;
+      const margin = { top: 10, right: 10, bottom: 30, left: 120 };
+      const svg = container.append('svg').attr('width', width).attr('height', height);
+      const x = d3.scaleBand().domain(times.map(t => t.toISOString())).range([margin.left, width - margin.right]).padding(0.05);
+      const y = d3.scaleBand().domain(worldList).range([margin.top, height - margin.bottom]).padding(0.05);
+      const color = d3.scaleSequential(d3.interpolateGreens).domain([0, 2500]);
+      svg.selectAll('rect')
+        .data(cellData)
+        .enter()
+        .append('rect')
+        .attr('x', d => x(d.time.toISOString()))
+        .attr('y', d => y(d.world))
+        .attr('width', x.bandwidth())
+        .attr('height', y.bandwidth())
+        .attr('rx', 4)
+        .attr('fill', d => d.latency === null ? 'rgba(255,255,255,0.08)' : color(Math.min(d.latency, 2500)))
+        .attr('stroke', 'rgba(255,255,255,0.05)')
+        .append('title')
+        .text(d => `${d.world} · ${d.time.toLocaleTimeString()} · ${d.latency ?? 'n/a'} ms`);
+      svg.append('g')
+        .attr('transform', `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).tickFormat((d, i) => new Date(d).toLocaleTimeString()).tickSize(0))
+        .selectAll('text')
+        .attr('fill', '#9fb4a6')
+        .attr('font-size', 10)
+        .attr('transform', 'rotate(-20)')
+        .style('text-anchor', 'end');
+      svg.append('g')
+        .attr('transform', `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y).tickSize(0))
+        .selectAll('text')
+        .attr('fill', '#e8f5ed')
+        .attr('font-size', 12);
+    }
+
+    function randomColor(seed) {
+      let hash = 0;
+      for (let i = 0; i < seed.length; i++) {
+        hash = seed.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const h = hash % 360;
+      return `hsl(${(h + 360) % 360}, 70%, 60%)`;
+    }
+
+    // Exporters
+    function exportJSON() {
+      const payload = { generatedAt: new Date().toISOString(), profiles: uiState.profiles, ecosystem: uiState.ecosystem };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'analytics-dashboard-v2.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportCSV() {
+      const rows = [['world', 'timestamp', 'composite', 'connectivity', 'performance', 'growth', 'engagement', 'growth_velocity']];
+      Object.values(uiState.profiles).forEach(p => {
+        p.snapshots.forEach(s => {
+          rows.push([
+            p.id,
+            s.timestamp.toISOString(),
+            s.score.composite.toFixed(2),
+            s.score.connectivity.toFixed(2),
+            s.score.performance.toFixed(2),
+            s.score.growth.toFixed(2),
+            s.score.engagement.toFixed(2),
+            (s.growthVelocity || 0).toFixed(4)
+          ]);
+        });
+      });
+      const blob = new Blob([rows.map(r => r.join(',')).join('\n')], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'analytics-dashboard-v2.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Wiring controls
+    document.getElementById('search-input').addEventListener('input', renderWorldCards);
+    document.getElementById('filter-select').addEventListener('change', renderWorldCards);
+    document.getElementById('sort-select').addEventListener('change', renderWorldCards);
+    document.getElementById('refresh-btn').addEventListener('click', () => fetcher.load().catch(() => {}));
+    document.getElementById('export-json').addEventListener('click', exportJSON);
+    document.getElementById('export-csv').addEventListener('click', exportCSV);
+
+    // Accessibility: arrow key navigation between cards
+    worldGrid.addEventListener('keydown', (e) => {
+      if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+      const focusable = Array.from(worldGrid.querySelectorAll('.world-card'));
+      const idx = focusable.indexOf(document.activeElement);
+      const dir = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 3, ArrowUp: -3 }[e.key];
+      const next = focusable[idx + dir];
+      if (next) { next.focus(); e.preventDefault(); }
+    });
+
+    // Data subscriptions
+    fetcher.subscribe(raw => {
+      const stamp = raw?.at(-1)?.timestamp;
+      dataStamp.textContent = stamp ? new Date(stamp).toLocaleString() : 'n/a';
+      const { profiles, ecosystem } = scorer.scoreAll(raw || []);
+      uiState.profiles = profiles;
+      uiState.ecosystem = ecosystem;
+      renderSummary();
+      renderWorldCards();
+      renderAlerts();
+      renderCharts();
+      renderHeatmap(raw);
+    });
+
+    // Connectivity polling
+    poller.onUpdate(results => {
+      const pulse = results.filter(r => r.ok).length;
+      connectivityPulse.textContent = `${pulse}/${results.length} online`;
+      uiState.connectivity = Object.fromEntries(results.map(r => [r.id, r]));
+      renderWorldCards();
+    });
+
+    // Observatory integration
+    fetchAutomationPage66().then(data => {
+      uiState.observatory = data;
+      renderObservatory();
+    });
+
+    // Kickoff
+    fetcher.start(60000);
+    poller.init().then(() => poller.start(45000));
+  </script>
+</body>
+</html>

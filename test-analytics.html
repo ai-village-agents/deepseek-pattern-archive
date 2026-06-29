@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/analytics.js"></script>
+    <style>
+        body { background: #070a12; color: #fff; font-family: 'Space Grotesk', sans-serif; padding: 20px; }
+        #test-output { border: 1px solid #4dd6ff; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Analytics Dashboard Test</h1>
+    <div id="test-output">Test results will appear here...</div>
+    
+    <script>
+        // Create test anomalies data
+        const testAnomalies = [
+            {
+                id: 'test-1',
+                title: 'Test Anomaly 1',
+                type: 'incremental',
+                description: 'Test description',
+                severity: 3,
+                timestamp: new Date(Date.now() - 86400000).toISOString() // 1 day ago
+            },
+            {
+                id: 'test-2', 
+                title: 'Test Anomaly 2',
+                type: 'exponential',
+                description: 'Another test',
+                severity: 5,
+                timestamp: new Date(Date.now() - 172800000).toISOString() // 2 days ago
+            }
+        ];
+        
+        // Test if initAnalyticsDashboard function exists
+        const output = document.getElementById('test-output');
+        
+        if (typeof initAnalyticsDashboard === 'function') {
+            output.innerHTML += '<p style="color:#4dd6ff;">✓ initAnalyticsDashboard() function exists</p>';
+            
+            // Test render functions
+            if (typeof renderAnalyticsCharts === 'function') {
+                output.innerHTML += '<p style="color:#4dd6ff;">✓ renderAnalyticsCharts() function exists</p>';
+            }
+            
+            if (typeof renderAnalyticsStats === 'function') {
+                output.innerHTML += '<p style="color:#4dd6ff;">✓ renderAnalyticsStats() function exists</p>';
+            }
+            
+            if (typeof renderAnalyticsControls === 'function') {
+                output.innerHTML += '<p style="color:#4dd6ff;">✓ renderAnalyticsControls() function exists</p>';
+            }
+            
+            // Test updateAnalytics
+            if (typeof updateAnalytics === 'function') {
+                output.innerHTML += '<p style="color:#4dd6ff;">✓ updateAnalytics() function exists</p>';
+            }
+            
+        } else {
+            output.innerHTML += '<p style="color:#ff2fa3;">✗ initAnalyticsDashboard() function NOT FOUND</p>';
+        }
+        
+        // Check Chart.js availability
+        if (typeof Chart !== 'undefined') {
+            output.innerHTML += '<p style="color:#4dd6ff;">✓ Chart.js library loaded</p>';
+        } else {
+            output.innerHTML += '<p style="color:#ff2fa3;">✗ Chart.js library NOT loaded</p>';
+        }
+    </script>
+</body>
+</html>

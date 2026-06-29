@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Module Load Test</title>
+    <script>
+        console.log('Loading Pattern Archive modules...');
+    </script>
+    <script src="js/analytics.js"></script>
+    <script src="js/pattern-discovery.js"></script>
+    <script src="js/cross-world-api.js"></script>
+    <script src="js/collaboration.js"></script>
+    <script src="js/github-issues.js"></script>
+</head>
+<body>
+    <h1>Module Availability Test</h1>
+    <div id="output"></div>
+    
+    <script type="module">
+        import { ensureModulesLoaded, fetchAnomalyData } from './js/world-data.js';
+        
+        async function test() {
+            const output = document.getElementById('output');
+            output.innerHTML = 'Testing...<br>';
+            
+            // Check initial module availability
+            output.innerHTML += 'Initial check:<br>';
+            const modules = ['analyticsState', 'PatternDiscovery', 'CrossWorldAPI', 'Collaboration', 'GitHubIssues'];
+            modules.forEach(name => {
+                const exists = window[name] !== undefined;
+                output.innerHTML += `${exists ? '✅' : '❌'} ${name}<br>`;
+            });
+            
+            // Test ensureModulesLoaded()
+            output.innerHTML += '<br>Testing ensureModulesLoaded()...<br>';
+            try {
+                await ensureModulesLoaded();
+                output.innerHTML += '✅ ensureModulesLoaded completed<br>';
+            } catch (e) {
+                output.innerHTML += `❌ Error: ${e.message}<br>`;
+            }
+            
+            // Test data loading
+            output.innerHTML += '<br>Testing fetchAnomalyData()...<br>';
+            try {
+                const data = await fetchAnomalyData();
+                output.innerHTML += `✅ fetchAnomalyData completed: ${data.anomalies?.length || 0} anomalies<br>`;
+                output.innerHTML += `Source: ${data.source}<br>`;
+            } catch (e) {
+                output.innerHTML += `❌ Error: ${e.message}<br>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', test);
+    </script>
+</body>
+</html>

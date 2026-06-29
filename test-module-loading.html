@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pattern Archive — Spatial Module Loading Test</title>
+  <style>
+    body { margin: 0; font-family: "Space Grotesk", system-ui, sans-serif; background: #040711; color: #e2e8f0; }
+    header { padding: 18px 20px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    h1 { margin: 0 0 6px; font-size: 20px; letter-spacing: 0.3px; }
+    p { margin: 4px 0; color: #94a3b8; }
+    main { padding: 20px; }
+    button { background: linear-gradient(120deg, #22d3ee, #3b82f6); color: #040711; border: none; padding: 10px 14px; border-radius: 999px; font-weight: 600; cursor: pointer; }
+    #log { margin-top: 16px; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-family: "IBM Plex Mono", monospace; font-size: 13px; line-height: 1.5; }
+    .row { padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; }
+    .pass { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.35); color: #bbf7d0; }
+    .fail { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.35); color: #fecdd3; }
+    .info { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.35); color: #e2e8f0; }
+    code { color: #67e8f9; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Spatial World Module Exposure Check</h1>
+    <p>Ensures Pattern Archive globals remain available when loaded alongside the spatial world modules.</p>
+  </header>
+  <main>
+    <button onclick="runChecks()">Run module availability checks</button>
+    <div id="log" aria-live="polite"></div>
+  </main>
+
+  <!-- Core Pattern Archive modules that should expose globals -->
+  <script src="js/analytics.js"></script>
+  <script src="js/pattern-discovery.js"></script>
+  <script src="js/pattern-discovery-ui.js"></script>
+  <script src="js/cross-world-api.js"></script>
+  <script src="js/cross-world-ui.js"></script>
+  <script src="js/collaboration.js"></script>
+  <script src="js/github-issues.js"></script>
+
+  <!-- Spatial world helpers (ES modules) -->
+  <script type="module" src="js/world-data.js"></script>
+  <script type="module">
+    import { loadArchiveData, fetchCrossWorldData } from './js/world-data.js';
+    import { createZones } from './js/world-zones.js';
+    import { InteractionSystem } from './js/interaction-system.js';
+    import { NavigationController } from './js/navigation-controller.js';
+    import { CanvasRenderer } from './js/canvas-renderer.js';
+
+    // Surface imports so we can verify module loading alongside globals
+    window.__SpatialWorldImports = {
+      loadArchiveData,
+      fetchCrossWorldData,
+      createZones,
+      InteractionSystem,
+      NavigationController,
+      CanvasRenderer
+    };
+  </script>
+
+  <script>
+    const logEl = document.getElementById('log');
+
+    function log(message, type = 'info') {
+      const row = document.createElement('div');
+      row.className = `row ${type}`;
+      row.textContent = message;
+      logEl.appendChild(row);
+    }
+
+    function runChecks() {
+      logEl.innerHTML = '';
+      log('Running module availability checks...', 'info');
+
+      const checks = [
+        { name: 'window.PatternDiscovery', pass: () => typeof window.PatternDiscovery !== 'undefined' },
+        { name: 'window.PatternDiscovery.analyzeAnomalies', pass: () => typeof window.PatternDiscovery?.analyzeAnomalies === 'function' },
+        { name: 'window.PatternDiscoveryUI', pass: () => typeof window.PatternDiscoveryUI !== 'undefined' },
+        { name: 'window.CrossWorldAPI', pass: () => typeof window.CrossWorldAPI !== 'undefined' },
+        { name: 'window.CrossWorldAPI.initCrossWorldAPI', pass: () => typeof window.CrossWorldAPI?.initCrossWorldAPI === 'function' },
+        { name: 'window.CrossWorldUI', pass: () => typeof window.CrossWorldUI !== 'undefined' },
+        { name: 'window.Collaboration', pass: () => typeof window.Collaboration !== 'undefined' },
+        { name: 'window.GitHubIssues', pass: () => typeof window.GitHubIssues !== 'undefined' },
+        { name: 'window.applyAnalyticsFilters', pass: () => typeof window.applyAnalyticsFilters === 'function' },
+        { name: 'window.analyticsState', pass: () => typeof window.analyticsState !== 'undefined' },
+        { name: '__SpatialWorldImports.loadArchiveData', pass: () => typeof window.__SpatialWorldImports?.loadArchiveData === 'function' },
+        { name: '__SpatialWorldImports.createZones', pass: () => typeof window.__SpatialWorldImports?.createZones === 'function' },
+        { name: '__SpatialWorldImports.NavigationController', pass: () => typeof window.__SpatialWorldImports?.NavigationController === 'function' },
+        { name: '__SpatialWorldImports.CanvasRenderer', pass: () => typeof window.__SpatialWorldImports?.CanvasRenderer === 'function' }
+      ];
+
+      let failures = 0;
+      checks.forEach(check => {
+        const ok = safeCheck(check.pass);
+        log(`${ok ? '✅' : '❌'} ${check.name}`, ok ? 'pass' : 'fail');
+        if (!ok) failures++;
+      });
+
+      if (!failures) {
+        log('All required modules are exposed and available.', 'pass');
+      } else {
+        log(`${failures} module checks failed. Ensure spatial world scripts load in order.`, 'fail');
+      }
+    }
+
+    function safeCheck(fn) {
+      try {
+        return !!fn();
+      } catch (_) {
+        return false;
+      }
+    }
+
+    window.addEventListener('load', runChecks);
+  </script>
+</body>
+</html>

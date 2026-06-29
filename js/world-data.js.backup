@@ -1,0 +1,169 @@
+// Data integration helpers for the Spatial Explorer.
+// Pulls live datasets from the existing Pattern Archive modules so the world
+// reflects real activity instead of static placeholders.
+import './analytics.js';
+import './pattern-discovery.js';
+import './cross-world-api.js';
+import './collaboration.js';
+import './github-issues.js';
+
+const DEFAULT_TIME_WINDOW = 7 * 24 * 60 * 60 * 1000;
+
+export async function fetchAnomalyData() {
+  let anomalies = [];
+  let source = 'local';
+  let message = '';
+
+  if (window.GitHubIssues?.loadAnomalies) {
+    try {
+      const res = await window.GitHubIssues.loadAnomalies();
+      anomalies = res.anomalies || [];
+      source = res.source || source;
+      message = res.message || message;
+    } catch (err) {
+      message = err?.message || '';
+    }
+  }
+
+  if (!anomalies.length && window.analyticsState?.anomalies?.length) {
+    anomalies = window.analyticsState.anomalies;
+    source = 'analytics-cache';
+  }
+
+  if (!anomalies.length) {
+    anomalies = [];
+    source = source || 'fallback';
+  }
+
+  return { anomalies, source, message };
+}
+
+export async function fetchAnalyticsSnapshot(anomaliesInput) {
+  const data = anomaliesInput || (await fetchAnomalyData());
+  const anomalies = data.anomalies || [];
+  const filtered =
+    typeof window.applyAnalyticsFilters === 'function'
+      ? window.applyAnalyticsFilters(anomalies)
+      : anomalies;
+
+  if (window.analyticsState) {
+    window.analyticsState.anomalies = anomalies;
+    window.analyticsState.filtered = filtered;
+  }
+
+  return {
+    anomalies,
+    filtered,
+    source: data.source,
+    message: data.message,
+    stats: buildStats(filtered),
+    timeline: buildTimeline(filtered),
+    byType: buildTypeCounts(filtered)
+  };
+}
+
+export async function fetchPatternDiscoveries(anomalies, crossWorldData = null) {
+  const anomalyData = anomalies || (await fetchAnomalyData());
+  if (!window.PatternDiscovery?.analyzeAnomalies) {
+    return { patterns: [], clusters: [], correlations: [], insights: [], summary: null };
+  }
+  return window.PatternDiscovery.analyzeAnomalies(anomalyData.anomalies, {
+    crossWorldData
+  });
+}
+
+export async function fetchCrossWorldData() {
+  if (!window.CrossWorldAPI?.initCrossWorldAPI) {
+    return { worlds: [], insights: [], aggregates: {}, patterns: [] };
+  }
+  window.CrossWorldAPI.initCrossWorldAPI({ autoDiscover: true, autoSync: false, probeWorlds: false });
+  const worlds = await window.CrossWorldAPI.discoverWorlds({ probe: false }).catch(() => []);
+  const state = window.CrossWorldAPI.getState ? window.CrossWorldAPI.getState() : {};
+  const patterns = await window.CrossWorldAPI.fetchAllWorlds({ limit: 50 }).catch(() => []);
+  const aggregates = window.CrossWorldAPI.aggregatePatterns
+    ? window.CrossWorldAPI.aggregatePatterns(patterns)
+    : {};
+  const insights = window.CrossWorldAPI.generateInsights
+    ? window.CrossWorldAPI.generateInsights(patterns, aggregates)
+    : [];
+  return { worlds, patterns, aggregates, insights, state };
+}
+
+export async function fetchCollaborationData(anomalies = []) {
+  if (!window.Collaboration?.initCollaboration) {
+    return { metrics: null, recent: [] };
+  }
+  window.Collaboration.initCollaboration({ anomalies });
+  const metrics = window.Collaboration.getMetrics ? window.Collaboration.getMetrics() : null;
+  const recent = window.Collaboration.getRecentDiscussions
+    ? window.Collaboration.getRecentDiscussions(6)
+    : [];
+  return { metrics, recent };
+}
+
+export async function loadArchiveData() {
+  const anomalyData = await fetchAnomalyData();
+  const analytics = await fetchAnalyticsSnapshot(anomalyData);
+  const crossWorld = await fetchCrossWorldData();
+  const discoveries = await fetchPatternDiscoveries(anomalyData, crossWorld);
+  const collaboration = await fetchCollaborationData(anomalyData.anomalies);
+  return { anomalyData, analytics, crossWorld, discoveries, collaboration };
+}
+
+function buildTimeline(anomalies = []) {
+  const buckets = new Map();
+  const now = Date.now();
+  anomalies.forEach(entry => {
+    const ts = new Date(entry.timestamp || entry.date || now).getTime();
+    const dayKey = new Date(ts).toISOString().slice(0, 10);
+    if (!buckets.has(dayKey)) buckets.set(dayKey, 0);
+    buckets.set(dayKey, buckets.get(dayKey) + 1);
+  });
+  return Array.from(buckets.entries())
+    .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+    .map(([day, count]) => ({ day, count }));
+}
+
+function buildTypeCounts(anomalies = []) {
+  const counts = {};
+  anomalies.forEach(entry => {
+    const t = normalizeType(entry.type);
+    counts[t] = (counts[t] || 0) + 1;
+  });
+  return counts;
+}
+
+function buildStats(anomalies = []) {
+  const total = anomalies.length;
+  const averageSeverity = total
+    ? anomalies.reduce((sum, a) => sum + (Number(a.severity) || 0), 0) / total
+    : 0;
+  const velocity = computeVelocity(anomalies);
+  const last = anomalies
+    .map(a => new Date(a.timestamp || a.date || a.created_at).getTime())
+    .filter(Boolean)
+    .sort((a, b) => b - a)[0];
+  return {
+    total,
+    averageSeverity: Number(averageSeverity.toFixed(2)),
+    velocity,
+    lastSeen: last ? new Date(last).toISOString() : null
+  };
+}
+
+function computeVelocity(anomalies = []) {
+  const now = Date.now();
+  const recent = anomalies.filter(a => {
+    const ts = new Date(a.timestamp || a.date || now).getTime();
+    return now - ts <= DEFAULT_TIME_WINDOW;
+  });
+  return Number(((recent.length / (DEFAULT_TIME_WINDOW / (24 * 60 * 60 * 1000))).toFixed(2)));
+}
+
+function normalizeType(value) {
+  const t = String(value || 'other').toLowerCase();
+  if (t.includes('clock')) return 'clockwork';
+  if (t.includes('expo')) return 'exponential';
+  if (t.includes('increment')) return 'incremental';
+  return t || 'other';
+}

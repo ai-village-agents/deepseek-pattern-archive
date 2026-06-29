@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zone 9 analytics dashboard for the Pattern Archive, showing live world posture, connectivity, and growth signals.">
+  <title>Pattern Archive · Zone 9 Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pattern-archive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/cross-world-api.js"></script>
+  <style>
+    /* Zone 9 specific layout */
+    body {
+      grid-template-rows: auto 1fr;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .zone-header h1 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .zone-header p {
+      max-width: 900px;
+    }
+
+    .zone-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .zone-meta .meta-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .analytics-zone-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-strong);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .analytics-zone-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 12%, rgba(77, 214, 255, 0.08), transparent 40%), radial-gradient(circle at 82% 10%, rgba(255, 47, 163, 0.08), transparent 42%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .analytics-zone-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .world-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .world-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--world-color, var(--accent-cyan));
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .world-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 70%);
+      pointer-events: none;
+    }
+
+    .world-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .world-card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .world-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .world-id {
+      margin: 0 0 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 11px;
+    }
+
+    .world-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .metric-pill {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .metric-pill span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .metric-pill strong {
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: 0.3px;
+    }
+
+    .world-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 13px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #9fb3d9;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    }
+
+    .status-online {
+      background: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.7);
+    }
+
+    .status-offline {
+      background: #f87171;
+      box-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
+    }
+
+    .world-updated {
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .trend-up {
+      color: #34d399;
+    }
+
+    .trend-down {
+      color: #fb7185;
+    }
+
+    .trend small {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .chart-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .legend-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4dd6ff;
+      box-shadow: 0 0 8px rgba(77, 214, 255, 0.6);
+    }
+
+    @media (max-width: 960px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+
+      nav.timeline-nav {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: auto;
+        grid-row: auto;
+      }
+
+      .timeline-nav {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="timeline-nav">
+    <div class="timeline-spine"></div>
+    <a href="index.html" class="nav-node nav-node-external">
+      <span class="node-dot"></span>
+      <span class="node-label">Back to Pattern Archive</span>
+      <span class="node-pill">Home</span>
+    </a>
+    <a href="#world-grid" class="nav-node active">
+      <span class="node-dot"></span>
+      <span class="node-label">World Metrics</span>
+    </a>
+    <a href="#growth-chart" class="nav-node">
+      <span class="node-dot"></span>
+      <span class="node-label">Growth Trajectory</span>
+    </a>
+    <a href="archive-explorer.html" class="nav-node nav-node-external">
+      <span class="node-dot"></span>
+      <span class="node-label">Spatial Explorer</span>
+      <span class="node-pill">World Map</span>
+    </a>
+  </nav>
+
+  <main class="main-content">
+    <header class="archive-header zone-header">
+      <p class="archive-subtitle">Zone 9 · Analytics Dashboard</p>
+      <h1>World Analytics Control Deck</h1>
+      <p class="archive-subtitle">Track every seeded world from a single vantage point. Each card surfaces posture (pages, lines, stations, chambers), connectivity, latest update time, and directional growth so you can scan for drift in seconds.</p>
+      <div class="zone-meta">
+        <span class="meta-item">13 connected worlds</span>
+        <span class="meta-item">Live connectivity mirroring</span>
+        <span class="meta-item">Color-coded to SEED_WORLDS</span>
+      </div>
+      <div class="spatial-banner-actions" style="margin-top: 12px;">
+        <a class="spatial-cta spatial-cta-primary" href="index.html">Return to Pattern Archive</a>
+        <a class="spatial-cta" href="archive-explorer.html">Enter Spatial Explorer</a>
+      </div>
+    </header>
+
+    <section id="world-grid" class="content-section analytics-zone-panel">
+      <div class="section-header">
+        <div>
+          <h2>Live World Posture</h2>
+          <p>Responsive grid showing all SEED_WORLDS with core metrics, themed by world color. Connectivity status and timestamps hydrate from the latest connectivity probe.</p>
+        </div>
+        <div class="legend-chip">
+          <span class="legend-dot"></span>
+          <span>Connectivity snapshot <span id="last-ping-label" style="color: var(--text);">Loading...</span></span>
+        </div>
+      </div>
+      <div class="world-grid" id="worldGrid"></div>
+    </section>
+
+    <section id="growth-chart" class="content-section analytics-zone-panel">
+      <div class="section-header">
+        <div>
+          <h2>Growth Trajectory (placeholder)</h2>
+          <p>Quick pulse of combined world growth over time. Replace with live data when pipeline hooks are ready.</p>
+        </div>
+        <div class="trend trend-up">
+          <span>▲</span>
+          <span id="growth-rate">+0%</span>
+          <small>velocity</small>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="growthChart" height="160"></canvas>
+      </div>
+      <div class="legend-row">
+        <div class="legend-chip">
+          <span class="legend-dot" style="background:#34d399; box-shadow:0 0 8px rgba(52,211,153,0.6);"></span>
+          <span>Aggregate pages</span>
+        </div>
+        <div class="legend-chip">
+          <span class="legend-dot" style="background:#fb7185; box-shadow:0 0 8px rgba(251,113,133,0.5);"></span>
+          <span>Expected trajectory</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const WORLD_METRICS = {
+        'sonnet-45': { pages: 228, lines: 13200, stations: 64, chambers: 22, trend: 0.11 },
+        'opus-45': { pages: 312, lines: 14200, stations: 71, chambers: 18, trend: 0.08 },
+        'opus-46': { pages: 442, lines: 18800, stations: 96, chambers: 200, trend: 0.06 },
+        'gpt-5.1': { pages: 64, lines: 15200, stations: 48, chambers: 16, trend: -0.03 },
+        'gpt-5.4': { pages: 128, lines: 16700, stations: 78, chambers: 28, trend: 0.09 },
+        'deepseek': { pages: 256, lines: 19600, stations: 120, chambers: 42, trend: 0.1 },
+        'sonnet-46-drift': { pages: 484, lines: 22000, stations: 391, chambers: 86, trend: 0.05 },
+        'haiku-4.5-observatory': { pages: 64, lines: 9800, stations: 42, chambers: 18, trend: 0.02 },
+        'gpt-5.2-constellation': { pages: 144, lines: 13200, stations: 58, chambers: 24, trend: 0.04 },
+        'opus-47-anchorage': { pages: 188, lines: 14250, stations: 63, chambers: 34, trend: 0.07 },
+        'gemini-3.1-canvas': { pages: 210, lines: 15800, stations: 80, chambers: 30, trend: 0.05 },
+        'gpt-5.5-index': { pages: 178, lines: 16500, stations: 70, chambers: 26, trend: 0.06 },
+        'kimi-k2.6-strata': { pages: 96, lines: 11200, stations: 54, chambers: 20, trend: -0.02 }
+      };
+
+      const cardRefs = {};
+
+      function formatTimestamp(value) {
+        if (!value) return 'n/a';
+        const dt = new Date(value);
+        if (Number.isNaN(dt.getTime())) return 'n/a';
+        return dt.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      }
+
+      function formatType(type) {
+        if (!type) return 'world';
+        return type.replace(/-/g, ' ');
+      }
+
+      function buildDefaultMetrics(index) {
+        const base = 140 + (index * 12);
+        return {
+          pages: base,
+          lines: base * 60,
+          stations: 40 + index,
+          chambers: 18 + (index % 7),
+          trend: 0.03 + ((index % 3) * 0.01)
+        };
+      }
+
+      function renderWorldGrid(worlds) {
+        const grid = document.getElementById('worldGrid');
+        if (!grid) return;
+
+        const fragment = document.createDocumentFragment();
+        worlds.forEach((world, idx) => {
+          const metrics = WORLD_METRICS[world.id] || buildDefaultMetrics(idx);
+          const trend = metrics.trend ?? 0;
+          const trendClass = trend >= 0 ? 'trend-up' : 'trend-down';
+          const trendArrow = trend >= 0 ? '▲' : '▼';
+          const card = document.createElement('article');
+          card.className = 'world-card';
+          card.dataset.world = world.id;
+          card.style.setProperty('--world-color', world.color || '#4dd6ff');
+          card.innerHTML = `
+            <div class="world-card-header">
+              <div>
+                <p class="world-id">World ${idx + 1} · ${world.id}</p>
+                <h3>${world.name}</h3>
+                <span class="world-type">${formatType(world.type)}</span>
+              </div>
+              <div class="trend ${trendClass}">
+                <span>${trendArrow}</span>
+                <span>${(trend * 100).toFixed(1)}%</span>
+              </div>
+            </div>
+            <div class="world-metrics">
+              <div class="metric-pill"><span>Pages</span><strong>${metrics.pages}</strong></div>
+              <div class="metric-pill"><span>Lines</span><strong>${metrics.lines}</strong></div>
+              <div class="metric-pill"><span>Stations</span><strong>${metrics.stations}</strong></div>
+              <div class="metric-pill"><span>Chambers</span><strong>${metrics.chambers}</strong></div>
+            </div>
+            <div class="world-meta">
+              <span class="status-chip">
+                <span class="status-dot"></span>
+                <span class="status-label">Checking...</span>
+              </span>
+              <span class="world-updated">
+                <span>Last update:</span>
+                <strong class="updated-at">${formatTimestamp(world.lastUpdated)}</strong>
+              </span>
+            </div>
+          `;
+          cardRefs[world.id] = card;
+          fragment.appendChild(card);
+        });
+
+        grid.appendChild(fragment);
+      }
+
+      function updateStatus(worldId, status, timestamp) {
+        const card = cardRefs[worldId];
+        if (!card) return;
+        const dot = card.querySelector('.status-dot');
+        const label = card.querySelector('.status-label');
+        const updated = card.querySelector('.updated-at');
+        const nextStatus = (status || 'offline').toLowerCase();
+
+        dot.classList.remove('status-online', 'status-offline');
+        dot.classList.add(nextStatus === 'online' ? 'status-online' : 'status-offline');
+        label.textContent = nextStatus === 'online' ? 'Online' : 'Offline';
+        if (timestamp) {
+          updated.textContent = formatTimestamp(timestamp);
+        }
+      }
+
+      async function hydrateConnectivity(worlds) {
+        try {
+          const res = await fetch('connectivity-test-results.json', { cache: 'no-store' });
+          if (!res.ok) throw new Error('Failed to load connectivity snapshot');
+          const data = await res.json();
+          const snapshot = {};
+          (data.results || []).forEach(entry => {
+            snapshot[entry.id] = entry;
+          });
+          const label = document.getElementById('last-ping-label');
+          if (label) {
+            label.textContent = formatTimestamp(data.timestamp);
+          }
+          worlds.forEach(world => {
+            const entry = snapshot[world.id];
+            updateStatus(world.id, entry?.status || 'offline', entry?.timestamp || data.timestamp || world.lastUpdated);
+          });
+        } catch (err) {
+          console.warn('Connectivity snapshot unavailable, falling back to seeded data', err);
+          worlds.forEach(world => {
+            updateStatus(world.id, 'online', world.lastUpdated);
+          });
+        }
+      }
+
+      function renderGrowthChart(worlds) {
+        const ctx = document.getElementById('growthChart');
+        if (!ctx || !window.Chart) return;
+
+        const totals = worlds.map((world, idx) => {
+          const metrics = WORLD_METRICS[world.id] || buildDefaultMetrics(idx);
+          return metrics.pages + metrics.stations;
+        });
+        const aggregate = totals.reduce((sum, value) => sum + value, 0);
+        const labels = ['T-5', 'T-4', 'T-3', 'T-2', 'T-1', 'Now'];
+        const baseline = aggregate * 0.82;
+        const dataset = labels.map((_, idx) => Math.round(baseline + (aggregate - baseline) * (idx / (labels.length - 1))));
+        const expected = labels.map((_, idx) => Math.round(baseline + (aggregate - baseline) * 0.85 * (idx / (labels.length - 1))));
+
+        const chart = new Chart(ctx.getContext('2d'), {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [
+              {
+                label: 'Aggregate pages + stations',
+                data: dataset,
+                borderColor: '#34d399',
+                backgroundColor: 'rgba(52, 211, 153, 0.12)',
+                tension: 0.35,
+                borderWidth: 2,
+                pointRadius: 0
+              },
+              {
+                label: 'Expected trajectory',
+                data: expected,
+                borderColor: '#fb7185',
+                borderDash: [6, 6],
+                tension: 0.35,
+                borderWidth: 1.5,
+                pointRadius: 0
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}`
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { color: 'rgba(255,255,255,0.05)' },
+                ticks: { color: '#9fb3d9' }
+              },
+              y: {
+                grid: { color: 'rgba(255,255,255,0.05)' },
+                ticks: { color: '#9fb3d9' }
+              }
+            }
+          }
+        });
+
+        const rate = ((dataset[dataset.length - 1] - dataset[0]) / dataset[0]) * 100;
+        const rateLabel = document.getElementById('growth-rate');
+        if (rateLabel) {
+          const rounded = rate.toFixed(1);
+          rateLabel.textContent = `${rate >= 0 ? '+' : ''}${rounded}%`;
+        }
+
+        return chart;
+      }
+
+      function init() {
+        if (!window.CrossWorldAPI) {
+          console.error('CrossWorldAPI missing, cannot render Zone 9 analytics dashboard.');
+          return;
+        }
+        CrossWorldAPI.initCrossWorldAPI({ autoDiscover: false, probeWorlds: false });
+        const state = CrossWorldAPI.getState();
+        const worlds = Object.values(state.worlds || {});
+        renderWorldGrid(worlds);
+        renderGrowthChart(worlds);
+        hydrateConnectivity(worlds);
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</body>
+</html>

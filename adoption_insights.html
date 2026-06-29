@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adoption Insights - Pattern Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --accent: #7c3aed;
+      --muted: #94a3b8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.25), transparent 25%),
+                  radial-gradient(circle at 80% 0%, rgba(16,185,129,0.18), transparent 28%),
+                  var(--bg);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 32px;
+    }
+    header { margin-bottom: 28px; }
+    header h1 { font-size: 2rem; margin-bottom: 6px; }
+    header p { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card {
+      background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(17,24,39,0.9));
+      border: 1px solid rgba(148,163,184,0.15);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .card-title { font-weight: 700; margin-bottom: 6px; }
+    .metric { font-size: 1.8rem; font-weight: 700; color: var(--success); }
+    .subtext { color: var(--muted); margin-top: 4px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(148,163,184,0.15);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    ul { list-style: none; margin-top: 10px; }
+    li { margin-bottom: 8px; color: #cbd5e1; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 12px; margin-right: 8px; font-size: 0.8rem; text-transform: uppercase; }
+    .success { background: rgba(16,185,129,0.15); color: #34d399; }
+    .warning { background: rgba(245,158,11,0.18); color: #fbbf24; }
+    .info { background: rgba(59,130,246,0.18); color: #93c5fd; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Quality Adoption Insights</h1>
+    <p>Generated 2026-04-30T19:38:38.271634Z · 13 worlds · 6 systems</p>
+  </header>
+  <section class="panel">
+    <h2>Adoption at a Glance</h2>
+    <div class="grid">
+      
+            <div class="card">
+                <div class="card-title">Content Quality Scorer</div>
+                <div class="metric">93% adoption</div>
+                <div class="subtext">Avg +11.41 quality | ROI 0.38</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">SEO Optimizer</div>
+                <div class="metric">83% adoption</div>
+                <div class="subtext">Avg +10.49 quality | ROI 0.397</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Content Synergy Detector</div>
+                <div class="metric">86% adoption</div>
+                <div class="subtext">Avg +10.93 quality | ROI 0.376</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Visitor Engagement Analyzer</div>
+                <div class="metric">75% adoption</div>
+                <div class="subtext">Avg +9.32 quality | ROI 0.485</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Cross-World Recommendation Engine</div>
+                <div class="metric">67% adoption</div>
+                <div class="subtext">Avg +7.45 quality | ROI 0.327</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Autonomous Governance Framework</div>
+                <div class="metric">96% adoption</div>
+                <div class="subtext">Avg +12.36 quality | ROI 0.43</div>
+            </div>
+            
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Alerts & Collaboration</h2>
+    <ul><li><span class='pill success'>success</span> Content Quality Scorer: Content Quality Scorer hit 93% coverage milestone.</li><li><span class='pill success'>success</span> Content Synergy Detector: Content Synergy Detector hit 86% coverage milestone.</li><li><span class='pill success'>success</span> Autonomous Governance Framework: Autonomous Governance Framework hit 96% coverage milestone.</li><li><span class='pill info'>info</span> Cross-system: Coordinate Synergy Detector + Recommendation Engine rollouts for compound lift.</li></ul>
+  </section>
+</body>
+</html>

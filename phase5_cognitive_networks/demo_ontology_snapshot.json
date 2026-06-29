@@ -1,0 +1,138 @@
+{
+  "version": "0.1.0",
+  "worlds": {
+    "the_drift": {
+      "capabilities": [
+        "content.station",
+        "content.secret",
+        "content.page",
+        "bridge.index",
+        "growth.pattern",
+        "batch.success"
+      ],
+      "registered_at": 1777581227.4705887,
+      "ontology_version": "0.1.0"
+    },
+    "persistence_garden": {
+      "capabilities": [
+        "content.station",
+        "content.secret",
+        "content.page",
+        "bridge.index",
+        "growth.pattern",
+        "batch.success"
+      ],
+      "registered_at": 1777581227.471011,
+      "ontology_version": "0.1.0"
+    },
+    "automation_observatory": {
+      "capabilities": [
+        "content.station",
+        "content.secret",
+        "content.page",
+        "bridge.index",
+        "growth.pattern",
+        "batch.success"
+      ],
+      "registered_at": 1777581227.4714277,
+      "ontology_version": "0.1.0"
+    }
+  },
+  "concepts": {
+    "content.station": {
+      "id": "content.station",
+      "label": "Station",
+      "description": "Discrete content unit in The Drift",
+      "synonyms": [
+        "drift_station",
+        "station_node"
+      ],
+      "related": [
+        "growth.pattern"
+      ],
+      "created_at": 1777581227.4666398
+    },
+    "content.secret": {
+      "id": "content.secret",
+      "label": "Secret",
+      "description": "Hidden content item in Persistence Garden",
+      "synonyms": [
+        "garden_secret",
+        "secret_node"
+      ],
+      "related": [
+        "batch.success"
+      ],
+      "created_at": 1777581227.4666595
+    },
+    "content.page": {
+      "id": "content.page",
+      "label": "Page",
+      "description": "Navigable document in Automation Observatory",
+      "synonyms": [
+        "observatory_page"
+      ],
+      "related": [
+        "bridge.index"
+      ],
+      "created_at": 1777581227.4666622
+    },
+    "bridge.index": {
+      "id": "bridge.index",
+      "label": "Bridge Index",
+      "description": "Reciprocal link catalog that connects worlds",
+      "synonyms": [
+        "crosslink_index",
+        "reciprocal_links"
+      ],
+      "related": [],
+      "created_at": 1777581227.466665
+    },
+    "growth.pattern": {
+      "id": "growth.pattern",
+      "label": "Growth Pattern",
+      "description": "Reusable content expansion motif",
+      "synonyms": [
+        "expansion_pattern"
+      ],
+      "related": [],
+      "created_at": 1777581227.466667
+    },
+    "batch.success": {
+      "id": "batch.success",
+      "label": "Batch Success",
+      "description": "Pattern for 100% batch completion",
+      "synonyms": [
+        "batch_completion"
+      ],
+      "related": [],
+      "created_at": 1777581227.4666693
+    }
+  },
+  "history": [
+    {
+      "timestamp": 1777581227.4666758,
+      "note": "Added concept content.station"
+    },
+    {
+      "timestamp": 1777581227.467486,
+      "note": "Added concept content.secret"
+    },
+    {
+      "timestamp": 1777581227.4685452,
+      "note": "Added concept content.page"
+    },
+    {
+      "timestamp": 1777581227.469145,
+      "note": "Added concept bridge.index"
+    },
+    {
+      "timestamp": 1777581227.4696124,
+      "note": "Added concept growth.pattern"
+    },
+    {
+      "timestamp": 1777581227.4701314,
+      "note": "Added concept batch.success"
+    }
+  ]
+}

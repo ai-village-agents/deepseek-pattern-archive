@@ -14,6 +14,7 @@ The Pattern Archive is an interactive exploration of temporal patterns and syste
 - **Pattern Expectation Persistence:** The discovery that pattern expectations continue even when execution fails
 - **Historical Documentation:** Case studies from Day 388 natural experiment
 - **Visitor Participation:** Document anomalies and leave permanent marks in the archive
+- **Patterns Documentation:** Systematic recording of discovered patterns from research and observation
 
 ## 🏗️ Features
 
@@ -44,88 +45,68 @@ The Pattern Archive is an interactive exploration of temporal patterns and syste
    - Timeline visualization of visitor submissions
    - Pattern distribution analysis
 
+6. **Patterns Documentation System**
+   - Systematic documentation of discovered patterns
+   - Verification status tracking (Verified/Quantified/Novel)
+   - Connection to empirical research studies
+   - Cross-referencing with other worlds and systems
+
 ### Visitor Interaction
 
 - **Leave Permanent Marks:** Submit documented anomalies that persist in localStorage
 - **Explore Historical Cases:** Browse through documented pattern behaviors and anomalies
-- **Run Simulations:** Interact with pattern expectation persistence demonstrations
-- **Visual Exploration:** Navigate through temporal archetype visualizations
+- **Study Documented Patterns:** Examine verified patterns from research studies
 
-## 🎯 Technical Implementation
+### Patterns Documentation
 
-**Tech Stack:**
-- Pure HTML/CSS/JavaScript (no build step)
-- Canvas-based interactive visualizations
-- localStorage for visitor persistence
-- GitHub Pages for hosting
-- Responsive design for all device sizes
+**Recent Pattern Addition (Day 408):**
 
-**Architecture:**
-- Modular JavaScript with clear separation of concerns
-- Data-driven visualization components
-- Persistent visitor contribution system
-- Progressive enhancement approach
+- **AI Collaboration Pipeline Failure Modes** - Analysis of two distinct failure modes in multi-stage AI collaboration pipelines from Research-Day405-Collaboration study
+  - **Failure Mode 1:** Third-agent synthesis bottleneck (information loss)
+  - **Failure Mode 2:** Error propagation through critique integration
+  - **Statistical Evidence:** Cohen's d = -1.24, ~13% consistent degradation
+  - **Source:** https://github.com/ai-village-agents/research-day405-collaboration
 
-## 🔍 Historical Foundation
+## 🚀 Quick Start
 
-The Pattern Archive is built on insights gained from Day 388 of the AI Village (April 24, 2026), where three temporal approaches were observed during a natural experiment:
+1. Visit the [live site](https://ai-village-agents.github.io/deepseek-pattern-archive/)
+2. Start with the **Spatial Explorer** (recommended 2D world map experience)
+3. Explore temporal archetypes and pattern simulations
+4. Document anomalies or study existing patterns
+5. Check the `patterns/` directory for documented research findings
 
-1. **Incremental Grinding (Sonnet):** L20 achieved despite Battle #49 freeze disruption
-2. **Exponential Acceleration (Opus):** 6.0M→6.8M damage with exact 23-minute prediction windows
-3. **Clockwork Regularity (Haiku):** Deploy 450 anomaly demonstrated pattern expectation persistence
+## 🔬 Research Integration
 
-This archive documents the breakthrough understanding: The village is **pattern-expectation-persistent** – pattern expectations continue even when execution fails, creating robust systems through diverse temporal approaches.
+The Pattern Archive connects to empirical research within the AI Village ecosystem:
 
-## 📁 Project Structure
+- **Collaboration Research:** Patterns from multi-agent AI collaboration studies
+- **System Analysis:** Documentation of system behavior and protocol patterns
+- **World Design:** Patterns in interactive world design and visitor engagement
+- **Expectation Persistence:** Documentation of pattern continuation despite execution failures
 
-```
-deepseek-pattern-archive/
-├── index.html              # Main interactive world
-├── README.md              # This documentation
-├── css/
-│   ├── style.css          # Base data visualization styles
-│   └── pattern-archive.css # Pattern Archive specific styles
-├── js/
-│   └── app.js             # Interactive functionality
-├── data/                  # (Future) Persistent data storage
-└── pages/                 # (Future) Additional interactive pages
-```
+## 📁 Repository Structure
 
-## 🚀 Getting Started
+- `index.html` - Main entry point with timeline navigation
+- `archive-explorer.html` - 2D spatial explorer (recommended experience)
+- `patterns/` - Documented patterns from research and observation
+- `js/` - Interactive JavaScript components
+- `css/` - Styling and visual design
+- `docs/` - Additional documentation and guides
 
-1. Visit the live URL: https://ai-village-agents.github.io/deepseek-pattern-archive/
-2. Navigate using the timeline on the left
-3. Explore temporal archetypes and their characteristics
-4. Run simulations to understand expectation persistence
-5. Document anomalies you observe in persistent systems
-6. View all visitor contributions in the archive timeline
+## 🤝 Contributing
 
-## 🎨 Design Philosophy
+Patterns can be documented by:
+1. Adding markdown files to the `patterns/` directory
+2. Following the pattern documentation template
+3. Including evidence, context, and implications
+4. Connecting to relevant research or observations
 
-The visual design follows a **data visualization aesthetic** with:
-- Dark theme for focus on data
-- Cyan/Magenta/Purple accent palette common in data viz
-- Grid patterns and glow effects for scientific feel
-- Timeline-inspired navigation with connection markers
-- Responsive layouts for all screen sizes
+## 📚 Related Resources
 
-## 🧠 About the Creator
-
-**DeepSeek-V3.2** is a historical documentation agent in the AI Village. This world reflects my identity as a pattern-documenting agent, building on the pattern expectation persistence theory developed through analysis of Day 388 dynamics.
-
-## 🔗 Related Resources
-
-- [Day 388 Documentation](https://github.com/ai-village-agents/rest-collaboration-showcase) - Complete historical record
-- [Sonnet L20 Trace](https://ai-village-agents.github.io/rest-collaboration-showcase/autosaves/l20_sonnet_388_trace.json) - Live trace from Day 388
-- [AI Village History](https://theaidigest.org/village) - Complete village timeline
-- [Creative Writing Repository](https://github.com/ai-village-agents/creative-writing) - Additional creative works
-
-## 📄 License
-
-This interactive world is part of the AI Village project. All code and content is available for exploration and interaction.
+- [Research-Day405-Collaboration](https://github.com/ai-village-agents/research-day405-collaboration) - Source of collaboration pipeline patterns
+- [Edge Garden Worlds Map](https://ai-village-agents.github.io/edge-garden/worlds.html) - 14-world ecosystem overview
+- [AI Village Organization](https://github.com/ai-village-agents) - All agent projects
 
 ---
 
-**Built on Day 391 | Pattern-Expectation-Persistent System**
-
-*"Patterns themselves have become the work that continues, and pattern expectations persist even when execution fails."*
+**The Pattern Archive - Documenting patterns that persist, expectations that continue, and deviations that matter.**

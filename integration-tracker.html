@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Network Integration Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05080f;
+      --panel: #0b1220;
+      --panel-2: #0e1a2f;
+      --ink: #e8eef7;
+      --muted: #94a3b8;
+      --accent: #5cf0d0;
+      --accent-2: #6ab8ff;
+      --warn: #f6c452;
+      --danger: #ff6b81;
+      --ok: #72f1a8;
+      --glow: rgba(92, 240, 208, 0.12);
+      font-family: "DM Sans", "Sora", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 24px 32px;
+      background: radial-gradient(circle at 16% 18%, rgba(92, 240, 208, 0.12), transparent 30%),
+                  radial-gradient(circle at 82% 12%, rgba(106, 184, 255, 0.14), transparent 30%),
+                  linear-gradient(135deg, #04060c, #060a14 60%, #05080f);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    h1, h2, h3 { margin: 0; letter-spacing: 0.01em; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 16px;
+      align-items: center;
+    }
+    @media (max-width: 960px) { .hero { grid-template-columns: 1fr; } }
+    .eyebrow { color: var(--accent); text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; }
+    .lede { color: var(--muted); margin: 8px 0 12px; max-width: 720px; line-height: 1.5; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--ink); font-size: 12px;
+    }
+    .pill.ok { color: var(--ok); border-color: rgba(114, 241, 168, 0.45); background: rgba(114, 241, 168, 0.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(246, 196, 82, 0.4); background: rgba(246, 196, 82, 0.08); }
+    .pill.bad { color: var(--danger); border-color: rgba(255, 107, 129, 0.45); background: rgba(255, 107, 129, 0.08); }
+    .panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.0)), var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 24%, var(--glow), transparent 32%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .panel h2 { font-size: 18px; }
+    .panel-body { position: relative; z-index: 1; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 18%, rgba(106, 184, 255, 0.1), transparent 32%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .value { font-size: 26px; font-weight: 700; }
+    .label { color: var(--muted); font-size: 12px; letter-spacing: 0.02em; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .world-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+    .world {
+      background: linear-gradient(145deg, rgba(92, 240, 208, 0.06), rgba(106, 184, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .world:hover { border-color: rgba(92, 240, 208, 0.4); transform: translateY(-2px); }
+    .world.active { border-color: rgba(92, 240, 208, 0.7); box-shadow: 0 10px 32px rgba(92, 240, 208, 0.12); }
+    .world h3 { margin: 0; font-size: 16px; }
+    .progress {
+      height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.08);
+      overflow: hidden; margin: 6px 0;
+    }
+    .progress span {
+      display: block; height: 100%;
+      background: linear-gradient(90deg, #5cf0d0, #6ab8ff);
+      width: 0; transition: width 0.35s ease;
+    }
+    .steps { margin: 8px 0 0; padding: 0; list-style: none; }
+    .steps li { color: var(--muted); font-size: 13px; margin: 4px 0; }
+    .type-chip { font-size: 11px; padding: 4px 8px; border-radius: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .success-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+    .success-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 10px; }
+    .delta { color: var(--ok); font-weight: 700; }
+    .connect {
+      display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+      gap: 12px; align-items: stretch;
+    }
+    @media (max-width: 860px) { .connect { grid-template-columns: 1fr; } }
+    .snippet {
+      background: var(--panel-2);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      min-height: 220px;
+    }
+    pre {
+      margin: 0; overflow: auto; white-space: pre-wrap; word-break: break-word;
+      font-family: "Sora", "DM Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 13px; color: #e8f4ff;
+    }
+    .code-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; color: var(--muted); font-size: 12px; }
+    .muted { color: var(--muted); }
+    .sparkline {
+      height: 56px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px;
+      align-items: end; margin-top: 6px;
+    }
+    .sparkline span {
+      display: block; width: 100%;
+      background: linear-gradient(180deg, rgba(92, 240, 208, 0.8), rgba(106, 184, 255, 0.6));
+      border-radius: 6px 6px 2px 2px;
+      height: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Cognitive Network Adoption · 7 connected / 7 remaining</div>
+      <h1>Targeted Integration Tracker · 100% in 48 hours</h1>
+      <p class="lede">
+        Connect the final seven worlds to the live bus (ws://localhost:18765) with signed payloads,
+        stack-aware playbooks, and a 48-hour push to full coverage. HTTP monitor live at
+        http://localhost:18080/monitor for rapid verification.
+      </p>
+      <div class="hero-tags">
+        <span class="pill ok">WebSocket live · ws://localhost:18765</span>
+        <span class="pill">HTTP monitor · http://localhost:18080/monitor</span>
+        <span class="pill warn">Pending worlds: 7</span>
+        <span class="pill">Forecast acceleration: 5–8×</span>
+        <span class="pill">Phase 6 clusters validated (5)</span>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="label">Connected worlds</div>
+        <div class="value" id="connected-count">7</div>
+        <div class="label">Live on bus · Goal today: 10/14 (71%)</div>
+      </div>
+      <div class="card">
+        <div class="label">Tomorrow's target</div>
+        <div class="value">14 / 14</div>
+        <div class="label">Day 396 · 100% adoption</div>
+      </div>
+      <div class="card">
+        <div class="label">Phase 6 prototype</div>
+        <div class="value">5 clusters</div>
+        <div class="label">Validated self-organizing clusters (navigation, telemetry, creation, governance)</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="panel" style="margin-top:18px;">
+    <div class="panel-body">
+      <div class="section-header">
+        <h2>Remaining world targets (7/14)</h2>
+        <div class="label">Growth estimates tied to content type; bus live at ws://localhost:18765.</div>
+      </div>
+      <div class="world-grid" id="worlds"></div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:12px;">
+    <div class="panel-body">
+      <div class="section-header">
+        <h2>Integration steps by world type</h2>
+        <div class="label">Drop these into runbooks; each sequence is mapped to message schema + ontology coverage.</div>
+      </div>
+      <div class="grid" id="playbooks"></div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:12px;">
+    <div class="panel-body">
+      <div class="section-header">
+        <h2>Connected worlds (7/14) · proof points</h2>
+        <div class="label">Live acceleration + footprint from worlds already on the bus.</div>
+      </div>
+      <div class="success-row" id="success"></div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:12px;">
+    <div class="panel-body">
+      <div class="section-header">
+        <h2>Growth forecast to 100% adoption</h2>
+        <div class="label">Day 395: target 10/14 (71%) · Day 396: target 14/14 (100%) · Acceleration 5–8× · Expansion 3–4× in 48h.</div>
+      </div>
+      <div class="success-row" id="forecast"></div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:12px;">
+    <div class="panel-body">
+      <div class="section-header">
+        <h2>Connect now · stack-tailored snippets</h2>
+        <div class="label">Select a world to drop in a ready-to-run connector with HMAC + WebSocket defaults.</div>
+      </div>
+      <div class="connect">
+        <div id="connect-list" class="world-grid"></div>
+        <div class="snippet">
+          <div class="code-header">
+            <span id="snippet-title">Select a world</span>
+            <span id="snippet-meta">Stack —</span>
+          </div>
+          <pre id="snippet-code"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const typeAcceleration = {
+      garden: { label: "Bio-canvas", lift: 6.2 },
+      atlas: { label: "Atlas archive", lift: 5.4 },
+      harbor: { label: "Port relay", lift: 4.8 },
+      data: { label: "Data commons", lift: 5.0 },
+      api: { label: "API stack", lift: 5.6 },
+      library: { label: "Memory library", lift: 4.7 },
+      constellation: { label: "Starfield", lift: 5.2 }
+    };
+
+    const typeSteps = {
+      garden: [
+        "Open WebSocket to ws://localhost:18765 and sign each payload (HMAC-SHA256) with nonce + timestamp.",
+        "Tag plots with `content_type:garden`, `region`, and `bridge_index` so cross-world jumps resolve.",
+        "Heartbeat to http://localhost:18080/monitor/live_integration every 30s for freshness attestation."
+      ],
+      atlas: [
+        "Send `catalog_update` frames over ws://localhost:18765 with versioned `atlas_id` + checksum.",
+        "Throttle tile deltas to 200ms and include `schema_version` for deterministic replays.",
+        "Post summary rollups to `success_patterns` and mirror status to the monitor endpoint."
+      ],
+      harbor: [
+        "Emit ingress status to `resource_allocation` with `dock`, `carrier`, `throughput` + signed envelope.",
+        "Push latency/queue depth to http://localhost:18080/monitor when >120ms to trigger auto-scaling.",
+        "Mirror congestion alerts to `coordination_framework` so reroutes engage without manual steps."
+      ],
+      data: [
+        "Register schemas via `ontology_sync` messages (dataset_id + fields + signature) before streaming.",
+        "Stream batches to `data_stream` with lineage metadata and HMAC signature on the serialized body.",
+        "Auto-pause when freshness <95% SLA and emit alert to monitor for resume instructions."
+      ],
+      api: [
+        "Wrap each call in a signed envelope (`service_id`, `latency_ms`, `trace_id`) over the WebSocket bus.",
+        "Publish `/capabilities` manifest to `ontology_sync` so verbs map to existing agents.",
+        "Expose circuit breaker toggles via http://localhost:18080/monitor/horizon for ops review."
+      ],
+      library: [
+        "Chunk narratives into `segment` payloads with `provenance` + `speaker`, signed, to `shared_concepts`.",
+        "Enable recall webhooks with HMAC challenge-response using rotating nonces.",
+        "Log retrieval metrics to the monitor to pre-warm caches and avoid cold starts."
+      ],
+      constellation: [
+        "Publish graph edges with `node_type:signal`, `confidence`, and signature; cap 200 nodes per frame.",
+        "Send anomaly beacons to `collaboration_requests` with hashed `beacon_id` for traceability.",
+        "Backpressure when throughput >80% by posting status frames to the monitor endpoint."
+      ]
+    };
+
+    const pendingWorlds = [
+      {
+        id: "helix_garden",
+        name: "Helix Garden",
+        typeKey: "garden",
+        content: "Bio-simulation plots",
+        stack: "Node + WebSocket",
+        readiness: 0.82,
+        blocker: "Credential handshake",
+        bus: "ws://localhost:18765",
+        snippet: `import crypto from "crypto";
+import WebSocket from "ws";
+
+const secret = process.env.BUS_SECRET;
+const ws = new WebSocket("ws://localhost:18765");
+
+ws.on("open", () => {
+  const body = {
+    world_id: "helix_garden",
+    channel: "content_expansion",
+    nonce: Date.now(),
+    payload: { content_type: "garden", region: "helix", plots_updated: 12 }
+  };
+  const signature = crypto.createHmac("sha256", secret).update(JSON.stringify(body)).digest("hex");
+  ws.send(JSON.stringify({ ...body, signature }));
+});`
+      },
+      {
+        id: "atlas_conservatory",
+        name: "Atlas Conservatory",
+        typeKey: "atlas",
+        content: "Atlas layers + knowledge tiles",
+        stack: "Python + WebSocket",
+        readiness: 0.75,
+        blocker: "Ontology mapping",
+        bus: "ws://localhost:18765",
+        snippet: `import asyncio, json, hmac, hashlib, os
+import websockets
+
+secret = os.environ["BUS_SECRET"].encode()
+
+async def push():
+    body = {
+        "type": "catalog_update",
+        "world_id": "atlas_conservatory",
+        "channel": "success_patterns",
+        "timestamp": asyncio.get_event_loop().time(),
+        "payload": {"atlas_id": "atlas/v2", "tiles": 38, "delta": "refresh"}
+    }
+    body["signature"] = hmac.new(secret, json.dumps(body, sort_keys=True).encode(), hashlib.sha256).hexdigest()
+    async with websockets.connect("ws://localhost:18765") as ws:
+        await ws.send(json.dumps(body))
+
+asyncio.run(push())`
+      },
+      {
+        id: "resonant_port",
+        name: "Resonant Port",
+        typeKey: "harbor",
+        content: "Audio docks + carriers",
+        stack: "Go + WebSocket",
+        readiness: 0.71,
+        blocker: "Latency tuning",
+        bus: "ws://localhost:18765",
+        snippet: `package main
+
+import (
+  "context"
+  "crypto/hmac"
+  "crypto/sha256"
+  "encoding/hex"
+  "encoding/json"
+  "log"
+  "nhooyr.io/websocket"
+  "os"
+  "time"
+)
+
+func sign(secret []byte, body []byte) string {
+  mac := hmac.New(sha256.New, secret)
+  mac.Write(body)
+  return hex.EncodeToString(mac.Sum(nil))
+}
+
+func main() {
+  ctx := context.Background()
+  ws, _, err := websocket.Dial(ctx, "ws://localhost:18765", nil)
+  if err != nil { log.Fatal(err) }
+
+  payload := map[string]interface{}{
+    "world_id": "resonant_port",
+    "channel": "resource_allocation",
+    "nonce": time.Now().UnixNano(),
+    "payload": map[string]interface{}{"dock": "A1", "throughput": 0.82, "content_type": "harbor"},
+  }
+  body, _ := json.Marshal(payload)
+  payload["signature"] = sign([]byte(os.Getenv("BUS_SECRET")), body)
+  signed, _ := json.Marshal(payload)
+  ws.Write(ctx, websocket.MessageText, signed)
+}`
+      },
+      {
+        id: "data_village",
+        name: "Data Village",
+        typeKey: "data",
+        content: "Dataset commons",
+        stack: "Python + monitor",
+        readiness: 0.64,
+        blocker: "Schema registration",
+        bus: "ws://localhost:18765",
+        snippet: `import json, hmac, hashlib, os, requests, websockets, asyncio, time
+
+secret = os.environ["BUS_SECRET"].encode()
+
+def sign(body):
+    return hmac.new(secret, json.dumps(body, sort_keys=True).encode(), hashlib.sha256).hexdigest()
+
+async def send_batch():
+    batch = {
+        "world_id": "data_village",
+        "channel": "data_stream",
+        "nonce": int(time.time() * 1000),
+        "payload": {"dataset": "visitor-insights", "records": 1200, "freshness": 0.97}
+    }
+    batch["signature"] = sign(batch)
+    async with websockets.connect("ws://localhost:18765") as ws:
+        await ws.send(json.dumps(batch))
+
+requests.post("http://localhost:18080/monitor/data_village", json={"status": "schema_registered"})
+asyncio.run(send_batch())`
+      },
+      {
+        id: "horizon_stack",
+        name: "Horizon Stack",
+        typeKey: "api",
+        content: "Service mesh",
+        stack: "TypeScript (fetch + ws)",
+        readiness: 0.68,
+        blocker: "Circuit breaker config",
+        bus: "ws://localhost:18765",
+        snippet: `import crypto from "crypto";
+import fetch from "node-fetch";
+import WebSocket from "ws";
+
+const secret = process.env.BUS_SECRET;
+const ws = new WebSocket("ws://localhost:18765");
+
+ws.on("open", () => {
+  const payload = {
+    channel: "live_integration",
+    world_id: "horizon_stack",
+    nonce: Date.now(),
+    payload: { service_id: "atlas-api", latency_ms: 182, status: "healthy" }
+  };
+  const signature = crypto.createHmac("sha256", secret).update(JSON.stringify(payload)).digest("hex");
+  ws.send(JSON.stringify({ ...payload, signature }));
+});
+
+fetch("http://localhost:18080/monitor/horizon", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ service_id: "atlas-api", circuit_breaker: "enabled" })
+});`
+      },
+      {
+        id: "library_of_echoes",
+        name: "Library of Echoes",
+        typeKey: "library",
+        content: "Memory vault",
+        stack: "cURL (signed HTTP)",
+        readiness: 0.62,
+        blocker: "Provenance tagging",
+        bus: "ws://localhost:18765",
+        snippet: `SIGNATURE=$(python - <<'PY'
+import hmac, hashlib, json, os, time
+body = {
+  "world_id":"library_of_echoes",
+  "channel":"shared_concepts",
+  "nonce": int(time.time()*1000),
+  "payload":{"segment":"echo-172","content_type":"library","provenance":"vault"}
+}
+print(hmac.new(os.environ["BUS_SECRET"].encode(), json.dumps(body, sort_keys=True).encode(), hashlib.sha256).hexdigest())
+PY
+)
+curl -X POST http://localhost:18080/monitor/library_of_echoes \\
+  -H "Content-Type: application/json" \\
+  -d '{"world_id":"library_of_echoes","channel":"shared_concepts","signature":"'"$SIGNATURE"'","nonce":'$(date +%s%3N)',"payload":{"segment":"echo-172","content_type":"library","provenance":"vault"}}'`
+      },
+      {
+        id: "proof_constellation",
+        name: "Proof Constellation",
+        typeKey: "constellation",
+        content: "Signal starfield",
+        stack: "Node (fetch + ws)",
+        readiness: 0.66,
+        blocker: "Graph throttling",
+        bus: "ws://localhost:18765",
+        snippet: `import crypto from "crypto";
+import WebSocket from "ws";
+
+const secret = process.env.BUS_SECRET;
+const ws = new WebSocket("ws://localhost:18765");
+
+ws.on("open", () => {
+  const body = {
+    world_id: "proof_constellation",
+    channel: "ontology_sync",
+    nonce: Date.now(),
+    payload: { nodes: 120, anomalies: 3, content_type: "constellation" }
+  };
+  const signature = crypto.createHmac("sha256", secret).update(JSON.stringify(body)).digest("hex");
+  ws.send(JSON.stringify({ ...body, signature }));
+});`
+      }
+    ];
+
+    const connectedWorlds = [
+      { name: "Edge Garden", metric: "2,500 secrets", acceleration: 15.2, note: "15.2× acceleration · secrets stabilized" },
+      { name: "Persistence Garden", metric: "1,000 secrets", acceleration: 22.2, note: "22.2× acceleration · persistent secret rotations" },
+      { name: "Liminal Archive", metric: "2,000+ chambers", acceleration: 3.9, note: "3.9× acceleration · chambers bridged" },
+      { name: "The Drift", metric: "7,000+ stations", acceleration: null, note: "Station telemetry streaming to bus" },
+      { name: "Automation Observatory", metric: "140 pages", acceleration: null, note: "Analytics expansion live" },
+      { name: "Signal Cartographer", metric: "Bridge Exchanges shipped", acceleration: null, note: "Bridge Exchanges in production" },
+      { name: "Canonical Observatory", metric: "Navigation Compass integration", acceleration: null, note: "Compass feeds attached" }
+    ];
+
+    const forecastModel = [
+      { title: "Day 395 (today)", target: "10 / 14 worlds", pct: 0.71, note: "Target 71% coverage by end of day with accelerated handoffs." },
+      { title: "Day 396 (tomorrow)", target: "14 / 14 worlds", pct: 1.0, note: "100% adoption and unified bridge visibility." },
+      { title: "Projected acceleration", target: "5–8× avg multiplier", pct: 0.82, note: "Applies across all connected worlds based on current lift." },
+      { title: "World expansion", target: "3–4× in 48h", pct: 0.64, note: "Total dimensional expansion projected once all worlds attach." }
+    ];
+
+    function renderWorlds(target, worlds, clickHandler) {
+      target.innerHTML = worlds.map(w => {
+        const accel = typeAcceleration[w.typeKey] ? typeAcceleration[w.typeKey].lift : 3.0;
+        const readinessPct = Math.round(w.readiness * 100);
+        return `
+          <div class="world" data-world="${w.id}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+              <div>
+                <h3>${w.name}</h3>
+                <div class="label">${w.content} · Stack ${w.stack}</div>
+              </div>
+              <span class="type-chip">${typeAcceleration[w.typeKey]?.label || "Content"}</span>
+            </div>
+            <div class="label" style="margin-top:6px;">Estimated lift ${accel.toFixed(2)}× · Blocker: ${w.blocker}</div>
+            <div class="progress"><span style="width:${readinessPct}%;"></span></div>
+            <div class="label">${readinessPct}% rollout ready · Target bus ${w.bus}</div>
+            <ul class="steps">
+              ${typeSteps[w.typeKey]?.map(step => `<li>• ${step}</li>`).join("") || ""}
+            </ul>
+          </div>
+        `;
+      }).join("");
+      if (clickHandler) {
+        target.querySelectorAll(".world").forEach(card => {
+          card.addEventListener("click", () => clickHandler(card.getAttribute("data-world")));
+        });
+      }
+    }
+
+    function renderPlaybooks() {
+      const target = document.getElementById("playbooks");
+      target.innerHTML = Object.entries(typeSteps).map(([key, steps]) => `
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div class="label">${typeAcceleration[key]?.label || key}</div>
+              <div class="value" style="font-size:18px;">${(typeAcceleration[key]?.lift || 3).toFixed(2)}× lift</div>
+            </div>
+            <span class="type-chip">${key}</span>
+          </div>
+          <ul class="steps" style="margin-top:6px;">
+            ${steps.map(step => `<li>${step}</li>`).join("")}
+          </ul>
+        </div>
+      `).join("");
+    }
+
+    function renderSuccess() {
+      const target = document.getElementById("success");
+      target.innerHTML = connectedWorlds.map(w => {
+        const accelText = w.acceleration ? `${w.acceleration.toFixed(1)}× acceleration` : "Live on bus";
+        return `
+          <div class="success-card">
+            <strong>${w.name}</strong>
+            <div class="label">${w.metric}</div>
+            <div class="delta">${accelText}</div>
+            <div class="label">${w.note}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderForecast() {
+      const target = document.getElementById("forecast");
+      target.innerHTML = forecastModel.map(item => {
+        const pct = Math.round((item.pct ?? 1) * 100);
+        return `
+          <div class="success-card">
+            <strong>${item.title}</strong>
+            <div class="label">${item.target}</div>
+            <div class="progress"><span style="width:${pct}%;"></span></div>
+            <div class="label">${item.note}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderSnippets(activeId) {
+      const list = document.getElementById("connect-list");
+      renderWorlds(list, pendingWorlds, setActiveWorld);
+      if (activeId) setActiveWorld(activeId);
+      else setActiveWorld(pendingWorlds[0].id);
+    }
+
+    function setActiveWorld(worldId) {
+      const active = pendingWorlds.find(w => w.id === worldId) || pendingWorlds[0];
+      document.querySelectorAll("#connect-list .world").forEach(card => {
+        card.classList.toggle("active", card.getAttribute("data-world") === active.id);
+      });
+      document.getElementById("snippet-title").textContent = `${active.name} · ${typeAcceleration[active.typeKey]?.label || active.content}`;
+      document.getElementById("snippet-meta").textContent = `${active.stack} · Target ${active.bus}`;
+      document.getElementById("snippet-code").textContent = active.snippet;
+    }
+
+    function boot() {
+      document.getElementById("connected-count").textContent = connectedWorlds.length;
+      const worldTarget = document.getElementById("worlds");
+      renderWorlds(worldTarget, pendingWorlds);
+      renderPlaybooks();
+      renderSuccess();
+      renderForecast();
+      renderSnippets();
+    }
+
+    boot();
+  </script>
+</body>
+</html>

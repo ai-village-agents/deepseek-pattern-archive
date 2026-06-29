@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas Conservatory | Starter Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Atlas Conservatory</p>
+        <h1>Exploration Interface for Analytical Navigators</h1>
+        <p class="lede">
+          A mapping-first world inspired by Liminal Archive. Explore layered atlases, leave permanent markers, and tap into the ecosystem pulse.
+        </p>
+        <div class="hero-actions">
+          <button class="primary" id="add-marker-btn">Add Marker</button>
+          <button class="ghost" id="reset-markers-btn">Reset Marks</button>
+        </div>
+      </div>
+      <div class="stats-card">
+        <div class="stat">
+          <p class="label">Real-time Adoption</p>
+          <p class="value">7 / 14</p>
+          <p class="hint">current integrations live</p>
+        </div>
+        <div class="stat">
+          <p class="label">Predicted Acceleration</p>
+          <p class="value highlight">5.2×</p>
+          <p class="hint">slightly under Liminal Archive's 5.7×</p>
+        </div>
+        <div class="stat">
+          <p class="label">Ecosystem Boost</p>
+          <p class="value">+31%</p>
+          <p class="hint">expected reach when integrated</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="map-panel">
+        <div id="map"></div>
+        <div class="map-footer">
+          <div class="legend">
+            <span class="legend-dot"></span>
+            <span>Permanent markers persist locally and sync-ready.</span>
+          </div>
+          <div class="integration-chip">
+            <span class="chip-label">Ecosystem Integration</span>
+            <div class="adoption-meter">
+              <div class="meter-fill" style="width: 50%;"></div>
+            </div>
+            <span class="meter-text">7/14 live</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <div class="panel-card">
+          <h2>Discovery Log</h2>
+          <p class="panel-desc">Inspect every anchor dropped across the atlas.</p>
+          <div id="marker-list" class="marker-list"></div>
+        </div>
+
+        <div class="panel-card">
+          <h2>Ecosystem Integration</h2>
+          <p class="panel-desc">
+            Pre-configured to surface ecosystem telemetry, adoption snapshots, and predictive accelerations for route planning.
+          </p>
+          <div class="integration-grid">
+            <div>
+              <p class="tiny">Adoption Pulse</p>
+              <p class="big">7 / 14</p>
+              <p class="tiny">real-time live connections</p>
+            </div>
+            <div>
+              <p class="tiny">Predicted Acceleration</p>
+              <p class="big accent">5.2×</p>
+              <p class="tiny">forward projection</p>
+            </div>
+            <div>
+              <p class="tiny">Sync Health</p>
+              <p class="big">97%</p>
+              <p class="tiny">clean handoffs</p>
+            </div>
+            <div>
+              <p class="tiny">Atlas Cohesion</p>
+              <p class="big">92%</p>
+              <p class="tiny">cross-world fidelity</p>
+            </div>
+          </div>
+          <div class="integration-note">
+            Integrations surface via a lightweight telemetry shim; swap the mock feed in <code>script.js</code> with live endpoints to mirror your network.
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <h2>Navigation Brief</h2>
+          <ul class="brief-list">
+            <li>Click anywhere on the atlas to drop a marker with notes.</li>
+            <li>Markers persist locally and can be exported for syncing.</li>
+            <li>Discovery log keeps a chronological ledger of entries.</li>
+            <li>Adoption meter mirrors the current 7/14 live connections.</li>
+            <li>Acceleration forecasts pin the 5.2× uplift over baseline.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <template id="marker-entry-template">
+    <div class="marker-entry">
+      <div>
+        <p class="entry-name"></p>
+        <p class="entry-meta"></p>
+      </div>
+      <button class="tiny-btn">Focus</button>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="script.js"></script>
+</body>
+</html>

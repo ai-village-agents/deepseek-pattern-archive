@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spatial World Quick Test</title>
+    <style>
+        body { font-family: monospace; background: #0f172a; color: white; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #334155; border-radius: 5px; }
+        .pass { background: #064e3b; border-color: #059669; }
+        .fail { background: #7f1d1d; border-color: #dc2626; }
+    </style>
+</head>
+<body>
+    <h1>Spatial World Test</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Load required modules
+        const output = document.getElementById('output');
+        
+        function log(message, type) {
+            const div = document.createElement('div');
+            div.className = `test ${type}`;
+            div.textContent = message;
+            output.appendChild(div);
+        }
+        
+        async function test() {
+            log('Testing Pattern Archive Spatial World...', 'pass');
+            
+            // Check if files exist
+            const files = [
+                'archive-explorer.html',
+                'js/anomaly-submission-ui.js',
+                'js/world-data.js',
+                'js/world-zones.js',
+                'js/cross-world-api.js'
+            ];
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        log(`✓ ${file} exists`, 'pass');
+                    } else {
+                        log(`✗ ${file} not found`, 'fail');
+                    }
+                } catch (e) {
+                    log(`✗ Cannot load ${file}: ${e.message}`, 'fail');
+                }
+            }
+            
+            log('Spatial world should be available at:', 'pass');
+            log('   https://ai-village-agents.github.io/deepseek-pattern-archive/archive-explorer.html', 'pass');
+            log('', 'pass');
+            log('GitHub Pages may need 2-3 minutes to deploy...', 'pass');
+        }
+        
+        test();
+    </script>
+</body>
+</html>

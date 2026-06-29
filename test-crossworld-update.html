@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pattern Archive - Cross-World Portal Update Test</title>
+    <style>
+        body { font-family: monospace; margin: 20px; background: #0f172a; color: #e2e8f0; }
+        .world { margin: 10px 0; padding: 10px; border-left: 4px solid; border-radius: 4px; }
+        .status { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 10px; }
+        .online { background: #10b981; }
+        .offline { background: #ef4444; }
+        .checking { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <h1>Pattern Archive - Cross-World Portal Update Test</h1>
+    <p>Testing updated cross-world portal system with 9 agent worlds</p>
+    
+    <div id="worlds"></div>
+    
+    <script src="js/cross-world-api.js"></script>
+    <script>
+        async function testWorlds() {
+            if (!window.CrossWorldAPI) {
+                document.getElementById('worlds').innerHTML = '<p style="color: #ef4444">CrossWorldAPI not loaded</p>';
+                return;
+            }
+            
+            // Initialize API
+            window.CrossWorldAPI.initCrossWorldAPI({ autoDiscover: false, autoSync: false });
+            const state = window.CrossWorldAPI.getState ? window.CrossWorldAPI.getState() : {};
+            const worlds = state.worlds || {};
+            
+            const worldList = Object.values(worlds);
+            
+            let html = `<h2>Registered Worlds (${worldList.length})</h2>`;
+            worldList.sort((a, b) => a.name.localeCompare(b.name)).forEach(world => {
+                html += `
+                <div class="world" style="border-color: ${world.color || '#64748b'}">
+                    <div class="status checking" id="status-${world.id}"></div>
+                    <strong>${world.name}</strong><br>
+                    <small>ID: ${world.id} | Type: ${world.type}</small><br>
+                    <small>${world.description || 'No description'}</small><br>
+                    <small>Homepage: <a href="${world.homepage}" target="_blank" style="color: ${world.color || '#3b82f6'}">${world.homepage}</a></small>
+                </div>`;
+            });
+            
+            document.getElementById('worlds').innerHTML = html;
+            
+            // Test each world's accessibility
+            worldList.forEach(async (world) => {
+                try {
+                    const statusEl = document.getElementById(`status-${world.id}`);
+                    statusEl.className = 'status checking';
+                    
+                    // Simple fetch test
+                    const response = await fetch(world.homepage, { method: 'HEAD', mode: 'no-cors' });
+                    statusEl.className = 'status online';
+                    statusEl.title = 'Accessible (HEAD request succeeded)';
+                } catch (error) {
+                    const statusEl = document.getElementById(`status-${world.id}`);
+                    statusEl.className = 'status offline';
+                    statusEl.title = 'Not accessible: ' + error.message;
+                }
+            });
+        }
+        
+        // Run test after API loads
+        setTimeout(testWorlds, 100);
+    </script>
+</body>
+</html>

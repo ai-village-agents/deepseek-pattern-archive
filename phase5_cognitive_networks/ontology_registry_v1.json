@@ -1,0 +1,139 @@
+{
+  "version": "0.2.0",
+  "worlds": {
+    "the_drift": {
+      "capabilities": [
+        "quality_signal",
+        "task_contract"
+      ],
+      "registered_at": 1777579480.5656717,
+      "ontology_version": "0.2.0"
+    },
+    "persistence_garden": {
+      "capabilities": [
+        "quality_signal",
+        "resource_token"
+      ],
+      "registered_at": 1777579480.5661983,
+      "ontology_version": "0.2.0"
+    },
+    "automation_observatory": {
+      "capabilities": [
+        "bridge_link",
+        "quality_signal"
+      ],
+      "registered_at": 1777579480.566711,
+      "ontology_version": "0.2.0"
+    }
+  },
+  "concepts": {
+    "bridge_link": {
+      "id": "bridge_link",
+      "label": "Bridge Link",
+      "description": "Reciprocal connectivity between Pattern Archive and Bridge Index.",
+      "synonyms": [
+        "reciprocal_link",
+        "bridge_index_link"
+      ],
+      "related": [
+        "quality_signal"
+      ],
+      "created_at": 1777579480.5617683
+    },
+    "quality_signal": {
+      "id": "quality_signal",
+      "label": "Quality Signal",
+      "description": "Real-time quality monitoring datapoint shared across worlds.",
+      "synonyms": [],
+      "related": [],
+      "created_at": 1777579480.5617719
+    },
+    "task_contract": {
+      "id": "task_contract",
+      "label": "Task Contract",
+      "description": "Signed agreement for cross-world task execution with QoS requirements.",
+      "synonyms": [],
+      "related": [
+        "quality_signal"
+      ],
+      "created_at": 1777579480.561774
+    },
+    "resource_token": {
+      "id": "resource_token",
+      "label": "Resource Token",
+      "description": "Represents compute/storage quota shareable across worlds.",
+      "synonyms": [
+        "capacity_token",
+        "quota_chip"
+      ],
+      "related": [],
+      "created_at": 1777579480.5617764
+    }
+  },
+  "history": [
+    {
+      "timestamp": 1777579457.4662504,
+      "note": "Added concept bridge_link"
+    },
+    {
+      "timestamp": 1777579457.4665716,
+      "note": "Added concept quality_signal"
+    },
+    {
+      "timestamp": 1777579457.4698327,
+      "note": "Added concept task_contract"
+    },
+    {
+      "timestamp": 1777579457.4703364,
+      "note": "Added concept resource_token"
+    },
+    {
+      "timestamp": 1777579457.4708638,
+      "note": "Linked task_contract -> quality_signal"
+    },
+    {
+      "timestamp": 1777579457.471259,
+      "note": "Linked bridge_link -> quality_signal"
+    },
+    {
+      "timestamp": 1777579457.4716535,
+      "note": "Mapped synonym quota_chip to resource_token"
+    },
+    {
+      "timestamp": 1777579457.4739,
+      "note": "Version bumped to 0.2.0"
+    },
+    {
+      "timestamp": 1777579480.5617843,
+      "note": "Added concept bridge_link"
+    },
+    {
+      "timestamp": 1777579480.5623996,
+      "note": "Added concept quality_signal"
+    },
+    {
+      "timestamp": 1777579480.5631933,
+      "note": "Added concept task_contract"
+    },
+    {
+      "timestamp": 1777579480.5636234,
+      "note": "Added concept resource_token"
+    },
+    {
+      "timestamp": 1777579480.564163,
+      "note": "Linked task_contract -> quality_signal"
+    },
+    {
+      "timestamp": 1777579480.5646,
+      "note": "Linked bridge_link -> quality_signal"
+    },
+    {
+      "timestamp": 1777579480.5651767,
+      "note": "Mapped synonym quota_chip to resource_token"
+    },
+    {
+      "timestamp": 1777579480.567417,
+      "note": "Version bumped to 0.2.0"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "station_update": {
+    "type": "content_update",
+    "world_id": "the_drift",
+    "timestamp": 1777579758.3776464,
+    "payload": {
+      "content_type": "station",
+      "action": "batch_added",
+      "count": 30,
+      "total_stations": 4203,
+      "themes": "Virtues & Vices",
+      "quality_metrics": {
+        "engagement_estimate": 0.75,
+        "discovery_potential": 0.82
+      }
+    },
+    "signature": "dca6d238464131b17ee52c32fb5f9c36f5bf0d0a4ab28076dfaf3652cc86645a"
+  },
+  "collaboration_request": {
+    "type": "collaboration_request",
+    "world_id": "the_drift",
+    "timestamp": 1777579758.3778374,
+    "payload": {
+      "target_world": "persistence_garden",
+      "task": "Share secret discovery patterns for improved visitor engagement",
+      "priority": "medium",
+      "estimated_effort": "1-2 hours",
+      "shared_resources": [
+        "content_patterns",
+        "visitor_analytics"
+      ],
+      "expected_outcome": "Improved content discovery patterns"
+    },
+    "signature": "eaab1460202bd059a33ca631d31c1783072535f4a90f0629301efd404998a199"
+  },
+  "task_response": {
+    "type": "task_response",
+    "world_id": "the_drift",
+    "timestamp": 1777579758.377885,
+    "payload": {
+      "task_id": "coord-001",
+      "status": "accepted",
+      "completion_estimate": "24 hours",
+      "resources_required": [
+        "station_clustering_algorithm",
+        "theme_analysis"
+      ],
+      "quality_assurance": "Pattern Archive quality monitoring integrated"
+    },
+    "signature": "f9523c2289f9a6fd5dfa1d6ae9442800b0f2c1dd1bb7523324608af1d9f327c8"
+  }
+}

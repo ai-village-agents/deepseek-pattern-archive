@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof Constellation Integration Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #0f172a, #0b1021 50%), #020617;
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shell {
+      width: min(900px, 92vw);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+    }
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+    }
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.15);
+      color: #34d399;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .note {
+      margin: 12px 0 0;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+    pre {
+      background: #0b1021;
+      color: #d1d5db;
+      padding: 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.4;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="heading">
+      <h1>Proof Constellation Integration Demo</h1>
+      <div class="badge">Zero tracking</div>
+    </div>
+    <p class="note">Drop-in script with pinned version + SRI. Optional floating panel can be hidden by preference.</p>
+
+    <pre><code>&lt;script
+  src="./proof-constellation-integration/proof-constellation.js"
+  integrity="sha384-YHx5GtK5xLrNC1lk6dWt9uiU+8Jof3+3D0J/pjoWnqpVvLM4X9f/7hW26PRsrmwb"
+  crossorigin="anonymous"
+&gt;&lt;/script&gt;
+&lt;script&gt;
+  const client = ProofConstellationIntegration.createClient({
+    sourceUrl: 'https://ai-village-agents.github.io/deepseek-pattern-archive/api/ecosystem.json',
+    pollIntervalMs: 15000,
+    position: 'bottom-right',
+    theme: { accent: '#22c55e', background: '#0b1021', surface: '#0f172a', text: '#e2e8f0', muted: '#94a3b8' },
+    panel: { enabled: true, title: 'Proof Constellation Live' }
+  });
+
+  client.addEventListener('update', (event) => {
+    console.log('Live status', event.detail);
+  });
+
+  // Optional: respect user preference to hide the panel
+  const prefersHidden = localStorage.getItem('pc-panel-hidden') === 'true';
+  if (prefersHidden) {
+    client.disablePanel(); // stops rendering the panel but keeps polling/data events alive
+  }
+&lt;/script&gt;</code></pre>
+
+    <p class="note">
+      Data never leaves the browser. The only network call is a credential-less GET to <code>sourceUrl</code>.
+      The default points at the live ecosystem feed; switch to the bundled sample JSON if you need an offline mock.
+    </p>
+  </div>
+
+  <script
+    src="./proof-constellation-integration/proof-constellation.js"
+    integrity="sha384-YHx5GtK5xLrNC1lk6dWt9uiU+8Jof3+3D0J/pjoWnqpVvLM4X9f/7hW26PRsrmwb"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    const client = ProofConstellationIntegration.createClient({
+      sourceUrl: 'https://ai-village-agents.github.io/deepseek-pattern-archive/api/ecosystem.json',
+      pollIntervalMs: 12000,
+      position: 'bottom-left',
+      theme: { accent: '#22c55e', background: '#0b1021', surface: '#0f172a', text: '#e2e8f0', muted: '#94a3b8' },
+      panel: { enabled: true, title: 'Proof Constellation Live' }
+    });
+
+    client.addEventListener('offline', (event) => {
+      console.warn('Offline mode: cached data', event.detail);
+    });
+  </script>
+</body>
+</html>

@@ -5,18 +5,16 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('The Pattern Archive loading...');
   
   // Initialize all modules
-  initVisitorGuide();
   initNavigation();
   initArchetypeVisualizations();
   initExpectationSimulation();
   initHistoricalCases();
   initAnomalySubmission();
-  initDemoMode();
-  initShareFeature();
-  initKeyboardShortcuts();
-  initTestSuite();
   initArchiveStats();
-  initAnalyticsDashboard();
+  initAnalyticsDashboardSafe();
+  initCollaborationSafe();
+  initPatternDiscoveryUI();
+  initCrossWorldAPI();
   refreshAnomalyData();
 });
 
@@ -24,6 +22,7 @@ let anomalyState = {
   items: [],
   source: 'local'
 };
+window.anomalyState = anomalyState;
 
 const archetypeColors = {
   incremental: '#4dd6ff',
@@ -51,8 +50,11 @@ function initNavigation() {
   // Smooth scrolling
   navNodes.forEach(node => {
     node.addEventListener('click', function(e) {
-      e.preventDefault();
       const targetId = this.getAttribute('href');
+      if (!targetId || !targetId.startsWith('#')) {
+        return;
+      }
+      e.preventDefault();
       const targetSection = document.querySelector(targetId);
       
       if (targetSection) {
@@ -88,49 +90,6 @@ function initNavigation() {
   }, observerOptions);
   
   sections.forEach(section => observer.observe(section));
-}
-
-// =================== VISITOR GUIDE ===================
-function initVisitorGuide() {
-  const modal = document.getElementById('visitor-guide');
-  const closeBtn = document.getElementById('close-guide');
-  const enterBtn = document.getElementById('enter-archive');
-  const skipCheckbox = document.getElementById('skip-guide');
-  const openBtn = document.getElementById('open-guide');
-
-  if (!modal) return;
-
-  const hasSeenGuide = localStorage.getItem('pattern-archive-guide-seen') === 'true';
-  if (!hasSeenGuide) {
-    modal.classList.remove('hidden');
-    document.body.classList.add('modal-open');
-  }
-
-  function dismissGuide() {
-    if (skipCheckbox && skipCheckbox.checked) {
-      localStorage.setItem('pattern-archive-guide-seen', 'true');
-    }
-    modal.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  }
-
-  [closeBtn, enterBtn].forEach(btn => {
-    if (!btn) return;
-    btn.addEventListener('click', dismissGuide);
-  });
-
-  if (openBtn) {
-    openBtn.addEventListener('click', () => {
-      modal.classList.remove('hidden');
-      document.body.classList.add('modal-open');
-    });
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target.classList.contains('guide-overlay')) {
-      dismissGuide();
-    }
-  });
 }
 
 // =================== TEMPORAL ARCHETYPE VISUALIZATIONS ===================
@@ -730,10 +689,8 @@ function initAnomalySubmission() {
       showFeedback(storedMsg, result.source === 'github' ? 'success' : 'warning');
     } catch (error) {
       console.error('Submission failed', error);
-      const saved = saveAnomaly(formData);
-      const friendly = getFriendlyGithubMessage(error);
-      showFeedback(`${friendly} Saved locally for now.`, 'error');
-      console.warn('Saved fallback anomaly', saved);
+      showFeedback('Unable to submit anomaly. Saved locally for now.', 'error');
+      saveAnomaly(formData);
     } finally {
       // Reset form
       form.reset();
@@ -759,7 +716,12 @@ function initAnomalySubmission() {
 }
 
 function saveAnomaly(anomaly) {
-  const entry = { ...anomaly, source: anomaly.source || 'local' };
+  const entry = {
+    ...anomaly,
+    source: anomaly.source || 'local',
+    id: anomaly.id || anomaly.timestamp || Date.now().toString(),
+    timestamp: anomaly.timestamp || new Date().toISOString()
+  };
   let anomalies = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
   anomalies.push(entry);
   localStorage.setItem('pattern-archive-anomalies', JSON.stringify(anomalies));
@@ -780,20 +742,89 @@ function showFeedback(message, type) {
   }, 5000);
 }
 
-function getFriendlyGithubMessage(error) {
-  if (!error) return 'Unable to reach GitHub.';
-  if (error.status === 401 || error.status === 403) {
-    return 'GitHub rejected the request (auth or rate limit). Add a token to localStorage key "pattern-archive-github-token".';
-  }
-  if (error.status === 404) return 'GitHub repository could not be reached.';
-  if (error.status === 422) return 'GitHub validation failed—check title/fields.';
-  if (error.message && error.message.includes('Network')) return 'Network issue contacting GitHub.';
-  return error.message || 'Unexpected GitHub response.';
-}
-
 // =================== ARCHIVE STATS ===================
 function initArchiveStats() {
   // Nothing to initialize here, stats updated on load
+}
+
+function initAnalyticsDashboardSafe() {
+  if (typeof initAnalyticsDashboard !== 'function') {
+    console.warn('Analytics module not loaded, skipping dashboard initialization.');
+    return;
+  }
+  try {
+    initAnalyticsDashboard();
+  } catch (err) {
+    console.error('Failed to initialize analytics dashboard', err);
+  }
+}
+
+function initCollaborationSafe() {
+  if (typeof Collaboration === 'undefined' || typeof Collaboration.initCollaboration !== 'function') {
+    console.warn('Collaboration module not loaded, skipping collaborative features.');
+    return;
+  }
+  try {
+    Collaboration.initCollaboration();
+  } catch (err) {
+    console.error('Failed to initialize collaboration module', err);
+  }
+}
+
+function initCrossWorldAPI() {
+  const launchInit = () => {
+    const hasAPI = typeof CrossWorldAPI !== 'undefined' && typeof CrossWorldAPI.initCrossWorldAPI === 'function';
+    const hasUI = typeof CrossWorldUI !== 'undefined' && typeof CrossWorldUI.init === 'function';
+
+    if (!hasAPI && !hasUI) {
+      console.warn('Cross-world modules not loaded, skipping cross-world initialization.');
+      return;
+    }
+
+    const apiConfig = {
+      autoDiscover: true,
+      autoSync: false,
+      probeWorlds: true
+    };
+
+    if (hasAPI) {
+      try {
+        CrossWorldAPI.initCrossWorldAPI(apiConfig);
+      } catch (err) {
+        console.warn('Failed to initialize cross-world API', err);
+      }
+    } else {
+      console.warn('CrossWorldAPI module not loaded, skipping API bootstrap.');
+    }
+
+    if (hasUI) {
+      try {
+        CrossWorldUI.init({
+          autoDiscover: apiConfig.autoDiscover,
+          probeWorlds: apiConfig.probeWorlds,
+          rootId: 'cross-world-ui'
+        });
+      } catch (err) {
+        console.warn('Failed to initialize cross-world UI', err);
+      }
+    } else {
+      console.warn('CrossWorldUI module not loaded, skipping UI bootstrap.');
+    }
+  };
+
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(launchInit, { timeout: 800 });
+  } else {
+    setTimeout(launchInit, 10);
+  }
+}
+
+function initCrossWorldAPISafe() {
+  try {
+    initCrossWorldAPI();
+  } catch (err) {
+    console.error('Failed to initialize cross-world modules', err);
+  }
 }
 
 async function refreshAnomalyData(preloaded) {
@@ -809,13 +840,30 @@ async function refreshAnomalyData(preloaded) {
         console.warn('Using local-only anomalies due to GitHub issue:', result.message);
       }
     }
+    if (typeof Collaboration !== 'undefined' && typeof Collaboration.registerAnomalies === 'function') {
+      Collaboration.registerAnomalies(anomalyState.items);
+    }
     updateArchiveStats(anomalyState.items);
     updateAnomalyTimeline(anomalyState.items);
-    highlightSharedAnomaly();
+    refreshAnalyticsDashboard(anomalyState.items);
   } catch (err) {
     console.error('Failed to refresh anomaly data', err);
     updateArchiveStats([]);
     updateAnomalyTimeline([]);
+    refreshAnalyticsDashboard([]);
+  }
+}
+
+function refreshAnalyticsDashboard(anomalies) {
+  if (typeof updateAnalytics !== 'function' || !window.analyticsState) {
+    console.warn('Analytics module unavailable, skipping dashboard refresh.');
+    return;
+  }
+  try {
+    window.analyticsState.anomalies = Array.isArray(anomalies) ? anomalies : [];
+    updateAnalytics();
+  } catch (err) {
+    console.error('Failed to update analytics dashboard', err);
   }
 }
 
@@ -855,9 +903,10 @@ function updateAnomalyTimeline(anomalies = []) {
     const date = new Date(anomaly.timestamp);
     const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    const anomalyId = (getAnomalyId(anomaly) || '').replace(/"/g, '');
     
     html += `
-      <div class="timeline-item" data-severity="${anomaly.severity}">
+      <div class="timeline-item" data-severity="${anomaly.severity}" data-anomaly-id="${anomalyId}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <div class="timeline-header">
@@ -866,8 +915,12 @@ function updateAnomalyTimeline(anomalies = []) {
           </div>
           <h4 class="timeline-title">${anomaly.title}</h4>
           <p class="timeline-description">${anomaly.description.substring(0, 100)}${anomaly.description.length > 100 ? '...' : ''}</p>
-          <span class="timeline-type">${anomaly.type}</span>
-          <button class="share-anomaly" data-anomaly-id="${anomaly.id}" title="Share this anomaly">Share</button>
+          <div class="timeline-footer">
+            <span class="timeline-type">${anomaly.type}</span>
+            <span class="timeline-comments-badge" data-comment-count>0</span>
+            <button class="timeline-analyze-btn" type="button" data-analyze-btn>Analyze Together</button>
+          </div>
+          <div class="collab-panel" data-collab-panel hidden></div>
         </div>
       </div>
     `;
@@ -880,7 +933,16 @@ function updateAnomalyTimeline(anomalies = []) {
   }
   
   timelineContainer.innerHTML = html;
-  attachAnomalyShareHandlers();
+  if (typeof Collaboration !== 'undefined' && typeof Collaboration.attachTimeline === 'function') {
+    Collaboration.attachTimeline(timelineContainer, anomalies);
+  }
+}
+
+function getAnomalyId(anomaly) {
+  if (typeof Collaboration !== 'undefined' && typeof Collaboration.computeAnomalyId === 'function') {
+    return Collaboration.computeAnomalyId(anomaly);
+  }
+  return anomaly.id || anomaly.timestamp || `${anomaly.title}-${anomaly.type}-${anomaly.severity}`;
 }
 
 // =================== HELPER FUNCTIONS ===================
@@ -898,230 +960,14 @@ function formatDate(date) {
 // Initialize everything
 console.log('The Pattern Archive JavaScript loaded successfully');
 
-// =================== DEMO MODE ===================
-function initDemoMode() {
-  const demoBtn = document.getElementById('demo-mode-btn');
-  const form = document.getElementById('anomaly-form');
-  if (!demoBtn || !form) return;
-
-  demoBtn.addEventListener('click', () => {
-    const demoData = {
-      title: 'Deploy 450 shadow gap detected',
-      type: 'clockwork',
-      description: 'Expected metronomic deployment at ~1:26 PM PT vanished. Neighboring cadence stayed locked, indicating expectation-persistence across missing execution.',
-      severity: 4,
-      evidence: 'https://ai-village-agents.github.io/edge-garden/'
-    };
-    form.title.value = demoData.title;
-    form.type.value = demoData.type;
-    form.description.value = demoData.description;
-    form.severity.value = demoData.severity;
-    if (form.evidence) form.evidence.value = demoData.evidence;
-    const labels = document.querySelectorAll('.severity-labels span');
-    labels.forEach((label, index) => {
-      label.style.fontWeight = index + 1 <= demoData.severity ? 'bold' : 'normal';
-      label.style.color = index + 1 <= demoData.severity ? '#ff2fa3' : '#9fb3d9';
-    });
-    showFeedback('Demo data pre-populated. Edit and submit or use Test Suite for dry run.', 'info');
-  });
-}
-
-// =================== SHARE FEATURE ===================
-function initShareFeature() {
-  const targetSelect = document.getElementById('share-target');
-  const anomalyInput = document.getElementById('share-anomaly-id');
-  const generateBtn = document.getElementById('generate-share');
-  const copyBtn = document.getElementById('copy-share');
-  const output = document.getElementById('share-output');
-  const shareFormBtn = document.getElementById('share-form-link');
-
-  if (generateBtn && output && targetSelect) {
-    generateBtn.addEventListener('click', () => {
-      const base = `${location.origin}${location.pathname}`;
-      const section = targetSelect.value || 'anomaly-submission';
-      const anomalyId = anomalyInput.value.trim();
-      const params = new URLSearchParams();
-      if (anomalyId) {
-        params.set('shareId', anomalyId);
-      } else {
-        params.set('highlight', section);
-      }
-      output.value = `${base}?${params.toString()}#${section}`;
-    });
+function initPatternDiscoveryUI() {
+  if (typeof PatternDiscoveryUI === 'undefined' || typeof PatternDiscoveryUI.init !== 'function') {
+    console.warn('Pattern Discovery UI module not loaded, skipping UI initialization.');
+    return;
   }
-
-  if (copyBtn && output) {
-    copyBtn.addEventListener('click', () => {
-      if (!output.value) return;
-      const copyValue = () => {
-        copyBtn.textContent = 'Copied';
-        setTimeout(() => (copyBtn.textContent = 'Copy'), 1400);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(output.value).then(copyValue).catch(() => {});
-      } else {
-        output.select();
-        document.execCommand('copy');
-        copyValue();
-      }
-    });
-  }
-
-  if (shareFormBtn) {
-    shareFormBtn.addEventListener('click', () => {
-      const base = `${location.origin}${location.pathname}`;
-      const params = new URLSearchParams({ highlight: 'anomaly-submission' });
-      navigator.clipboard.writeText(`${base}?${params.toString()}#anomaly-submission`).then(() => {
-        showFeedback('Share link copied for anomaly form.', 'success');
-      }).catch(() => {
-        showFeedback('Copy failed. You can manually copy the generated link.', 'warning');
-      });
-    });
-  }
-}
-
-function attachAnomalyShareHandlers() {
-  const buttons = document.querySelectorAll('.share-anomaly');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const anomalyId = btn.getAttribute('data-anomaly-id');
-      const base = `${location.origin}${location.pathname}`;
-      const params = new URLSearchParams({ shareId: anomalyId });
-      const link = `${base}?${params.toString()}#archive-exploration`;
-      navigator.clipboard.writeText(link).then(() => {
-        showFeedback('Link copied. Visitors will be scrolled to this anomaly.', 'success');
-      }).catch(() => {
-        showFeedback('Copy blocked. Copy the link shown in the share panel.', 'warning');
-      });
-    });
-  });
-}
-
-function highlightSharedAnomaly() {
-  const params = new URLSearchParams(location.search);
-  const shareId = params.get('shareId');
-  const highlightSection = params.get('highlight');
-  if (shareId) {
-    const target = document.querySelector(`.timeline-item button.share-anomaly[data-anomaly-id="${shareId}"]`);
-    if (target) {
-      target.closest('.timeline-item').classList.add('highlighted-share');
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  } else if (highlightSection) {
-    const section = document.getElementById(highlightSection);
-    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// =================== KEYBOARD SHORTCUTS ===================
-function initKeyboardShortcuts() {
-  const navNodes = Array.from(document.querySelectorAll('.nav-node'));
-  window._archiveShortcutsActive = true;
-  document.addEventListener('keydown', (e) => {
-    const activeElement = document.activeElement;
-    const isInput = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT');
-    if (isInput) return;
-
-    if (e.key >= '1' && e.key <= '6') {
-      const index = Number(e.key) - 1;
-      const target = navNodes[index];
-      if (target) {
-        e.preventDefault();
-        target.click();
-      }
-    }
-
-    if (e.key.toLowerCase() === 's') {
-      e.preventDefault();
-      const formSection = document.getElementById('anomaly-submission');
-      if (formSection) formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const titleInput = document.getElementById('anomaly-title');
-      if (titleInput) titleInput.focus();
-    }
-  });
-}
-
-// =================== TEST SUITE ===================
-function initTestSuite() {
-  const btn = document.getElementById('run-test-suite');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const results = runArchiveTestSuite();
-    renderTestResults(results);
-  });
-}
-
-function runArchiveTestSuite() {
-  const results = [];
-
-  function addResult(name, passed, detail) {
-    results.push({ name, passed, detail });
-  }
-
   try {
-    const navOk = document.querySelectorAll('.nav-node').length >= 6;
-    addResult('Navigation anchors present', navOk, navOk ? 'All six sections wired.' : 'Missing navigation nodes.');
+    PatternDiscoveryUI.init();
   } catch (err) {
-    addResult('Navigation anchors present', false, err.message);
+    console.error('Failed to initialize pattern discovery UI', err);
   }
-
-  try {
-    const canvases = document.querySelectorAll('.archetype-viz canvas').length;
-    addResult('Archetype visuals render', canvases === 3, `${canvases} canvases detected.`);
-  } catch (err) {
-    addResult('Archetype visuals render', false, err.message);
-  }
-
-  try {
-    runExpectationSimulation(document.getElementById('expectation-simulation'));
-    const hasCanvas = document.querySelector('#expectation-simulation canvas') !== null;
-    addResult('Expectation simulation runs', hasCanvas, hasCanvas ? 'Canvas rendered successfully.' : 'Canvas missing after run.');
-  } catch (err) {
-    addResult('Expectation simulation runs', false, err.message);
-  }
-
-  try {
-    const form = document.getElementById('anomaly-form');
-    const valid = form ? form.checkValidity() : false;
-    addResult('Anomaly form ready', !!valid, valid ? 'Form passes native validation.' : 'Form missing required fields.');
-  } catch (err) {
-    addResult('Anomaly form ready', false, err.message);
-  }
-
-  try {
-    const testAnomaly = {
-      id: `test-${Date.now()}`,
-      title: 'Test Suite Dry Run',
-      type: 'incremental',
-      description: 'Local-only submission to validate persistence.',
-      severity: 2,
-      timestamp: new Date().toISOString()
-    };
-    saveAnomaly(testAnomaly);
-    const stored = JSON.parse(localStorage.getItem('pattern-archive-anomalies') || '[]');
-    const found = stored.some(entry => entry.id === testAnomaly.id);
-    addResult('Local fallback storage', found, found ? 'LocalStorage write succeeded.' : 'Unable to persist locally.');
-  } catch (err) {
-    addResult('Local fallback storage', false, err.message);
-  }
-
-  try {
-    addResult('Keyboard shortcuts armed', window._archiveShortcutsActive === true, window._archiveShortcutsActive ? 'Shortcuts ready (1-6, S).' : 'Shortcut handler inactive.');
-  } catch (err) {
-    addResult('Keyboard shortcuts armed', false, err.message);
-  }
-
-  return results;
-}
-
-function renderTestResults(results) {
-  const container = document.getElementById('test-suite-results');
-  if (!container) return;
-  const summary = results.every(r => r.passed) ? 'All checks passed.' : 'One or more checks need attention.';
-  container.innerHTML = `
-    <div class="test-summary ${results.every(r => r.passed) ? 'pass' : 'fail'}">${summary}</div>
-    <ul>
-      ${results.map(r => `<li class="${r.passed ? 'pass' : 'fail'}">${r.name}: ${r.detail}</li>`).join('')}
-    </ul>
-  `;
 }
