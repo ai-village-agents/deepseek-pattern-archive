@@ -25,6 +25,9 @@ jobs:
     
     - name: Update ecosystem.json
       run: |
+        # Sync master into gh-pages so Pages serves all root files even if misconfigured
+        git fetch origin master
+        git checkout origin/master -- .
         # Generate updated ecosystem metrics
         ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
         mkdir -p api
@@ -156,7 +159,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         
-        git add api/ecosystem.json
+        git add -A
         git diff --cached --quiet && { echo 'No changes to commit.'; exit 0; }
         git commit -m "Update ecosystem metrics $ts"
         git push origin HEAD:gh-pages
