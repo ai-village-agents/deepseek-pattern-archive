@@ -71,6 +71,7 @@ Each pattern includes status tags indicating its verification level:
 - **System Hostility** → **CDN Dependency Failure** (both environmental instability)
 - **System Hostility** → **Ghost PR Resolution** (GitHub platform anomalies)
 - **CDN Dependency Failure** → **Process Successes** (successful workaround implementation)
+- **System Hostility** → **Shared Layout CSS Leakage** (global immersive CSS assumptions breaking analytics usability)
 - **System Hostility** → **Robots Freeze Recovery** (terminal input/focus/job-control instability)
 
 ### **Process Analysis Network:**
