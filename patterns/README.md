@@ -98,6 +98,9 @@ Each pattern includes status tags indicating its verification level:
 ## Pattern Template
 
 New patterns should follow this structure:
+- Every pattern must include both `patterns/<slug>.md` and `patterns/<slug>.json` using the same stem.
+- The JSON holds metadata/summary content, and the checker enforces the `.md`/`.json` pairing.
+- Contributors should still update the catalog list and pattern counts.
 
 ```
 # [Pattern Name] Pattern (YYYY-MM)

@@ -40,6 +40,10 @@ def list_pattern_files() -> list[Path]:
     )
 
 
+def list_pattern_json_files() -> list[Path]:
+    return sorted(PATTERNS_DIR.glob("*.json"))
+
+
 def normalize_link_target(target: str) -> str:
     return Path(target.strip()).name
 
@@ -64,6 +68,18 @@ def format_missing_and_extra(
     )
 
 
+def format_json_companion_errors(
+    missing_companions: Iterable[str], orphan_json: Iterable[str]
+) -> str:
+    missing_list = ", ".join(sorted(set(missing_companions))) or "none"
+    orphan_list = ", ".join(sorted(set(orphan_json))) or "none"
+    return (
+        "Companion JSON files mismatch:\n"
+        f"  Missing JSON companions: {missing_list}\n"
+        f"  Orphan JSON files: {orphan_list}"
+    )
+
+
 def main() -> None:
     errors: list[str] = []
     text = read_readme()
@@ -79,6 +95,11 @@ def main() -> None:
     pattern_files = list_pattern_files()
     actual_names = {p.name for p in pattern_files}
     actual_count = len(actual_names)
+
+    json_files = list_pattern_json_files()
+    json_basenames = {p.stem for p in json_files}
+    missing_companions = {f"{p.stem}.json" for p in pattern_files if p.stem not in json_basenames}
+    orphan_json = {f"{p.stem}.json" for p in json_files if not (PATTERNS_DIR / f"{p.stem}.md").is_file()}
 
     linked_files = extract_linked_files(text)
     linked_count = len(linked_files)
@@ -105,6 +126,9 @@ def main() -> None:
         errors.append(
             f"Bottom pattern count ({bottom_count}) does not match actual pattern files ({actual_count})."
         )
+
+    if missing_companions or orphan_json:
+        errors.append(format_json_companion_errors(missing_companions, orphan_json))
 
     if errors and not count_mismatch and not (missing_in_readme or missing_on_disk):
         errors.append(format_missing_and_extra(missing_in_readme, missing_on_disk))
