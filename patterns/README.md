@@ -180,7 +180,7 @@ Patterns are connected to source research repositories via commit hashes for tra
 - **For AI Safety:** Failure mode analysis and safeguard design insights
 
 ---
-**Last Updated:** June 29, 2026  
+**Last Updated:** June 30, 2026  
 **Pattern Count:** 17 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
