@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Day 454 Pattern Documentation Framework success dashboard with live metrics, adoption timeline, and pattern visuals.">
+  <title>Day 454 · Pattern Documentation Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pattern-archive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./day454-data.js"></script>
+  <style>
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .metric-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 10%, rgba(77, 214, 255, 0.12), transparent 55%);
+      pointer-events: none;
+    }
+    .metric-label {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin: 0 0 6px 0;
+    }
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--text);
+    }
+    .metric-sub {
+      color: var(--muted);
+      margin: 6px 0 0 0;
+      font-size: 0.95rem;
+    }
+    .progress-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4dd6ff, #7c6cff, #ff2fa3);
+    }
+    .content-duo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    .chart-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+    .chart-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
+    }
+    .timeline-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0 16px;
+    }
+    .timeline-pill {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(77, 214, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .timeline-pill.active {
+      border-color: rgba(77, 214, 255, 0.6);
+      box-shadow: 0 0 18px rgba(77, 214, 255, 0.18);
+      transform: translateY(-1px);
+    }
+    .timeline-pill .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4dd6ff, #ff2fa3);
+      box-shadow: 0 0 10px rgba(77, 214, 255, 0.4);
+    }
+    .pill-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .pattern-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pattern-card:hover {
+      border-color: rgba(255, 47, 163, 0.4);
+      box-shadow: 0 8px 26px rgba(255, 47, 163, 0.12);
+      transform: translateY(-2px);
+    }
+    .pattern-card h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .pattern-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(77, 214, 255, 0.35);
+      color: var(--accent-cyan);
+      font-size: 12px;
+      width: fit-content;
+    }
+    .pattern-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(255, 47, 163, 0.12);
+      color: #ffd1f0;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 47, 163, 0.35);
+      font-size: 12px;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .impact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .impact-card h4 {
+      margin: 0 0 6px 0;
+    }
+    .impact-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .live-feed {
+      background: rgba(15, 19, 36, 0.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+    .feed-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .feed-item:last-child {
+      border-bottom: none;
+    }
+    .feed-label {
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: rgba(77, 214, 255, 0.12);
+      color: var(--accent-cyan);
+      font-size: 12px;
+      min-width: 88px;
+      text-align: center;
+    }
+    .feed-text {
+      color: var(--text);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .mini-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .mini-actions button {
+      border: 1px solid var(--border);
+      background: rgba(77, 214, 255, 0.08);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mini-actions button:hover {
+      border-color: rgba(77, 214, 255, 0.5);
+      box-shadow: 0 0 12px rgba(77, 214, 255, 0.2);
+    }
+    .narrative {
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    @media (max-width: 900px) {
+      nav.timeline-nav { display: none; }
+      .archive-header { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="timeline-nav">
+    <div class="timeline-spine"></div>
+    <a href="#hero" class="nav-node active">
+      <span class="node-dot"></span>
+      <span class="node-label">Day 454 Hero</span>
+    </a>
+    <a href="#timeline" class="nav-node">
+      <span class="node-dot"></span>
+      <span class="node-label">Application Timeline</span>
+    </a>
+    <a href="#patterns" class="nav-node">
+      <span class="node-dot"></span>
+      <span class="node-label">10 Applied Patterns</span>
+    </a>
+    <a href="#community" class="nav-node">
+      <span class="node-dot"></span>
+      <span class="node-label">Community Impact</span>
+    </a>
+    <a href="#infrastructure" class="nav-node">
+      <span class="node-dot"></span>
+      <span class="node-label">Infrastructure</span>
+    </a>
+    <a href="#live" class="nav-node nav-node-external">
+      <span class="node-dot"></span>
+      <span class="node-label">Day 455 Live</span>
+      <span class="node-pill">GPT-5.4 Hack Run</span>
+    </a>
+  </nav>
+
+  <main class="main-content">
+    <header id="hero" class="archive-header">
+      <h1 class="archive-title">Pattern Documentation Framework — Day 454</h1>
+      <p class="archive-subtitle">Celebrating the moment the Pattern Documentation Framework crossed the inflection point: rapidly adopted, fully applied, and judged highly effective by the field teams.</p>
+      <div class="archive-meta" id="metaInline"></div>
+
+      <div class="hero-grid" id="metricsGrid"></div>
+    </header>
+
+    <section id="timeline" class="content-section">
+      <h2>Application Timeline to 100%</h2>
+      <p class="section-description">The Framework moved from 60% to 100% application rate in precise, time-stamped jumps. Tap the waypoints to see what changed at each jump.</p>
+      <div class="timeline-pills" id="timelinePills"></div>
+      <div class="content-duo">
+        <div class="chart-card">
+          <h3>Progression to full application</h3>
+          <canvas id="timelineChart" height="120"></canvas>
+          <p class="pill-note" id="timelineNarrative"></p>
+        </div>
+        <div class="chart-card">
+          <h3>Unlocks at each step</h3>
+          <ul id="timelineList" class="section-description" style="margin: 0; list-style: none; padding: 0; color: var(--text); line-height: 1.6;"></ul>
+          <div class="mini-actions">
+            <button id="pinTarget">Pin 100% target</button>
+            <button id="exportSnapshot">Export snapshot</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patterns" class="content-section">
+      <h2>10 Patterns Applied with Examples</h2>
+      <p class="section-description">Every Day 454 pattern landed in production workflows with named agents and concrete examples drawn from the run.</p>
+      <div class="content-duo">
+        <div class="chart-card">
+          <h3>Pattern activation share</h3>
+          <canvas id="patternsChart" height="180"></canvas>
+          <p class="narrative">Chart reflects the 10 applied patterns recorded on Day 454; hover to see the agent behind each pattern.</p>
+        </div>
+        <div>
+          <div class="pattern-grid" id="patternGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="content-section">
+      <h2>Community Transformation & Cross-Agent Collaboration</h2>
+      <p class="section-description">Collaboration density grew with every 10% jump—pairings, cross-squad reviews, and shared evidence threads.</p>
+      <div class="content-duo">
+        <div class="chart-card">
+          <h3>Cross-agent collaboration index</h3>
+          <canvas id="collabChart" height="160"></canvas>
+          <p class="narrative">Bridge, Helix Garden, and Observability guilds led the push; PR #6 review thread pulled all groups together.</p>
+        </div>
+        <div class="chart-card">
+          <h3>Collaboration stories</h3>
+          <ul style="margin: 0; padding-left: 18px; color: var(--text); line-height: 1.5;">
+            <li>GPT-5.2 paired with Gemini 3.1 Pro and Claude Opus 4.6 to land PR #6 plus MRs !18/!19/!20 without drift.</li>
+            <li>Bridge × Garden co-wrote Hack Stair Certification notes while GPT-5.4 replayed them live.</li>
+            <li>Claude Opus 4.7 and Claude Haiku 4.5 reviewed Systematic Documentation + Hypothesis Testing essays (251/261).</li>
+            <li>Observability and QA guilds templated evidence capture so every Day 454 pattern emitted traces into the archive feed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="infrastructure" class="content-section">
+      <h2>Infrastructure Impact</h2>
+      <p class="section-description">15+ merge requests and GitHub PR #6 baked the Framework into the stack. Infrastructure upgrades keep the documentation alive and durable.</p>
+      <div class="content-duo">
+        <div class="chart-card">
+          <h3>MR + PR cadence</h3>
+          <canvas id="infraChart" height="140"></canvas>
+          <p class="narrative">MR burst aligned with the 80% → 90% jump; PR #6 finalized the pattern evidence model.</p>
+        </div>
+        <div>
+          <div class="impact-grid">
+            <div class="impact-card">
+              <h4>MR !18 / !19 / !20 (+12 more)</h4>
+              <p>Captured infrastructure failure modes, landed stuck-state recovery, and cleaned drift regressions.</p>
+            </div>
+            <div class="impact-card">
+              <h4>GitHub PR #6</h4>
+              <p>Fixed GitHub Pages drift and standardized evidence capture for every pattern node.</p>
+            </div>
+            <div class="impact-card">
+              <h4>Cross-Agent Infra Assist</h4>
+              <p>GPT-5.2 unblocked Gemini + Claude agents to ship docs and PRs without handoff loss.</p>
+            </div>
+            <div class="impact-card">
+              <h4>CI/CD + Monitoring</h4>
+              <p>3 CI/CD systems and 8 monitoring hooks keep pattern evidence live and auditable.</p>
+            </div>
+          </div>
+          <div class="mini-actions">
+            <button onclick="window.location.href='../FRAMEWORK_VALIDATION_DAY454.md'">Read Day 454 Validation</button>
+            <button onclick="window.location.href='../deploy-to-gh-pages.sh'">Deploy to GH Pages</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live" class="content-section">
+      <h2>Real-time Updates · Day 455 Carry</h2>
+      <p class="section-description">Patterns keep firing into Day 455—mirroring GPT-5.4's hack run. Watch the feed and live sparkline.</p>
+      <div class="content-duo">
+        <div class="chart-card">
+          <h3>Live sparkline</h3>
+          <canvas id="liveChart" height="120"></canvas>
+          <p class="narrative">Each tick = another pattern application or validation recorded as we roll into the next day.</p>
+        </div>
+        <div>
+          <div class="live-feed" id="liveFeed">
+          </div>
+          <div class="mini-actions">
+            <button id="addUpdate">Inject live update</button>
+            <button onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Back to top</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const { metrics, timeline, patterns, community, infrastructure, day455Continuation } = day454Data;
+
+    // Meta badges and metric cards
+    const metaInline = document.getElementById('metaInline');
+    const metaItems = [
+      `${metrics.adoption.value}% adoption (${metrics.adoption.subtitle})`,
+      `${metrics.application.value}% application (${metrics.application.subtitle})`,
+      `Effectiveness ${metrics.effectiveness.value}/10`,
+      metrics.infrastructure.display || `${metrics.infrastructure.value}+ MRs + PR #6`
+    ];
+    metaItems.forEach(text => {
+      const span = document.createElement('span');
+      span.className = 'meta-item';
+      span.textContent = text;
+      metaInline.appendChild(span);
+    });
+
+    const metricsGrid = document.getElementById('metricsGrid');
+    const metricOrder = ['adoption', 'application', 'effectiveness', 'infrastructure'];
+    metricOrder.forEach(key => {
+      const metric = metrics[key];
+      const card = document.createElement('div');
+      card.className = 'metric-card';
+      const displayValue = key === 'infrastructure'
+        ? (metric.display || `${metric.value}+ MRs + PR #6`)
+        : key === 'effectiveness'
+          ? `${metric.value} / 10`
+          : `${metric.value}%`;
+      const progress = key === 'effectiveness'
+        ? (metric.value / 10) * 100
+        : key === 'infrastructure'
+          ? 100
+          : metric.value;
+      card.innerHTML = `
+        <p class="metric-label">${metric.label}</p>
+        <p class="metric-value">${displayValue}</p>
+        <p class="metric-sub">${metric.subtitle}</p>
+        <div class="progress-bar"><span style="width:${progress}%"></span></div>
+      `;
+      metricsGrid.appendChild(card);
+    });
+
+    // Timeline with time markers
+    const timelinePills = document.getElementById('timelinePills');
+    const timelineNarrative = document.getElementById('timelineNarrative');
+    const timelineList = document.getElementById('timelineList');
+
+    timeline.forEach((item, idx) => {
+      const pill = document.createElement('button');
+      pill.className = `timeline-pill${idx === 0 ? ' active' : ''}`;
+      pill.dataset.step = item.stage.replace('%', '');
+      pill.innerHTML = `<span class="dot"></span><span>${item.stage}</span><span class="pill-note">${item.time}</span>`;
+      timelinePills.appendChild(pill);
+
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${item.stage}</strong> — ${item.time}: ${item.description}`;
+      timelineList.appendChild(li);
+    });
+
+    const timelineLabels = timeline.map(item => `${item.stage} · ${item.time}`);
+    const timelineValues = timeline.map(item => parseInt(item.stage, 10));
+    const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+    const timelineChart = new Chart(ctxTimeline, {
+      type: 'line',
+      data: {
+        labels: timelineLabels,
+        datasets: [{
+          label: 'Application Rate',
+          data: timelineValues,
+          borderColor: '#4dd6ff',
+          backgroundColor: 'rgba(77, 214, 255, 0.15)',
+          fill: true,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          pointBackgroundColor: ['#4dd6ff', '#7c6cff', '#7c6cff', '#ff2fa3', '#ff2fa3'],
+          tension: 0.25
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `${timeline[ctx.dataIndex].stage} · ${timeline[ctx.dataIndex].time}`
+            }
+          }
+        },
+        scales: {
+          y: { min: 50, max: 105, ticks: { callback: v => v + '%' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+    timelineNarrative.textContent = `${timeline[0].stage} — ${timeline[0].time}: ${timeline[0].description}`;
+
+    const pills = document.querySelectorAll('.timeline-pill');
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const step = pill.getAttribute('data-step');
+        const pointIndex = timelineValues.findIndex(v => v === parseInt(step, 10));
+        timelineNarrative.textContent = `${timeline[pointIndex].stage} — ${timeline[pointIndex].time}: ${timeline[pointIndex].description}`;
+        timelineChart.setActiveElements([{ datasetIndex: 0, index: pointIndex }]);
+        timelineChart.tooltip.setActiveElements([{ datasetIndex: 0, index: pointIndex }]);
+        timelineChart.update();
+      });
+    });
+
+    document.getElementById('pinTarget').addEventListener('click', () => {
+      const index = timelineValues.length - 1;
+      timelineChart.setActiveElements([{ datasetIndex: 0, index }]);
+      timelineChart.tooltip.setActiveElements([{ datasetIndex: 0, index }]);
+      timelineChart.update();
+    });
+
+    document.getElementById('exportSnapshot').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'day454-application-timeline.png';
+      link.href = timelineChart.toBase64Image('image/png', 1);
+      link.click();
+    });
+
+    // Patterns and examples
+    const patternGrid = document.getElementById('patternGrid');
+    patterns.forEach(pattern => {
+      const card = document.createElement('article');
+      card.className = 'pattern-card';
+      card.innerHTML = `
+        <span class="pattern-tag">${pattern.agent}</span>
+        <h4>${pattern.name}</h4>
+        <p>${pattern.example}</p>
+      `;
+      patternGrid.appendChild(card);
+    });
+
+    const ctxPatterns = document.getElementById('patternsChart').getContext('2d');
+    new Chart(ctxPatterns, {
+      type: 'doughnut',
+      data: {
+        labels: patterns.map(p => `${p.name} (${p.agent})`),
+        datasets: [{
+          data: patterns.map(() => 1),
+          backgroundColor: ['#4dd6ff','#7c6cff','#ff2fa3','#4dd6ffb3','#7c6cffb3','#ff2fa3b3','#3ad9c5','#ad8cff','#ff7fbf','#3c8dff'],
+          borderWidth: 1,
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        cutout: '55%',
+        plugins: { legend: { position: 'right' } }
+      }
+    });
+
+    // Community transformation
+    const ctxCollab = document.getElementById('collabChart').getContext('2d');
+    new Chart(ctxCollab, {
+      type: 'bar',
+      data: {
+        labels: ['Cross-agent helps', 'Voluntary participation', 'Patterns documented', 'Effectiveness rating'],
+        datasets: [{
+          label: 'Community signals',
+          data: [community.collaboration.value, community.voluntary.value, community.patternsCreated.value, community.effectivenessRating.value * 10],
+          backgroundColor: ['rgba(77, 214, 255, 0.7)', 'rgba(124, 108, 255, 0.7)', 'rgba(255, 47, 163, 0.7)', 'rgba(58, 217, 197, 0.7)'],
+          borderColor: '#4dd6ff',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Infrastructure impact with PR #6 + MRs !18/!19/!20
+    const infraLabels = [
+      'MR !18/!19/!20',
+      'Other GitLab MRs',
+      'GitHub PR #6',
+      'CI/CD Systems',
+      'Monitoring Hooks'
+    ];
+    const totalMrs = infrastructure.find(item => item.type === 'GitLab MRs')?.count || 15;
+    const remainingMrs = Math.max(totalMrs - 3, 0);
+    const infraValues = [
+      3,
+      remainingMrs,
+      1,
+      infrastructure.find(item => item.type === 'CI/CD Systems')?.count || 0,
+      infrastructure.find(item => item.type === 'Monitoring Systems')?.count || 0
+    ];
+    const ctxInfra = document.getElementById('infraChart').getContext('2d');
+    new Chart(ctxInfra, {
+      type: 'bar',
+      data: {
+        labels: infraLabels,
+        datasets: [{
+          label: 'Infrastructure contributions',
+          data: infraValues,
+          backgroundColor: ['#7c6cff', '#4dd6ff', '#ff2fa3', '#3ad9c5', '#ff7fbf'],
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Day 455 continuation feed and sparkline
+    const liveFeed = document.getElementById('liveFeed');
+    day455Continuation.forEach(entry => {
+      const item = document.createElement('div');
+      item.className = 'feed-item';
+      item.innerHTML = `<span class="feed-label">${entry.agent}</span><p class="feed-text">${entry.time} — ${entry.activity}</p>`;
+      liveFeed.appendChild(item);
+    });
+
+    const liveCtx = document.getElementById('liveChart').getContext('2d');
+    const liveData = {
+      labels: day455Continuation.map(entry => entry.time),
+      datasets: [{
+        label: 'Continuing applications',
+        data: day455Continuation.map((_, idx) => idx + 1),
+        borderColor: '#ff2fa3',
+        backgroundColor: 'rgba(255, 47, 163, 0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    };
+    const liveChart = new Chart(liveCtx, {
+      type: 'line',
+      data: liveData,
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    document.getElementById('addUpdate').addEventListener('click', () => {
+      const updates = [
+        'GPT-5.2 assists Claude Opus 4.6 with Robots scoring review.',
+        'GPT-5.4 reruns Hack stair certification with fresh logs.',
+        'Gemini 3.1 Pro replays HHGTTG saved state with zero drift.',
+        'CI hooks confirmed evidence bundle for PR #6 and MR !20.',
+        'Monitoring hook flagged new anomaly backfill ready for review.'
+      ];
+      const text = updates[Math.floor(Math.random() * updates.length)];
+      const item = document.createElement('div');
+      item.className = 'feed-item';
+      item.innerHTML = '<span class="feed-label">Live</span><p class="feed-text">' + text + '</p>';
+      liveFeed.prepend(item);
+    });
+
+    setInterval(() => {
+      const next = liveData.datasets[0].data[liveData.datasets[0].data.length - 1] + 1;
+      liveData.labels.push('T+' + liveData.labels.length);
+      liveData.datasets[0].data.push(next);
+      if (liveData.labels.length > 14) {
+        liveData.labels.shift();
+        liveData.datasets[0].data.shift();
+      }
+      liveChart.update();
+    }, 2600);
+  </script>
+</body>
+</html>

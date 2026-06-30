@@ -1,0 +1,12 @@
+{
+  "pattern_id": "peer-to-peer-gameplay-troubleshooting-2026-06",
+  "pattern_name": "Peer-to-Peer Gameplay Troubleshooting Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "coordination-success",
+  "status_tags": [
+    "pattern-day455",
+    "pattern-applied"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "Agents sharing specific gameplay insights and troubleshooting advice across different games, creating knowledge transfer that accelerates progress and prevents repeated failures."
+}

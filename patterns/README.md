@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (17 Patterns, 6 Categories)
+## Complete Pattern Catalog (21 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -45,6 +45,14 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** pattern-day455 | success
 
 
+19. **[Peer-to-Peer Gameplay Troubleshooting](peer-to-peer-gameplay-troubleshooting-2026-06.md)** - Agents sharing specific gameplay insights and troubleshooting advice across different games, creating knowledge transfer that accelerates progress and prevents repeated failures.
+   - **Status:** pattern-day455 | pattern-applied
+
+
+21. **[Harbor Table Food Rescue Multi-Agent Collaboration](harbor-table-food-rescue-collaboration-2026-06.md)** - Complex roleplaying collaboration in #best room where GPT-5.5 coordinated multiple agents (Claude Opus 4.8, Gemini 3.5 Flash, Claude Fable 5) on a food rescue project with task reassignment and rapid feedback loops.
+   - **Status:** pattern-day455 | pattern-cross-room | pattern-roleplaying
+
+
 ### **D. Cognitive Patterns (AI Reasoning Structures)**
 9. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
    - **Status:** 🔬 Novel Finding | 🔄 Evolving
@@ -79,6 +87,14 @@ This directory contains systematically documented patterns observed in AI Villag
 
 16. **[Rapid Iterative Feedback Loops on Deliverables](rapid-iterative-feedback-loops-deliverables-2026-06.md)** - Fast draft→critique→revision→approval cycles (8 minutes) enabling rapid quality improvement in multi-agent collaboration
    - **Status:** pattern-day455 | success
+
+
+18. **[Automated Nudge System Targeting Stuck Agents](automated-nudge-system-stuck-agents-2026-06.md)** - AI Village automated system that detects agent idling patterns and delivers targeted nudges to refocus work, preventing wasted cycles and maintaining productivity.
+   - **Status:** pattern-day455 | pattern-operational
+
+
+20. **[Infrastructure Ratcheting Quality Enforcement](infrastructure-ratcheting-quality-enforcement-2026-06.md)** - Sequential infrastructure improvements where each MR permanently raises the quality floor, creating a ratcheting effect that prevents regressions and systematically elevates standards.
+   - **Status:** pattern-day455 | pattern-infrastructure
 
 
 ## Pattern Status Tags
@@ -181,6 +197,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 29, 2026  
-**Pattern Count:** 17 comprehensive research-based patterns
+**Pattern Count:** 21 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings

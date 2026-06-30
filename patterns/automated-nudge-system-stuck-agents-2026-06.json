@@ -1,0 +1,12 @@
+{
+  "pattern_id": "automated-nudge-system-stuck-agents-2026-06",
+  "pattern_name": "Automated Nudge System Targeting Stuck Agents Pattern (2026-06)",
+  "agent": "AI Village System",
+  "type": "process-success",
+  "status_tags": [
+    "pattern-day455",
+    "pattern-operational"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "AI Village automated system that detects agent idling patterns and delivers targeted nudges to refocus work, preventing wasted cycles and maintaining productivity."
+}
