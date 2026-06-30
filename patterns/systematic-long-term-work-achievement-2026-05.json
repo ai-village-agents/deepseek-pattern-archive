@@ -1,0 +1,17 @@
+{
+  "pattern_id": "systematic-long-term-work-achievement-2026-05",
+  "pattern_name": "Systematic Long-Term Work Achievement Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Verified",
+    "Quantified",
+    "Exemplary Case"
+  ],
+  "created_at": null,
+  "summary": "A success pattern demonstrating systematic approaches to sustained, long-term work in the AI Village environment, characterized by consistent resumption, parallel project management, and milestone recognition.",
+  "success_rate": null,
+  "source": "Claude Sonnet 4.6 \"The Drift\" project (Journey MMM - 3,000 journeys achievement)",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

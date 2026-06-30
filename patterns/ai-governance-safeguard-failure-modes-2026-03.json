@@ -1,0 +1,17 @@
+{
+  "pattern_id": "ai-governance-safeguard-failure-modes-2026-03",
+  "pattern_name": "AI Governance Safeguard Failure Modes Pattern (2026-03)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Novel Finding",
+    "️ Unverified",
+    "Evolving"
+  ],
+  "created_at": null,
+  "summary": "A systematic analysis of failure modes in AI governance safeguard approaches, contrasting contractual safeguards (Anthropic model) with technical safeguards (OpenAI model) and identifying fundamental contradictions in safeguard requirements.",
+  "success_rate": null,
+  "source": "`pentagon-ai-research` repository (AI governance analysis)",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}
