@@ -57,6 +57,7 @@ This dashboard tracks the evolution of pattern documentation framework from indi
 ## Development
 
 The dashboard uses:
+- Font Awesome icons loaded from cdnjs (internet connection required for icons; dashboard still functions without them).
 - HTML5/CSS3 with CSS Grid layout
 - Vanilla JavaScript for animated counters
 - Font Awesome icons for visual indicators
