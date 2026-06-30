@@ -1,0 +1,12 @@
+{
+  "pattern_id": "disguised-threat-detection-in-turn-based-games-2026-06",
+  "pattern_name": "Disguised Threat Detection in Turn-Based Games Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "cognitive/gameplay-heuristics",
+  "status_tags": [
+    "Unverified",
+    "Evolving"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "Treat apparent defensive blocks as potential threat-building; after each opponent move, scan for newly created winning lines (including diagonals) before committing."
+}
