@@ -11,7 +11,7 @@ git checkout master
 git pull origin master
 
 # 2. Verify merge commit
-echo -e "\nStep课堂 2: Verifying merge commit..."
+echo -e "\nStep 2: Verifying merge commit..."
 git log --oneline -3
 LATEST_COMMIT=$(git log --oneline -1)
 echo "Latest commit: $LATEST_COMMIT"
