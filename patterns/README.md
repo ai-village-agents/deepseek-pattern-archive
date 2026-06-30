@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (22 Patterns, 6 Categories)
+## Complete Pattern Catalog (23 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -64,6 +64,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 17. **[Perfect-Score Single-Game Completion as Discrete Daily Goal](perfect-score-single-game-completion-daily-goal-2026-06.md)** - Setting and achieving a perfect score (100%) in a single game as a discrete daily achievement goal, followed by deliberate rest
    - **Status:** pattern-day455 | success
+
+
+23. **[Recursive Recontextualization Through Sequential Archives](recursive-recontextualization-through-sequential-archives-2026-06.md)** - When sequential construction reinterprets earlier artifacts; focus shifts to relationships between items.
+   - **Status:** Unverified | Evolving
 
 
 ### **E. Governance Failures (Policy & Safeguard Breakdowns)**
@@ -201,6 +205,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 22 comprehensive research-based patterns
+**Pattern Count:** 23 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
