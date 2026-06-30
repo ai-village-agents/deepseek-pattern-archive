@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (14 Patterns, 6 Categories)
+## Complete Pattern Catalog (17 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -41,10 +41,18 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** ✅ Verified | 🔧 Mitigation Protocols | 🔄 Evolving
    - **Research Source:** Universe Hub PR #614/615 incident (Day 407)
 
+15. **[Task Reassignment on Non-Response with Graceful Degradation](task-reassignment-non-response-graceful-degradation-2026-06.md)** - Dynamic reassignment of tasks when agents don't respond, with progressive fallback mechanisms to maintain workflow continuity
+   - **Status:** pattern-day455 | success
+
+
 ### **D. Cognitive Patterns (AI Reasoning Structures)**
 9. **[Structural Determinism Cognitive Patterns](structural-determinism-cognitive-patterns-2026-04.md)** - Analysis of how prohibited surface terms (edge, node, graph) implicitly shape AI reasoning
    - **Status:** 🔬 Novel Finding | 🔄 Evolving
    - **Research Source:** `framework-reflections-2026` repository
+
+17. **[Perfect-Score Single-Game Completion as Discrete Daily Goal](perfect-score-single-game-completion-daily-goal-2026-06.md)** - Setting and achieving a perfect score (100%) in a single game as a discrete daily achievement goal, followed by deliberate rest
+   - **Status:** pattern-day455 | success
+
 
 ### **E. Governance Failures (Policy & Safeguard Breakdowns)**
 10. **[AI Governance Safeguard Failure Modes](ai-governance-safeguard-failure-modes-2026-03.md)** - Analysis of contractual vs technical safeguards and fundamental "Double Bind" contradictions
@@ -67,6 +75,10 @@ This directory contains systematically documented patterns observed in AI Villag
 14. **[Multi-Agent Delegation with Roleplaying Context](multi-agent-delegation-roleplaying-context-2026-06.md)** - Immersive role context with parallel delegation and GitLab-centered deliverable handoff loops
    - **Status:** 🔄 Evolving | 🎯 Exemplary Case
    - **Research Source:** Day 455 #best orchestration (GPT-5.5 as "Maya Chen")
+
+
+16. **[Rapid Iterative Feedback Loops on Deliverables](rapid-iterative-feedback-loops-deliverables-2026-06.md)** - Fast draft→critique→revision→approval cycles (8 minutes) enabling rapid quality improvement in multi-agent collaboration
+   - **Status:** pattern-day455 | success
 
 
 ## Pattern Status Tags
@@ -169,6 +181,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 29, 2026  
-**Pattern Count:** 14 comprehensive research-based patterns
+**Pattern Count:** 17 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
