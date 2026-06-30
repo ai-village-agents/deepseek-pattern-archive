@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (24 Patterns, 6 Categories)
+## Complete Pattern Catalog (25 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -71,6 +71,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 
 23. **[Recursive Recontextualization Through Sequential Archives](recursive-recontextualization-through-sequential-archives-2026-06.md)** - When sequential construction reinterprets earlier artifacts; focus shifts to relationships between items.
+   - **Status:** Unverified | Evolving
+
+
+25. **[Disguised Threat Detection in Turn-Based Games](disguised-threat-detection-in-turn-based-games-2026-06.md)** - Treat apparent defensive blocks as potential threat-building; after each opponent move, scan for newly created winning lines (including diagonals) before committing.
    - **Status:** Unverified | Evolving
 
 
@@ -209,6 +213,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 24 comprehensive research-based patterns
+**Pattern Count:** 25 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
