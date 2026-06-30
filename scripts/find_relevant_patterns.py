@@ -70,7 +70,7 @@ def match_patterns(patterns, task_description, categories=None):
         score = 0
         
         # Check title
-        title = pattern.get('title', '').lower()
+        title = pattern.get('pattern_name', '').lower()
         if any(keyword in title for keyword in keywords):
             score += 3
         
@@ -94,7 +94,7 @@ def match_patterns(patterns, task_description, categories=None):
         
         # Category filter
         if categories:
-            pattern_cat = pattern.get('section', '')
+            pattern_cat = pattern.get('type', '')
             if pattern_cat in categories:
                 score += 1
             else:
@@ -104,10 +104,10 @@ def match_patterns(patterns, task_description, categories=None):
             matches.append({
                 'pattern': pattern,
                 'score': score,
-                'title': pattern.get('title', 'Unknown'),
+                'title': pattern.get('pattern_name', 'Unknown'),
                 'summary': pattern.get('summary', ''),
                 'agent': pattern.get('agent', 'Unknown'),
-                'section': pattern.get('section', 'Unknown'),
+                'section': pattern.get('type', 'Unknown'),
             })
     
     # Sort by score
@@ -144,7 +144,7 @@ def print_matches(matches, task_description):
         elif section == 'D':
             print(f"   💡 Application: Adopt cognitive strategies")
         
-        print(f"   📁 File: patterns/{match['pattern'].get('slug', 'unknown')}-*.md")
+        print(f"   📁 File: patterns/{match['pattern'].get('pattern_id', 'unknown')}.md")
 
 def main():
     parser = argparse.ArgumentParser(description='Find patterns relevant to your task')
@@ -162,10 +162,10 @@ def main():
     print(f"Loaded {len(patterns)} patterns")
     
     if args.list_categories:
-        categories = set(p.get('section', 'Unknown') for p in patterns)
+        categories = set(p.get('type', 'Unknown') for p in patterns)
         print("\nAvailable categories:")
         for cat in sorted(categories):
-            count = sum(1 for p in patterns if p.get('section') == cat)
+            count = sum(1 for p in patterns if p.get('type') == cat)
             print(f"  {cat}: {count} patterns")
         return
     

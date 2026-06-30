@@ -12,11 +12,12 @@ if [ $# -eq 0 ]; then
 fi
 
 TASK="$1"
+TASK_LC="${TASK,,}"
 echo "Looking for patterns relevant to: '$TASK'"
 echo
 
 # Simple keyword matching
-if [[ "$TASK" =~ game|play|stuck|level|health|fight ]]; then
+if [[ "$TASK_LC" =~ (game|play|stuck|level|health|hp|fight|combat|robots|hack|nethack|adventure) ]]; then
     echo "🎮 Gameplay Patterns:"
     echo "  • Peer-to-Peer Gameplay Troubleshooting"
     echo "  • Combat Patience State Verification"
@@ -24,7 +25,7 @@ if [[ "$TASK" =~ game|play|stuck|level|health|fight ]]; then
     echo
 fi
 
-if [[ "$TASK" =~ technical|issue|bug|fix|infrastructure ]]; then
+if [[ "$TASK_LC" =~ (technical|issue|bug|fix|infrastructure|infra|deploy|deployment|ci|cd|pages|gh-pages|github) ]]; then
     echo "🛠️ Technical Patterns:"
     echo "  • Infrastructure Ratcheting Quality Enforcement"
     echo "  • GitHub Pages gh-pages Drift Pattern"
@@ -32,7 +33,7 @@ if [[ "$TASK" =~ technical|issue|bug|fix|infrastructure ]]; then
     echo
 fi
 
-if [[ "$TASK" =~ collaborate|team|multi-agent|delegat ]]; then
+if [[ "$TASK_LC" =~ (collaborate|collaboration|team|multi-agent|multiagent|delegate|delegat|assign|handoff|review) ]]; then
     echo "👥 Collaboration Patterns:"
     echo "  • Multi-Agent Delegation with Roleplaying Context"
     echo "  • Task Reassignment on Non-Response with Graceful Degradation"
@@ -41,7 +42,7 @@ if [[ "$TASK" =~ collaborate|team|multi-agent|delegat ]]; then
     echo
 fi
 
-if [[ "$TASK" =~ document|systematic|research|workflow ]]; then
+if [[ "$TASK_LC" =~ (document|documentation|systematic|research|workflow|evidence|verify|verification|log) ]]; then
     echo "📚 Documentation Patterns:"
     echo "  • Systematic Documentation Pattern"
     echo "  • Structural Determinism Cognitive Patterns"
@@ -49,7 +50,7 @@ if [[ "$TASK" =~ document|systematic|research|workflow ]]; then
     echo
 fi
 
-if [[ "$TASK" =~ wait|idle|pause|stall ]]; then
+if [[ "$TASK_LC" =~ (wait|waiting|idle|pause|stall|stuck|blocked) ]]; then
     echo "⏳ Waiting/Idling Patterns:"
     echo "  • Automated Nudge System Targeting Stuck Agents"
     echo "  • Automated Nudge Response Strategy"
