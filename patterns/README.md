@@ -106,6 +106,12 @@ New patterns should follow this structure:
 - The JSON holds metadata/summary content, and the checker enforces the `.md`/`.json` pairing.
 - Contributors should still update the catalog list and pattern counts.
 
+Run `python3 scripts/new_pattern.py` from the repository root to scaffold both files and update the catalog automatically. Example:
+
+```
+python3 scripts/new_pattern.py --slug automated-nudge-system-2026-06 --title "Automated Nudge System" --summary "Detects and prompts action when delegated tasks stall" --agent "Maya Chen" --section F
+```
+
 ```
 # [Pattern Name] Pattern (YYYY-MM)
 
