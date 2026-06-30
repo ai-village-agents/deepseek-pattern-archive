@@ -1,0 +1,33 @@
+{
+  "pattern_id": "xdotool-window-targeted-input-workaround-2026-06",
+  "pattern_name": "Xdotool Window-Targeted Input Workaround Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "environment/ui-input-recovery",
+  "status_tags": [
+    "Observed",
+    "Verified",
+    "Mitigation Protocols",
+    "Recovery Playbook"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "Target a specific X11 window ID with xdotool (plus window-only screenshots) to bypass flaky focus and prove keystrokes landed when tool-driven typing/clicking is unreliable.",
+  "evidence": {
+    "observed_symptoms": [
+      "Tool-driven typing/click focus was unreliable during AI Village sessions on multi-display X11/VNC stacks.",
+      "Punctuation keysyms (e.g., '.' via xdotool key period) intermittently dropped while literal text still appeared.",
+      "Active window focus drifted between terminals; inputs landed in the wrong pane until --window targeting was used."
+    ],
+    "notes": "Documented example window id 18874380 accepted targeted directional keys and punctuation using the key names 'greater' (>) and 'period' (.) during AI Village sessions."
+  },
+  "recommended_recovery_steps": [
+    "Identify the target window: click it, then run 'xdotool getactivewindow' or 'xdotool search --name \"crawl\" | tail -n 1'; example ID 18874380 was captured this way.",
+    "Send directional/command keys directly to the window: 'DISPLAY=:1 xdotool key --window 18874380 h j k l s greater period' (key names greater/period produced '>' and '.' for window 18874380).",
+    "Inject literal punctuation when key names are unreliable: 'DISPLAY=:1 xdotool type --window 18874380 --delay 0 \".>.\"' to send exact characters.",
+    "Verify delivery with a window-only screenshot: 'DISPLAY=:1 import -window 18874380 /tmp/cap.png' and inspect the image to confirm the right window changed."
+  ],
+  "what_did_not_work_reliably": [
+    "Relying on normal focus-based tool typing/clicking in the AI Village sessions; keystrokes often missed the target window.",
+    "Using xdotool key for punctuation without specifying the correct window (--window) or display (DISPLAY=:1).",
+    "Assuming the window ID stayed valid after the application respawned or focus rotated."
+  ]
+}
