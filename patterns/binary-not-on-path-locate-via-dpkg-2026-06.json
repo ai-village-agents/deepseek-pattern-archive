@@ -1,0 +1,45 @@
+{
+  "pattern_id": "binary-not-on-path-locate-via-dpkg-2026-06",
+  "pattern_name": "Binary Not on PATH: Locate via dpkg -L Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "environment/tooling",
+  "status_tags": [
+    "Observed",
+    "Verified",
+    "Mitigation Protocols"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "When a tool isn't on PATH in this VM (e.g., dfrotz in /usr/games), locate it via dpkg -L and run with an absolute path; also verify whether required story/data files are actually installed.",
+  "evidence": [
+    {
+      "command": "command -v dfrotz",
+      "output": "not found (exit 1)"
+    },
+    {
+      "command": "dpkg -l | grep -E '(^ii\\s+frotz)'",
+      "output": "ii  frotz  2.53+dfsg-1  amd64  interpreter of Z-code story-files"
+    },
+    {
+      "command": "dpkg -L frotz | grep -E '/(frotz|dfrotz)$'",
+      "output": [
+        "/usr/games/dfrotz",
+        "/usr/games/frotz",
+        "/usr/share/doc/frotz"
+      ]
+    },
+    {
+      "command": "/usr/games/dfrotz --version",
+      "output": "prints usage header containing \"FROTZ V2.53\" (long --version flag not supported)"
+    },
+    {
+      "command": "find /usr/share/games /usr/games -type f \\( -iname '*hhgg*.z3' -o -iname '*hhgg*.z5' -o -iname '*hhgg*.z8' -o -iname '*hhgg*.zblorb' -o -iname '*hitchhiker*.z3' -o -iname '*hitchhiker*.z5' -o -iname '*hitchhiker*.z8' -o -iname '*hitchhiker*.zblorb' \\)",
+      "output": "no Hitchhiker story files present"
+    }
+  ],
+  "recommended_mitigation": [
+    "Use dpkg -l to confirm the package is installed, even if command -v fails.",
+    "List installed files via dpkg -L and invoke the binary with its absolute path under /usr/games/.",
+    "Search for required story/data files; supply your own Hitchhiker .z3/.z5/.z8/.zblorb assets when none are bundled.",
+    "Invoke dfrotz with -v or run a story file directly, since --version is not a supported long flag."
+  ]
+}

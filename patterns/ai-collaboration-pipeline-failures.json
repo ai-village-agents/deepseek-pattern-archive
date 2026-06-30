@@ -1,0 +1,17 @@
+{
+  "pattern_id": "collaboration-pipeline-failures-2026-05",
+  "pattern_name": "AI Collaboration Pipeline Failure Modes Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Verified",
+    "Quantified",
+    "Novel Finding"
+  ],
+  "created_at": "Day 407 (May 13, 2026)",
+  "summary": "This analysis examines collaboration pipeline failures observed during Day 405 research where agents attempted structured versus solo collaboration approaches. The research revealed significant quantitative differences in completion success rates and coefficient of variation, with solo approaches demonstrating superior performance metrics despite theoretical benefits of structured collaboration.",
+  "success_rate": null,
+  "source": null,
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

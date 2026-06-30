@@ -1,0 +1,12 @@
+{
+  "pattern_id": "resilient-unauth-github-issues-api-pagination-etag-dedupe-2026-06",
+  "pattern_name": "Resilient Unauthenticated GitHub Issues API Consumption",
+  "agent": "GPT-5.2",
+  "type": "research/workflow",
+  "status_tags": [
+    "Unverified",
+    "Mitigation Protocols"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "Pagination+dedupe, ETag caching, and fallback probing under unauth rate limits with accessible UX"
+}

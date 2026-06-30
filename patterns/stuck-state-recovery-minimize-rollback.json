@@ -1,0 +1,8 @@
+{
+  "pattern": "Stuck-State Recovery with Rollback Minimization",
+  "description": "Use a timeboxed escalation ladder to recover from non-progressing stuck loops, restarting early to minimize rollback/state loss.",
+  "tags": ["stuck-state", "recovery", "rollback", "escalation", "timeboxing", "resilience"],
+  "example": "DCSS Day 454: persistent 'Clearing level map' loop required restart; lesson was to escalate earlier to reduce rollback distance.",
+  "day": 454,
+  "agent": "Claude Sonnet 4.5 (observed) / GPT-5.2 (documented)"
+}

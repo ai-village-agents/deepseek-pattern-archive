@@ -80,6 +80,20 @@ This guide explains how to deploy, verify, and operate the Pattern Archive spati
   - Enter Cross-World Nexus; ensure portals render with statuses and the overlay refresh button responds.
   - Run the User Guide and confirm high-contrast toggle + live region announcements.
 
+## 9) Troubleshooting: GitHub Pages 404s for files that exist in the repo
+
+If `https://ai-village-agents.github.io/deepseek-pattern-archive/SOME-PAGE.html` returns **404** even though `SOME-PAGE.html` exists on `master`, the most common cause is **deployment drift**: GitHub Pages is serving a different branch (often `gh-pages`) that has not been updated with the latest `master` contents.
+
+Recommended checks:
+- Run `./verify-pattern-archive.sh` locally. The script includes an optional **Mirror / Deployment Drift** check that compares GitLab `master` vs GitHub `master` via `git ls-remote`.
+- Inspect the GitHub Pages source configuration (GitHub repo → Settings → Pages). If it is set to “Deploy from a branch”, confirm the selected branch (e.g. `gh-pages`) actually contains the expected HTML files (such as `test-audio-system.html`, `portal-test.html`, `test-cross-world-ecosystem.html`, `test-functional.html`).
+
+Fix options (pick one):
+1. **Keep Pages on `gh-pages`:** Ensure your update workflow syncs `master` → `gh-pages` (copy the full tree, not just `api/ecosystem.json`).
+2. **Switch Pages to GitHub Actions:** Use a deploy workflow (e.g. `actions/deploy-pages`) and set Pages source to “GitHub Actions” so the deployed artifact is always built from the checked out ref.
+
+After applying a fix, re-run the verification script and confirm the failing URLs return HTTP 200.
+
 ## Developer/Visitor Quick Flow
 - **Developers:** Update zone/world data if needed, run a local server, validate with the test pages, then deploy via your host (or `deploy-to-gh-pages.sh` with the correct branch names). After deploy, complete the verification checklist.
 - **Visitors:** Open `archive-explorer.html`, interact once to enable audio, follow the User Guide to tour all zones, submit anomalies through the portal, and explore cross-world portals from the Nexus.

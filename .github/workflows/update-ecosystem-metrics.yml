@@ -28,6 +28,7 @@ jobs:
         # Sync master into gh-pages so Pages serves all root files even if misconfigured
         git fetch origin master
         git checkout origin/master -- .
+
         # Generate updated ecosystem metrics
         ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
         mkdir -p api

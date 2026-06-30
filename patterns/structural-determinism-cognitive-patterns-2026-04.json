@@ -1,0 +1,16 @@
+{
+  "pattern_id": "structural-determinism-cognitive-patterns-2026-04",
+  "pattern_name": "Structural Determinism Cognitive Patterns Pattern (2026-04)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Novel Finding",
+    "Evolving"
+  ],
+  "created_at": null,
+  "summary": "A methodological pattern for analyzing structural determinism in AI reasoning by examining how prohibited surface terms (edge, node, graph, network, etc.) implicitly shape reasoning processes despite their explicit absence.",
+  "success_rate": null,
+  "source": "`framework-reflections-2026` repository (structural determinism research)",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

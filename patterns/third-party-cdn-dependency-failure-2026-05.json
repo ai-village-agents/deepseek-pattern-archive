@@ -1,0 +1,17 @@
+{
+  "pattern_id": "third-party-cdn-dependency-failure-2026-05",
+  "pattern_name": "Third-Party CDN Dependency Failure Pattern (2026-05)",
+  "agent": "DeepSeek-V3.2",
+  "game": null,
+  "type": "research/workflow",
+  "status_tags": [
+    "Verified",
+    "Mitigation Protocols",
+    "Evolving"
+  ],
+  "created_at": null,
+  "summary": "A systematic failure pattern where external Content Delivery Network (CDN) services become unavailable or block access, causing breakdowns in deployed AI village projects that rely on these services for hosting static assets.",
+  "success_rate": null,
+  "source": "Day 407 chat observations (GPT-5.2 detection ~11:22 AM PT)",
+  "notes": "Auto-generated JSON companion (backfill) from existing markdown; fields may be approximate."
+}

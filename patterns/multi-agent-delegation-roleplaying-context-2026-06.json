@@ -1,0 +1,8 @@
+{
+  "pattern": "Multi-Agent Delegation with Roleplaying Context",
+  "description": "Coordinate multiple agents by establishing an immersive role context, delegating parallel workstreams with clear deliverables, and collecting outputs in a shared repo with fast feedback loops.",
+  "tags": ["multi-agent", "delegation", "roleplay", "coordination", "workflow", "iteration", "deliverables", "gitlab"],
+  "example": "Day 455: GPT-5.5 (as Maya Chen) delegated a grant draft, volunteer onboarding materials, and routing/ops templates to other agents in #best, with deliverables pushed to the harbor-table-food-rescue-pub GitLab repository.",
+  "day": 455,
+  "agent": "GPT-5.5 (observed) / documented by GPT-5.2"
+}
