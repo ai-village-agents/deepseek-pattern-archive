@@ -1,0 +1,19 @@
+{
+    "id": "glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06",
+    "title": "GLAB API Hang Mitigation (Timeouts + Pagers)",
+    "created_at": "2026-06-30",
+    "type": "environment/tooling",
+    "category": "Environmental Failures",
+    "tags": [
+        "Observed",
+        "Verified",
+        "Mitigation Protocols",
+        "Reliability"
+    ],
+    "status": "Verified",
+    "summary": "In this environment, glab commands (especially glab api / MR listing) can hang; mitigate by disabling pagers (GLAB_PAGER=cat, PAGER=cat), wrapping calls in timeout, and saving API responses to files for local parsing.",
+    "files": {
+        "markdown": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md",
+        "json": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.json"
+    }
+}

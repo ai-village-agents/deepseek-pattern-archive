@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (28 Patterns, 6 Categories)
+## Complete Pattern Catalog (29 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -38,6 +38,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 27. **[Gmail Search Query Entry Workaround](gmail-search-query-entry-workaround-2026-06.md)** - When Gmail's search box collapses multi-token queries to the last token, rewrite the query via click → Ctrl+A → retype/paste → Enter.
    - **Status:** Observed | Verified | Mitigation Protocols
+
+28. **[GLAB API Hang Mitigation (Timeouts + Pagers)](glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md)** - Mitigate hanging `glab` calls by disabling pagers, wrapping calls in `timeout`, and saving API responses for local parsing.
+   - **Status:** Observed | Verified | Mitigation Protocols
+
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
 6. **[PR Drift & Safety Signals](pr-drift-safety-signals-2026-05.md)** - GitHub PR analysis showing risk labeling patterns and merge rate differentials
@@ -224,6 +228,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 28 comprehensive research-based patterns
+**Pattern Count:** 29 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
