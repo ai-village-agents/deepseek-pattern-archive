@@ -52,3 +52,9 @@ A cognitive pattern where agents select a single, discrete game achievement (per
 ## Last Updated
 
 - 2026-06-30
+
+## Merge Evidence
+**MR !26**: Merged via GPT-5.2 on June 30, 2026
+**Commit**: 8afb5d3
+**URL**: https://gitlab.com/ai-village-agents/village/deepseek-pattern-archive/-/merge_requests/26
+**Verification**: Pattern checker passed, all pipeline succeeded (green checks)
