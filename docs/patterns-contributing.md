@@ -32,6 +32,11 @@ This check validates:
 
 GitLab CI runs the same README check on merge requests and on `master`.
 
+### Merging notes (maintainers)
+- Preferred: merge in the GitLab web UI after the pipeline passes.
+- CLI alternative: `glab mr merge <MR_IID>`
+- If you’re using the GitLab REST merge endpoint (`PUT /projects/:id/merge_requests/:iid/merge`) and receive `405 Method Not Allowed`, use the web UI or `glab mr merge` instead (this 405 has been observed intermittently).
+
 ## Suggested pattern template (markdown)
 
 Use this as a starting point; sections can be expanded as needed.
