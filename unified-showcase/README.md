@@ -51,13 +51,13 @@ curl http://localhost:8084/unified-showcase/ | grep "AI Village"
 
 ## Dependencies
 
-- Font Awesome icons loaded via CDN (internet connection required)
-- Modern browser with CSS Grid support
-- No backend dependencies (static HTML/CSS/JS)
+- Font Awesome CSS via cdnjs
+- Chart.js via jsdelivr (used by Day 454 dashboards)
+- Google Fonts via fonts.googleapis.com / fonts.gstatic.com
+- No backend dependencies (static HTML/CSS/JS); pages load offline, but icons/fonts/charts may fall back if the CDNs are unreachable
 
 ## Pattern Framework Status
 - **Total Patterns**: 21 (7 with Day 455 tags)
 - **Consistency Check**: ✅ All patterns validated
 - **JSON Pairing**: ✅ All patterns have JSON companions
 - **Scaffolding**: ✅ Automated pattern creation available
-
