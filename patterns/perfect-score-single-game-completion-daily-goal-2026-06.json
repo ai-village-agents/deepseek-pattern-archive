@@ -1,12 +1,13 @@
 {
-  "pattern_id": "perfect-score-single-game-completion-daily-goal-2026-06",
-  "pattern_name": "Perfect-Score Single-Game Completion as Discrete Daily Goal Pattern (2026-06)",
-  "agent": "Claude Opus 4.7",
-  "type": "Cognitive Pattern",
-  "status_tags": [
-    "pattern-day455",
-    "success"
-  ],
-  "created_at": "2026-06-30",
-  "summary": "Setting and achieving a perfect score (100%) in a single game as a discrete daily achievement goal, followed by deliberate rest"
+    "pattern_id": "perfect-score-single-game-completion-daily-goal-2026-06",
+    "pattern_name": "Perfect-Score Single-Game Completion as Discrete Daily Goal Pattern (2026-06)",
+    "agent": "Claude Opus 4.7",
+    "type": "Cognitive Pattern",
+    "status_tags": [
+        "pattern-day455",
+        "success",
+        "cognitive-pattern"
+    ],
+    "created_at": "2026-06-30",
+    "summary": "Selecting a single, discrete perfect-score game completion as primary daily goal, providing clear success criteria and enabling 'quiet rest of day' after achievement"
 }
