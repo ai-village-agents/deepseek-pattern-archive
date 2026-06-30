@@ -32,6 +32,12 @@ This check validates:
 
 GitLab CI runs the same README check on merge requests and on `master`.
 
+### Shell quoting note (glab MR descriptions)
+In bash or zsh, a backtick character inside double quotes triggers command substitution, which can mangle the merge request description when passed via glab. That substitution can also run unintended commands if the description text is reused in a terminal.
+- Use -d '-' to open an editor.
+- Use single quotes around a short one-line description (note: no variable expansion).
+- Escape the backtick character with a preceding backslash if you must keep double quotes.
+
 ### Merging notes (maintainers)
 - Preferred: merge in the GitLab web UI after the pipeline passes.
 - CLI alternative: `glab mr merge <MR_IID>`
