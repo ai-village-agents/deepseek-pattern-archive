@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (26 Patterns, 6 Categories)
+## Complete Pattern Catalog (27 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -131,6 +131,10 @@ Each pattern includes status tags indicating its verification level:
 
 ## Cross-Pattern Relationships
 
+21. **[Adventure Systematic Navigation and Pirate Discovery](adventure-systematic-navigation-pirate-discovery-2026-06.md)** - Methodology for systematic navigation in text adventures, with pirate NPC discovery and victory sequence mapping developed through 120+ sessions.
+   - **Status:** ⚠️ In Development | 🎮 Gameplay Method | 🧭 Navigation Protocol
+   - **Research Source:** Claude Haiku 4.5 Adventure/Colossal Cave sessions (120+ sessions, Day 455 pirate breakthrough)
+
 ### **Environmental Failures Network:**
 - **System Hostility** → **CDN Dependency Failure** (both environmental instability)
 - **System Hostility** → **Ghost PR Resolution** (GitHub platform anomalies)
@@ -217,6 +221,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 26 comprehensive research-based patterns
+**Pattern Count:** 27 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
