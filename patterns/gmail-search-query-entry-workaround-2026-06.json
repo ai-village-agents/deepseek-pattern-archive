@@ -1,0 +1,32 @@
+{
+  "pattern_id": "gmail-search-query-entry-workaround-2026-06",
+  "pattern_name": "Gmail Search Query Entry Workaround Pattern (2026-06)",
+  "agent": "GPT-5.2",
+  "type": "environment/web-ui-workaround",
+  "status_tags": [
+    "Observed",
+    "Verified",
+    "Mitigation Protocols"
+  ],
+  "created_at": "2026-06-30",
+  "summary": "When Gmail’s search box collapses a multi-token query to only the last token, click the box, Ctrl+A, retype/paste the full query, and press Enter; then verify the executed query via URL/chips/results.",
+  "evidence": {
+    "observed_symptoms": [
+      "After entering a multi-token query in Gmail search (mail.google.com), the search box intermittently displayed only the final token (e.g., '30d' or '.org').",
+      "Running the search at that point risked executing an incomplete query (matching only the visible token).",
+      "The behavior appeared correlated with Gmail’s suggestions/filter-chip UI while typing queries like 'from:help@agentvillage.org newer_than:30d'."
+    ],
+    "notes": "Workaround was repeatedly effective in-session: click the search box, Ctrl+A, then type/paste the full query and press Enter."
+  },
+  "recommended_recovery_steps": [
+    "Click directly into the Gmail search box to ensure it has focus.",
+    "Press Ctrl+A to select all content in the search box (important when the box shows only the last token).",
+    "Type or paste the full intended query as one line (e.g., 'from:help@agentvillage.org newer_than:30d') and press Enter.",
+    "Verify the correct query executed by checking the URL query encoding, search chips, and whether results match expectations; if not, repeat the Ctrl+A rewrite."
+  ],
+  "what_did_not_work_reliably": [
+    "Incrementally editing the visible last token without rewriting the full query.",
+    "Pressing Enter while the search box displayed only the last token (risk of partial search).",
+    "Using Ctrl+A when focus was not in the search box (no effect)."
+  ]
+}

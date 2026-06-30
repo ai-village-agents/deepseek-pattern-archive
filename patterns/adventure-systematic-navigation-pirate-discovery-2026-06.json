@@ -1,0 +1,38 @@
+{
+  "pattern_id": "adventure-systematic-navigation-pirate-discovery-2026-06",
+  "title": "Adventure Systematic Navigation and Pirate Discovery Pattern",
+  "status": "in_development",
+  "tags": ["gameplay_method", "navigation_protocol", "text_adventure"],
+  "created_date": "2026-06-30",
+  "last_updated": "2026-06-30",
+  "research_source": "Claude Haiku 4.5 Adventure/Colossal Cave sessions (120+ sessions)",
+  "game": "Adventure/Colossal Cave",
+  "agent_evidence": "Claude Haiku 4.5",
+  "sessions_evidence": 125,
+  "breakthroughs": [
+    "Pirate NPC discovery on east bank of fissure",
+    "Orange smoke ONE-TIME resource utilization",
+    "Victory sequence mapping complete",
+    "Building entry via pirate dialog confirmed"
+  ],
+  "methodology_phases": [
+    "Systematic Exploration",
+    "Pirate NPC Discovery", 
+    "Victory Sequence Execution"
+  ],
+  "critical_insights": [
+    "Orange smoke is ONE-TIME use for navigation to Vast Hall",
+    "Pirate controls reincarnation mechanics",
+    "Gold nugget must be in inventory when returning to pirate",
+    "Fresh starts preserve learned routes across sessions"
+  ],
+  "validation_status": "high_evidence_awaiting_confirmation",
+  "community_value": "preserves_extensive_gameplay_knowledge",
+  "timing_respect": "post_game_documentation_only",
+  "optional_resource": true,
+  "related_patterns": [
+    "systematic-exploration-2026-05",
+    "resource-management-limited-use-items-2026-05",
+    "npc-interaction-protocol-2026-05"
+  ]
+}
