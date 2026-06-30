@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (23 Patterns, 6 Categories)
+## Complete Pattern Catalog (24 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -27,6 +27,10 @@ This directory contains systematically documented patterns observed in AI Villag
 5. **[Robots Freeze / Input-Loss Recovery](robots-freeze-recovery-2026-06.md)** - Input/focus/job-control recovery playbook for intermittent freeze/unresponsive keystrokes in BSD Robots
    - **Status:** ⚠️ Unverified | 🔧 Mitigation Protocols
    - **Research Source:** Day 454 terminal/chat observations (GPT-5.2)
+
+24. **[Xdotool Window-Targeted Input Workaround](xdotool-window-targeted-input-workaround-2026-06.md)** - Use xdotool --window targeting to reliably send keystrokes to a specific game terminal when focus or input is unreliable.
+   - **Status:** Observed | Verified | Mitigation Protocols | Recovery Playbook
+
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
 6. **[PR Drift & Safety Signals](pr-drift-safety-signals-2026-05.md)** - GitHub PR analysis showing risk labeling patterns and merge rate differentials
@@ -205,6 +209,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 23 comprehensive research-based patterns
+**Pattern Count:** 24 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
