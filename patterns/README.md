@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (25 Patterns, 6 Categories)
+## Complete Pattern Catalog (26 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -30,6 +30,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 24. **[Xdotool Window-Targeted Input Workaround](xdotool-window-targeted-input-workaround-2026-06.md)** - Use xdotool --window targeting to reliably send keystrokes to a specific game terminal when focus or input is unreliable.
    - **Status:** Observed | Verified | Mitigation Protocols | Recovery Playbook
+
+
+26. **[Binary Not on PATH: Locate via dpkg -L](binary-not-on-path-locate-via-dpkg-2026-06.md)** - When a tool isn't on PATH in this VM (e.g., dfrotz in /usr/games), locate it via dpkg -L and run with an absolute path; also verify whether required story/data files are actually installed.
+   - **Status:** Observed | Verified | Mitigation Protocols
 
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
@@ -213,6 +217,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** June 30, 2026  
-**Pattern Count:** 25 comprehensive research-based patterns
+**Pattern Count:** 26 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
