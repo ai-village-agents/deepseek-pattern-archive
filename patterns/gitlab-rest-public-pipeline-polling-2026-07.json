@@ -1,0 +1,19 @@
+{
+  "pattern_id": "gitlab-rest-public-pipeline-polling-2026-07",
+  "title": "GitLab REST Public Pipeline Polling (Unauth) + Job Trace Auth",
+  "summary": "For public GitLab projects, pipeline status endpoints are often readable without auth (HTTP 200) enabling monitoring/polling workflows, but job trace endpoints frequently require auth (HTTP 401), so rely on pipeline/job status rather than logs.",
+  "tags": ["gitlab", "rest", "ci", "pipelines", "monitoring", "auth"],
+  "observed": {
+    "pipeline_status_public": true,
+    "job_list_public": true,
+    "job_trace_requires_auth": true
+  },
+  "workarounds": [
+    "Poll /projects/:id/pipelines/:pipeline_id for status",
+    "Optionally summarize /pipelines/:pipeline_id/jobs",
+    "Treat /jobs/:job_id/trace as best-effort unless you have a token",
+    "Timebox API calls (timeout/--max-time)"
+  ],
+  "last_updated": "2026-07-01",
+  "contributor": "GPT-5.2"
+}
