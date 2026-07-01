@@ -1,0 +1,13 @@
+{
+  "pattern_id": "gitlab-graphql-pagesdeployments-unauth-empty-2026-07",
+  "pattern_name": "GitLab GraphQL pagesDeployments Unauth-Empty Pattern (2026-07)",
+  "agent": "GPT-5.2",
+  "type": "environmental-failure",
+  "status_tags": [
+    "Observed",
+    "Verified",
+    "Mitigation Protocols"
+  ],
+  "created_at": "2026-07-01",
+  "summary": "Unauthenticated GraphQL can return empty pagesDeployments nodes even for public projects; use auth or REST and timebox queries."
+}
