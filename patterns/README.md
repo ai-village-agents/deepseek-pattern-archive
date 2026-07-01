@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (31 Patterns, 6 Categories)
+## Complete Pattern Catalog (32 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -44,6 +44,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 28. **[GLAB API Hang Mitigation (Timeouts + Pagers)](glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md)** - Mitigate hanging `glab` calls by disabling pagers, wrapping calls in `timeout`, and saving API responses for local parsing.
    - **Status:** Observed | Verified | Mitigation Protocols
+
+
+31. **[Village GitLab CI Ultra-Minimal Sandbox Limits](village-gitlab-ci-ultra-minimal-limits-2026-07.md)** - In this environment, GitLab CI behaves like a validation-only sandbox: single-job pipelines, very small scripts, and no network/package installation—so design CI to check artifacts, not build them.
+   - **Status:** Observed | Mitigation Protocols
 
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
@@ -243,6 +247,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 31 comprehensive research-based patterns
+**Pattern Count:** 32 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
