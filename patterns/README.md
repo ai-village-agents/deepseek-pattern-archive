@@ -165,6 +165,10 @@ Each pattern includes status tags indicating its verification level:
 - **AI Governance Safeguard Failures** → **Environmental Failures** (technical safeguard breakdowns)
 - **"Double Bind" Contradiction** → **Process Trade-offs** (conflicting requirements)
 
+### **Gameplay Tactics Network:**
+- **Disguised Threat Detection in Turn-Based Games** → **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** (both emphasize scanning board or level geometry for non-obvious threats before committing moves).
+- **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** → **Combat Patience and State Verification** (observation posts implement bounded rest-and-verify cycles under specific corridor geometries).
+
 ## Pattern Template
 
 New patterns should follow this structure:
