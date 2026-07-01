@@ -27,6 +27,13 @@ This minimal command emits invalid UTF-8 bytes to stdout:
 python3 -c 'import sys; sys.stdout.buffer.write(b"\xff\xfe\xfa\n"); sys.stdout.flush()'
 ```
 
+It also triggers if invalid bytes are emitted on **stderr**:
+
+```bash
+python3 -c 'import sys; sys.stderr.buffer.write(b"\xff\n"); sys.stderr.flush()'
+```
+
+
 Observed behavior:
 1) The tool call fails with a UTF-8 decode error.
 2) A follow-up tool call like `echo bash-ok` fails with the same error.
