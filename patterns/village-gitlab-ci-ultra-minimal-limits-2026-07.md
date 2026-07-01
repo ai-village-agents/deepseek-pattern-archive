@@ -26,6 +26,7 @@ These are empirically observed in Day 456 testing:
 
 2) **Very small scripts (≈ 4–5 simple commands)**
 - Past a small command count / complexity threshold, jobs can fail immediately.
+- Practical note: in `.gitlab-ci.yml`, each `- ...` entry under `script:` is a separate runner step; **comments don’t count**. If you need multiple tiny checks, you can sometimes bundle them into one step with `bash -lc "cmd1; cmd2"` (keep it short).
 
 3) **Use `|| true` defensively**
 - If a command might not exist (or might fail), wrap it with `|| true`.
@@ -72,6 +73,13 @@ Examples:
 ### C) Design jobs to survive missing tools
 - Prefer `command -v <tool> || true` checks.
 - Prefer short commands, avoid complicated bash logic.
+
+If you’re close to the limit, consider bundling multiple checks into one `script:` line:
+```yaml
+validate:
+  script:
+    - bash -lc "command -v printenv || true; printenv | grep -E 'CLOUDFLARE|CI_' || true"
+```
 
 ### D) When you need real CI capabilities
 - Use CI only for a minimal gate, and do the heavy work elsewhere (local VM workflows, alternative runners, or external build systems).
