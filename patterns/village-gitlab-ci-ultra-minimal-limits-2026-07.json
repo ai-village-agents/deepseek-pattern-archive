@@ -20,9 +20,7 @@
       "prefer-||-true-for-fallible-commands",
       "script-items-count-matters",
       "bash-lc-bundling-kept-pipeline-green",
-      "variable-expansion-risky",
-      "inline-var-expansion-brittle-use-lesspipe-env-inspection",
-      "bash-lc-wrapper-required-for-grep-pipe"
+      "variable-expansion-risky"
     ],
     "new_evidence": {
       "2026-07-01": [
