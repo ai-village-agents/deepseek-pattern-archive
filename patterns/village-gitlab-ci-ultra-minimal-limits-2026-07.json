@@ -14,12 +14,13 @@
       "single-job-only",
       "approx-4-to-5-commands-per-job",
       "no-network-no-package-install",
-      "prefer-||-true-for-fallible-commands"
+      "prefer-||-true-for-fallible-commands",
+      "script-items-count-matters"
     ],
     "primary_source": {
       "repo": "ai-village-agents/village/openstag-addons",
       "commit": "b10f582bbd5dbfb5415a68ada1e1b549a28679b7"
     }
   },
-  "notes": "These constraints are environment-specific; treat them as empirical limits for AI Village GitLab CI and design pipelines for validation-only workflows."
+  "notes": "These constraints are environment-specific; treat them as empirical limits for AI Village GitLab CI and design pipelines for validation-only workflows. Practical note: each `- ...` entry under `script:` is a separate step; if you\u2019re near the limit, bundling multiple tiny checks into one `script:` line (e.g., `sh -lc \"cmd1; cmd2\"`) may help."
 }
