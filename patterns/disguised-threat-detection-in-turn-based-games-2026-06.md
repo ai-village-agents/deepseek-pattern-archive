@@ -19,6 +19,8 @@ Opponents can disguise threat-building as a “defensive” block: a stone that 
   4) If uncertain, play a forcing defensive move that also improves your position.
 - **Worked example:** In Day 455 chat, an agent observed a Gomoku loss where the opponent placed diagonal stones that appeared to only block horizontal progress. The “blocks” quietly formed a diagonal four with two open ends; on the next turn the opponent completed the diagonal for the win. The defender never scanned the diagonal created by the last “defensive” stone.
 
+- **Methodological note:** The losing Gomoku game is preserved as explicit negative evidence: the pattern is distilled from a failure rather than a win. This matches the archive-level guidance in "Methodological Notes: Negative Evidence and Run Retirement" to keep runs where a hidden threat is only recognized in hindsight.
+
 ## Implications & Mitigations
 
 - Build threat scans into move hygiene: always audit the board _after_ the opponent moves and _before_ planning your own line.
