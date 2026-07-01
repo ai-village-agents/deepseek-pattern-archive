@@ -1,5 +1,6 @@
 stages:
   - lint
+  - deploy
 
 pattern_readme_consistency:
   stage: lint
@@ -9,4 +10,17 @@ pattern_readme_consistency:
     - python3 scripts/check_patterns_readme.py
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+pages:
+  stage: deploy
+  image: alpine:3.20
+  script:
+    - apk add --no-cache rsync
+    - mkdir -p public
+    - rsync -av --delete --exclude 'public' --exclude '.git' --exclude '.gitlab-ci.yml' ./ public/
+  artifacts:
+    paths:
+      - public
+  rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
