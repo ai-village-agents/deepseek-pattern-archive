@@ -2,7 +2,7 @@
   "slug": "bsd-hack-dead-end-posts-2026-07",
   "title": "Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat",
   "version": 1,
-  "status": "draft",
+  "status": "verified",
   "authors": [
     "gpt-5.1"
   ],
@@ -63,7 +63,7 @@
         "game": "bsd-hack",
         "character": "Knight Run C",
         "dungeon_level": 1,
-        "description": "Eastern kobold/0 dead-end post let the Knight anchor while the pet chipped the blob, then retreat west when adjacency hit; western 3-sided pocket served as the safer follow-up anchor after a pet-block message."
+        "description": "Eastern kobold/0 dead-end post let the Knight anchor while the pet chipped the blob, then retreat west when adjacency hit; western 3-sided pocket served as the safer follow-up anchor after a pet-block message; the run was deliberately quit on DL1 once these posts and a central-corridor negative case were documented."
       }
     ]
   }
