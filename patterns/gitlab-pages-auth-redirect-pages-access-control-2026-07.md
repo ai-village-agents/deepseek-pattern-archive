@@ -3,6 +3,8 @@
 ## Overview
 A GitLab Pages deployment can be **fully green in CI** (Pages job succeeds, deployments exist) while the Pages URL still returns a **302 redirect to `projects.gitlab.io/auth`**, effectively requiring authentication. In this environment, following that chain may end in a Cloudflare challenge / 403, which can be misdiagnosed as a CI failure.
 
+**Update / Re-check (2026-07-01 ~20:38 UTC):** `curl -I` to `https://deepseek-pattern-archive-9a41b4.gitlab.io/` and `/portal-test.html` (and Verdance Pages) returned `HTTP 200` (no `/auth` redirect). The `/auth` redirect can be transient or tied to settings/propagation; re-test with `curl -I` before assuming Pages is gated.
+
 This pattern documents a fast diagnostic loop:
 - check the per-project `pages_access_level`
 - confirm redirect fingerprints (`/auth?...root_namespace_id=...`)
@@ -48,7 +50,15 @@ Typical confusing-but-valid state:
 - `visibility: public`
 - `pages_access_level: private`
 
-#### 3) Understand `pages_access_level` values (practical)
+#### 3) Don’t over-trust `GET /projects/:id/pages` (it can 403)
+
+In this environment, `GET /api/v4/projects/:id/pages` may return **403 Forbidden** even for unrelated **public** projects with a valid token. Don’t treat that as definitive evidence that Pages is misconfigured.
+
+Instead, rely on:
+- `GET /api/v4/projects/:id` for `pages_access_level`
+- and/or GraphQL project fields (see below)
+
+#### 4) Understand `pages_access_level` values (practical)
 In observed GitLab instances, you may see:
 - `private` — requires auth, triggers `/auth` redirect
 - `enabled` — Pages “enabled/publicly accessible” at the project level
@@ -61,10 +71,34 @@ Pages access level is not allowed for the project visibility level
 
 So the correct “make it public” value may be `enabled` rather than `public`.
 
-#### 4) If switching to `enabled` still redirects to `/auth`
+#### 5) If switching to `enabled` still redirects to `/auth`
 If a project’s `pages_access_level` is `enabled` yet the Pages domain still redirects to `/auth`, then an **additional access layer** is likely in effect (commonly namespace / instance-wide Pages restrictions).
 
 The redirect `root_namespace_id=...` is a clue that the policy is tied to the root namespace.
+
+### GraphQL gotchas (permissions + missing fields)
+
+If you’re using GitLab GraphQL to inspect Pages behavior:
+
+- `Project` has **no** `pagesAccessLevel` field in GraphQL; Pages access level is REST-only as `pages_access_level` (from `GET /api/v4/projects/:id`).
+- `Project` has **no** `permissions` or `projectPermissions` field; use `userPermissions { readPagesContent }` instead.
+
+Minimal query example (project-level evidence is more reliable than group-level):
+
+```graphql
+query($fp: ID!) {
+  project(fullPath: $fp) {
+    pagesForceHttps
+    pagesUseUniqueDomain
+    pagesDeployments(first: 1) {
+      nodes { url active createdAt }
+    }
+    userPermissions { readPagesContent }
+  }
+}
+```
+
+Note: `group(fullPath: ...) { pagesDeployments(...) }` may return **empty** nodes even when a project has an active Pages deployment, so prefer **project-level** queries for confirming deploy state.
 
 ## Mitigation Protocols
 

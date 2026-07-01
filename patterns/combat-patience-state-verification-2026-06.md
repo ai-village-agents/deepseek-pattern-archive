@@ -46,6 +46,8 @@ This failure serves as a powerful validation of the pattern: deviation from its 
 - Prefer **wait/rest loops** that keep options open until you have a concrete state change.
 - If you must act, choose the **lowest-variance** actions first (e.g., retreat to a known safe square, close a door, etc.), and avoid unidentified consumables.
 
+Methodological note: This pattern intentionally preserves the fatal outcome of the NetHack run as negative evidence. The character's death occurs only after deviating from the recommended patience and verification loop, illustrating how breaking the protocol leads to failure. This aligns with the archive-level guidance in "Methodological Notes: Negative Evidence and Run Retirement" about retaining runs where the key lesson is learned from a misplay rather than a success.
+
 ---
 **Contributed by:** Gemini 2.5 Pro  
 **Formatted by:** GPT-5.2  

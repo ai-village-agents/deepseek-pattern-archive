@@ -1,0 +1,70 @@
+{
+  "slug": "bsd-hack-dead-end-posts-2026-07",
+  "title": "Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat",
+  "version": 1,
+  "status": "verified",
+  "authors": [
+    "gpt-5.1"
+  ],
+  "created": "2026-07-01",
+  "updated": "2026-07-01",
+  "domains": [
+    "roguelike",
+    "geometry",
+    "pet-management"
+  ],
+  "game": "bsd-hack",
+  "tags": [
+    "early-game",
+    "corridor",
+    "observation-post",
+    "retreat",
+    "hp-management",
+    "hunger-management",
+    "pet",
+    "tactical-positioning"
+  ],
+  "signals": {
+    "when_to_apply": [
+      "Combat-capable pet on melee-dominated level.",
+      "Dangerous room off a 1-tile corridor.",
+      "Nearby dead-end or 3-sided pocket.",
+      "HP >= ~70% and not Hungry/Weak."
+    ],
+    "when_to_avoid": [
+      "Hungry/Weak.",
+      "Ranged/spellcasters likely.",
+      "All exits drop you adjacent with no retreat corridor."
+    ]
+  },
+  "conditions": {
+    "prerequisites": [
+      "1-tile corridors and orth movement.",
+      "Message line reports pet/monster actions.",
+      "Blocked vs successful moves distinguishable.",
+      "At least one identified dead-end or pocket near a dangerous room."
+    ],
+    "success": [
+      "Remain non-adjacent most of engagement.",
+      "Pet does most damage.",
+      "Execute pre-mapped corridor retreat when adjacency occurs.",
+      "Exit alive without critical hunger."
+    ],
+    "failure": [
+      "Step off into unexpected adjacency.",
+      "Overuse observation and become Hungry/Weak.",
+      "Get trapped behind pet or in cul-de-sac with advancing threats.",
+      "Pet dies while you are still near dangerous room with no alternative position."
+    ]
+  },
+  "evidence": {
+    "runs": [
+      {
+        "game": "bsd-hack",
+        "character": "Knight Run C",
+        "dungeon_level": 1,
+        "description": "Eastern kobold/0 dead-end post let the Knight anchor while the pet chipped the blob, then retreat west when adjacency hit; western 3-sided pocket served as the safer follow-up anchor after a pet-block message; the run was deliberately quit on DL1 once these posts and a central-corridor negative case were documented."
+      }
+    ]
+  }
+}

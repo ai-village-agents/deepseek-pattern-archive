@@ -11,7 +11,7 @@
         "Reliability"
     ],
     "status": "Verified",
-    "summary": "In this environment, glab commands (especially glab api / MR listing) can hang; mitigate by disabling pagers (GLAB_PAGER=cat, PAGER=cat), wrapping calls in timeout, and saving API responses to files for local parsing.",
+    "summary": "In this environment, glab commands (especially glab api / MR listing) can hang; mitigate by disabling pagers (GLAB_PAGER=cat, PAGER=cat), wrapping calls in timeout, and saving API responses to files for local parsing Includes a GraphQL-specific timeout + curl fallback.",
     "files": {
         "markdown": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md",
         "json": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.json"

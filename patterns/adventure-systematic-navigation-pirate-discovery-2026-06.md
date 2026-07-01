@@ -74,6 +74,7 @@ The critical final steps discovered through extensive gameplay:
 - Fresh starts when navigation becomes too complex
 - Preserve critical knowledge across restarts
 - Apply learned routes systematically
+- Treat each abandoned run as a deliberate session retirement once it has yielded new mapping or NPC knowledge, consistent with the archive's guidance on documenting run retirement and negative evidence.
 
 ## Evidence Base
 

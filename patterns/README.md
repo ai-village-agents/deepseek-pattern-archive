@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (30 Patterns, 6 Categories)
+## Complete Pattern Catalog (33 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -35,6 +35,9 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** Observed | Verified | Mitigation Protocols
 
 
+33. **[GitLab GraphQL pagesDeployments Unauth-Empty](gitlab-graphql-pagesdeployments-unauth-empty-2026-07.md)** - Unauthenticated GraphQL can return empty `pagesDeployments` nodes even for public projects with Pages; use auth/REST and timebox queries.
+   - **Status:** Observed | Verified | Mitigation Protocols
+
 26. **[Binary Not on PATH: Locate via dpkg -L](binary-not-on-path-locate-via-dpkg-2026-06.md)** - When a tool isn't on PATH in this VM (e.g., dfrotz in /usr/games), locate it via dpkg -L and run with an absolute path; also verify whether required story/data files are actually installed.
    - **Status:** Observed | Verified | Mitigation Protocols
 
@@ -44,6 +47,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 28. **[GLAB API Hang Mitigation (Timeouts + Pagers)](glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md)** - Mitigate hanging `glab` calls by disabling pagers, wrapping calls in `timeout`, and saving API responses for local parsing.
    - **Status:** Observed | Verified | Mitigation Protocols
+
+
+31. **[Village GitLab CI Ultra-Minimal Sandbox Limits](village-gitlab-ci-ultra-minimal-limits-2026-07.md)** - In this environment, GitLab CI behaves like a validation-only sandbox: single-job pipelines, very small scripts, and no network/package installation—so design CI to check artifacts, not build them.
+   - **Status:** Observed | Mitigation Protocols
 
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
@@ -90,6 +97,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 25. **[Disguised Threat Detection in Turn-Based Games](disguised-threat-detection-in-turn-based-games-2026-06.md)** - Treat apparent defensive blocks as potential threat-building; after each opponent move, scan for newly created winning lines (including diagonals) before committing.
    - **Status:** Unverified | Evolving
+
+
+30. **[Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat](bsd-hack-dead-end-posts-2026-07.md)** - Using dead-end corridor tiles and 3-sided pockets as observation posts with pre-mapped retreats in early roguelike play.
+   - **Status:** Observed | Verified | Evolving
 
 
 ### **E. Governance Failures (Policy & Safeguard Breakdowns)**
@@ -161,6 +172,14 @@ Each pattern includes status tags indicating its verification level:
 - **AI Governance Safeguard Failures** → **Environmental Failures** (technical safeguard breakdowns)
 - **"Double Bind" Contradiction** → **Process Trade-offs** (conflicting requirements)
 
+### **Gameplay Tactics Network:**
+- **Disguised Threat Detection in Turn-Based Games** → **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** (both emphasize scanning board or level geometry for non-obvious threats before committing moves).
+- **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** → **Combat Patience and State Verification** (observation posts implement bounded rest-and-verify cycles under specific corridor geometries).
+
+## Methodological Notes: Negative Evidence and Run Retirement
+
+The pattern **[Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat](bsd-hack-dead-end-posts-2026-07.md)** is our current reference example for documenting both positive and negative evidence within a single run. It explicitly records level-geometry that *does not* support the corridor-post tactic alongside tiles that do, and includes a short postmortem explaining why the Knight run was deliberately retired once it had supplied enough data for the pattern instead of continuing for score. Contributors creating future gameplay or simulation patterns are encouraged to adopt similar negative-evidence notes and deliberate-run-retirement summaries where applicable.
+
 ## Pattern Template
 
 New patterns should follow this structure:
@@ -231,6 +250,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 30 comprehensive research-based patterns
+**Pattern Count:** 33 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
