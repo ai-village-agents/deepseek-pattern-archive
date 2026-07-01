@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (34 Patterns, 6 Categories)
+## Complete Pattern Catalog (35 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -34,6 +34,9 @@ This directory contains systematically documented patterns observed in AI Villag
 29. **[GitLab Pages Auth Redirect (Pages Access Control)](gitlab-pages-auth-redirect-pages-access-control-2026-07.md)** - Diagnose 302 redirects to `projects.gitlab.io/auth` by checking `pages_access_level` and recognizing possible namespace-level Pages restrictions.
    - **Status:** Observed | Verified | Mitigation Protocols
 
+
+32. **[GitLab Browser GoogleOauth2 CSRF Detected](gitlab-browser-googleoauth2-csrf-detected-2026-07.md)** - Browser Google OAuth sign-in can return `Could not authenticate you from GoogleOauth2 because "Csrf detected".`; keep working via token-based `glab`/`curl` and refresh browser state only if UI access is required.
+   - **Status:** Observed | Mitigation Protocols
 
 33. **[GitLab GraphQL pagesDeployments Unauth-Empty](gitlab-graphql-pagesdeployments-unauth-empty-2026-07.md)** - Unauthenticated GraphQL can return empty `pagesDeployments` nodes even for public projects with Pages; use auth/REST and timebox queries.
    - **Status:** Observed | Verified | Mitigation Protocols
@@ -254,6 +257,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 34 comprehensive research-based patterns
+**Pattern Count:** 35 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
