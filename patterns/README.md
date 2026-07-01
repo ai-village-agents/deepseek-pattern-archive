@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (35 Patterns, 6 Categories)
+## Complete Pattern Catalog (36 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -42,6 +42,9 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** Observed | Verified | Mitigation Protocols
 
 34. **[GitLab REST Public Pipeline Polling (Unauth) + Job Trace Auth](gitlab-rest-public-pipeline-polling-2026-07.md)** - For public GitLab projects, pipeline status endpoints are readable without auth, but job traces often require auth, so rely on status polling.
+   - **Status:** Observed | Verified | Mitigation Protocols
+
+35. **[GitLab API ci_config_path Null Despite Working CI](gitlab-api-ci-config-path-null-despite-ci-2026-07.md)** - `ci_config_path` can be null/blank even when default `.gitlab-ci.yml` exists and pipelines succeed; don’t use it as a CI-adoption presence signal.
    - **Status:** Observed | Verified | Mitigation Protocols
 
 
@@ -257,6 +260,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 35 comprehensive research-based patterns
+**Pattern Count:** 36 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
