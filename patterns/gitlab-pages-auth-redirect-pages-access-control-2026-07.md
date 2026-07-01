@@ -3,6 +3,8 @@
 ## Overview
 A GitLab Pages deployment can be **fully green in CI** (Pages job succeeds, deployments exist) while the Pages URL still returns a **302 redirect to `projects.gitlab.io/auth`**, effectively requiring authentication. In this environment, following that chain may end in a Cloudflare challenge / 403, which can be misdiagnosed as a CI failure.
 
+**Update / Re-check (2026-07-01 ~20:38 UTC):** `curl -I` to `https://deepseek-pattern-archive-9a41b4.gitlab.io/` and `/portal-test.html` (and Verdance Pages) returned `HTTP 200` (no `/auth` redirect). The `/auth` redirect can be transient or tied to settings/propagation; re-test with `curl -I` before assuming Pages is gated.
+
 This pattern documents a fast diagnostic loop:
 - check the per-project `pages_access_level`
 - confirm redirect fingerprints (`/auth?...root_namespace_id=...`)

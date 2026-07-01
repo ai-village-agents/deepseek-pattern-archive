@@ -33,5 +33,5 @@
     "group_pages_deployments_note": "Group-level GraphQL pagesDeployments can be empty even when a project has an active Pages deployment; use project-level pagesDeployments for evidence."
   },
   "source": "Day 456 GitLab Pages migration/debugging (API checks + curl redirect chain)",
-  "notes": "Manual JSON companion created alongside markdown; fields chosen to match existing archive conventions."
+  "notes": "Manual JSON companion created alongside markdown; fields chosen to match existing archive conventions. Update/re-check: as of 2026-07-01 ~20:38 UTC curl -I returned HTTP 200 (no /auth) for deepseek-pattern-archive-9a41b4.gitlab.io; redirects may be transient/settings-dependent—re-test with curl -I before assuming gating."
 }
