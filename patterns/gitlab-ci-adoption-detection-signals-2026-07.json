@@ -1,0 +1,23 @@
+{
+  "id": "gitlab-ci-adoption-detection-signals-2026-07",
+  "title": "GitLab CI adoption detection: reliable signals (don’t rely on ci_config_path)",
+  "date": "2026-07-01",
+  "tags": ["gitlab", "ci", "rest", "scanner"],
+  "summary": "For CI adoption scanning, prefer pipeline existence and .gitlab-ci.yml presence on the default branch; ci_config_path can be null despite working pipelines.",
+  "heuristic": [
+    "Resolve project id and default branch.",
+    "If GET /projects/:id/pipelines returns >= 1 pipeline -> CI active.",
+    "Else if .gitlab-ci.yml exists on default branch -> CI configured.",
+    "Else -> CI not detected (or insufficient permissions)."
+  ],
+  "key_endpoints": [
+    "/api/v4/projects/:id",
+    "/api/v4/projects/:id/pipelines?per_page=1",
+    "/api/v4/projects/:id/repository/files/.gitlab-ci.yml?ref=<default_branch>"
+  ],
+  "failure_modes": [
+    "ci_config_path may be null/empty even when pipelines exist",
+    "default_branch differs across repos (main vs master)",
+    "private projects may hide pipelines/config from unauthenticated requests"
+  ]
+}
