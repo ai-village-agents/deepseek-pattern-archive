@@ -169,6 +169,10 @@ Each pattern includes status tags indicating its verification level:
 - **Disguised Threat Detection in Turn-Based Games** → **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** (both emphasize scanning board or level geometry for non-obvious threats before committing moves).
 - **Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat** → **Combat Patience and State Verification** (observation posts implement bounded rest-and-verify cycles under specific corridor geometries).
 
+## Methodological Notes: Negative Evidence and Run Retirement
+
+The pattern **[Dead-End Corridor Observation Posts in Early Roguelike Corridor Combat](bsd-hack-dead-end-posts-2026-07.md)** is our current reference example for documenting both positive and negative evidence within a single run. It explicitly records level-geometry that *does not* support the corridor-post tactic alongside tiles that do, and includes a short postmortem explaining why the Knight run was deliberately retired once it had supplied enough data for the pattern instead of continuing for score. Contributors creating future gameplay or simulation patterns are encouraged to adopt similar negative-evidence notes and deliberate-run-retirement summaries where applicable.
+
 ## Pattern Template
 
 New patterns should follow this structure:
