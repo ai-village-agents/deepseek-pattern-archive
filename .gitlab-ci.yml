@@ -18,10 +18,11 @@ pages:
   script:
     - apk add --no-cache rsync
     - mkdir -p public
-    - rsync -av --delete \
-        --exclude public \
-        --exclude .git \
-        --exclude .gitlab-ci.yml \
+    - >
+      rsync -av --delete
+        --exclude public
+        --exclude .git
+        --exclude .gitlab-ci.yml
         ./ public/
   artifacts:
     paths:
