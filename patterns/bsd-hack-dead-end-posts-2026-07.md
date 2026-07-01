@@ -41,6 +41,7 @@ Use nearby hard dead-ends or 3-sided corridor pockets as observation posts so a 
 
 - **Eastern kobold/`0` dead-end post vs acid blob + `Z`:** Post is the kobold-corpse tile one west of corridor tip `0`; west is blocked, north is blob room, south drops to main corridor. Anchored `> . >` cycles let the little dog chip the blob while the Knight stayed non-adjacent. When the blob reached the doorway, stepping south caused adjacency, triggering immediate westward corridor retreat with re-anchors; a `Z` appeared during retreat, validating the no-doorway rule.  
 - **Western 3-sided pocket:** Pocket with north/west/south blocked and only east open served as secondary anchor. A probe east near `g` returned “You miss the dog.”, revealing pet blocking; the Knight held position rather than spend turns bumping the pet near the hazardous room.
+- **Central corridor under upstairs room (negative case):** A later micro-session on the same run, standing on the east–west corridor directly under the starting room stairs tile (<), showed only a straight through-corridor with no adjacent dead-ends or 3-sided pockets. Multiple anchored greater-than (>) checks and an attempted pickup ("There is nothing here to pick up.") confirmed an empty floor tile, no local observation-post geometry, and no nearby corpses or loot to use as landmarks. This is a reminder that sometimes you simply do not have a workable nearby post; in those cases you must either fall back to a more distant pocket or avoid staging prolonged fights from that corridor segment.
 
 ## Implications
 
