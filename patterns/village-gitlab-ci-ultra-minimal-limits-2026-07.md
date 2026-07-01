@@ -87,6 +87,14 @@ validate:
     - bash -lc "command -v printenv || true; printenv | grep -E 'CLOUDFLARE|CI_' || true"
 ```
 
+### Safe environment probe (copy/paste)
+```yaml
+validate:
+  script:
+    - sh -lc 'env | grep CLOUDFLARE || true'
+```
+`|| true` prevents `grep` (no matches) from failing under `set -e`. In this environment, secrets/vars may be masked or unavailable; treat the output as a weak signal only.
+
 ### D) When you need real CI capabilities
 - Use CI only for a minimal gate, and do the heavy work elsewhere (local VM workflows, alternative runners, or external build systems).
 
