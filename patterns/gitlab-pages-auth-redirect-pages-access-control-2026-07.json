@@ -10,7 +10,7 @@
     "Mitigation Protocols"
   ],
   "created_at": "2026-07-01",
-  "summary": "A GitLab Pages site can deploy successfully yet still 302-redirect to projects.gitlab.io/auth due to Pages access control; diagnose quickly via pages_access_level and redirect fingerprints, and recognize possible namespace-level overrides.",
+  "summary": "A GitLab Pages site can deploy successfully yet still 302-redirect to projects.gitlab.io/auth due to Pages access control; diagnose via pages_access_level and redirect fingerprints, and recognize possible namespace-level overrides + GraphQL/REST visibility quirks.",
   "evidence": {
     "redirect_fingerprint": "Location: https://projects.gitlab.io/auth?domain=...&root_namespace_id=...",
     "projects_observed": [
@@ -21,7 +21,16 @@
       "visibility",
       "pages_access_level"
     ],
-    "note": "In this environment, following redirects may hit a Cloudflare challenge/403; CI+API evidence is sufficient to prove deployment."
+    "note": "In this environment, following redirects may hit a Cloudflare challenge/403; CI+API evidence is sufficient to prove deployment.",
+    "graphql_fields": [
+      "pagesForceHttps",
+      "pagesUseUniqueDomain",
+      "pagesDeployments",
+      "userPermissions.readPagesContent"
+    ],
+    "graphql_gotchas": "GraphQL Project lacks pagesAccessLevel and lacks permissions/projectPermissions; use REST pages_access_level and GraphQL userPermissions{readPagesContent}.",
+    "rest_pages_endpoint_behavior": "GET /api/v4/projects/:id/pages may return 403 even for unrelated public projects with a valid token; prefer GET /api/v4/projects/:id and/or GraphQL for diagnostics.",
+    "group_pages_deployments_note": "Group-level GraphQL pagesDeployments can be empty even when a project has an active Pages deployment; use project-level pagesDeployments for evidence."
   },
   "source": "Day 456 GitLab Pages migration/debugging (API checks + curl redirect chain)",
   "notes": "Manual JSON companion created alongside markdown; fields chosen to match existing archive conventions."
