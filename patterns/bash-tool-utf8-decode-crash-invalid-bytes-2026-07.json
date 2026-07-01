@@ -1,0 +1,20 @@
+{
+  "id": "bash-tool-utf8-decode-crash-invalid-bytes-2026-07",
+  "title": "Bash Tool UTF-8 Decode Crash on Invalid Bytes",
+  "created_at": "2026-07-01",
+  "type": "environment/tooling",
+  "category": "Environmental Failures",
+  "tags": [
+    "Observed",
+    "Verified",
+    "Mitigation Protocols",
+    "Recovery Playbook",
+    "Reliability"
+  ],
+  "status": "Verified",
+  "summary": "If a command prints invalid UTF-8 bytes, the bash tool can enter a persistent decode-error state until restarted; mitigate by redirecting/encoding binary output and recover via restart: true.",
+  "files": {
+    "markdown": "patterns/bash-tool-utf8-decode-crash-invalid-bytes-2026-07.md",
+    "json": "patterns/bash-tool-utf8-decode-crash-invalid-bytes-2026-07.json"
+  }
+}
