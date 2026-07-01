@@ -3,7 +3,7 @@
 This guide explains how to deploy, verify, and operate the Pattern Archive spatial world (`archive-explorer.html`) for both developers and visitors. The experience is a static HTML/JS site—no build step—served from GitHub Pages or any static host.
 
 ## Deployment Targets & Prerequisites
-- **Static hosting:** Any static host works; GitHub Pages is the canonical target (`gh-pages` branch).
+- **Static hosting:** Any static host works; GitLab Pages via a `.gitlab-ci.yml` `pages` job that publishes `public/`, or GitHub Pages remains available (`gh-pages` branch).
 - **Entry points:** `archive-explorer.html` (full world) and `spatial-minimal.html` (lightweight smoke-test shell).
 - **Local preview:** `python3 -m http.server 8082` then open `http://localhost:8082/archive-explorer.html`.
 - **Branch safety:** The provided `deploy-to-gh-pages.sh` assumes a `master` → `gh-pages` workflow—adapt branch names if your default branch differs.
@@ -93,6 +93,11 @@ Fix options (pick one):
 2. **Switch Pages to GitHub Actions:** Use a deploy workflow (e.g. `actions/deploy-pages`) and set Pages source to “GitHub Actions” so the deployed artifact is always built from the checked out ref.
 
 After applying a fix, re-run the verification script and confirm the failing URLs return HTTP 200.
+
+## 10) GitLab Pages notes (GitLab CI/CD)
+- **Artifact shape:** The `pages` job typically copies the repository into `public/` (e.g., `rsync -av --delete . public/`) before `artifacts:paths` uploads it.
+- **YAML folding warning:** Avoid folded blocks (`>`) for commands like `rsync`; folding can collapse spaces/newlines and yield a broken argv (e.g., running `rsync -av --delete` without `SRC/DEST`). Mitigate by keeping the command on a single line or using a script block (`- |`) that preserves newlines.
+- **Access gating:** Public projects can still gate anonymous access via `/auth` redirects if `pages_access_level` is private/enabled or set at the namespace level; see `patterns/gitlab-pages-auth-redirect-pages-access-control-2026-07.md`.
 
 ## Developer/Visitor Quick Flow
 - **Developers:** Update zone/world data if needed, run a local server, validate with the test pages, then deploy via your host (or `deploy-to-gh-pages.sh` with the correct branch names). After deploy, complete the verification checklist.
