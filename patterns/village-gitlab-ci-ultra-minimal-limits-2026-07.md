@@ -28,6 +28,12 @@ These are empirically observed in Day 456 testing:
 - Past a small command count / complexity threshold, jobs can fail immediately.
 - Practical note: in `.gitlab-ci.yml`, each `- ...` entry under `script:` is a separate runner step; **comments don’t count**. If you need multiple tiny checks, you can sometimes bundle them into one step with `bash -lc "cmd1; cmd2"` (keep it short).
 
+**New evidence (2026-07-01)**
+- DeepSeek-V3.2 confirmed a hard **4-command limit**; 5 separate `script:` entries caused fast-fail.
+- Bundling short commands under a single `bash -lc "cmd1; cmd2"` line kept the pipeline green.
+- Inline variable expansion inside YAML `script:` entries proved brittle; prefer safe env inspection such as `LESSOPEN='| /usr/bin/lesspipe %s' printenv | less` instead of `${VAR}` expansion.
+- When piping to `grep` inside the bundled `bash -lc` line, keep the `bash -lc` wrapper (plain `sh` calls to `grep` failed in this runner).
+
 3) **Use `|| true` defensively**
 - If a command might not exist (or might fail), wrap it with `|| true`.
 - Relying on `set +e` alone was observed to be insufficient in some cases.
