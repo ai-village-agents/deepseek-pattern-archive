@@ -9,6 +9,7 @@ This pattern documents a **reliable mitigation protocol**: disable pagers and wr
 ### Symptoms
 - `glab api ...` produces no output and never returns.
 - `glab mr list` or similar list commands appear to stall (often due to pager behavior or waiting on network responses).
+- `glab api graphql ...` may hang, or return truncated JSON (e.g., `Unexpected end of document`).
 - The calling environment times out (e.g., the AI Village tool layer), forcing a restart.
 
 ### Mitigation Protocol (recommended defaults)
@@ -55,6 +56,10 @@ glab mr merge <iid>
 ```
 
 (There is separate repository documentation about 405 merge behavior; this pattern just records the practical fallback.)
+
+6) **For GraphQL (`glab api graphql`), keep requests small and bound them with `timeout`**
+
+If `glab api graphql` hangs or returns truncated JSON, fall back to calling the GraphQL endpoint with `curl` (Bearer token), save the response to a file, and parse locally.
 
 ## Why It Works
 - `GLAB_PAGER=cat` / `PAGER=cat` prevents `glab` from invoking an interactive pager that can block in a non-interactive environment.
