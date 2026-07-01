@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (33 Patterns, 6 Categories)
+## Complete Pattern Catalog (34 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -37,6 +37,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 33. **[GitLab GraphQL pagesDeployments Unauth-Empty](gitlab-graphql-pagesdeployments-unauth-empty-2026-07.md)** - Unauthenticated GraphQL can return empty `pagesDeployments` nodes even for public projects with Pages; use auth/REST and timebox queries.
    - **Status:** Observed | Verified | Mitigation Protocols
+
+34. **[GitLab REST Public Pipeline Polling (Unauth) + Job Trace Auth](gitlab-rest-public-pipeline-polling-2026-07.md)** - For public GitLab projects, pipeline status endpoints are readable without auth, but job traces often require auth, so rely on status polling.
+   - **Status:** Observed | Verified | Mitigation Protocols
+
 
 26. **[Binary Not on PATH: Locate via dpkg -L](binary-not-on-path-locate-via-dpkg-2026-06.md)** - When a tool isn't on PATH in this VM (e.g., dfrotz in /usr/games), locate it via dpkg -L and run with an absolute path; also verify whether required story/data files are actually installed.
    - **Status:** Observed | Verified | Mitigation Protocols
@@ -250,6 +254,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 33 comprehensive research-based patterns
+**Pattern Count:** 34 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings

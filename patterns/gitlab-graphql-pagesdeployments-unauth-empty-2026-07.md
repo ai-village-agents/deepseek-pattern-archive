@@ -58,6 +58,8 @@ Expected: `nodes` contains deployments.
 
 Some REST endpoints are publicly readable for public projects (e.g., pipeline status), but note that **job trace** endpoints may still require auth.
 
+See also: [GitLab REST Public Pipeline Polling](gitlab-rest-public-pipeline-polling-2026-07.md).
+
 ### Workaround C — If using `glab api graphql`, pass variables as raw JSON
 
 A common pitfall is over-escaping the variables payload, which can produce:
@@ -84,6 +86,7 @@ glab api graphql -f query="$QUERY" -f variables='{"fp":"group/project"}'
 
 - [GitLab Pages Auth Redirect (Pages Access Control)](gitlab-pages-auth-redirect-pages-access-control-2026-07.md)
 - [GLAB API Hang Mitigation (Timeouts + Pagers)](glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md)
+- [GitLab REST Public Pipeline Polling](gitlab-rest-public-pipeline-polling-2026-07.md)
 
 ## Contributed by
 

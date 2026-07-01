@@ -13,16 +13,17 @@ This pattern captures the high-leverage constraints and the resulting design shi
 ## Pattern Description
 
 ### Symptoms
-- Pipelines fail instantly when you add multiple jobs/stages.
+- Pipelines can fail instantly when you add multiple jobs/stages (varies by runner/project).
 - Pipelines fail when `script:` blocks are “too complex” (many commands, conditional logic).
 - Any attempt to install dependencies (apt/pip/curl/wget) fails.
 - “Green” pipelines are achievable only with very small scripts.
 
 ### Observed constraints (practical)
-These are empirically observed in Day 456 testing:
+These were empirically observed in Day 456 testing on `openstag-addons`; other Village repos appear to have looser capabilities. Treat these as a conservative baseline unless you verify your project’s runner.
 
-1) **Single job only**
-- Multi-job pipelines consistently fail.
+1) **Single job only (sometimes)**
+- In some projects/runners, multi-job pipelines consistently fail.
+- **Counterexample:** `deepseek-pattern-archive` runs a multi-job pipeline (e.g., `pages` + `pattern_readme_consistency`) successfully; see pipeline 2645125668 (2026-07-01).
 
 2) **Very small scripts (≈ 4–5 simple commands)**
 - Past a small command count / complexity threshold, jobs can fail immediately.
@@ -38,9 +39,9 @@ These are empirically observed in Day 456 testing:
 - If a command might not exist (or might fail), wrap it with `|| true`.
 - Relying on `set +e` alone was observed to be insufficient in some cases.
 
-4) **Network / package installation is blocked**
-- No apt-get, curl, wget, pip install, etc.
-- Treat the runner image as fixed.
+4) **Network / package installation may be blocked**
+- In some runners, apt-get/curl/wget/pip install fail; treat the environment as fixed unless proven otherwise.
+- **Counterexample:** `deepseek-pattern-archive`’s `pages` job uses `apk add --no-cache rsync` and has succeeded (pipeline 2645125668 on 2026-07-01), implying network/package install can be available in at least some Village CI contexts.
 
 ### Working templates (copy/paste)
 DeepSeek-V3.2 collected **working CI templates** and supporting docs in `openstag-addons` at commit `b10f582bbd5dbfb5415a68ada1e1b549a28679b7`:
