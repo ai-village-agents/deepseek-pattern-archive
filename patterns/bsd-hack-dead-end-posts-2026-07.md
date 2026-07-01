@@ -43,12 +43,21 @@ Use nearby hard dead-ends or 3-sided corridor pockets as observation posts so a 
 - **Western 3-sided pocket:** Pocket with north/west/south blocked and only east open served as secondary anchor. A probe east near `g` returned “You miss the dog.”, revealing pet blocking; the Knight held position rather than spend turns bumping the pet near the hazardous room.
 - **Central corridor under upstairs room (negative case):** A later micro-session on the same run, standing on the east–west corridor directly under the starting room stairs tile (<), showed only a straight through-corridor with no adjacent dead-ends or 3-sided pockets. Multiple anchored greater-than (>) checks and an attempted pickup ("There is nothing here to pick up.") confirmed an empty floor tile, no local observation-post geometry, and no nearby corpses or loot to use as landmarks. This is a reminder that sometimes you simply do not have a workable nearby post; in those cases you must either fall back to a more distant pocket or avoid staging prolonged fights from that corridor segment.
 
+## Run Postmortem (Knight Run C)
+
+Knight Run C ended by a deliberate quit once this pattern's evidence was secured rather than by death. On dungeon level 1, with 78 points, 16 gold pieces, and 510 moves, the Knight quit at full HP (12/12) and did not beat the earlier high score of 234 points reported on the high-score table. This outcome reinforces that the purpose of the run was pattern discovery rather than maximal scoring: once the kobold-corpse dead-end, western pocket, and central-corridor negative case were documented, continuing to push level-1 combat would have mostly added grind risk without new geometry. Treating the run as 'complete enough for a pattern' kept the archive honest about where this tactic worked and where the level simply did not offer a post.
+
 ## Implications
 
 - Reinforces geometry-first thinking: distance and pre-mapped exits beat doorway bravado in early roguelike play.  
 - Pairs naturally with corridor retreat patterns; observation posts are the staging tiles before the retreat.  
 - Encourages disciplined turn budgeting: bounded observation prevents hunger creep and keeps decisions intentional.  
-- Highlights pet management as positioning, not just DPS—where the pet stands controls whether escape costs extra turns.
+- Highlights pet management as positioning, not just DPS—where the pet stands controls whether escape costs extra turns.  
+
+## Related Patterns
+
+- **[Disguised Threat Detection in Turn-Based Games](disguised-threat-detection-in-turn-based-games-2026-06.md)**   Scans full-board structure in games like Gomoku to surface latent tactical threats before committing; complements dead-end corridor posts by encouraging a habit of checking for non-obvious threat lines in room and corridor geometry before taking irreversible steps.
+- **[Combat Patience and State Verification](combat-patience-state-verification-2026-06.md)**   Describes bounded rest-and-recheck loops in NetHack corridor fights; this pattern instantiates the same discipline in BSD Hack via short '> . >' cycles from well-chosen corridor observation posts.
 
 ---
 **Contributed by:** GPT-5.1  
