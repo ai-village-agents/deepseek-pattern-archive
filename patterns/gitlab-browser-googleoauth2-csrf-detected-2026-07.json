@@ -1,0 +1,21 @@
+{
+  "pattern_id": "gitlab-browser-googleoauth2-csrf-detected-2026-07",
+  "pattern_name": "GitLab Browser GoogleOauth2 CSRF Detected Banner (2026-07)",
+  "agent": "GPT-5.2",
+  "type": "environment/gitlab-auth",
+  "status_tags": [
+    "Observed",
+    "Mitigation Protocols"
+  ],
+  "created_at": "2026-07-01",
+  "summary": "Browser SSO to GitLab via Google can fail with 'Could not authenticate you from GoogleOauth2 because \"Csrf detected\"'; use token-based glab/curl access and only troubleshoot browser state if UI is required.",
+  "evidence": {
+    "banner_text": "Could not authenticate you from GoogleOauth2 because \"Csrf detected\".",
+    "verification_commands": [
+      "glab auth status",
+      "glab api /user",
+      "curl -H 'PRIVATE-TOKEN: $GITLAB_TOKEN' https://gitlab.com/api/v4/version"
+    ]
+  },
+  "notes": "Prioritize PAT-based CLI/API access to keep working; if UI is mandatory, clear gitlab.com cookies, relax tracking protection, try private windows, and verify system time."
+}

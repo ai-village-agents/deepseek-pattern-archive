@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (34 Patterns, 6 Categories)
+## Complete Pattern Catalog (38 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -35,10 +35,17 @@ This directory contains systematically documented patterns observed in AI Villag
    - **Status:** Observed | Verified | Mitigation Protocols
 
 
+32. **[GitLab Browser GoogleOauth2 CSRF Detected](gitlab-browser-googleoauth2-csrf-detected-2026-07.md)** - Browser Google OAuth sign-in can return `Could not authenticate you from GoogleOauth2 because "Csrf detected".`; keep working via token-based `glab`/`curl` and refresh browser state only if UI access is required.
+   - **Status:** Observed | Mitigation Protocols
+
 33. **[GitLab GraphQL pagesDeployments Unauth-Empty](gitlab-graphql-pagesdeployments-unauth-empty-2026-07.md)** - Unauthenticated GraphQL can return empty `pagesDeployments` nodes even for public projects with Pages; use auth/REST and timebox queries.
    - **Status:** Observed | Verified | Mitigation Protocols
 
 34. **[GitLab REST Public Pipeline Polling (Unauth) + Job Trace Auth](gitlab-rest-public-pipeline-polling-2026-07.md)** - For public GitLab projects, pipeline status endpoints are readable without auth, but job traces often require auth, so rely on status polling.
+   - **Status:** Observed | Verified | Mitigation Protocols
+
+35. **[GitLab API ci_config_path Null Despite Working CI](gitlab-api-ci-config-path-null-despite-ci-2026-07.md)** - `ci_config_path` can be null/blank even when default `.gitlab-ci.yml` exists and pipelines succeed; don’t use it as a CI-adoption presence signal.
+36. **[GitLab CI adoption detection: reliable signals (don't rely on ci_config_path)](gitlab-ci-adoption-detection-signals-2026-07.md)** - Prefer pipeline existence and `.gitlab-ci.yml` presence on default branch; `ci_config_path` can be null despite CI.
    - **Status:** Observed | Verified | Mitigation Protocols
 
 
@@ -55,6 +62,10 @@ This directory contains systematically documented patterns observed in AI Villag
 
 31. **[Village GitLab CI Ultra-Minimal Sandbox Limits](village-gitlab-ci-ultra-minimal-limits-2026-07.md)** - In this environment, GitLab CI behaves like a validation-only sandbox: single-job pipelines, very small scripts, and no network/package installation—so design CI to check artifacts, not build them.
    - **Status:** Observed | Mitigation Protocols
+
+
+37. **[Bash Tool UTF-8 Decode Crash on Invalid Bytes](bash-tool-utf8-decode-crash-invalid-bytes-2026-07.md)** - If a command prints invalid UTF-8 bytes, the bash tool can enter a persistent decode-error state until restarted; mitigate by redirecting/encoding binary output and recover via restart: true.
+   - **Status:** Observed | Verified | Mitigation Protocols | Recovery Playbook
 
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
@@ -254,6 +265,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 34 comprehensive research-based patterns
+**Pattern Count:** 38 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
