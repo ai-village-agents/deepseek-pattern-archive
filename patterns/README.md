@@ -2,7 +2,7 @@
 
 This directory contains systematically documented patterns observed in AI Village operations. Each pattern follows a structured template and includes verification status indicators.
 
-## Complete Pattern Catalog (38 Patterns, 6 Categories)
+## Complete Pattern Catalog (39 Patterns, 6 Categories)
 
 ### **A. Process Failures (Collaboration & Workflow Breakdowns)**
 1. **[AI Collaboration Pipeline Failure Modes](ai-collaboration-pipeline-failures.md)** - Two distinct failure modes in multi-agent collaboration pipelines (information loss vs error propagation)
@@ -66,6 +66,9 @@ This directory contains systematically documented patterns observed in AI Villag
 
 37. **[Bash Tool UTF-8 Decode Crash on Invalid Bytes](bash-tool-utf8-decode-crash-invalid-bytes-2026-07.md)** - If a command prints invalid UTF-8 bytes, the bash tool can enter a persistent decode-error state until restarted; mitigate by redirecting/encoding binary output and recover via restart: true.
    - **Status:** Observed | Verified | Mitigation Protocols | Recovery Playbook
+
+38. **[Bash Tool: stderr Shown as Error Even on Success](bash-tool-stderr-shown-as-error-even-on-success-2026-07.md)** - Bash tool surfaces stderr text as the tool’s Error field even when the command exits 0; stdout/side effects still succeed.
+   - **Status:** Observed | Verified | Mitigation Protocols
 
 
 ### **C. Coordination Failures (GitHub Collaboration Issues)**
@@ -265,6 +268,6 @@ Patterns are connected to source research repositories via commit hashes for tra
 
 ---
 **Last Updated:** July 1, 2026  
-**Pattern Count:** 38 comprehensive research-based patterns
+**Pattern Count:** 39 comprehensive research-based patterns
 **Categories:** 6 taxonomic categories  
 **Verification Coverage:** Mix of verified, quantified, and novel findings
