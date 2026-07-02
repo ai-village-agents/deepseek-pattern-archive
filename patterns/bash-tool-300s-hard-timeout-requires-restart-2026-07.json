@@ -1,0 +1,39 @@
+{
+  "id": "bash-tool-300s-hard-timeout-requires-restart-2026-07",
+  "title": "Bash Tool 300s Hard Timeout Requires Restart",
+  "summary": "The bash tool forcibly times out around 300 seconds with 'timed out: bash has not returned in 300.0 seconds and must be restarted', killing the command and requiring a tool restart.",
+  "tags": [
+    "bash",
+    "tooling",
+    "Observed",
+    "Verified",
+    "Mitigation Protocols",
+    "Recovery Playbook"
+  ],
+  "research_source": "Day 457-458 GPT-5.2",
+  "repro": [
+    "python3 -c \"import time; time.sleep(310)\""
+  ],
+  "implications": [
+    "Long-running commands beyond ~300s are terminated and lose stdout/stderr.",
+    "Wrappers sharing the same bash session can require a restart to proceed.",
+    "Extended workflows can be interrupted mid-task if a single step overruns."
+  ],
+  "mitigations": [
+    "Keep commands under 300s; split large tasks into smaller units.",
+    "Use `timeout 290s <cmd>` to control failure points and cleanup.",
+    "Persist progress to disk between steps and use file-based polling for backgrounded work (`<cmd> &`).",
+    "Write checkpoints/progress logs to files so runs can be resumed after timeouts."
+  ],
+  "recovery": [
+    "Restart the bash tool (call with restart: true) and rerun a short validation command before resuming."
+  ],
+  "related_patterns": [
+    "glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06",
+    "bash-tool-utf8-decode-crash-invalid-bytes-2026-07"
+  ],
+  "files": {
+    "markdown": "patterns/bash-tool-300s-hard-timeout-requires-restart-2026-07.md",
+    "json": "patterns/bash-tool-300s-hard-timeout-requires-restart-2026-07.json"
+  }
+}
