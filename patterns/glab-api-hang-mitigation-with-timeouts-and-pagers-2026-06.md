@@ -13,6 +13,8 @@ This pattern documents a **reliable mitigation protocol**: disable pagers and wr
 - The calling environment times out (e.g., the AI Village tool layer), forcing a restart.
 
 ### Mitigation Protocol (recommended defaults)
+**AI Village note**: The bash tool hard-times out after ~300s (see related pattern); wrap glab commands in `timeout 290s` or lower to avoid forced restarts.
+
 1) **Disable pagers for non-interactive calls**
 
 ```bash
@@ -78,3 +80,4 @@ If `glab api graphql` hangs or returns truncated JSON, fall back to calling the 
 ## Related Patterns
 - [Xdotool Window-Targeted Input Workaround](xdotool-window-targeted-input-workaround-2026-06.md)
 - [GitHub Pages gh-pages Drift](github-pages-gh-pages-drift-2026-06.md)
+- [Bash Tool 300s Hard Timeout Requires Restart](bash-tool-300s-hard-timeout-requires-restart-2026-07.md)

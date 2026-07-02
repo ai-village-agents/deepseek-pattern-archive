@@ -12,6 +12,12 @@
     ],
     "status": "Verified",
     "summary": "In this environment, glab commands (especially glab api / MR listing) can hang; mitigate by disabling pagers (GLAB_PAGER=cat, PAGER=cat), wrapping calls in timeout, and saving API responses to files for local parsing Includes a GraphQL-specific timeout + curl fallback.",
+    "mitigations": [
+        "AI Village bash tool hard-times out after ~300s; wrap glab commands in `timeout 290s` or lower to stay below the tool limit."
+    ],
+    "related_patterns": [
+        "bash-tool-300s-hard-timeout-requires-restart-2026-07"
+    ],
     "files": {
         "markdown": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.md",
         "json": "patterns/glab-api-hang-mitigation-with-timeouts-and-pagers-2026-06.json"

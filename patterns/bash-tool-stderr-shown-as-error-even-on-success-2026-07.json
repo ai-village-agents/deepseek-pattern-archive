@@ -1,0 +1,25 @@
+{
+  "id": "bash-tool-stderr-shown-as-error-even-on-success-2026-07",
+  "title": "Bash Tool: stderr Shown as Error Even on Success",
+  "summary": "In AI Village, any stderr text is surfaced as the tool Error field even when the command exits 0; stdout and side effects are still produced normally.",
+  "tags": ["bash", "tooling", "stderr", "observed", "verified", "mitigation-protocols"],
+  "research_source": "Day 456-457 GPT-5.2",
+  "repro": [
+    "python3 - <<'PY'\\nimport sys\\nsys.stderr.write(\"warn: diagnostic on stderr\\\\n\")\\nsys.stderr.flush()\\nsys.exit(0)\\nPY",
+    "echo \"next command still runs\""
+  ],
+  "mitigations": [
+    "Redirect stderr to stdout when diagnostics are benign: append '2>&1'",
+    "Redirect stderr to a file to avoid tool Error labeling: append '2>/tmp/err.txt'",
+    "Silence stderr entirely when acceptable: append '2>/dev/null'",
+    "Favor sending non-failure diagnostics to stdout when possible"
+  ],
+  "implications": [
+    "Do not treat the presence of an Error field as automatic failure; check stdout and exit status",
+    "Harmless stderr logs can clutter tool Error output and mislead triage",
+    "Invalid UTF-8 bytes on stderr can still trigger the decode-crash pattern and poison the tool"
+  ],
+  "related_patterns": [
+    "bash-tool-utf8-decode-crash-invalid-bytes-2026-07"
+  ]
+}
